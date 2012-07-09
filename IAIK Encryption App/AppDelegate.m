@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
+
+#define EXTENSION_CERT @"iaikcert"
+#define EXTENSION_CONTAINER @"iaikcontainer"
+#define EXTENSION_PDF @"pdf"
+
 
 @implementation AppDelegate
 
@@ -14,7 +20,54 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    BOOL shownotification = NO;
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
+    // Get current version ("Bundle Version") from the default Info.plist file
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"prevStartupVersions"];
+    if (prevStartupVersions == nil) 
+    {
+        //Fresh install!!
+        shownotification = YES;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:@"prevStartupVersions"];
+    }
+    else
+    {
+        if (![prevStartupVersions containsObject:currentVersion]) 
+        {
+            
+            //first start of this version
+            shownotification = YES;
+            
+            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
+            [updatedPrevStartVersions addObject:currentVersion];
+            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:@"prevStartupVersions"];
+        }
+    }
+    
+    // Save changes to disk
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if(shownotification)
+    {
+        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:@"Data Protection" message:@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [enableDP show];
+    }
+    
+
+    UIImage *navbarportrait = [[UIImage imageNamed:@"NavBarIPad"] 
+                               resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [[UINavigationBar appearance] setBackgroundImage:navbarportrait forBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *navbarlandscape = [[UIImage imageNamed:@"NavBarIPad"] 
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [[UINavigationBar appearance] setBackgroundImage:navbarlandscape forBarMetrics:UIBarMetricsLandscapePhone];
+    
     return YES;
 }
 							
@@ -44,5 +97,62 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - import files into this app
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+    id delegate;
+    
+    if([[url pathExtension] isEqual:EXTENSION_CERT])
+    {
+        //extracting certdata from inbox
+        NSData* certdata = [[NSData alloc] initWithContentsOfURL:url];
+        
+    
+        //setting certdata of rootviewcontroller
+        root.certData = certdata;
+        
+        delegate = root;  
+        
+        //showing alert to enter code, setting rootviewcontroller as delegate
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Decrypt certificate" message:@"Please enter the PIN to decrypt the certificate-file: " delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Decrypt", nil];
+        
+        alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+        
+        UITextField *textField = [alert textFieldAtIndex:0];
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        textField.delegate = delegate;
+        [alert show];
+                
+        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+        
+    }
+    else if([[url pathExtension] isEqual:EXTENSION_CONTAINER])
+    {
+        //extracting certdata from inbox
+        NSData* containerdata = [[NSData alloc] initWithContentsOfURL:url];
+        
+             
+        //getting rootviewcontroller
+        UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+        RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+        
+        [root decryptContainer:containerdata];
+        
+        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+        
+    }
+    else
+    {
+        [root performSegueWithIdentifier:SEGUE_TO_CHOOSE_CONTROLLER sender:url];
+    }
+    
+    
+    return YES;    
+}
+
 
 @end
