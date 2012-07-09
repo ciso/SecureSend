@@ -34,14 +34,11 @@
     
     NSMutableDictionary* dict = [self createSearchDictionaryForOwner:name];
     
-    NSDictionary* output;
-    
-    
     CFDictionaryRef cfquery = (__bridge_retained CFDictionaryRef)dict;
     CFDictionaryRef cfresult = NULL;
     OSStatus status = SecItemCopyMatching(cfquery, (CFTypeRef*)&cfresult);
     CFRelease(cfquery);
-    NSDictionary *result = (__bridge_transfer NSDictionary*)cfresult;
+    //NSDictionary *result = (__bridge_transfer NSDictionary*)cfresult;
     
     if (status != errSecItemNotFound)
     {
@@ -49,9 +46,6 @@
     }
     
     [dict setObject:(__bridge id)cert forKey:(__bridge id)kSecValueRef];
-    
-    //CFTypeRef certificateRef = NULL;
-    
     
     cfquery = (__bridge_retained CFDictionaryRef)dict;
     CFTypeRef certificateRef = NULL;
