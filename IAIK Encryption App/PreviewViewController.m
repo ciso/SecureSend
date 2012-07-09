@@ -75,25 +75,6 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    UINavigationController *detailNav = self.navigationController;
-    UISplitViewController *splitView = detailNav.splitViewController;
-    UINavigationController *masterNav = (UINavigationController*)[splitView.viewControllers objectAtIndex:0];
-    
-    ContainerDetailViewController *masterView = [masterNav.viewControllers objectAtIndex:0];
-    /*PageViewController *page = (PageViewController*)[self.navigationController.viewControllers objectAtIndex:0];
-    [masterView setShow:NO];
-    
-    splitView.delegate = nil;
-    splitView.delegate = masterView;
-    
-    [splitView.view setNeedsLayout];
-    [page.view setNeedsLayout];*/
-}
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self.webview removeFromSuperview];
@@ -201,7 +182,7 @@
     }
     else if ([segue.identifier isEqualToString:SEGUE_TO_ENCRYPT])
     {       
-        CertificateXplorerViewController *xplorer = segue.destinationViewController;
+        //CertificateXplorerViewController *xplorer = segue.destinationViewController;
         //todo !!!!!
         /*UIViewController *detail = ((SplitViewController*)self.splitViewController).detail;
         if ([detail isKindOfClass:[ContainerDetailViewController class]])
@@ -326,10 +307,7 @@ if (_splitViewBarButtonItem != splitViewBarButtonItem)
         [toolbarItems insertObject:backItem atIndex:0];
         
         
-        /*UIBarButtonItem *button = [toolbarItems lastObject];
-         [button setTarget:self];
-         [button setAction:@"dup"];*/
-    /*}
+    }
     
     self.toolbar.items = toolbarItems;
     _splitViewBarButtonItem = splitViewBarButtonItem;

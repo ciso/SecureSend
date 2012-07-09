@@ -133,7 +133,7 @@ static void callback(int p, int n, void *arg);
 	/* encrypt content */
     
     //creating symmetric cipher
-    EVP_CIPHER *symkey = EVP_aes_256_cbc(); //EVP_des_ede3_cbc();
+    const EVP_CIPHER *symkey = EVP_aes_256_cbc(); //EVP_des_ede3_cbc();
     
     //encrypting file and creating a cms content info
 	cms = CMS_encrypt(recips, in, symkey, flags);
@@ -370,7 +370,7 @@ static void callback(int p, int n, void *arg);
     }    
     
     //creating symmetric cipher
-    EVP_CIPHER *symkey = EVP_aes_256_cbc(); //EVP_des_ede3_cbc();
+    const EVP_CIPHER *symkey = EVP_aes_256_cbc(); //EVP_des_ede3_cbc();
     
     //encrypting file and creating a cms content info
 	cms = CMS_encrypt(recips, in, symkey, flags);
@@ -701,7 +701,7 @@ static void callback(int p, int n, void *arg);
 		assert(false);
     }
     
-    X509 *cert;
+    //X509 *cert;
     //todo: I've commented the next lines
     /*cert = [self createX509CertificateWithPrivateKey:pkey andWithName:@"Christof" 
                                      andEmailAddress:@"stromberger@student.tugraz.at" 
