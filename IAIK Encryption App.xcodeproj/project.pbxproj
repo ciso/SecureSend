@@ -37,20 +37,20 @@
 		B4118B2515AAC61B00D050B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4118B2715AAC61B00D050B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B4118B2D15AAC61B00D050B2 /* IAIK Encryption App-Info.plist */ = {isa = PBXFileReference; path = "IAIK Encryption App-Info.plist"; sourceTree = "<group>"; };
+		B4118B2D15AAC61B00D050B2 /* IAIK Encryption App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IAIK Encryption App-Info.plist"; sourceTree = "<group>"; };
 		B4118B2F15AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4118B3115AAC61B00D050B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B4118B3315AAC61B00D050B2 /* IAIK Encryption App-Prefix.pch */ = {isa = PBXFileReference; path = "IAIK Encryption App-Prefix.pch"; sourceTree = "<group>"; };
-		B4118B3415AAC61B00D050B2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4118B3315AAC61B00D050B2 /* IAIK Encryption App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IAIK Encryption App-Prefix.pch"; sourceTree = "<group>"; };
+		B4118B3415AAC61B00D050B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4118B3515AAC61B00D050B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B4118B3815AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		B4118B3A15AAC61B00D050B2 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		B4118B3A15AAC61B00D050B2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B4118B3B15AAC61B00D050B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B4118B4215AAC61B00D050B2 /* IAIK Encryption AppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IAIK Encryption AppTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4118B4315AAC61B00D050B2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B4118B4B15AAC61B00D050B2 /* IAIK Encryption AppTests-Info.plist */ = {isa = PBXFileReference; path = "IAIK Encryption AppTests-Info.plist"; sourceTree = "<group>"; };
+		B4118B4B15AAC61B00D050B2 /* IAIK Encryption AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IAIK Encryption AppTests-Info.plist"; sourceTree = "<group>"; };
 		B4118B4D15AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B4118B4F15AAC61B00D050B2 /* IAIK_Encryption_AppTests.h */ = {isa = PBXFileReference; path = IAIK_Encryption_AppTests.h; sourceTree = "<group>"; };
+		B4118B4F15AAC61B00D050B2 /* IAIK_Encryption_AppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAIK_Encryption_AppTests.h; sourceTree = "<group>"; };
 		B4118B5015AAC61B00D050B2 /* IAIK_Encryption_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAIK_Encryption_AppTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
