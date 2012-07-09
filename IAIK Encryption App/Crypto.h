@@ -59,7 +59,7 @@
                   andStoreItTo:(NSString*)pathToStoreFile
               andUseBinaryMode:(BOOL)binary;
 
-- (void) createX509Certificate;
+//- (void) createX509Certificate;
 
 - (NSDate*)getExpirationDateOfCertificate:(NSData*)cert;
 
@@ -91,9 +91,6 @@
 - (void) addTextEntryToCert:(X509_NAME**)name
                      forKey:(NSString*)key
                   withValue:(NSString*)value;
-
-- (void) createCert;
-
 
 //- (X509) createX509CertificateForUser:(NSString*)username
 

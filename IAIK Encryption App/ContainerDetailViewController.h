@@ -26,7 +26,4 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
 @property (nonatomic, assign) BOOL show;
 
-- (IBAction)addFileButtonAction:(id)sender;
-- (void)hide;
-
 @end

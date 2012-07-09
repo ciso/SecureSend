@@ -470,32 +470,7 @@ static void callback(int p, int n, void *arg);
 	OpenSSL_add_all_algorithms();
 	ERR_load_crypto_strings();    
     
-    
-    
-    /*BIO *pkey = BIO_new_file([pathToKey cStringUsingEncoding:NSUTF8StringEncoding], "r");
-    rkey = PEM_read_bio_PrivateKey(pkey, NULL, 0, (void*)[passphrase cStringUsingEncoding:NSUTF8StringEncoding]);
-	if (!certificate || !rkey) {
-        [self throwWithText:@"Certificate or primary key was not valid"];
-        
-    }*/
-
-    
-    
-    //open content beeing decrypted
-    //in = BIO_new_file([pathToEncryptedFile cStringUsingEncoding:NSUTF8StringEncoding], "r");
-    
-    
-    //NSData *inData = [NSData dataWithContentsOfFile:pathToEncryptedFile];
-    //in = BIO_new_mem_buf((void*)[inData bytes], [inData length]);
-    
     in = BIO_new_mem_buf((void*)[encryptedFile bytes], [encryptedFile length]);
-
-    
-    /*in = BIO_new(BIO_s_mem());
-    
-    NSString* newStr = [[NSString alloc] initWithData:encryptedFile
-                                             encoding:NSUTF8StringEncoding];
-    BIO_write(in, [newStr cStringUsingEncoding:NSUTF8StringEncoding], [newStr length]);*/
 	if (!in) {
 		[self throwWithText:@"Could not load BIO of encrypted file"];
     }
@@ -671,59 +646,6 @@ static void callback(int p, int n, void *arg);
 
 
 /**
- * createCert
- * This is a sample method which invokates the createX509Certificate... method.
- * It creates two BIOs for the certificate and the private key and creates a new private key
- * and a new certificate using the createX509Certificate... method. The certificate and 
- * the private key is stored to the /documents/ folder in the app's bundle.
- * If you just want to create a new X509 certificate and use it in RAM you can simply 
- * use the createX509Certificate... method and ignore the BIO parts.
- */
-- (void) createCert {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *iosPathToTempCert = [NSString stringWithFormat:@"%@/cert.der", documentsDirectory];
-    NSString *iosPathToTempKey = [NSString stringWithFormat:@"%@/cert.key", documentsDirectory];
-
-    
-    BIO *outCert = BIO_new_file([iosPathToTempCert cStringUsingEncoding:NSUTF8StringEncoding], "w");
-    BIO *outKey = BIO_new_file([iosPathToTempKey cStringUsingEncoding:NSUTF8StringEncoding], "w");
-
-    if (!outCert || !outKey) {
-        NSLog(@"Error occured in opening BIO");
-        assert(false);
-    }
-    
-    EVP_PKEY *pkey = EVP_PKEY_new();
-    RSA *rsa=RSA_generate_key(2048, RSA_F4, callback, NULL);
-	if (!EVP_PKEY_assign_RSA(pkey, rsa))
-    {
-		assert(false);
-    }
-    
-    //X509 *cert;
-    //todo: I've commented the next lines
-    /*cert = [self createX509CertificateWithPrivateKey:pkey andWithName:@"Christof" 
-                                     andEmailAddress:@"stromberger@student.tugraz.at" 
-                                          andCountry:@"AT" 
-                                             andCity:@"Graz" 
-                                     andOrganization:@"IAIK TU Graz" 
-                                 andOrganizationUnit:@"EGIZ"];*/
-    
-    //i2d_X509_bio(outCert, cert);
-    PEM_write_bio_PrivateKey(outKey, pkey, NULL, NULL, 0, NULL, NULL);
-
-    
-    BIO_free(outCert);
-    BIO_free(outKey);
-    //X509_free(cert);
-    RSA_free(rsa);
-    //EVP_PKEY_free(pkey);
-    
-}
-
-
-/**
  * createX509CertificateWith...
  * This method is a objective-c wrapper for creating certificates 
  * with a given private key as NSData*
@@ -738,7 +660,6 @@ static void callback(int p, int n, void *arg);
 {
     NSData *cert;
     BIO *outCert = BIO_new(BIO_s_mem());
-
     
     BIO *bio_err;
 	X509 *x509=NULL;
@@ -768,38 +689,8 @@ static void callback(int p, int n, void *arg);
     BIO_free(outCert);
     X509_free(x509);
     
-    
     return cert;
 }
-
-
-//old
-/*- (X509*) createX509CertificateWithPrivateKey:(EVP_PKEY*)pkey
-                                  andWithName:(NSString*)commonName
-                              andEmailAddress:(NSString*)emailAddress
-                                   andCountry:(NSString*)country
-                                      andCity:(NSString*)city
-                              andOrganization:(NSString*)organization
-                          andOrganizationUnit:(NSString*)organizationUnit {
-    BIO *bio_err;
-	X509 *x509=NULL;
-    
-	CRYPTO_mem_ctrl(CRYPTO_MEM_CHECK_ON);
-    
-	bio_err=BIO_new_fp(stderr, BIO_NOCLOSE);
-    
-    [self createNewCertificate:&x509 withPrivateKey:&pkey andExpiresIn:365
-                   andWithName:commonName andEmailAddress:emailAddress 
-                    andCountry:country andCity:city andOrganization:organization 
-           andOrganizationUnit:organizationUnit];
-    
-	CRYPTO_cleanup_all_ex_data();
-    
-	CRYPTO_mem_leaks(bio_err);
-	BIO_free(bio_err);
-    
-    return x509;
-}*/
 
 
 /**
@@ -898,7 +789,6 @@ static void callback(int p, int n, void *arg);
                                MBSTRING_ASC, (unsigned char*)[value cStringUsingEncoding:NSUTF8StringEncoding], 
                                -1, -1, 0);
 }
-
 
 /**
  * addExtensionToCert
