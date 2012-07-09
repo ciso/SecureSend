@@ -25,10 +25,6 @@
 }
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
-
-
-- (BOOL)isIpad;
-- (BOOL)isNotIpad;
 @end
 
 @implementation ContainerDetailViewController
@@ -62,22 +58,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    if (self.splitViewController)
-        self.splitViewController.delegate = self;
-}
-
-- (BOOL)isIpad
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        return YES;
-    else
-        return NO;
-}
-
-- (BOOL)isNotIpad
-{
-    return ![self isIpad];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -103,66 +83,25 @@
 {
     [super viewDidLoad];
     
-    if ([self isNotIpad])
-    {
-        UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-        CGRect background_frame = self.tableView.frame;
-        background_frame.origin.x = 0;
-        background_frame.origin.y = 0;
-        background.frame = background_frame;
-        background.contentMode = UIViewContentModeTop;
-        self.tableView.backgroundView = background;
-    }
-    
-      
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+    CGRect background_frame = self.tableView.frame;
+    background_frame.origin.x = 0;
+    background_frame.origin.y = 0;
+    background.frame = background_frame;
+    background.contentMode = UIViewContentModeTop;
+    self.tableView.backgroundView = background;
 }
-
-/*- (void)sourceSelection:(UIBarButtonItem*)sender
- {
- //toSourceSelectionView
- //SEGUE_TO_SOURCESELVIEW
- [self performSegueWithIdentifier:SEGUE_TO_SOURCESELVIEW sender:self];
- 
- //NSLog(@"pressed");
- }*/
-
-//NSLog(@"pressed");
-//}*/
-
 
 - (void)viewDidUnload
 {
     [self setAddFileButton:nil];
     [self setNavigationBar:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    
-    if ([self isIpad])
-    {
-        UILongPressGestureRecognizer *gesture;
-        gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-        [self.tableView addGestureRecognizer:gesture];
-    }
-    
     
     [self.view setNeedsLayout];
     [self.view setNeedsDisplay];
@@ -198,28 +137,26 @@
     }
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([self isNotIpad])
-        return NUMBER_SECTIONS;
-    else 
-        return 1;
+    return NUMBER_SECTIONS;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if(section == SECTION_FILES && [self isNotIpad])
+    if(section == SECTION_FILES)
     {
         rowAddFile = [self.container.fileUrls count];
         return rowAddFile + 1;
     }
-    else if(section == SECTION_ACTION && [self isNotIpad])
+    else if(section == SECTION_ACTION)
         return NUMBER_ROWS_ACTION;
     
-    else if(section == SECTION_NAME && [self isNotIpad])
+    else if(section == SECTION_NAME)
         return NUMBER_ROWS_INFOS;
     else
         return [self.container.fileUrls count];
@@ -230,7 +167,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == SECTION_NAME && [self isNotIpad])
+    if(indexPath.section == SECTION_NAME)
     {
         if(indexPath.row == ROW_NAME)
         {
@@ -249,64 +186,52 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if ([self isIpad])
-    {
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
-        cell.textLabel.text = [path lastPathComponent];
-    }
     
-    if ([self isNotIpad])
+    if(indexPath.section == SECTION_FILES)
     {
-        if(indexPath.section == SECTION_FILES)
+        if(indexPath.row == rowAddFile)
         {
-            if(indexPath.row == rowAddFile)
-            {
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.textLabel.text = @"Add file";
-            }
-            else
-            {
-                NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
-                cell.textLabel.text = [path lastPathComponent];
-                if([[path pathExtension] isEqualToString:EXTENSION_JPG] || [[path pathExtension] isEqualToString:EXTENSION_PDF])
-                {
-                    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                }
-                else 
-                {
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                }
-            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = @"Add file";
         }
-        else if(indexPath.section == SECTION_ACTION && [self isNotIpad])
+        else
         {
-            if(indexPath.row == ROW_SEND_CONTAINER)
+            NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
+            cell.textLabel.text = [path lastPathComponent];
+            if([[path pathExtension] isEqualToString:EXTENSION_JPG] || [[path pathExtension] isEqualToString:EXTENSION_PDF])
             {
+                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.textLabel.text = @"Encrypt / Share container";
+            }
+            else 
+            {
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
     }
+    else if(indexPath.section == SECTION_ACTION)
+    {
+        if(indexPath.row == ROW_SEND_CONTAINER)
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = @"Encrypt / Share container";
+        }
+    }
+
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    if ([self isNotIpad])
-    {
-        if(section == SECTION_ACTION)
-            return @"Actions";
-        else if(section == SECTION_FILES)
-            return @"Files";
-        else if(section == SECTION_NAME)
-            return @"Name";
-        else
-            return @"ERROR";
-    }
+    if(section == SECTION_ACTION)
+        return @"Actions";
+    else if(section == SECTION_FILES)
+        return @"Files";
+    else if(section == SECTION_NAME)
+        return @"Name";
+    else
+        return @"ERROR";
     
     return @"Files in Container";
 }
@@ -360,15 +285,8 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //if it's an ipad
-    if ([self isNotIpad])
-    {
-        if(indexPath.section == SECTION_FILES && indexPath.row != rowAddFile)
-            return YES;
-    }
-    else {
+    if(indexPath.section == SECTION_FILES && indexPath.row != rowAddFile)
         return YES;
-    }
     
     return NO;
 }
@@ -391,8 +309,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([self isIpad])
-        return nil;
     
     UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
     hView.backgroundColor=[UIColor clearColor];
@@ -413,10 +329,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([self isNotIpad])
-        return 35;
-    else
-        return 0;
+    return 35;
 }
 
 #pragma mark - UITextFieldDelegate methods
