@@ -59,14 +59,53 @@
         [enableDP show];
     }
     
-
-    UIImage *navbarportrait = [[UIImage imageNamed:@"NavBarIPad"] 
-                               resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [[UINavigationBar appearance] setBackgroundImage:navbarportrait forBarMetrics:UIBarMetricsDefault];
-    
-    UIImage *navbarlandscape = [[UIImage imageNamed:@"NavBarIPad"] 
+    //navbar customization
+    UIImage *gradientImage44 = [[UIImage imageNamed:@"navigationBar"] 
                                 resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [[UINavigationBar appearance] setBackgroundImage:navbarlandscape forBarMetrics:UIBarMetricsLandscapePhone];
+
+    // Set the background image for *all* UINavigationBars
+    [[UINavigationBar appearance] setBackgroundImage:gradientImage44 
+                                       forBarMetrics:UIBarMetricsDefault];
+
+    // Customize the title text for *all* UINavigationBars
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0], 
+      UITextAttributeTextColor, 
+      [UIFont fontWithName:@"Arial-Bold" size:0.0], 
+      UITextAttributeFont, 
+      nil]];
+    
+    
+    //barbutton item
+    UIImage *button30 = [[UIImage imageNamed:@"buttonBackground"] 
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *button24 = [[UIImage imageNamed:@"buttonBackground"] 
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    [[UIBarButtonItem appearance] setBackgroundImage:button30 forState:UIControlStateNormal 
+                                          barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:button24 forState:UIControlStateNormal 
+                                          barMetrics:UIBarMetricsLandscapePhone];    
+    
+    //ui back button
+    UIImage *backButton30 = [[UIImage imageNamed:@"backButton"] 
+                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 12, 0, 5)];
+    UIImage *backButton24 = [[UIImage imageNamed:@"backButton"] 
+                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 12, 0, 5)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton30 forState:UIControlStateNormal 
+                                                    barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton24 forState:UIControlStateNormal 
+                                                    barMetrics:UIBarMetricsLandscapePhone];
+    
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0], 
+      UITextAttributeTextColor,
+      [UIFont fontWithName:@"SystemBold" size:10.0], 
+      UITextAttributeFont, 
+      nil] 
+                                                forState:UIControlStateNormal];
     
     return YES;
 }

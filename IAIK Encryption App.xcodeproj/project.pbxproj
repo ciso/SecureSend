@@ -49,6 +49,15 @@
 		B4118BCF15AAF5AF00D050B2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118BCE15AAF5AF00D050B2 /* Security.framework */; };
 		B4118BD115AAF5B400D050B2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118BD015AAF5B400D050B2 /* AddressBook.framework */; };
 		B4118BD315AAF5B900D050B2 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118BD215AAF5B900D050B2 /* AddressBookUI.framework */; };
+		B4118BDB15AB11F500D050B2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BD715AB11F500D050B2 /* background.png */; };
+		B4118BDC15AB11F500D050B2 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BD815AB11F500D050B2 /* background@2x.png */; };
+		B4118BE115AB120500D050B2 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BDF15AB120500D050B2 /* backButton.png */; };
+		B4118BE215AB120500D050B2 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE015AB120500D050B2 /* backButton@2x.png */; };
+		B4118BE515AB121500D050B2 /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE315AB121500D050B2 /* buttonBackground.png */; };
+		B4118BE615AB121500D050B2 /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE415AB121500D050B2 /* buttonBackground@2x.png */; };
+		B4118BE915AB123D00D050B2 /* navigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE715AB123D00D050B2 /* navigationBar.png */; };
+		B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE815AB123D00D050B2 /* navigationBar@2x.png */; };
+		B4118BF015AB12F200D050B2 /* linenbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BEF15AB12F200D050B2 /* linenbg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +145,15 @@
 		B4118BCE15AAF5AF00D050B2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B4118BD015AAF5B400D050B2 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		B4118BD215AAF5B900D050B2 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		B4118BD715AB11F500D050B2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B4118BD815AB11F500D050B2 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		B4118BDF15AB120500D050B2 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		B4118BE015AB120500D050B2 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		B4118BE315AB121500D050B2 /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
+		B4118BE415AB121500D050B2 /* buttonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackground@2x.png"; sourceTree = "<group>"; };
+		B4118BE715AB123D00D050B2 /* navigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar.png; sourceTree = "<group>"; };
+		B4118BE815AB123D00D050B2 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
+		B4118BEF15AB12F200D050B2 /* linenbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenbg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +237,7 @@
 				B4118B3415AAC61B00D050B2 /* AppDelegate.h */,
 				B4118B3515AAC61B00D050B2 /* AppDelegate.m */,
 				B4118B5E15AAD7BA00D050B2 /* MainStoryboard_iPhone.storyboard */,
+				B4118BD415AB11C600D050B2 /* Resources */,
 				B4118B2C15AAC61B00D050B2 /* Supporting Files */,
 			);
 			path = "IAIK Encryption App";
@@ -506,6 +525,38 @@
 			path = minizip;
 			sourceTree = "<group>";
 		};
+		B4118BD415AB11C600D050B2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4118BD515AB11CF00D050B2 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B4118BD515AB11CF00D050B2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B4118BD615AB11D400D050B2 /* UIImages */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B4118BD615AB11D400D050B2 /* UIImages */ = {
+			isa = PBXGroup;
+			children = (
+				B4118BEF15AB12F200D050B2 /* linenbg.png */,
+				B4118BE715AB123D00D050B2 /* navigationBar.png */,
+				B4118BE815AB123D00D050B2 /* navigationBar@2x.png */,
+				B4118BE315AB121500D050B2 /* buttonBackground.png */,
+				B4118BE415AB121500D050B2 /* buttonBackground@2x.png */,
+				B4118BDF15AB120500D050B2 /* backButton.png */,
+				B4118BE015AB120500D050B2 /* backButton@2x.png */,
+				B4118BD715AB11F500D050B2 /* background.png */,
+				B4118BD815AB11F500D050B2 /* background@2x.png */,
+			);
+			name = UIImages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -579,6 +630,15 @@
 			files = (
 				B4118B3015AAC61B00D050B2 /* InfoPlist.strings in Resources */,
 				B4118B5F15AAD7BA00D050B2 /* MainStoryboard_iPhone.storyboard in Resources */,
+				B4118BDB15AB11F500D050B2 /* background.png in Resources */,
+				B4118BDC15AB11F500D050B2 /* background@2x.png in Resources */,
+				B4118BE115AB120500D050B2 /* backButton.png in Resources */,
+				B4118BE215AB120500D050B2 /* backButton@2x.png in Resources */,
+				B4118BE515AB121500D050B2 /* buttonBackground.png in Resources */,
+				B4118BE615AB121500D050B2 /* buttonBackground@2x.png in Resources */,
+				B4118BE915AB123D00D050B2 /* navigationBar.png in Resources */,
+				B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */,
+				B4118BF015AB12F200D050B2 /* linenbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
