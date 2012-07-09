@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4118B2615AAC61B00D050B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2515AAC61B00D050B2 /* UIKit.framework */; };
+		B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2715AAC61B00D050B2 /* Foundation.framework */; };
+		B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */; };
+		B4118B3015AAC61B00D050B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4118B2E15AAC61B00D050B2 /* InfoPlist.strings */; };
+		B4118B3215AAC61B00D050B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B3115AAC61B00D050B2 /* main.m */; };
+		B4118B3615AAC61B00D050B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B3515AAC61B00D050B2 /* AppDelegate.m */; };
+		B4118B3915AAC61B00D050B2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4118B3715AAC61B00D050B2 /* MainStoryboard.storyboard */; };
+		B4118B3C15AAC61B00D050B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B3B15AAC61B00D050B2 /* ViewController.m */; };
+		B4118B4415AAC61B00D050B2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B4315AAC61B00D050B2 /* SenTestingKit.framework */; };
+		B4118B4515AAC61B00D050B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2515AAC61B00D050B2 /* UIKit.framework */; };
+		B4118B4615AAC61B00D050B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2715AAC61B00D050B2 /* Foundation.framework */; };
+		B4118B4E15AAC61B00D050B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4118B4C15AAC61B00D050B2 /* InfoPlist.strings */; };
+		B4118B5115AAC61B00D050B2 /* IAIK_Encryption_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B5015AAC61B00D050B2 /* IAIK_Encryption_AppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4118B4715AAC61B00D050B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4118B1815AAC61B00D050B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4118B2015AAC61B00D050B2;
+			remoteInfo = "IAIK Encryption App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IAIK Encryption App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4118B2515AAC61B00D050B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B4118B2715AAC61B00D050B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B4118B2D15AAC61B00D050B2 /* IAIK Encryption App-Info.plist */ = {isa = PBXFileReference; path = "IAIK Encryption App-Info.plist"; sourceTree = "<group>"; };
+		B4118B2F15AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4118B3115AAC61B00D050B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4118B3315AAC61B00D050B2 /* IAIK Encryption App-Prefix.pch */ = {isa = PBXFileReference; path = "IAIK Encryption App-Prefix.pch"; sourceTree = "<group>"; };
+		B4118B3415AAC61B00D050B2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4118B3515AAC61B00D050B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B4118B3815AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B4118B3A15AAC61B00D050B2 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		B4118B3B15AAC61B00D050B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B4118B4215AAC61B00D050B2 /* IAIK Encryption AppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IAIK Encryption AppTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4118B4315AAC61B00D050B2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B4118B4B15AAC61B00D050B2 /* IAIK Encryption AppTests-Info.plist */ = {isa = PBXFileReference; path = "IAIK Encryption AppTests-Info.plist"; sourceTree = "<group>"; };
+		B4118B4D15AAC61B00D050B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4118B4F15AAC61B00D050B2 /* IAIK_Encryption_AppTests.h */ = {isa = PBXFileReference; path = IAIK_Encryption_AppTests.h; sourceTree = "<group>"; };
+		B4118B5015AAC61B00D050B2 /* IAIK_Encryption_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAIK_Encryption_AppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4118B1E15AAC61B00D050B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B2615AAC61B00D050B2 /* UIKit.framework in Frameworks */,
+				B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */,
+				B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4118B3E15AAC61B00D050B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B4415AAC61B00D050B2 /* SenTestingKit.framework in Frameworks */,
+				B4118B4515AAC61B00D050B2 /* UIKit.framework in Frameworks */,
+				B4118B4615AAC61B00D050B2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4118B1615AAC61B00D050B2 = {
+			isa = PBXGroup;
+			children = (
+				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
+				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
+				B4118B2415AAC61B00D050B2 /* Frameworks */,
+				B4118B2215AAC61B00D050B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4118B2215AAC61B00D050B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */,
+				B4118B4215AAC61B00D050B2 /* IAIK Encryption AppTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4118B2415AAC61B00D050B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B2515AAC61B00D050B2 /* UIKit.framework */,
+				B4118B2715AAC61B00D050B2 /* Foundation.framework */,
+				B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */,
+				B4118B4315AAC61B00D050B2 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B3415AAC61B00D050B2 /* AppDelegate.h */,
+				B4118B3515AAC61B00D050B2 /* AppDelegate.m */,
+				B4118B3715AAC61B00D050B2 /* MainStoryboard.storyboard */,
+				B4118B3A15AAC61B00D050B2 /* ViewController.h */,
+				B4118B3B15AAC61B00D050B2 /* ViewController.m */,
+				B4118B2C15AAC61B00D050B2 /* Supporting Files */,
+			);
+			path = "IAIK Encryption App";
+			sourceTree = "<group>";
+		};
+		B4118B2C15AAC61B00D050B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B2D15AAC61B00D050B2 /* IAIK Encryption App-Info.plist */,
+				B4118B2E15AAC61B00D050B2 /* InfoPlist.strings */,
+				B4118B3115AAC61B00D050B2 /* main.m */,
+				B4118B3315AAC61B00D050B2 /* IAIK Encryption App-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B4F15AAC61B00D050B2 /* IAIK_Encryption_AppTests.h */,
+				B4118B5015AAC61B00D050B2 /* IAIK_Encryption_AppTests.m */,
+				B4118B4A15AAC61B00D050B2 /* Supporting Files */,
+			);
+			path = "IAIK Encryption AppTests";
+			sourceTree = "<group>";
+		};
+		B4118B4A15AAC61B00D050B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4118B4B15AAC61B00D050B2 /* IAIK Encryption AppTests-Info.plist */,
+				B4118B4C15AAC61B00D050B2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4118B2015AAC61B00D050B2 /* IAIK Encryption App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4118B5415AAC61B00D050B2 /* Build configuration list for PBXNativeTarget "IAIK Encryption App" */;
+			buildPhases = (
+				B4118B1D15AAC61B00D050B2 /* Sources */,
+				B4118B1E15AAC61B00D050B2 /* Frameworks */,
+				B4118B1F15AAC61B00D050B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "IAIK Encryption App";
+			productName = "IAIK Encryption App";
+			productReference = B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4118B4115AAC61B00D050B2 /* IAIK Encryption AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4118B5715AAC61B00D050B2 /* Build configuration list for PBXNativeTarget "IAIK Encryption AppTests" */;
+			buildPhases = (
+				B4118B3D15AAC61B00D050B2 /* Sources */,
+				B4118B3E15AAC61B00D050B2 /* Frameworks */,
+				B4118B3F15AAC61B00D050B2 /* Resources */,
+				B4118B4015AAC61B00D050B2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4118B4815AAC61B00D050B2 /* PBXTargetDependency */,
+			);
+			name = "IAIK Encryption AppTests";
+			productName = "IAIK Encryption AppTests";
+			productReference = B4118B4215AAC61B00D050B2 /* IAIK Encryption AppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4118B1815AAC61B00D050B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Graz University of Technology";
+			};
+			buildConfigurationList = B4118B1B15AAC61B00D050B2 /* Build configuration list for PBXProject "IAIK Encryption App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4118B1615AAC61B00D050B2;
+			productRefGroup = B4118B2215AAC61B00D050B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4118B2015AAC61B00D050B2 /* IAIK Encryption App */,
+				B4118B4115AAC61B00D050B2 /* IAIK Encryption AppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4118B1F15AAC61B00D050B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B3015AAC61B00D050B2 /* InfoPlist.strings in Resources */,
+				B4118B3915AAC61B00D050B2 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4118B3F15AAC61B00D050B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B4E15AAC61B00D050B2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4118B4015AAC61B00D050B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4118B1D15AAC61B00D050B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B3215AAC61B00D050B2 /* main.m in Sources */,
+				B4118B3615AAC61B00D050B2 /* AppDelegate.m in Sources */,
+				B4118B3C15AAC61B00D050B2 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4118B3D15AAC61B00D050B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4118B5115AAC61B00D050B2 /* IAIK_Encryption_AppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4118B4815AAC61B00D050B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4118B2015AAC61B00D050B2 /* IAIK Encryption App */;
+			targetProxy = B4118B4715AAC61B00D050B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4118B2E15AAC61B00D050B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4118B2F15AAC61B00D050B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B4118B3715AAC61B00D050B2 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4118B3815AAC61B00D050B2 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		B4118B4C15AAC61B00D050B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4118B4D15AAC61B00D050B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4118B5215AAC61B00D050B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4118B5315AAC61B00D050B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4118B5515AAC61B00D050B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
+				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B4118B5615AAC61B00D050B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
+				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B4118B5815AAC61B00D050B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAIK Encryption App.app/IAIK Encryption App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
+				INFOPLIST_FILE = "IAIK Encryption AppTests/IAIK Encryption AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B4118B5915AAC61B00D050B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAIK Encryption App.app/IAIK Encryption App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
+				INFOPLIST_FILE = "IAIK Encryption AppTests/IAIK Encryption AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4118B1B15AAC61B00D050B2 /* Build configuration list for PBXProject "IAIK Encryption App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4118B5215AAC61B00D050B2 /* Debug */,
+				B4118B5315AAC61B00D050B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4118B5415AAC61B00D050B2 /* Build configuration list for PBXNativeTarget "IAIK Encryption App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4118B5515AAC61B00D050B2 /* Debug */,
+				B4118B5615AAC61B00D050B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B4118B5715AAC61B00D050B2 /* Build configuration list for PBXNativeTarget "IAIK Encryption AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4118B5815AAC61B00D050B2 /* Debug */,
+				B4118B5915AAC61B00D050B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4118B1815AAC61B00D050B2 /* Project object */;
+}
