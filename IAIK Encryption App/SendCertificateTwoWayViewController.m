@@ -276,7 +276,7 @@
     
     //test
     //NSData *dataIn = [@"Now is the time for all good computers to come to the aid of their masters." dataUsingEncoding:NSASCIIStringEncoding];
-   /* NSData *dataIn = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSData *dataIn = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
     
     //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
@@ -290,7 +290,7 @@
     NSLog(@"base64: %@", encoded);
     
     NSString *hashString = [[NSString alloc] initWithData:macOut encoding:NSASCIIStringEncoding];
-    NSLog(@"hashed: %@", hashString);*/
+    NSLog(@"hashed: %@", hashString);
     
     //end of test
     
