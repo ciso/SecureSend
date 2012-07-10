@@ -7,12 +7,16 @@
 //
 
 #import "XMLParser.h"
+#import "CertificateRequest.h"
 
 @implementation XMLParser
 
+@synthesize currentElementValue = _currentElementValue;
+@synthesize appDelegate = _appDelegate;
+@synthesize certRequest = _certRequest;
+
 - (XMLParser *) initXMLParser 
 {
-        
     self.appDelegate = (XMLAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     return self;
@@ -22,22 +26,39 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
     attributes:(NSDictionary *)attributeDict {
     
-    if([elementName isEqualToString:@"Books"]) {
-        //Initialize the array.
-        self.appDelegate.books = [[NSMutableArray alloc] init];
+    if([elementName isEqualToString:@"CertificateRequest"]) 
+    {
+        self.certRequest = [[CertificateRequest alloc] init];
+        
     }
-    else if([elementName isEqualToString:@"Book"]) {
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string 
+{    
+    if(self.currentElementValue == nil)
+        self.currentElementValue = [[NSMutableString alloc] initWithString:string];
+    else
+        [self.currentElementValue appendString:string];
         
-        //Initialize the book.
-        aBook = [[Book alloc] init];
-        
-        //Extract the attribute here.
-        aBook.bookID = [[attributeDict objectForKey:@"id"] integerValue];
-        
-        NSLog(@"Reading id value :%i", aBook.bookID);
-    }
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
+{
     
-    NSLog(@"Processing Element: %@", elementName);
+    
+    if([elementName isEqualToString:@"CertificateRequest"]) 
+    {
+        return;
+    }
+    else 
+    {
+        [self.certRequest setValue:self.currentElementValue forKey:elementName];
+    }
+    //NSLog(@"email: %@", self.certRequest.emailAddress);
+
+    
+    self.currentElementValue = nil;
 }
 
 @end

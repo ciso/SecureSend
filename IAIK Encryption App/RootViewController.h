@@ -32,6 +32,8 @@
 @property (nonatomic, strong) NSData* certData;
 @property (nonatomic, strong) NSURL* receivedFileURL;
 @property (nonatomic, assign) BOOL sendRequest;
+@property (nonatomic, assign) BOOL obtainDefaultEmail;
+@property (nonatomic, assign) ABRecordRef person;
 
 
 -(void) receivedBluetoothData:(NSData*) data;

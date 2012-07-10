@@ -27,6 +27,7 @@
 
 //test
 #import "XMLParser.h"
+#import "CertificateRequest.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -38,6 +39,7 @@
 #define NUMBER_ROWS_CREATE 1
 #define NUMBER_ROWS_ACTIONS 4
 #define TEST_CERTIFICAT_OWNER @"Christof"
+#define USERS_DEFAULT_EMAIL @"default_email_property"
 
 
 
@@ -53,6 +55,8 @@
 @synthesize btConnectionHandler = _btConnectionHandler, receivedCertificateData = _receivedCertificateData, containers = _containers, certData = _certData, receivedFileURL = _receivedFileURL;
 
 @synthesize sendRequest = _sendRequest;
+@synthesize obtainDefaultEmail = _obtainDefaultEmail;
+@synthesize person = _person;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -66,34 +70,7 @@
         //[KeyChainManager deleteCertificatewithOwner:CERT_ID_USER];
         
         //[KeyChainManager deleteUsersPrivateKey];
-        
-        //DEBUG
-        /*   NSString* path = [docpath stringByAppendingPathComponent:@"TEST"];
-         
-         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-         
-         SecureContainer* testcontainer = [[SecureContainer alloc] init];
-         testcontainer.name = @"TEST";
-         testcontainer.basePath = path;
-         
-         [self.containers addObject:testcontainer];
-         
-         NSData* filedata = [[NSData alloc] init];
-         
-         NSString* path1 = [path stringByAppendingPathComponent:@"file1"];
-         path1 = [path1 stringByAppendingPathExtension:@"txt"];
-         
-         NSString* path2 = [path stringByAppendingPathComponent:@"file2"];
-         path2 = [path2 stringByAppendingPathExtension:@"txt"];
-         
-         [testcontainer.fileUrls addObjectsFromArray:[NSArray arrayWithObjects:path1,path2, nil]];
-         
-         [[NSFileManager defaultManager] createFileAtPath:path1 contents:filedata attributes:nil];
-         [[NSFileManager defaultManager] createFileAtPath:path1 contents:filedata attributes:nil];
-         
-         [testcontainer release];
-         
-         [filedata release];*/
+
         
         //creating Handler for Bluetooth-Connection
         BluetoothConnectionHandler* tempbt = [[BluetoothConnectionHandler alloc] init];
@@ -133,6 +110,7 @@
     }
     
     self.sendRequest = NO;
+    self.obtainDefaultEmail = NO;
 }
 
 - (void)viewDidUnload
@@ -397,65 +375,108 @@
     }
     else 
     {
-        //ABRecordID rec_id = ABRecordGetRecordID(person);
-        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-        ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
-        //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
-        
-        NSMutableArray *emailArray = [[NSMutableArray alloc] init];
-        
-        if(ABMultiValueGetCount(emails) != 0){
-            for(int i=0;i<ABMultiValueGetCount(emails);i++)
-            {
-                CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
-                [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
-                CFRelease(em);
-            }
-        }
-        
-        NSLog(@"%@ %@", name, lastname);
-        
         [self dismissModalViewControllerAnimated:NO];
         
-        MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-        [composer setToRecipients:[NSArray arrayWithObject:[emailArray objectAtIndex:0]]];
-        [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@ %@", name, lastname]];
-        [composer setMessageBody:@"dup di dup" isHTML:NO];
-        composer.mailComposeDelegate = self;
         
-        //todo
-        NSString *xml = @"<certrequest><user>Max Mustermann</user><email>max@mustermann.de</email></certrequest>";
+        self.person = person;
+
+        //obtain email address from the user
+        NSString *defaultEmail = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
+        if (defaultEmail == nil || [defaultEmail isEqualToString:@""])
+        {
+            
+            self.obtainDefaultEmail = YES;
+            
+            NSString *title = @"Please enter your Email address. You can change this later in the Settings.";
+            NSString *message = @"You can change this later in the Settings.";
+            
+            //showing alert to enter code, setting rootviewcontroller as delegate
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert show];
+        }
+        else 
+        {
+            [self openMailComposer];
+        }
+        
+        
+        //[defaults setObject:appDefaults forKey:USERS_DEFAULT_EMAIL];
         
 
-        
-        NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
-
-        //test
-        NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:attachment];
-        
-        XMLParser *parser = [[XMLParser alloc] initXMLParser];
-        [xmlParser setDelegate:parser];
-        
-        BOOL success = [xmlParser parse];
-        
-        if(success)
-            NSLog(@"No Errors");
-        else
-            NSLog(@"Error Error Error!!!");
-        
-
-        
-        //Getting certificate and encrypting it
-        //NSData* encryptedcert = [self getOwnEncryptedCertificate];
-        [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
-        
-        [self presentModalViewController:composer animated:YES];
 
     }
 
     
     return NO;
+}
+
+- (void)openMailComposer
+{
+    ABRecordRef person = self.person;
+    self.person = nil;
+    
+    //ABRecordID rec_id = ABRecordGetRecordID(person);
+    NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
+    //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
+
+    NSMutableArray *emailArray = [[NSMutableArray alloc] init];
+    
+    if(ABMultiValueGetCount(emails) != 0){
+        for(int i=0;i<ABMultiValueGetCount(emails);i++)
+        {
+            CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
+            [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
+            CFRelease(em);
+        }
+    }
+
+    
+    
+    MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
+    [composer setToRecipients:[NSArray arrayWithObject:[emailArray objectAtIndex:0]]];
+    [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@ %@", name, lastname]];
+    [composer setMessageBody:@"dup di dup" isHTML:NO];
+    composer.mailComposeDelegate = self;
+    
+    //todo
+    CertificateRequest *certRequest = [[CertificateRequest alloc] init];
+    //certRequest.firstName
+    NSString *xml = @"<CertificateRequest><firstName>Max</firstName><lastName>Mustermann</lastName><emailAddress>max@mustermann.de</emailAddress></CertificateRequest>";
+    
+    
+    
+    NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //test
+    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:attachment];
+    
+    XMLParser *parser = [[XMLParser alloc] initXMLParser];
+    [xmlParser setDelegate:parser];
+    
+    BOOL success = [xmlParser parse];
+    
+    if(success)
+        NSLog(@"No Errors");
+    else
+        NSLog(@"Error Error Error!!!");
+    
+    NSLog(@"firstname: %@", parser.certRequest.firstName);
+    NSLog(@"lastname: %@", parser.certRequest.lastName);
+    NSLog(@"emailaddress: %@", parser.certRequest.emailAddress);
+    
+    
+    
+    
+    //Getting certificate and encrypting it
+    //NSData* encryptedcert = [self getOwnEncryptedCertificate];
+    [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
+    
+    [self presentModalViewController:composer animated:YES];
+    
 }
 
 - (BOOL)peoplePickerNavigationController:
@@ -687,51 +708,69 @@
 {
     if(buttonIndex != 0)
     {
-        NSString *sms = [alertView textFieldAtIndex:0].text;
-        NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
-        NSString *hash = [hashArray lastObject];
-        hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
-        
-        //hash from sms
-        NSLog(@"base64 hash: %@", hash);
-        NSData *decoded = [Base64 decode:hash];
-        NSLog(@"decoded: %@", decoded);
-        
-        
-        //hash from received cert
-        NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
-        
-        //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
-        CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
-        
-        NSLog(@"orig hash: %@", macOut);
-
-        if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+        if (!self.obtainDefaultEmail)
         {
-
-        }
-        else {
-            self.certData = nil;
-        }
-
-        
-        if (self.certData == nil)
-        {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+            NSString *sms = [alertView textFieldAtIndex:0].text;
+            NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
+            NSString *hash = [hashArray lastObject];
+            hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
             
-            [alert show];
+            //hash from sms
+            NSLog(@"base64 hash: %@", hash);
+            NSData *decoded = [Base64 decode:hash];
+            NSLog(@"decoded: %@", decoded);
+            
+            
+            //hash from received cert
+            NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+            
+            //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+            CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
+            
+            NSLog(@"orig hash: %@", macOut);
+            
+            if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+            {
+                
+            }
+            else {
+                self.certData = nil;
+            }
+            
+            
+            if (self.certData == nil)
+            {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+                
+                [alert show];
+            }
+            else 
+            {
+                self.receivedCertificateData = self.certData;
+                
+                ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+                picker.peoplePickerDelegate = self;
+                
+                [self presentModalViewController:picker animated:YES];
+            }
+            
+            self.certData = nil;   
+
         }
         else 
         {
-            self.receivedCertificateData = self.certData;
+            self.obtainDefaultEmail = NO;
             
-            ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
-            picker.peoplePickerDelegate = self;
+            //storing default email address
+            [[NSUserDefaults standardUserDefaults] setObject:[alertView textFieldAtIndex:0].text forKey:@"default_email"];
             
-            [self presentModalViewController:picker animated:YES];
+            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            
+            //[self performSelectorOnMainThread:@selector(openMailComposer) withObject:nil waitUntilDone:NO];
+            
+            [self openMailComposer];
         }
-        
-        self.certData = nil;   
+            
     }
 }
 

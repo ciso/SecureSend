@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class XMLAppDelegate;
+@class CertificateRequest;
 
-@interface XMLParser : NSObject
+@interface XMLParser : NSObject <NSXMLParserDelegate>
 
 @property (nonatomic, strong) NSMutableString *currentElementValue;
 @property (nonatomic, strong) XMLAppDelegate *appDelegate;
+@property (nonatomic, strong) CertificateRequest *certRequest;
 
 - (XMLParser *) initXMLParser;
 @end
