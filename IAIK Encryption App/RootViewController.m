@@ -55,7 +55,6 @@
 @synthesize btConnectionHandler = _btConnectionHandler, receivedCertificateData = _receivedCertificateData, containers = _containers, certData = _certData, receivedFileURL = _receivedFileURL;
 
 @synthesize sendRequest = _sendRequest;
-@synthesize obtainDefaultEmail = _obtainDefaultEmail;
 @synthesize person = _person;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
@@ -110,7 +109,6 @@
     }
     
     self.sendRequest = NO;
-    self.obtainDefaultEmail = NO;
 }
 
 - (void)viewDidUnload
@@ -385,16 +383,37 @@
         if (defaultEmail == nil || [defaultEmail isEqualToString:@""])
         {
             
-            self.obtainDefaultEmail = YES;
+            //TODO: open modal view (for default email address) here!!!
+                        
+//            NSString *title = @"Please enter your Email address. You can change this later in the Settings.";
+//            NSString *message = @"You can change this later in the Settings.";
+//            
+//            //showing alert to enter code, setting rootviewcontroller as delegate
+//            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//            
+//            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//            [alert show];
             
-            NSString *title = @"Please enter your Email address. You can change this later in the Settings.";
-            NSString *message = @"You can change this later in the Settings.";
             
-            //showing alert to enter code, setting rootviewcontroller as delegate
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             
-            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-            [alert show];
+            //notes:
+            
+            //        {
+            //            self.obtainDefaultEmail = NO;
+            //            
+            //            //storing default email address
+            //            [[NSUserDefaults standardUserDefaults] setObject:[alertView textFieldAtIndex:0].text forKey:@"default_email"];
+            //            
+            //            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
+            //            
+            //            //[self performSelectorOnMainThread:@selector(openMailComposer) withObject:nil waitUntilDone:NO];
+            //            
+            
+            
+            //todo: call this in the modal view!!!
+            [self openMailComposer];  
+            
+            
         }
         else 
         {
@@ -708,69 +727,52 @@
 {
     if(buttonIndex != 0)
     {
-        if (!self.obtainDefaultEmail)
-        {
-            NSString *sms = [alertView textFieldAtIndex:0].text;
-            NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
-            NSString *hash = [hashArray lastObject];
-            hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
-            
-            //hash from sms
-            NSLog(@"base64 hash: %@", hash);
-            NSData *decoded = [Base64 decode:hash];
-            NSLog(@"decoded: %@", decoded);
-            
-            
-            //hash from received cert
-            NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
-            
-            //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
-            CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
-            
-            NSLog(@"orig hash: %@", macOut);
-            
-            if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
-            {
-                
-            }
-            else {
-                self.certData = nil;
-            }
-            
-            
-            if (self.certData == nil)
-            {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
-                
-                [alert show];
-            }
-            else 
-            {
-                self.receivedCertificateData = self.certData;
-                
-                ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
-                picker.peoplePickerDelegate = self;
-                
-                [self presentModalViewController:picker animated:YES];
-            }
-            
-            self.certData = nil;   
 
+        NSString *sms = [alertView textFieldAtIndex:0].text;
+        NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
+        NSString *hash = [hashArray lastObject];
+        hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
+        
+        //hash from sms
+        NSLog(@"base64 hash: %@", hash);
+        NSData *decoded = [Base64 decode:hash];
+        NSLog(@"decoded: %@", decoded);
+        
+        
+        //hash from received cert
+        NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+        
+        //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+        CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
+        
+        NSLog(@"orig hash: %@", macOut);
+        
+        if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+        {
+            
+        }
+        else {
+            self.certData = nil;
+        }
+        
+        
+        if (self.certData == nil)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+            
+            [alert show];
         }
         else 
         {
-            self.obtainDefaultEmail = NO;
+            self.receivedCertificateData = self.certData;
             
-            //storing default email address
-            [[NSUserDefaults standardUserDefaults] setObject:[alertView textFieldAtIndex:0].text forKey:@"default_email"];
+            ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+            picker.peoplePickerDelegate = self;
             
-            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
-            
-            //[self performSelectorOnMainThread:@selector(openMailComposer) withObject:nil waitUntilDone:NO];
-            
-            [self openMailComposer];
+            [self presentModalViewController:picker animated:YES];
         }
-            
+        
+        self.certData = nil;   
     }
 }
 
