@@ -62,6 +62,9 @@
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
 		B4AC1B0715AC233E00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0615AC233E00AAC18F /* Settings.bundle */; };
 		B4AC1B0D15AC427200AAC18F /* linenbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0C15AC427200AAC18F /* linenbg.png */; };
+		B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1A15AC85F500AAC18F /* XMLParser.m */; };
+		B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */; };
+		B4AC1B2315AC887800AAC18F /* CertificateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B2215AC887800AAC18F /* CertificateRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +166,12 @@
 		B4118BF315AB16D200D050B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		B4AC1B0615AC233E00AAC18F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B4AC1B0C15AC427200AAC18F /* linenbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenbg.png; sourceTree = "<group>"; };
+		B4AC1B1915AC85F500AAC18F /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		B4AC1B1A15AC85F500AAC18F /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		B4AC1B1D15AC869700AAC18F /* XMLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAppDelegate.h; sourceTree = "<group>"; };
+		B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAppDelegate.m; sourceTree = "<group>"; };
+		B4AC1B2115AC887800AAC18F /* CertificateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateRequest.h; sourceTree = "<group>"; };
+		B4AC1B2215AC887800AAC18F /* CertificateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +328,9 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC1B2015AC885000AAC18F /* CertificateRequest */,
+				B4AC1B1C15AC867B00AAC18F /* XMLAppDelegae */,
+				B4AC1B1715AC85EA00AAC18F /* XMLParser */,
 				B4014C3715ABF7D900D5EFB7 /* Base64 */,
 				B4118BB615AAE15800D050B2 /* ZipArchive */,
 				B4118BA415AAE08D00D050B2 /* LoadingView */,
@@ -595,6 +607,33 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		B4AC1B1715AC85EA00AAC18F /* XMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B1915AC85F500AAC18F /* XMLParser.h */,
+				B4AC1B1A15AC85F500AAC18F /* XMLParser.m */,
+			);
+			name = XMLParser;
+			sourceTree = "<group>";
+		};
+		B4AC1B1C15AC867B00AAC18F /* XMLAppDelegae */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B1D15AC869700AAC18F /* XMLAppDelegate.h */,
+				B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */,
+			);
+			name = XMLAppDelegae;
+			sourceTree = "<group>";
+		};
+		B4AC1B2015AC885000AAC18F /* CertificateRequest */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B2115AC887800AAC18F /* CertificateRequest.h */,
+				B4AC1B2215AC887800AAC18F /* CertificateRequest.m */,
+			);
+			name = CertificateRequest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -739,6 +778,9 @@
 				B4118BC615AAE15800D050B2 /* zip.c in Sources */,
 				B4118BC715AAE15800D050B2 /* ZipArchive.mm in Sources */,
 				B4014C3B15ABF7F400D5EFB7 /* Base64.m in Sources */,
+				B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */,
+				B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */,
+				B4AC1B2315AC887800AAC18F /* CertificateRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

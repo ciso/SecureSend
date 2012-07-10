@@ -25,6 +25,9 @@
 #import "ChooseContainerViewController.h"
 #import "Base64.h"
 
+//test
+#import "XMLParser.h"
+
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
 #define NUMBER_SECTIONS 2
@@ -423,7 +426,26 @@
         
         //todo
         NSString *xml = @"<certrequest><user>Max Mustermann</user><email>max@mustermann.de</email></certrequest>";
+        
+
+        
         NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
+
+        //test
+        NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:attachment];
+        
+        XMLParser *parser = [[XMLParser alloc] initXMLParser];
+        [xmlParser setDelegate:parser];
+        
+        BOOL success = [xmlParser parse];
+        
+        if(success)
+            NSLog(@"No Errors");
+        else
+            NSLog(@"Error Error Error!!!");
+        
+
+        
         //Getting certificate and encrypting it
         //NSData* encryptedcert = [self getOwnEncryptedCertificate];
         [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
