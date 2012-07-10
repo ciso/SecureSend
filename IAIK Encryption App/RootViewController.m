@@ -369,7 +369,8 @@
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     ABRecordID rec_id = ABRecordGetRecordID(person);
-    
+    NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
     NSString* id = [NSString stringWithFormat:@"%d",rec_id];
     
     [self dismissModalViewControllerAnimated:YES];
@@ -378,7 +379,7 @@
     
     if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
     {
-        alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ has been received and stored in your keychain",id] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ %@ has been received and stored in your keychain", name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     }
     else
     {

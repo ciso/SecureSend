@@ -586,48 +586,4 @@
 
 }
 
-
-#pragma mark - Splitview master detail methods
-- (BOOL)splitViewController:(UISplitViewController *)svc 
-   shouldHideViewController:(UIViewController *)vc 
-              inOrientation:(UIInterfaceOrientation)orientation
-{   
-    return UIInterfaceOrientationIsPortrait(orientation);
-    
-    //return NO;
-    
-    //pre
-    if (self.show == YES && UIInterfaceOrientationIsPortrait(orientation))
-        return YES;
-    
-    return !self.show;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc 
-     willHideViewController:(UIViewController *)aViewController 
-          withBarButtonItem:(UIBarButtonItem *)barButtonItem 
-       forPopoverController:(UIPopoverController *)pc
-{
-    barButtonItem.title = self.title;
-   // [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
-    self.navigationItem.leftBarButtonItem = nil;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc 
-     willShowViewController:(UIViewController *)aViewController 
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-   // [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
-    
-    // create button
-    UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
-    [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    
-    // create button item -- possible because UIButton subclasses UIView!
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backItem;
-    
-}
-
 @end
