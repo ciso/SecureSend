@@ -60,6 +60,7 @@
 		B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE815AB123D00D050B2 /* navigationBar@2x.png */; };
 		B4118BF215AB16CC00D050B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF115AB16CC00D050B2 /* Default.png */; };
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
+		B4AC1B0715AC233E00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0615AC233E00AAC18F /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		B4118BE815AB123D00D050B2 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		B4118BF115AB16CC00D050B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B4118BF315AB16D200D050B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		B4AC1B0615AC233E00AAC18F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,6 +545,7 @@
 		B4118BD415AB11C600D050B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC1AFA15AC1CE400AAC18F /* Settings */,
 				B4118BD515AB11CF00D050B2 /* Images */,
 			);
 			name = Resources;
@@ -579,6 +582,14 @@
 				B4118BF115AB16CC00D050B2 /* Default.png */,
 			);
 			name = "Splash Screen";
+			sourceTree = "<group>";
+		};
+		B4AC1AFA15AC1CE400AAC18F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B0615AC233E00AAC18F /* Settings.bundle */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -664,6 +675,7 @@
 				B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */,
 				B4118BF215AB16CC00D050B2 /* Default.png in Resources */,
 				B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */,
+				B4AC1B0715AC233E00AAC18F /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -156,20 +156,39 @@
         CC_SHA1(certdata.bytes, certdata.length, hash.mutableBytes);
         
         NSString *base64hash = [Base64 encode:hash];
-        NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Please check the following checksum and compare it."];
-        NSString *message = [NSString stringWithFormat:@"%@", base64hash];
         
-        //setting certdata of rootviewcontroller
-        root.certData = certdata;
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"checksum_verification"] == 1)
+        {
+            NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Paste the SMS in the following textfield. The App verifies it for you."];
+            
+            //setting certdata of rootviewcontroller
+            root.certData = certdata;
+            
+            delegate = root;
+            
+            //showing alert to enter code, setting rootviewcontroller as delegate
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert show];
+        }
+        else 
+        {
+            NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Please check the following checksum and compare it."];
+            NSString *message = [NSString stringWithFormat:@"%@", base64hash];
+            
+            //setting certdata of rootviewcontroller
+            root.certData = certdata;
+            
+            delegate = root;  
+            
+            //showing alert to enter code, setting rootviewcontroller as delegate
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+            
+            alert.alertViewStyle = UIAlertViewStyleDefault;
+            [alert show];
+        }
         
-        delegate = root;  
-        
-        //showing alert to enter code, setting rootviewcontroller as delegate
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
-        
-        alert.alertViewStyle = UIAlertViewStyleDefault;
-        [alert show];
-                
         [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
         
     }

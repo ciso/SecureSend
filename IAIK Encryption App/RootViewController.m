@@ -23,6 +23,7 @@
 #import "Crypto.h"
 #import "ZipArchive.h"
 #import "ChooseContainerViewController.h"
+#import "Base64.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -618,6 +619,34 @@
 {
     if(buttonIndex != 0)
     {
+        NSString *sms = [alertView textFieldAtIndex:0].text;
+        NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
+        NSString *hash = [hashArray lastObject];
+        hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
+        
+        //hash from sms
+        NSLog(@"base64 hash: %@", hash);
+        NSData *decoded = [Base64 decode:hash];
+        NSLog(@"decoded: %@", decoded);
+        
+        
+        //hash from received cert
+        NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+        
+        //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+        CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
+        
+        NSLog(@"orig hash: %@", macOut);
+
+        if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+        {
+
+        }
+        else {
+            self.certData = nil;
+        }
+
+        
         if (self.certData == nil)
         {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];

@@ -32,14 +32,13 @@
     
     //adapt BIO into NSString
     char *outputBuffer = NULL;
-    //long outputLength = BIO_get_mem_data(context, &outputBuffer);
-//    NSString *encodedString = [NSString
-//                               stringWithCString:outputBuffer
-//                               length:outputLength];
-    //+ (id)stringWithCString:(const char *)cString encoding:(NSStringEncoding)enc
+    long outputLength __attribute__((unused)) = BIO_get_mem_data(context, &outputBuffer);
+    NSString *encodedString = [NSString
+                               stringWithCString:outputBuffer
+                               length:outputLength];
     
     
-    NSString *encodedString = [NSString stringWithCString:outputBuffer encoding:NSUTF8StringEncoding];
+    //NSString *encodedString = [NSString stringWithCString:outputBuffer encoding:NSUTF8StringEncoding];
 
     BIO_free_all(context);
     
