@@ -804,9 +804,9 @@
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
-					"$(SRCROOT)/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "79BC2FDE-0C8B-46D5-8D83-F811C4F9B116";
@@ -824,9 +824,9 @@
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
-					"$(SRCROOT)/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "79BC2FDE-0C8B-46D5-8D83-F811C4F9B116";

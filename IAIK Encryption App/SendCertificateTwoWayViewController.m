@@ -10,6 +10,9 @@
 #import "NSData+CommonCrypto.h"
 #import "KeyChainManager.h"
 
+#include <openssl/bio.h>
+//#include <openssl/evp.h>
+
 
 #define NUMBER_SECTIONS 3
 #define NUMBER_ROWS_STEP_1 1
@@ -98,13 +101,6 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     //[UIApplication sharedApplication].statusBarOrientation = self.interfaceOrientation;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -275,10 +271,57 @@
         int keyelement = arc4random_uniform(10);
         [newkey appendFormat:@"%d",keyelement];
     }
-    NSLog(@"%@",key);
+    NSLog(@"Decryption key: %@", key);
+    
+    
+    //test
+    //NSData *dataIn = [@"Now is the time for all good computers to come to the aid of their masters." dataUsingEncoding:NSASCIIStringEncoding];
+   /* NSData *dataIn = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+    
+    //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+    CC_SHA1(dataIn.bytes, dataIn.length, macOut.mutableBytes);
+    
+    
+    NSLog(@"dataIn: %@", dataIn);
+    NSLog(@"macOut: %@", macOut);
+    
+    NSString *encoded = [self base64encode:macOut];
+    NSLog(@"base64: %@", encoded);
+    
+    NSString *hashString = [[NSString alloc] initWithData:macOut encoding:NSASCIIStringEncoding];
+    NSLog(@"hashed: %@", hashString);*/
+    
+    //end of test
     
     self.key = newkey;
     
+}
+
+#pragma mark - base64encode
+- (NSString*)base64encode:(NSData*)data
+{
+    // Construct an OpenSSL context
+    BIO *context = BIO_new(BIO_s_mem());
+    
+    // Tell the context to encode base64
+    BIO *command = BIO_new(BIO_f_base64());
+    context = BIO_push(command, context);
+    
+    // Encode all the data
+    BIO_write(context, [data bytes], [data length]);
+    BIO_flush(context);
+    
+    // Get the data out of the context
+    char *outputBuffer;
+    long outputLength = BIO_get_mem_data(context, &outputBuffer);
+    NSString *encodedString = [NSString
+                               stringWithCString:outputBuffer
+                               length:outputLength];
+    
+    BIO_free_all(context);
+    
+    return encodedString;
 }
 
 #pragma mark - CertificateEncryption
