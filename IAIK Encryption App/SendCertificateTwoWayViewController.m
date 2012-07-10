@@ -257,63 +257,24 @@
     return 35;
 }
 
-#pragma mark - KeyGeneration
-
--(void) generateCertificateKey
-{
-    NSMutableString* newkey = [[NSMutableString alloc] init];
-    
-    for(NSInteger i = 0;i<KEY_LENTH;i++)
-    {
-        int keyelement = arc4random_uniform(10);
-        [newkey appendFormat:@"%d",keyelement];
-    }
-    NSLog(@"Decryption key: %@", key);
-    
-    
-    //test
-    //NSData *dataIn = [@"Now is the time for all good computers to come to the aid of their masters." dataUsingEncoding:NSASCIIStringEncoding];
-    NSData *dataIn = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
-    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
-    
-    //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
-    CC_SHA1(dataIn.bytes, dataIn.length, macOut.mutableBytes);
-    
-    
-    NSLog(@"dataIn: %@", dataIn);
-    NSLog(@"macOut: %@", macOut);
-    
-    NSString *encoded =  [Base64 encode:macOut];  //[self base64encode:macOut];
-    NSLog(@"base64: %@", encoded);
-    NSLog(@"decoded: %@", [Base64 decode:encoded]);
-    
-    //end of test
-    
-    //self.key = newkey;
-    self.key = encoded;
-    
-}
-
 #pragma mark - CertificateEncryption
 
 -(NSData*) getOwnEncryptedCertificate
 {
-    [self generateCertificateKey];
+    NSData *cert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
     
-    NSData* cert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+    CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
     
-    NSError* encryptionerror = nil;
+    NSLog(@"macOut: %@", macOut);
+    NSString *encoded =  [Base64 encode:macOut];
+    NSLog(@"base64: %@", encoded);
     
-    //NSData* encryptedcert = [cert AES256EncryptedDataUsingKey:self.key error:&encryptionerror];
-    
-    /*if(encryptedcert == nil)
-    {
-        //TODO check error
-        NSLog(@"Error encrypting certificate!");
-    }*/
+    //self.key = newkey;
+    self.key = encoded;
     
     return cert;
-    //return encryptedcert;
 }
 
 

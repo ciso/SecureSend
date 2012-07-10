@@ -8,6 +8,7 @@
 
 #import "Base64.h"
 #include <openssl/bio.h>
+#include <openssl/evp.h>
 
 #define BUFFSIZE 256
 
