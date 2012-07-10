@@ -494,32 +494,6 @@
     }
 }
 
-#pragma mark - methods for decrypting certificate
-
--(void) decryptCert: (NSString*) code
-{
-    NSError* decryptionerror;
-    NSData* cert = [self.certData decryptedAES256DataUsingKey:code error:&decryptionerror];
-    
-    if (cert == nil)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error encrypting Certificate" message:@"You have entered an incorrect PIN!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
-        
-        [alert show];
-    }
-    else 
-    {
-        self.receivedCertificateData = cert;
-        
-        ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
-        picker.peoplePickerDelegate = self;
-        
-        [self presentModalViewController:picker animated:YES];
-    }
-    
-    self.certData = nil;
-}
-
 #pragma mark - methods for decrypting container
 
 -(void) decryptContainer:(NSData*) encryptedContainer
@@ -644,12 +618,6 @@
 {
     if(buttonIndex != 0)
     {
-        //UITextField *textField = [alertView textFieldAtIndex:0];
-        //NSString* code = textField.text;
-        
-        //[self decryptCert:code];
-        
-        
         if (self.certData == nil)
         {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
@@ -666,9 +634,7 @@
             [self presentModalViewController:picker animated:YES];
         }
         
-        self.certData = nil;
-
-        
+        self.certData = nil;   
     }
 }
 

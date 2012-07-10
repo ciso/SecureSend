@@ -37,7 +37,6 @@
 -(void) editTableView;
 -(void) showEditBarButtonItem;
 -(void) showDoneBarButtonItem;
--(void) decryptCert: (NSString*) code;
 -(void) decryptContainer:(NSData*) encryptedContainer;
 
 -(BOOL) isDataProtectionEnabled;
