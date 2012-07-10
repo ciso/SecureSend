@@ -9,10 +9,7 @@
 #import "SendCertificateTwoWayViewController.h"
 #import "NSData+CommonCrypto.h"
 #import "KeyChainManager.h"
-
-#include <openssl/bio.h>
-//#include <openssl/evp.h>
-
+#import "Base64.h"
 
 #define NUMBER_SECTIONS 3
 #define NUMBER_ROWS_STEP_1 1
@@ -286,42 +283,14 @@
     NSLog(@"dataIn: %@", dataIn);
     NSLog(@"macOut: %@", macOut);
     
-    NSString *encoded = [self base64encode:macOut];
+    NSString *encoded =  [Base64 encode:macOut];  //[self base64encode:macOut];
     NSLog(@"base64: %@", encoded);
-    
-    NSString *hashString = [[NSString alloc] initWithData:macOut encoding:NSASCIIStringEncoding];
-    NSLog(@"hashed: %@", hashString);
+    NSLog(@"decoded: %@", [Base64 decode:encoded]);
     
     //end of test
     
     self.key = newkey;
     
-}
-
-#pragma mark - base64encode
-- (NSString*)base64encode:(NSData*)data
-{
-    // Construct an OpenSSL context
-    BIO *context = BIO_new(BIO_s_mem());
-    
-    // Tell the context to encode base64
-    BIO *command = BIO_new(BIO_f_base64());
-    context = BIO_push(command, context);
-    
-    // Encode all the data
-    BIO_write(context, [data bytes], [data length]);
-    BIO_flush(context);
-    
-    // Get the data out of the context
-    char *outputBuffer;
-    long outputLength = BIO_get_mem_data(context, &outputBuffer);
-    NSString *encodedString = [NSString
-                               stringWithCString:outputBuffer
-                               length:outputLength];
-    
-    BIO_free_all(context);
-    
-    return encodedString;
 }
 
 #pragma mark - CertificateEncryption

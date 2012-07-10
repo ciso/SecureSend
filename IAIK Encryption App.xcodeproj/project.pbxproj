@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4014C3B15ABF7F400D5EFB7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B4014C3A15ABF7F400D5EFB7 /* Base64.m */; };
 		B4118B2615AAC61B00D050B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2515AAC61B00D050B2 /* UIKit.framework */; };
 		B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2715AAC61B00D050B2 /* Foundation.framework */; };
 		B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */; };
@@ -72,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4014C3915ABF7F400D5EFB7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		B4014C3A15ABF7F400D5EFB7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IAIK Encryption App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4118B2515AAC61B00D050B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4118B2715AAC61B00D050B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -190,6 +193,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4014C3715ABF7D900D5EFB7 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				B4014C3915ABF7F400D5EFB7 /* Base64.h */,
+				B4014C3A15ABF7F400D5EFB7 /* Base64.m */,
+			);
+			name = Base64;
+			sourceTree = "<group>";
+		};
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +315,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4014C3715ABF7D900D5EFB7 /* Base64 */,
 				B4118BB615AAE15800D050B2 /* ZipArchive */,
 				B4118BA415AAE08D00D050B2 /* LoadingView */,
 				B4118B7715AADD3A00D050B2 /* FilePathFactory */,
@@ -709,6 +722,7 @@
 				B4118BC515AAE15800D050B2 /* unzip.c in Sources */,
 				B4118BC615AAE15800D050B2 /* zip.c in Sources */,
 				B4118BC715AAE15800D050B2 /* ZipArchive.mm in Sources */,
+				B4014C3B15ABF7F400D5EFB7 /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +902,7 @@
 				B4118B5615AAC61B00D050B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4118B5715AAC61B00D050B2 /* Build configuration list for PBXNativeTarget "IAIK Encryption AppTests" */ = {
 			isa = XCConfigurationList;
@@ -896,6 +911,7 @@
 				B4118B5915AAC61B00D050B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
