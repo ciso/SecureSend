@@ -28,15 +28,19 @@
     
     //encode
     BIO_write(context, [data bytes], [data length]);
-    BIO_flush(context);
+    int temp __attribute__((unused)) =  BIO_flush(context);
     
     //adapt BIO into NSString
-    char *outputBuffer;
-    long outputLength = BIO_get_mem_data(context, &outputBuffer);
-    NSString *encodedString = [NSString
-                               stringWithCString:outputBuffer
-                               length:outputLength];
+    char *outputBuffer = NULL;
+    //long outputLength = BIO_get_mem_data(context, &outputBuffer);
+//    NSString *encodedString = [NSString
+//                               stringWithCString:outputBuffer
+//                               length:outputLength];
+    //+ (id)stringWithCString:(const char *)cString encoding:(NSStringEncoding)enc
     
+    
+    NSString *encodedString = [NSString stringWithCString:outputBuffer encoding:NSUTF8StringEncoding];
+
     BIO_free_all(context);
     
     return encodedString;
