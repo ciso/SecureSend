@@ -475,7 +475,6 @@ exchange data in a secure way you have to create a certificate which you can use
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addFile"/>
-                <relationship kind="action" name="addFileButtonAction:"/>
                 <relationship kind="outlet" name="addFileButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
             </relationships>
