@@ -31,8 +31,9 @@
 #define ROW_ACTION_SEND_BT 0
 #define ROW_ACTION_RECEIVE_BT 1
 #define ROW_ACTION_SEND_MAIL 2
+#define ROW_ACTION_SEND_REQUEST 3
 #define NUMBER_ROWS_CREATE 1
-#define NUMBER_ROWS_ACTIONS 3
+#define NUMBER_ROWS_ACTIONS 4
 #define TEST_CERTIFICAT_OWNER @"Christof"
 
 
@@ -47,6 +48,8 @@
 @implementation RootViewController
 
 @synthesize btConnectionHandler = _btConnectionHandler, receivedCertificateData = _receivedCertificateData, containers = _containers, certData = _certData, receivedFileURL = _receivedFileURL;
+
+@synthesize sendRequest = _sendRequest;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -126,17 +129,7 @@
         [self performSegueWithIdentifier:SEGUE_TO_CREATE_CERT sender:nil];
     }
     
-    //DEBUG test if dp is enabled
-    /*if([self isDataProtectionEnabled] == NO)
-     {
-     NSLog(@"data protection is not enabled!!!!!!!!!");
-     }*/
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.sendRequest = NO;
 }
 
 - (void)viewDidUnload
@@ -243,6 +236,10 @@
         {
             cell.textLabel.text = @"Send Certificate via Email/SMS";
         }
+        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
+        {
+            cell.textLabel.text = @"Send a Certificate-Request";
+        }
     }
     
     return cell;
@@ -324,13 +321,18 @@
         {
             [self sendCertificateBluetooth];
             
-        } else if (indexPath.row == ROW_ACTION_RECEIVE_BT)
+        } 
+        else if (indexPath.row == ROW_ACTION_RECEIVE_BT)
         {
             [self.btConnectionHandler receiveDataWithHandlerDelegate:self];
         }
         else if(indexPath.row == ROW_ACTION_SEND_MAIL)
         {
             [self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil]; 
+        }
+        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
+        {
+            [self sendCertificateRequest]; 
         }
         
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   
@@ -368,25 +370,68 @@
 (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    ABRecordID rec_id = ABRecordGetRecordID(person);
-    NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    NSString* id = [NSString stringWithFormat:@"%d",rec_id];
-    
-    [self dismissModalViewControllerAnimated:YES];
-    
-    UIAlertView* alert = nil;
-    
-    if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
-    {
-        alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ %@ has been received and stored in your keychain", name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    if (!self.sendRequest)
+    {    
+        ABRecordID rec_id = ABRecordGetRecordID(person);
+        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+        NSString* id = [NSString stringWithFormat:@"%d",rec_id];
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+        UIAlertView* alert = nil;
+        
+        if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
+        {
+            alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ %@ has been received and stored in your keychain", name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        else
+        {
+            alert = [[UIAlertView alloc] initWithTitle:@"Problem saving to keychain" message:@"Seems like you got the same certificate in your keychain associated with another person?!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        
+        [alert show];
     }
-    else
+    else 
     {
-        alert = [[UIAlertView alloc] initWithTitle:@"Problem saving to keychain" message:@"Seems like you got the same certificate in your keychain associated with another person?!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        //ABRecordID rec_id = ABRecordGetRecordID(person);
+        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+        ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
+        //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
+        
+        NSMutableArray *emailArray = [[NSMutableArray alloc] init];
+        
+        if(ABMultiValueGetCount(emails) != 0){
+            for(int i=0;i<ABMultiValueGetCount(emails);i++)
+            {
+                CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
+                [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
+                CFRelease(em);
+            }
+        }
+        
+        NSLog(@"%@ %@", name, lastname);
+        
+        [self dismissModalViewControllerAnimated:NO];
+        
+        MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
+        [composer setToRecipients:[NSArray arrayWithObject:[emailArray objectAtIndex:0]]];
+        [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@ %@", name, lastname]];
+        [composer setMessageBody:@"dup di dup" isHTML:NO];
+        composer.mailComposeDelegate = self;
+        
+        //todo
+        NSString *xml = @"<certrequest><user>Max Mustermann</user><email>max@mustermann.de</email></certrequest>";
+        NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
+        //Getting certificate and encrypting it
+        //NSData* encryptedcert = [self getOwnEncryptedCertificate];
+        [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
+        
+        [self presentModalViewController:composer animated:YES];
+
     }
-    
-    [alert show];
+
     
     return NO;
 }
@@ -720,6 +765,37 @@
     self.receivedFileURL = nil;
 }
 
+
+#pragma mark - certificate request
+- (void)sendCertificateRequest
+{
+    ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    self.sendRequest = YES;
+    [self presentModalViewController:picker animated:YES];
+}
+
+
+#pragma mark - mail comoposer delegate
+#pragma mark - MFMailComposerDelegate methods
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    if(result == MFMailComposeResultFailed)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Problem sending mail" message:@"A problem occured while trying to send mail, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+    else if(result == MFMailComposeResultSent)
+    {
+        
+    }
+    
+    [self.tableView reloadData];
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 
 @end
