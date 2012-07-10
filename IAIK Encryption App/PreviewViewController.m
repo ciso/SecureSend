@@ -53,26 +53,12 @@
         
         
     }*/
-    
+        
     if(self.path)
     {
         [self refreshPreview];
     }
     
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        if (self.displayContainerView)
-        {
-            [self performSegueWithIdentifier:@"modal" sender:self];
-            self.displayContainerView = NO;
-        }
-    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -86,7 +72,6 @@
 
 - (void)viewDidUnload
 {
-    [self setToolbar:nil];
     [self setToolbar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -277,43 +262,6 @@
     
     
 }
-
-
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
-{/*
-if (_splitViewBarButtonItem != splitViewBarButtonItem)
-{
-    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
-    if (_splitViewBarButtonItem)
-    {
-        //[toolbarItems removeAllObjects];
-        [toolbarItems removeObject:_splitViewBarButtonItem];
-        [toolbarItems removeObjectAtIndex:0];
-    }
-    if (splitViewBarButtonItem)
-    {
-        // create button
-        UIButton* backButton = [UIButton buttonWithType:101]; // left-pointing shape!
-        [backButton addTarget:self action:@selector(showContainerView) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setTitle:@"Back" forState:UIControlStateNormal];
-        
-        // create button item -- possible because UIButton subclasses UIView!
-        UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        //self.navigationItem.leftBarButtonItem = backItem;
-        
-        
-        
-        [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
-        [toolbarItems insertObject:backItem atIndex:0];
-        
-        
-    }
-    
-    self.toolbar.items = toolbarItems;
-    _splitViewBarButtonItem = splitViewBarButtonItem;
-    }*/
-}
-
 
 
 - (void)dealloc {

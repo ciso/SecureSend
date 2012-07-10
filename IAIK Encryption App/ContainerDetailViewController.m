@@ -17,6 +17,7 @@
 #import "KeyChainManager.h"
 #import "CertificateXplorerViewController.h"
 #import "LoadingView.h"
+#import "PreviewViewController.h"
 
 
 @interface ContainerDetailViewController() {
@@ -562,12 +563,12 @@
         
         xplorer.delegate = self;
     }
-   /* else if([segue.identifier isEqualToString:SEGUE_TO_PREVIEW])
+    else if([segue.identifier isEqualToString:SEGUE_TO_PREVIEW])
     {
         PreviewViewController* prev = (PreviewViewController*) segue.destinationViewController;
         NSString* path = (NSString*) sender;
         prev.path = path;
-    }*/
+    }
     else if ([segue.identifier isEqualToString:SEGUE_TO_SOURCESELVIEW])
     {
         SourceSelectionViewController *destination = (SourceSelectionViewController*)segue.destinationViewController;
