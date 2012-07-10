@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "NSData+CommonCrypto.h"
+#import "Base64.h"
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
@@ -149,21 +151,23 @@
     {
         //extracting certdata from inbox
         NSData* certdata = [[NSData alloc] initWithContentsOfURL:url];
+        NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
         
-    
+        CC_SHA1(certdata.bytes, certdata.length, hash.mutableBytes);
+        
+        NSString *base64hash = [Base64 encode:hash];
+        NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Please check the following checksum and compare it."];
+        NSString *message = [NSString stringWithFormat:@"%@", base64hash];
+        
         //setting certdata of rootviewcontroller
         root.certData = certdata;
         
         delegate = root;  
         
         //showing alert to enter code, setting rootviewcontroller as delegate
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Decrypt certificate" message:@"Please enter the PIN to decrypt the certificate-file: " delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Decrypt", nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
         
-        alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-        
-        UITextField *textField = [alert textFieldAtIndex:0];
-        textField.keyboardType = UIKeyboardTypeNumberPad;
-        textField.delegate = delegate;
+        alert.alertViewStyle = UIAlertViewStyleDefault;
         [alert show];
                 
         [[NSFileManager defaultManager] removeItemAtURL:url error:nil];

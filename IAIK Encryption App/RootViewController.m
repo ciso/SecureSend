@@ -644,10 +644,31 @@
 {
     if(buttonIndex != 0)
     {
-        UITextField *textField = [alertView textFieldAtIndex:0];
-        NSString* code = textField.text;
+        //UITextField *textField = [alertView textFieldAtIndex:0];
+        //NSString* code = textField.text;
         
-        [self decryptCert:code];
+        //[self decryptCert:code];
+        
+        
+        if (self.certData == nil)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+            
+            [alert show];
+        }
+        else 
+        {
+            self.receivedCertificateData = self.certData;
+            
+            ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+            picker.peoplePickerDelegate = self;
+            
+            [self presentModalViewController:picker animated:YES];
+        }
+        
+        self.certData = nil;
+
+        
     }
 }
 

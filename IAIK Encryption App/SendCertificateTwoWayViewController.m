@@ -225,7 +225,7 @@
             return @"Step 2: Send Cert via mail";
             break;
         case SECTION_STEP_3:
-            return @"Step 3: Send PIN via text message";
+            return @"Step 3: Send checksum via text message";
             break;
         default:
             return @"ERROR!!";
@@ -289,7 +289,8 @@
     
     //end of test
     
-    self.key = newkey;
+    //self.key = newkey;
+    self.key = encoded;
     
 }
 
@@ -303,15 +304,16 @@
     
     NSError* encryptionerror = nil;
     
-    NSData* encryptedcert = [cert AES256EncryptedDataUsingKey:self.key error:&encryptionerror];
+    //NSData* encryptedcert = [cert AES256EncryptedDataUsingKey:self.key error:&encryptionerror];
     
-    if(encryptedcert == nil)
+    /*if(encryptedcert == nil)
     {
         //TODO check error
         NSLog(@"Error encrypting certificate!");
-    }
+    }*/
     
-    return encryptedcert;
+    return cert;
+    //return encryptedcert;
 }
 
 
@@ -340,7 +342,7 @@
             MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
             [composer setToRecipients:[NSArray arrayWithObject:self.emailAddress]];
             [composer setSubject:@"My Certificate"];
-            [composer setMessageBody:@"You will receive the PIN to decrypt the certificate shortly via SMS or iMessage" isHTML:NO];
+            [composer setMessageBody:@"You will receive the chechsum for my certificate shortly via SMS or iMessage" isHTML:NO];
             composer.mailComposeDelegate = self;
             
             //Getting certificate and encrypting it
@@ -362,7 +364,7 @@
         {
             MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
             composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:@"The PIN to decrypt my certificate is: %@",self.key];
+            composer.body = [NSString stringWithFormat:@"The checksum for my certificate is: %@",self.key];
             composer.messageComposeDelegate = self;
             
             [self presentModalViewController:composer animated:YES];
