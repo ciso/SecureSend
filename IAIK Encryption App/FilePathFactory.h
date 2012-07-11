@@ -15,6 +15,7 @@
 
 #define EXTENSION_PDF @"pdf"
 #define EXTENSION_JPG @"jpeg"
+
 @class SecureContainer;
 
 @interface FilePathFactory : NSObject
