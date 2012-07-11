@@ -15,10 +15,21 @@
 
 + (BOOL)emailIsValid:(NSString*)email
 {
+    //basic email check
     if (email == nil 
         || [email isEqualToString:@""]
         || [email isEqualToString:DEFAULT_EMAIL])
     {
+        return NO;
+    }
+    
+    //regex email check
+    NSString* pattern = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+";
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    if ([predicate evaluateWithObject:email] == YES) {
+        return YES;
+    } else {
         return NO;
     }
     
