@@ -63,7 +63,7 @@
     NSInteger ret = 0;
     if (section == 0)
     {
-        ret = 1;
+        ret = 2;
     }
     else if (section == 1)
     {
@@ -88,6 +88,16 @@
         textField.text = email;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.keyboardType = UIKeyboardTypeEmailAddress;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        UILabel *phoneLabel = (UILabel*)[cell viewWithTag:100];
+        UITextField *textField = (UITextField*)[cell viewWithTag:101];
+        
+        NSString *phone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
+        phoneLabel.text = @"Phone";
+        textField.text = phone;
+        textField.keyboardType = UIKeyboardTypePhonePad;
     }
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
@@ -157,7 +167,7 @@
 {
     if (section == 0)
     {
-        return 45.0;
+        return 65.0;
     }
     if (section == 1)
     {
@@ -179,7 +189,7 @@
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.textColor = [UIColor whiteColor];
         footerLabel.font = [UIFont systemFontOfSize:14];
-        footerLabel.text =  [[NSString alloc] initWithFormat:@"The requested certificate will be sent\nto your (this) email address."];
+        footerLabel.text =  [[NSString alloc] initWithFormat:@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone."];
         footerLabel.alpha = 0.85;
         footerLabel.lineBreakMode = UILineBreakModeWordWrap;
         
@@ -232,22 +242,25 @@
 - (IBAction)doneButtonClicked:(UIBarButtonItem *)sender 
 {
     UITableViewCell *emailCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    UITableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
 
     UITextField *emailTextField = (UITextField*)[emailCell viewWithTag:101];
+    UITextField *phoneTextField = (UITextField*)[phoneCell viewWithTag:101];
     UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
     UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
 
     NSString *email = emailTextField.text;
+    NSString *phone = phoneTextField.text;
     NSString *forename = forenameTextField.text;
     NSString *surname = surnameTextField.text;
 
     
-    if (![Validation emailIsValid:email])
+    if (![Validation emailIsValid:email] || ![Validation phoneNumberIsValid:phone])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                        message:@"Please enter a valid email address"
+                                                        message:@"Please enter a valid email address and/or phone number"
                                                        delegate:nil 
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

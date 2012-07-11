@@ -11,5 +11,6 @@
 @interface Validation : NSObject
 
 + (BOOL)emailIsValid:(NSString*)email;
++ (BOOL)phoneNumberIsValid:(NSString*)phone;
 
 @end

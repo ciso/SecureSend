@@ -45,22 +45,20 @@
 			<string>Email</string>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
 			<key>AutocapitalizationType</key>
 			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>06641234567</string>
-			<key>IsSecure</key>
-			<false/>
-			<key>Key</key>
-			<string>default_phone</string>
-			<key>Type</key>
-			<string>Text Field</string>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
 			<key>Title</key>
 			<string>Phone</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+			<key>Key</key>
+			<string>default_phone</string>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+			<key>DefaultValue</key>
+			<string>06641234567890</string>
 		</dict>
 		<dict>
 			<key>AutocapitalizationType</key>

@@ -9,6 +9,7 @@
 #import "Validation.h"
 
 #define DEFAULT_EMAIL @"max@mustermann.at"
+#define DEFAULT_PHONE @"06641234567"
 
 @implementation Validation
 
@@ -24,5 +25,16 @@
     return YES;
 }
 
++ (BOOL)phoneNumberIsValid:(NSString*)phone
+{
+    if (phone == nil
+        || [phone isEqualToString:@""]
+        || [phone isEqualToString:DEFAULT_PHONE])
+        {
+            return NO;
+        }
+        
+    return YES;
+}
 
 @end
