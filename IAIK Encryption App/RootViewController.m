@@ -24,6 +24,8 @@
 #import "ZipArchive.h"
 #import "ChooseContainerViewController.h"
 #import "Base64.h"
+#import "Validation.h"
+#import "UserSettingsViewController.h"
 
 //test
 #import "XMLParser.h"
@@ -52,10 +54,15 @@
 
 @implementation RootViewController
 
-@synthesize btConnectionHandler = _btConnectionHandler, receivedCertificateData = _receivedCertificateData, containers = _containers, certData = _certData, receivedFileURL = _receivedFileURL;
-
+@synthesize btConnectionHandler = _btConnectionHandler;
+@synthesize receivedCertificateData = _receivedCertificateData;
+@synthesize containers = _containers;
+@synthesize certData = _certData;
+@synthesize receivedFileURL = _receivedFileURL;
 @synthesize sendRequest = _sendRequest;
-@synthesize person = _person;
+@synthesize email = _email;
+@synthesize name = _name;
+
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -101,6 +108,7 @@
     background.frame = background_frame;
     background.contentMode = UIViewContentModeTop;
     self.tableView.backgroundView = background;
+
     
     //checking if a certificate has to be created
     if([KeyChainManager getCertificateofOwner:CERT_ID_USER] == nil)
@@ -376,12 +384,32 @@
         [self dismissModalViewControllerAnimated:NO];
         
         
-        self.person = person;
-
+        //ABRecordID rec_id = ABRecordGetRecordID(person);
+        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+        ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
+        //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
+        
+        NSMutableArray *emailArray = [[NSMutableArray alloc] init];
+        
+        if(ABMultiValueGetCount(emails) != 0){
+            for(int i=0;i<ABMultiValueGetCount(emails);i++)
+            {
+                CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
+                [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
+                CFRelease(em);
+            }
+        }
+        
+        self.email = [emailArray objectAtIndex:0];
+        self.name = [NSString stringWithFormat:@"%@ %@", name, lastname];
+        
         //obtain email address from the user
         NSString *defaultEmail = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-        if (defaultEmail == nil || [defaultEmail isEqualToString:@""])
+        if (![Validation emailIsValid:defaultEmail])
         {
+            
+            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];
             
             //TODO: open modal view (for default email address) here!!!
                         
@@ -411,7 +439,7 @@
             
             
             //todo: call this in the modal view!!!
-            [self openMailComposer];  
+            //[self openMailComposer];
             
             
         }
@@ -433,38 +461,21 @@
 
 - (void)openMailComposer
 {
-    ABRecordRef person = self.person;
-    self.person = nil;
-    
-    //ABRecordID rec_id = ABRecordGetRecordID(person);
-    NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
-    //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
-
-    NSMutableArray *emailArray = [[NSMutableArray alloc] init];
-    
-    if(ABMultiValueGetCount(emails) != 0){
-        for(int i=0;i<ABMultiValueGetCount(emails);i++)
-        {
-            CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
-            [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
-            CFRelease(em);
-        }
-    }
-
-    
+        
     
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-    [composer setToRecipients:[NSArray arrayWithObject:[emailArray objectAtIndex:0]]];
-    [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@ %@", name, lastname]];
-    [composer setMessageBody:@"dup di dup" isHTML:NO];
+    [composer setToRecipients:[NSArray arrayWithObject:self.email]];
+    [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@", @"LALA"]];
+     NSString *body = [NSString stringWithFormat:@"Dear %@!", self.name];
+    [composer setMessageBody:body isHTML:NO];
     composer.mailComposeDelegate = self;
     
-    //todo
+    //todo: create real certrequest object here
     CertificateRequest *certRequest = [[CertificateRequest alloc] init];
-    //certRequest.firstName
-    NSString *xml = @"<CertificateRequest><firstName>Max</firstName><lastName>Mustermann</lastName><emailAddress>max@mustermann.de</emailAddress></CertificateRequest>";
+    certRequest.date = [NSDate date];
+    certRequest.emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
+    NSString *xml = [certRequest toXML];
+    //NSString *xml = @"<CertificateRequest><firstName>Max</firstName><lastName>Mustermann</lastName><emailAddress>max@mustermann.de</emailAddress></CertificateRequest>";
     
     
     
@@ -483,8 +494,6 @@
     else
         NSLog(@"Error Error Error!!!");
     
-    NSLog(@"firstname: %@", parser.certRequest.firstName);
-    NSLog(@"lastname: %@", parser.certRequest.lastName);
     NSLog(@"emailaddress: %@", parser.certRequest.emailAddress);
     
     
@@ -600,6 +609,12 @@
         choose.containers = self.containers;
         
         choose.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:SEGUE_TO_DEFAULT_EMAIL])
+    {
+        UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+        UserSettingsViewController *settings = (UserSettingsViewController*)[nav.viewControllers objectAtIndex:0];
+        settings.sender = self;
     }
 }
 

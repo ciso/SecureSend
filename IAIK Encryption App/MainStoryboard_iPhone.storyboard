@@ -33,6 +33,7 @@
                         <segue destination="3ms-Me-AcL" kind="modal" identifier="toCreateCertificate" id="O03-xn-rQr"/>
                         <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="MjX-0A-OTa"/>
                         <segue destination="PgO-Ap-xUJ" kind="modal" identifier="toChooseContainer" id="pfp-d5-RoJ"/>
+                        <segue destination="ETl-E8-Dvy" kind="modal" identifier="toDefaultEmail" id="KLi-m5-Kv2"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -224,7 +225,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1539" y="-891"/>
+            <point key="canvasLocation" x="2591" y="-891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rc6-tY-3Nb">
@@ -239,7 +240,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1005" y="-891"/>
+            <point key="canvasLocation" x="2057" y="-891"/>
         </scene>
         <!--Container Detail View Controller - Details-->
         <scene sceneID="QQ2-sT-v01">
@@ -454,6 +455,82 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="-66" y="-891"/>
         </scene>
+        <!--User Settings View Controller-->
+        <scene sceneID="xo0-n4-jyE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ce-dQ-OPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="DTo-2x-nC1" customClass="UserSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZqM-wi-QF4">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="checkmark" id="Odi-ce-2lV">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="UHV-ji-LZ9">
+                                            <rect key="frame" x="13" y="0.0" width="82" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Max Mustermann" minimumFontSize="17" clearButtonMode="always" id="w3E-Y5-aXZ">
+                                            <rect key="frame" x="103" y="6" width="192" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" name="selectedKnobColor" catalog="System" colorSpace="catalog"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DTo-2x-nC1" id="x4D-5y-iWu"/>
+                            <outlet property="delegate" destination="DTo-2x-nC1" id="fdM-Rw-SW7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="XAB-Oc-nX6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aeC-2L-eeD">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="DTo-2x-nC1" id="c7F-yZ-Hzw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="W16-mn-GOO">
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="DTo-2x-nC1" id="CwX-Fs-FSh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1104" y="-942"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MIJ-V1-BpN">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8a-FN-sGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="ETl-E8-Dvy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GQk-df-4DD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DTo-2x-nC1" kind="relationship" relationship="rootViewController" id="y77-eL-07S"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="578" y="-942"/>
+        </scene>
     </scenes>
     <resources>
         <image name="tugLogo_farb.gif" width="250" height="95"/>
@@ -518,6 +595,13 @@ exchange data in a secure way you have to create a certificate which you can use
         </class>
         <class className="SourceSelectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
+        </class>
+        <class className="UserSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="doneButtonClicked:" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

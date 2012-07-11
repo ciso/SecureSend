@@ -19,6 +19,7 @@
 #define SEGUE_TO_CREATE_CERT @"toCreateCertificate"
 #define SEGUE_TO_CHOOSE_CONTROLLER @"toChooseContainer"
 #define SEGUE_TO_CERT_REQUEST @"toCertRequest"
+#define SEGUE_TO_DEFAULT_EMAIL @"toDefaultEmail"
 
 
 @class BluetoothConnectionHandler;
@@ -32,7 +33,8 @@
 @property (nonatomic, strong) NSData* certData;
 @property (nonatomic, strong) NSURL* receivedFileURL;
 @property (nonatomic, assign) BOOL sendRequest;
-@property (nonatomic, assign) ABRecordRef person;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *name;
 
 
 -(void) receivedBluetoothData:(NSData*) data;

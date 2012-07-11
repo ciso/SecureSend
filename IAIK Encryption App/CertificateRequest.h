@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CertificateRequest : NSObject {
-    NSString *firstName;
-    NSString *lastName;
+    NSDate *date;
     NSString *emailAddress;
 }
 
-@property (nonatomic, strong) NSString *firstName;
-@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *emailAddress;
 
 - (NSString*) toXML;

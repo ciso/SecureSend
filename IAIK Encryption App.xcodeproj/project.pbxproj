@@ -60,11 +60,13 @@
 		B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE815AB123D00D050B2 /* navigationBar@2x.png */; };
 		B4118BF215AB16CC00D050B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF115AB16CC00D050B2 /* Default.png */; };
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
-		B4AC1B0715AC233E00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0615AC233E00AAC18F /* Settings.bundle */; };
 		B4AC1B0D15AC427200AAC18F /* linenbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0C15AC427200AAC18F /* linenbg.png */; };
 		B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1A15AC85F500AAC18F /* XMLParser.m */; };
 		B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */; };
 		B4AC1B2315AC887800AAC18F /* CertificateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B2215AC887800AAC18F /* CertificateRequest.m */; };
+		B4AC1B2F15AD4BBA00AAC18F /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B2E15AD4BBA00AAC18F /* UserSettingsViewController.m */; };
+		B4AC1B3515AD5D7C00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */; };
+		B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B3815AD5ECC00AAC18F /* Validation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,7 +166,6 @@
 		B4118BE815AB123D00D050B2 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		B4118BF115AB16CC00D050B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B4118BF315AB16D200D050B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		B4AC1B0615AC233E00AAC18F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B4AC1B0C15AC427200AAC18F /* linenbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenbg.png; sourceTree = "<group>"; };
 		B4AC1B1915AC85F500AAC18F /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4AC1B1A15AC85F500AAC18F /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
@@ -172,6 +173,11 @@
 		B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAppDelegate.m; sourceTree = "<group>"; };
 		B4AC1B2115AC887800AAC18F /* CertificateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateRequest.h; sourceTree = "<group>"; };
 		B4AC1B2215AC887800AAC18F /* CertificateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateRequest.m; sourceTree = "<group>"; };
+		B4AC1B2D15AD4BBA00AAC18F /* UserSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingsViewController.h; sourceTree = "<group>"; };
+		B4AC1B2E15AD4BBA00AAC18F /* UserSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingsViewController.m; sourceTree = "<group>"; };
+		B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B4AC1B3715AD5ECC00AAC18F /* Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validation.h; sourceTree = "<group>"; };
+		B4AC1B3815AD5ECC00AAC18F /* Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +309,7 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC1B2815AD4AEA00AAC18F /* UserSettingsViewController */,
 				B4118BB115AAE10400D050B2 /* SendCertificateViewController */,
 				B4118BAD15AAE0E500D050B2 /* PreviewViewController */,
 				B4118B9815AAE00C00D050B2 /* CreateCertificateViewController */,
@@ -328,6 +335,8 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC1B3A15AD69B200AAC18F /* TextProvider */,
+				B4AC1B3615AD5EAE00AAC18F /* Validation */,
 				B4AC1B2015AC885000AAC18F /* CertificateRequest */,
 				B4AC1B1C15AC867B00AAC18F /* XMLAppDelegae */,
 				B4AC1B1715AC85EA00AAC18F /* XMLParser */,
@@ -602,7 +611,7 @@
 		B4AC1AFA15AC1CE400AAC18F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				B4AC1B0615AC233E00AAC18F /* Settings.bundle */,
+				B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -632,6 +641,31 @@
 				B4AC1B2215AC887800AAC18F /* CertificateRequest.m */,
 			);
 			name = CertificateRequest;
+			sourceTree = "<group>";
+		};
+		B4AC1B2815AD4AEA00AAC18F /* UserSettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B2D15AD4BBA00AAC18F /* UserSettingsViewController.h */,
+				B4AC1B2E15AD4BBA00AAC18F /* UserSettingsViewController.m */,
+			);
+			name = UserSettingsViewController;
+			sourceTree = "<group>";
+		};
+		B4AC1B3615AD5EAE00AAC18F /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				B4AC1B3715AD5ECC00AAC18F /* Validation.h */,
+				B4AC1B3815AD5ECC00AAC18F /* Validation.m */,
+			);
+			name = Validation;
+			sourceTree = "<group>";
+		};
+		B4AC1B3A15AD69B200AAC18F /* TextProvider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TextProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -717,8 +751,8 @@
 				B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */,
 				B4118BF215AB16CC00D050B2 /* Default.png in Resources */,
 				B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */,
-				B4AC1B0715AC233E00AAC18F /* Settings.bundle in Resources */,
 				B4AC1B0D15AC427200AAC18F /* linenbg.png in Resources */,
+				B4AC1B3515AD5D7C00AAC18F /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +815,8 @@
 				B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */,
 				B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */,
 				B4AC1B2315AC887800AAC18F /* CertificateRequest.m in Sources */,
+				B4AC1B2F15AD4BBA00AAC18F /* UserSettingsViewController.m in Sources */,
+				B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
