@@ -11,10 +11,12 @@
 @interface CertificateRequest : NSObject {
     NSDate *date;
     NSString *emailAddress;
+    NSString *phoneNumber;
 }
 
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *emailAddress;
+@property (nonatomic, strong) NSString *phoneNumber;
 
 - (NSString*) toXML;
 

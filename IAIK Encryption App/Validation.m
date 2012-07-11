@@ -9,7 +9,7 @@
 #import "Validation.h"
 
 #define DEFAULT_EMAIL @"max@mustermann.at"
-#define DEFAULT_PHONE @"06641234567"
+#define DEFAULT_PHONE @"06641234567890"
 
 @implementation Validation
 
