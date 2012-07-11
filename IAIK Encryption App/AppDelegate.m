@@ -13,6 +13,7 @@
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
+#define EXTENSION_REQUEST @"iaikreq"
 #define EXTENSION_PDF @"pdf"
 
 
@@ -211,6 +212,10 @@
         
         [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
         
+    }
+    else if([[url pathExtension] isEqual:EXTENSION_REQUEST])
+    {
+        NSLog(@"mehh...");   
     }
     else
     {

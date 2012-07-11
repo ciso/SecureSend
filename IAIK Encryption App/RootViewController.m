@@ -460,10 +460,12 @@
     return NO;
 }
 
+
+
+//openMailComposer
+//this method is used to invoke the mail composer for sending an email
 - (void)openMailComposer
 {
-        
-    
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
     [composer setToRecipients:[NSArray arrayWithObject:self.email]];
     [composer setSubject:[TextProvider getEmailSubject]];
@@ -478,8 +480,6 @@
     NSString *xml = [certRequest toXML];
     
     NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //test
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:attachment];
     
     XMLParser *parser = [[XMLParser alloc] initXMLParser];
@@ -494,15 +494,9 @@
     
     NSLog(@"emailaddress: %@", parser.certRequest.emailAddress);
     
-    
-    
-    
-    //Getting certificate and encrypting it
-    //NSData* encryptedcert = [self getOwnEncryptedCertificate];
     [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
     
     [self presentModalViewController:composer animated:YES];
-    
 }
 
 - (BOOL)peoplePickerNavigationController:
@@ -740,34 +734,35 @@
 {
     if(buttonIndex != 0)
     {
-
-        NSString *sms = [alertView textFieldAtIndex:0].text;
-        NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
-        NSString *hash = [hashArray lastObject];
-        hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
-        
-        //hash from sms
-        NSLog(@"base64 hash: %@", hash);
-        NSData *decoded = [Base64 decode:hash];
-        NSLog(@"decoded: %@", decoded);
-        
-        
-        //hash from received cert
-        NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
-        
-        //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
-        CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
-        
-        NSLog(@"orig hash: %@", macOut);
-        
-        if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"checksum_verification"] == 1)
         {
+            NSString *sms = [alertView textFieldAtIndex:0].text;
+            NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
+            NSString *hash = [hashArray lastObject];
+            hash = [hash stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //stripping whitespaces
             
+            //hash from sms
+            NSLog(@"base64 hash: %@", hash);
+            NSData *decoded = [Base64 decode:hash];
+            NSLog(@"decoded: %@", decoded);
+            
+            
+            //hash from received cert
+            NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+            
+            //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+            CC_SHA1(self.certData.bytes, self.certData.length, macOut.mutableBytes);
+            
+            NSLog(@"orig hash: %@", macOut);
+            
+            if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+            {
+                
+            }
+            else {
+                self.certData = nil;
+            }
         }
-        else {
-            self.certData = nil;
-        }
-        
         
         if (self.certData == nil)
         {

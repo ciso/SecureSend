@@ -30,8 +30,13 @@
 {
     [super viewDidLoad];
 
-    self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linenbg.png"]];
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+    CGRect background_frame = self.tableView.frame;
+    background_frame.origin.x = 0;
+    background_frame.origin.y = 0;
+    background.frame = background_frame;
+    background.contentMode = UIViewContentModeTop;
+    self.tableView.backgroundView = background;
 }
 
 - (void)viewDidUnload
