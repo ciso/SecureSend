@@ -37,13 +37,13 @@
 @property (nonatomic, strong) NSString *name;
 
 
--(void) receivedBluetoothData:(NSData*) data;
--(void) sendCertificateBluetooth;
--(void) sendCertificateMailTextMessage;
--(void) editTableView;
--(void) showEditBarButtonItem;
--(void) showDoneBarButtonItem;
--(void) decryptContainer:(NSData*) encryptedContainer;
-
--(BOOL) isDataProtectionEnabled;
+- (void)receivedBluetoothData:(NSData*) data;
+- (void)sendCertificateBluetooth;
+- (void)sendCertificateMailTextMessage;
+- (void)editTableView;
+- (void)showEditBarButtonItem;
+- (void)showDoneBarButtonItem;
+- (void)decryptContainer:(NSData*) encryptedContainer;
+- (void)manageCertificateRequest:(NSData*)request;
+- (BOOL)isDataProtectionEnabled;
 @end

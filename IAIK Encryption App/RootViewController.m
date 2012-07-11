@@ -463,7 +463,7 @@
 
 
 //openMailComposer
-//this method is used to invoke the mail composer for sending an email
+//this method is used to invoke the mail composer for sending a certificate request
 - (void)openMailComposer
 {
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
@@ -477,22 +477,10 @@
     CertificateRequest *certRequest = [[CertificateRequest alloc] init];
     certRequest.date = [NSDate date];
     certRequest.emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
+    certRequest.phoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
     NSString *xml = [certRequest toXML];
     
     NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
-    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:attachment];
-    
-    XMLParser *parser = [[XMLParser alloc] initXMLParser];
-    [xmlParser setDelegate:parser];
-    
-    BOOL success = [xmlParser parse];
-    
-    if(success)
-        NSLog(@"No Errors");
-    else
-        NSLog(@"Error Error Error!!!");
-    
-    NSLog(@"emailaddress: %@", parser.certRequest.emailAddress);
     
     [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
     
@@ -866,6 +854,30 @@
     [self.tableView reloadData];
     
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - certificate request
+- (void)manageCertificateRequest:(NSData*)request
+{    
+    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:request];
+    
+    XMLParser *parser = [[XMLParser alloc] initXMLParser];
+    [xmlParser setDelegate:parser];
+    
+    BOOL success = [xmlParser parse];
+    
+    if(success)
+        NSLog(@"No Errors");
+    else
+        NSLog(@"Error Error Error!!!");
+    
+    CertificateRequest *certRequest = parser.certRequest;
+    
+    NSLog(@"emailaddress: %@", certRequest.emailAddress);
+    NSLog(@"phone number: %@", certRequest.phoneNumber);
+    
+
+    
 }
 
 

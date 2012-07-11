@@ -270,6 +270,7 @@
     {
         //setting new userinfo
         [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"default_email"];
+        [[NSUserDefaults standardUserDefaults] setValue:phone forKey:@"default_phone"];
         [[NSUserDefaults standardUserDefaults] setValue:forename forKey:@"default_forename"];
         [[NSUserDefaults standardUserDefaults] setValue:surname forKey:@"default_surname"];
 

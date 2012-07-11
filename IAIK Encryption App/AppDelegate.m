@@ -215,7 +215,13 @@
     }
     else if([[url pathExtension] isEqual:EXTENSION_REQUEST])
     {
-        NSLog(@"mehh...");   
+        NSData *request = [[NSData alloc] initWithContentsOfURL:url];
+        //getting rootviewcontroller
+        UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+        RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+        
+        [root manageCertificateRequest:request];
+        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
     }
     else
     {
