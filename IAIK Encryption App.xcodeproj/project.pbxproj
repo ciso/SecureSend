@@ -67,6 +67,7 @@
 		B4AC1B2F15AD4BBA00AAC18F /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B2E15AD4BBA00AAC18F /* UserSettingsViewController.m */; };
 		B4AC1B3515AD5D7C00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */; };
 		B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B3815AD5ECC00AAC18F /* Validation.m */; };
+		B4AC1B3D15AD69EA00AAC18F /* TextProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B3C15AD69EA00AAC18F /* TextProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,8 @@
 		B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B4AC1B3715AD5ECC00AAC18F /* Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validation.h; sourceTree = "<group>"; };
 		B4AC1B3815AD5ECC00AAC18F /* Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validation.m; sourceTree = "<group>"; };
+		B4AC1B3B15AD69EA00AAC18F /* TextProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextProvider.h; sourceTree = "<group>"; };
+		B4AC1B3C15AD69EA00AAC18F /* TextProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -664,6 +667,8 @@
 		B4AC1B3A15AD69B200AAC18F /* TextProvider */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC1B3B15AD69EA00AAC18F /* TextProvider.h */,
+				B4AC1B3C15AD69EA00AAC18F /* TextProvider.m */,
 			);
 			name = TextProvider;
 			sourceTree = "<group>";
@@ -817,6 +822,7 @@
 				B4AC1B2315AC887800AAC18F /* CertificateRequest.m in Sources */,
 				B4AC1B2F15AD4BBA00AAC18F /* UserSettingsViewController.m in Sources */,
 				B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */,
+				B4AC1B3D15AD69EA00AAC18F /* TextProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
