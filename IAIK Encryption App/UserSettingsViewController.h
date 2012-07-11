@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserSettingsViewController : UITableViewController
+@interface UserSettingsViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIViewController *sender;
 

@@ -410,7 +410,9 @@
         
         //obtain email address from the user
         NSString *defaultEmail = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-        if (![Validation emailIsValid:defaultEmail])
+        NSString *defaultPhone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
+
+        if (![Validation emailIsValid:defaultEmail] || ![Validation phoneNumberIsValid:defaultPhone])
         {
             
             [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];

@@ -243,18 +243,18 @@
 {
     UITableViewCell *emailCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     UITableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+//    UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+//    UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
 
     UITextField *emailTextField = (UITextField*)[emailCell viewWithTag:101];
     UITextField *phoneTextField = (UITextField*)[phoneCell viewWithTag:101];
-    UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
-    UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
+//    UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
+//    UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
 
     NSString *email = emailTextField.text;
     NSString *phone = phoneTextField.text;
-    NSString *forename = forenameTextField.text;
-    NSString *surname = surnameTextField.text;
+//    NSString *forename = forenameTextField.text;
+//    NSString *surname = surnameTextField.text;
 
     
     if (![Validation emailIsValid:email] || ![Validation phoneNumberIsValid:phone])
@@ -268,26 +268,71 @@
     }
     else 
     {
+        NSString *title = [NSString stringWithFormat:@"Email: %@\nPhone: %@", email, phone];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Is this correct?"
+                                                        message:title
+                                                       delegate:self 
+                                              cancelButtonTitle:@"NO"
+                                              otherButtonTitles:@"YES", nil];
+        [alert show];
+        
+        
+                
+    }
+}
+
+
+#pragma mark - UIAlertViewDelegateMethods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0)
+    {
+        UITableViewCell *emailCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        UITableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        
+        UITextField *emailTextField = (UITextField*)[emailCell viewWithTag:101];
+        UITextField *phoneTextField = (UITextField*)[phoneCell viewWithTag:101];
+        UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
+        UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
+        
+        NSString *email = emailTextField.text;
+        NSString *phone = phoneTextField.text;
+        NSString *forename = forenameTextField.text;
+        NSString *surname = surnameTextField.text;
+        
         //setting new userinfo
         [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"default_email"];
         [[NSUserDefaults standardUserDefaults] setValue:phone forKey:@"default_phone"];
         [[NSUserDefaults standardUserDefaults] setValue:forename forKey:@"default_forename"];
         [[NSUserDefaults standardUserDefaults] setValue:surname forKey:@"default_surname"];
-
+        
         if ([self.sender respondsToSelector:@selector(openMailComposer)])
         {
             [self dismissModalViewControllerAnimated:NO];
             
             [self.sender performSelector:@selector(openMailComposer)];
-
+            
         }
         else 
         {
             [self dismissModalViewControllerAnimated:YES];        
         }
-        
     }
+
 }
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    
+}
+
+
+
+
 
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender 
 {

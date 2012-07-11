@@ -36,13 +36,26 @@
         }
     
     //regex check
-    NSString *phoneRegex = @"[235689][0-9]{6}([0-9]{3})?"; 
+   /* NSString *phoneRegex = @"[235689][0-9]{6}([0-9]{3})?"; 
     NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex]; 
     BOOL matches = [test evaluateWithObject:phone];
     if (!matches)
     {
         return NO;
-    }
+    }*/
+    
+//    NSRange range = NSMakeRange (0, [phone length]);    
+//    NSTextCheckingResult *match = [NSTextCheckingResult phoneNumberCheckingResultWithRange:range phoneNumber:phone];
+//    if ([match resultType] == NSTextCheckingTypePhoneNumber)
+//    {
+//        return YES;
+//    }
+//    else {
+//        return NO;
+//    }
+    
+    
+    
     return YES;
 }
 
