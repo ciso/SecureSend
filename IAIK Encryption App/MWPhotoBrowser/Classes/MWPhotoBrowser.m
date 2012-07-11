@@ -290,7 +290,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     if (numberOfPhotos > 1) [items addObject:_nextButton];
     [items addObject:flexSpace];
     if (_displayActionButton) [items addObject:_actionButton];
-    [_toolbar setItems:items];
+    //[_toolbar setItems:items];
     [items release];
 	[self updateNavigation];
     
