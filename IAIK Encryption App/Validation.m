@@ -35,25 +35,29 @@
             return NO;
         }
     
-    //regex check
-   /* NSString *phoneRegex = @"[235689][0-9]{6}([0-9]{3})?"; 
-    NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex]; 
-    BOOL matches = [test evaluateWithObject:phone];
-    if (!matches)
-    {
+    //complex phone number check
+    NSError *error = NULL;
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:&error];
+    
+    NSRange inputRange = NSMakeRange(0, [phone length]);
+    NSArray *matches = [detector matchesInString:phone options:0 range:inputRange];
+    
+    // no match at all
+    if ([matches count] == 0) {
         return NO;
-    }*/
+    }
     
-//    NSRange range = NSMakeRange (0, [phone length]);    
-//    NSTextCheckingResult *match = [NSTextCheckingResult phoneNumberCheckingResultWithRange:range phoneNumber:phone];
-//    if ([match resultType] == NSTextCheckingTypePhoneNumber)
-//    {
-//        return YES;
-//    }
-//    else {
-//        return NO;
-//    }
+    // found match but we need to check if it matched the whole string
+    NSTextCheckingResult *result = (NSTextCheckingResult *)[matches objectAtIndex:0];
     
+    if ([result resultType] == NSTextCheckingTypePhoneNumber && result.range.location == inputRange.location && result.range.length == inputRange.length) {
+        // it matched the whole string
+        return YES;
+    }
+    else {
+        // it only matched partial string
+        return NO;
+    }
     
     
     return YES;
