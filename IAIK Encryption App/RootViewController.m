@@ -63,7 +63,9 @@
 @synthesize sendRequest = _sendRequest;
 @synthesize email = _email;
 @synthesize name = _name;
-
+@synthesize certMailSent = _certMailSent;
+@synthesize phoneNumber = _phoneNumber;
+@synthesize hash = _hash;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -118,6 +120,7 @@
     }
     
     self.sendRequest = NO;
+    self.certMailSent = NO;
 }
 
 - (void)viewDidUnload
@@ -848,12 +851,49 @@
     }
     else if(result == MFMailComposeResultSent)
     {
-        
+        if (self.certMailSent == YES)
+        {
+            self.certMailSent = NO;
+            
+            [self dismissModalViewControllerAnimated:NO];
+            
+            NSLog(@"nooow open next view...");
+
+            
+            MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
+            composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
+            composer.body = [NSString stringWithFormat:@"The checksum for my certificate is: %@", self.hash];
+            composer.messageComposeDelegate = self;
+            
+            [self presentModalViewController:composer animated:YES];
+            
+            self.hash = nil;
+            self.phoneNumber = nil;
+            return;
+            
+        }
     }
     
     [self.tableView reloadData];
     
     [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - MFMessageComposerViewControllerDelegate methods
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{  
+    if(result == MessageComposeResultFailed)
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Problem sending text message" message:@"A Problem occured when trying to send text message, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if(result == MessageComposeResultSent)
+    {
+        
+    }
+    [self dismissModalViewControllerAnimated:YES]; 
 }
 
 #pragma mark - certificate request
@@ -875,8 +915,28 @@
     
     NSLog(@"emailaddress: %@", certRequest.emailAddress);
     NSLog(@"phone number: %@", certRequest.phoneNumber);
+    self.phoneNumber = certRequest.phoneNumber;
     
-
+    //just debug
+    //[self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil];
+    
+    MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
+    [composer setToRecipients:[NSArray arrayWithObject:certRequest.emailAddress]];
+    [composer setSubject:@"My Certificate"];
+    [composer setMessageBody:@"You will receive the chechsum for my certificate shortly via SMS or iMessage" isHTML:NO];
+    composer.mailComposeDelegate = self;
+    
+    
+    NSData *cert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
+    NSString *encoded =  [Base64 encode:macOut];
+    self.hash = encoded;
+    
+    [composer addAttachmentData:cert mimeType:@"application/iaikencryption" fileName:@"cert.iaikcert"];
+    
+    self.certMailSent = YES;
+    [self presentModalViewController:composer animated:YES];
     
 }
 

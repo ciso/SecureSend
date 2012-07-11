@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/AppDelegate.m"
-         timestampString = "363688612.216984"
+         timestampString = "363700205.174684"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
          landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "363686663.367973"
+         timestampString = "363695130.963108"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "409"
-         endingLineNumber = "409"
+         startingLineNumber = "412"
+         endingLineNumber = "412"
          landmarkName = "-peoplePickerNavigationController:shouldContinueAfterSelectingPerson:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -53,45 +53,6 @@
          startingLineNumber = "277"
          endingLineNumber = "277"
          landmarkName = "-doneButtonClicked:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/AppDelegate.m"
-         timestampString = "363688964.803689"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "157"
-         endingLineNumber = "157"
-         landmarkName = "-application:openURL:sourceApplication:annotation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "363693686.726543"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "723"
-         endingLineNumber = "723"
-         landmarkName = "-alertView:clickedButtonAtIndex:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "363693684.764448"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "874"
-         endingLineNumber = "874"
-         landmarkName = "-manageCertificateRequest:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

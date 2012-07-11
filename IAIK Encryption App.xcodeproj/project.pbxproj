@@ -60,6 +60,7 @@
 		B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE815AB123D00D050B2 /* navigationBar@2x.png */; };
 		B4118BF215AB16CC00D050B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF115AB16CC00D050B2 /* Default.png */; };
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
+		B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC55215AD8D1600E39899 /* RequestHandler.m */; };
 		B4AC1B0D15AC427200AAC18F /* linenbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0C15AC427200AAC18F /* linenbg.png */; };
 		B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1A15AC85F500AAC18F /* XMLParser.m */; };
 		B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */; };
@@ -167,6 +168,8 @@
 		B4118BE815AB123D00D050B2 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		B4118BF115AB16CC00D050B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B4118BF315AB16D200D050B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		B45DC55115AD8D1600E39899 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
+		B45DC55215AD8D1600E39899 /* RequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHandler.m; sourceTree = "<group>"; };
 		B4AC1B0C15AC427200AAC18F /* linenbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenbg.png; sourceTree = "<group>"; };
 		B4AC1B1915AC85F500AAC18F /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4AC1B1A15AC85F500AAC18F /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B45DC55015AD8D0700E39899 /* RequestHandler */,
 				B4AC1B3A15AD69B200AAC18F /* TextProvider */,
 				B4AC1B3615AD5EAE00AAC18F /* Validation */,
 				B4AC1B2015AC885000AAC18F /* CertificateRequest */,
@@ -611,6 +615,15 @@
 			name = "Splash Screen";
 			sourceTree = "<group>";
 		};
+		B45DC55015AD8D0700E39899 /* RequestHandler */ = {
+			isa = PBXGroup;
+			children = (
+				B45DC55115AD8D1600E39899 /* RequestHandler.h */,
+				B45DC55215AD8D1600E39899 /* RequestHandler.m */,
+			);
+			name = RequestHandler;
+			sourceTree = "<group>";
+		};
 		B4AC1AFA15AC1CE400AAC18F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +836,7 @@
 				B4AC1B2F15AD4BBA00AAC18F /* UserSettingsViewController.m in Sources */,
 				B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */,
 				B4AC1B3D15AD69EA00AAC18F /* TextProvider.m in Sources */,
+				B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

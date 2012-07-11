@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "NSData+CommonCrypto.h"
 #import "Base64.h"
+#import "RequestHandler.h"
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
@@ -20,6 +21,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize reqHandler = _reqHandler;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -220,7 +222,12 @@
         UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
         RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
         
-        [root manageCertificateRequest:request];
+        
+        self.reqHandler = [[RequestHandler alloc] init];
+        self.reqHandler.request = request;
+        self.reqHandler.delegate = root;
+        [self.reqHandler requestReceived]; 
+        
         [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
     }
     else
