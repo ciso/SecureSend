@@ -26,6 +26,7 @@
 #import "Base64.h"
 #import "Validation.h"
 #import "UserSettingsViewController.h"
+#import "TextProvider.h"
 
 //test
 #import "XMLParser.h"
@@ -465,8 +466,8 @@
     
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
     [composer setToRecipients:[NSArray arrayWithObject:self.email]];
-    [composer setSubject:[NSString stringWithFormat:@"Certificate-Request from %@", @"LALA"]];
-     NSString *body = [NSString stringWithFormat:@"Dear %@!", self.name];
+    [composer setSubject:[TextProvider getEmailSubject]];
+     NSString *body = [TextProvider getEmailBodyForRecipient:self.name];
     [composer setMessageBody:body isHTML:NO];
     composer.mailComposeDelegate = self;
     
@@ -475,9 +476,6 @@
     certRequest.date = [NSDate date];
     certRequest.emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
     NSString *xml = [certRequest toXML];
-    //NSString *xml = @"<CertificateRequest><firstName>Max</firstName><lastName>Mustermann</lastName><emailAddress>max@mustermann.de</emailAddress></CertificateRequest>";
-    
-    
     
     NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
     

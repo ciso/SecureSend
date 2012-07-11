@@ -11,5 +11,6 @@
 @interface TextProvider : NSObject
 
 + (NSString*)getEmailBodyForRecipient:(NSString*)recipient;
++ (NSString*)getEmailSubject;
 
 @end
