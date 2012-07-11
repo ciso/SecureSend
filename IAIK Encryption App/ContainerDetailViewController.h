@@ -18,6 +18,9 @@
 @property (nonatomic, strong) SecureContainer* container;
 @property (nonatomic, strong) NSData* currentCertificate;
 
+@property (nonatomic, retain) NSArray *photos;
+
+
 - (void) setCert: (NSData*) cert;
 - (IBAction) addFile;
 

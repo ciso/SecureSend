@@ -19,6 +19,9 @@
 #import "LoadingView.h"
 #import "PreviewViewController.h"
 
+//test
+#import "MWPhotoBrowser.h"
+
 
 @interface ContainerDetailViewController() {
 @private
@@ -53,6 +56,7 @@
 @synthesize container, currentCertificate = _currentCertificate;
 @synthesize show = _show;
 @synthesize popoverController=_myPopoverController;
+@synthesize photos = _photos;
 
 
 
@@ -249,9 +253,9 @@
             [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
         }
     }
-    else if(indexPath.section == SECTION_FILES || UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    else if(indexPath.section == SECTION_FILES)
     {
-        if(indexPath.row == rowAddFile && !(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad))
+        if(indexPath.row == rowAddFile)
         {
             [self addFile];
         }
@@ -259,28 +263,61 @@
         {
             NSString* path = [self.container.fileUrls objectAtIndex:indexPath.row];
             
-            NSString* pathextension = [path pathExtension];
-            if([pathextension isEqualToString:EXTENSION_JPG] || [pathextension isEqualToString:EXTENSION_PDF])
+            
+            //test
+            NSString *pathExtension = [path pathExtension];
+            
+            if ([pathExtension isEqualToString:EXTENSION_JPG])
             {
-                /*if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    SplitViewController* split = (SplitViewController*) self.splitViewController;
-                    PreviewViewController* preview = split.preview;
-                    preview.path = [container.fileUrls objectAtIndex:indexPath.row];
-                    [preview refreshPreview];
-                }
-                else 
-                {*/
-                    [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
-                //}
+                NSMutableArray *photos = [[NSMutableArray alloc] init];
+                MWPhoto *photo;
+                
+                photo = [MWPhoto photoWithFilePath:path];
+                
+                [photos addObject:photo];
+                
+                self.photos = photos;
+
+                
+                // Create browser
+                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+                browser.displayActionButton = YES;
+                
+                [self.navigationController pushViewController:browser animated:YES];
+
                 
             }
+ 
+
+            
+            
+            
+            
+//            NSString* pathextension = [path pathExtension];
+//            if([pathextension isEqualToString:EXTENSION_JPG] || [pathextension isEqualToString:EXTENSION_PDF])
+//            {
+//                [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
+//            }
             
         }
         
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+//test
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 
