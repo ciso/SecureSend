@@ -19,10 +19,10 @@
 + (NSString*)getEmailBodyForRecipient:(NSString*)recipient
 {
     NSMutableString *body = [[NSMutableString alloc] init];
-    [body appendFormat:@"Dear %@!\n\n", recipient];
+    [body appendFormat:NSLocalizedString(@"Dear %@!\n\n", nil), recipient];
     
-    [body appendFormat:@"You have received a certificate request from %@.\n", [TextProvider getUserName]];
-    [body appendFormat:@"This request can be opened by the %@ app and sends your certificate back to the requester.", @"SecureSend"];
+    [body appendFormat:NSLocalizedString(@"You have received a certificate request from %@.\n", nil), [TextProvider getUserName]];
+    [body appendFormat:NSLocalizedString(@"This request can be opened by the %@ app and sends your certificate back to the requester.", nil), @"SecureSend"];
     
     return  body;
 }
@@ -31,7 +31,7 @@
 {
     NSMutableString *subject = [[NSMutableString alloc] init];
     
-    [subject appendFormat:@"Certificate request from %@", [TextProvider getUserName]];
+    [subject appendFormat:NSLocalizedString(@"Certificate request from %@", nil), [TextProvider getUserName]];
     
     return subject;
 }

@@ -48,11 +48,13 @@
         
         if([MFMailComposeViewController canSendMail] == NO)
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Device cannot send Mail" message:@"Your device is currently not configured to send mail, please configure it or send your certificate via bluetooth" delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil, nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device cannot send Mail", @"Title of alert view in send certificate view") 
+                                               message:NSLocalizedString(@"Your device is currently not configured to send mail, please configure it or send your certificate via bluetooth", @"Message of alert view in send certificate view") delegate:self cancelButtonTitle:NSLocalizedString(@"Back", @"Back button text") otherButtonTitles:nil, nil];
         }
         else if([MFMessageComposeViewController canSendText] == NO)
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Device cannot send text message" message:@"Your device is currently not configured to send text message, please configure it or send your certificate via bluetooth" delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil, nil];    
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device cannot send text message", @"Title of alert view in send certificate view") 
+                                               message:NSLocalizedString(@"Your device is currently not configured to send text message, please configure it or send your certificate via bluetooth", @"Message of alert view in send certificate view") delegate:self cancelButtonTitle:NSLocalizedString(@"Back", @"Back button text") otherButtonTitles:nil, nil];    
         }
         
         [alert show];
@@ -79,7 +81,6 @@
 {
     [super viewDidLoad];
     
-    
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
     CGRect background_frame = self.tableView.frame;
     background_frame.origin.x = 0;
@@ -87,12 +88,6 @@
     background.frame = background_frame;
     background.contentMode = UIViewContentModeTop;
     self.tableView.backgroundView = background;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -158,7 +153,7 @@
         
         if(step1Completed == NO)
         {
-            cell.textLabel.text = @"Choose recipient";
+            cell.textLabel.text = NSLocalizedString(@"Choose recipient", @"Text of label in send certificate view");
         }
         else 
         {
@@ -171,7 +166,7 @@
     {
         if(indexPath.row == rowSendMail)
         {
-            cell.textLabel.text = @"Send cert via mail";
+            cell.textLabel.text = NSLocalizedString(@"Send cert via mail", @"Text of label in send certificate view");
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
             if(step2Completed == YES)
@@ -193,7 +188,7 @@
     {
         if(indexPath.row == rowSendSMS)
         {
-            cell.textLabel.text = @"Send PIN via sms";
+            cell.textLabel.text = NSLocalizedString(@"Send PIN via sms", @"Text of label in send certificate view");
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
             if(step3Completed == YES)
@@ -219,16 +214,16 @@
 {
     switch (section) {
         case SECTION_STEP_1:
-            return @"Step 1: Choose a recipient";
+            return NSLocalizedString(@"Step 1: Choose a recipient", @"Text in send certificate view for choosing a recipient");
             break;
         case SECTION_STEP_2:
-            return @"Step 2: Send Cert via mail";
+            return NSLocalizedString(@"Step 2: Send Cert via mail", @"Text in send certificate view for sending a certificate via email");
             break;
         case SECTION_STEP_3:
-            return @"Step 3: Send checksum via text message";
+            return NSLocalizedString(@"Step 3: Send checksum via text message", @"Text in send certificate view for sending the checksum via SMS");
             break;
         default:
-            return @"ERROR!!";
+            return NSLocalizedString(@"ERROR!!", @"Showing error label if the section index was out of bound");
             break;
     }
 }
@@ -302,8 +297,8 @@
         {
             MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
             [composer setToRecipients:[NSArray arrayWithObject:self.emailAddress]];
-            [composer setSubject:@"My Certificate"];
-            [composer setMessageBody:@"You will receive the chechsum for my certificate shortly via SMS or iMessage" isHTML:NO];
+            [composer setSubject:NSLocalizedString(@"My Certificate", @"Subject for mail in send certificate view")];
+            [composer setMessageBody:NSLocalizedString(@"You will receive the chechsum for my certificate shortly via SMS or iMessage", @"Body for mail in send certificate view") isHTML:NO];
             composer.mailComposeDelegate = self;
             
             //Getting certificate and encrypting it
@@ -325,7 +320,7 @@
         {
             MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
             composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:@"The checksum for my certificate is: %@",self.key];
+            composer.body = [NSString stringWithFormat:NSLocalizedString(@"The checksum for my certificate is: %@", @"Body text for message in send certificate view"), self.key];
             composer.messageComposeDelegate = self;
             
             [self presentModalViewController:composer animated:YES];
@@ -374,7 +369,9 @@
     
     if([self.phoneNumbers count] == 0 || [self.emailAddresses count] == 0)
     {
-        alert = [[UIAlertView alloc] initWithTitle:@"Few contact data" message:@"To send the certificate an email-address and a mobile phone number of the person is required, please add required information to the contact" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No contact data", @"Title for alert view in send certificate view") 
+                                           message:NSLocalizedString(@"To send the certificate an email-address and a mobile phone number of the person is required, please add required information to the contact", @"Message for alert view in send certificate view") 
+                                          delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [alert show];
     }
@@ -438,7 +435,9 @@
 {  
     if(result == MessageComposeResultFailed)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Problem sending text message" message:@"A Problem occured when trying to send text message, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending text message", @"Title for alert view in send certificate view") 
+                                                        message:NSLocalizedString(@"A Problem occured when trying to send text message, please try again", @"Message for alert view in send certificate view") 
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if(result == MessageComposeResultSent)

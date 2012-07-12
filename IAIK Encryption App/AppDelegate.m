@@ -59,7 +59,7 @@
     
     if(shownotification)
     {
-        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:@"Data Protection" message:@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data Protection", nil) message:NSLocalizedString(@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [enableDP show];
     }
@@ -167,7 +167,8 @@
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"checksum_verification"] == 1)
         {
-            NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Paste the SMS in the following textfield. The App verifies it for you."];
+            NSString *title = [NSString stringWithString:NSLocalizedString(@"You have been sent a verification SMS. Paste the SMS in the following textfield. The App verifies it for you.", 
+                                                                           @"Title for alert view in app delegate")];
             
             //setting certdata of rootviewcontroller
             root.certData = certdata;
@@ -175,14 +176,16 @@
             delegate = root;
             
             //showing alert to enter code, setting rootviewcontroller as delegate
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:delegate cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button text in app delegate") 
+                                                  otherButtonTitles:@"OK", nil];
             
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
             [alert show];
         }
         else 
         {
-            NSString *title = [NSString stringWithString:@"You have been sent a verification SMS. Please check the following checksum and compare it."];
+            NSString *title = [NSString stringWithString:NSLocalizedString(@"You have been sent a verification SMS. Please check the following checksum and compare it.", 
+                                                                           @"Title for alert view in app delegate")];
             NSString *message = [NSString stringWithFormat:@"%@", base64hash];
             
             //setting certdata of rootviewcontroller

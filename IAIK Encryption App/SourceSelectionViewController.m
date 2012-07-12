@@ -111,7 +111,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"Image Gallery";
+    cell.textLabel.text = NSLocalizedString(@"Image Gallery", @"Select image gallery as input source for contaier files in source selection view");
     
     return cell;
 }

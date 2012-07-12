@@ -45,7 +45,7 @@
         {
             ABRecordRef ref = (__bridge_retained  ABRecordRef)[allpeople objectAtIndex:i];
             
-            NSString* identifier = [NSString stringWithFormat:@"%d",ABRecordGetRecordID(ref)];
+            NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
             
             NSData* cert = [KeyChainManager getCertificateofOwner:identifier];
             
@@ -145,13 +145,13 @@
     {
         //date is before today --> cert expired!!
         cell.imageView.image = [UIImage imageNamed:@"not_ok.png"];
-        datestring  = @"expired at ";
+        datestring  = NSLocalizedString(@"expired at ", @"Certificate date expired in certificate explorer");
     }
     else 
     {
         //date is after today --> cert valid
         cell.imageView.image = [UIImage imageNamed:@"checkmark.png"];
-        datestring = @"expires at ";
+        datestring = NSLocalizedString(@"expires at ", @"Certificate date expires in certificate explorer");
     }
     
     //creating formatter and displaying expiration date
@@ -193,9 +193,9 @@
             //creating and initialising mail composer
             MFMailComposeViewController* mailcontroller = [[MFMailComposeViewController alloc] init];
             [mailcontroller setToRecipients:[NSArray arrayWithObject:mailaddress]];
-            [mailcontroller setSubject:@"Request for certificate"];
-            [mailcontroller setTitle:@"Request for certificate"];
-            [mailcontroller setMessageBody:@"Please send me your IAIK enryption certificate" isHTML:NO];
+            [mailcontroller setSubject:NSLocalizedString(@"Request for certificate", @"Subject for mail in certificate explorer")];
+            [mailcontroller setTitle:NSLocalizedString(@"Request for certificate", @"Title for mail in certificate explorer")];
+            [mailcontroller setMessageBody:NSLocalizedString(@"Please send me your IAIK enryption certificate", @"Body for mail in certificate explorer") isHTML:NO];
             
             [self presentModalViewController:mailcontroller animated:YES];
             
@@ -233,7 +233,11 @@
 {
     selected_index = indexPath.row;
     
-    UIActionSheet* certoptions = [[UIActionSheet alloc] initWithTitle:@"Certificate" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Certificate" otherButtonTitles:@"Request new certificate of contact", nil];
+    UIActionSheet* certoptions = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Certificate", @"certificate") delegate:self 
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel") 
+                                               destructiveButtonTitle:NSLocalizedString(@"Delete Certificate", @"Delete Certificate") 
+                                                    otherButtonTitles:NSLocalizedString(@"Request new certificate of contact", @"Button title in action sheet in certificate explorer"), 
+                                                                                        nil];
     
     [certoptions showInView:self.view];
     

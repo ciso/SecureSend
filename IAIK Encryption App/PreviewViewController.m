@@ -28,37 +28,21 @@
 @synthesize webview = _webview;
 @synthesize receivedFileURL = _receivedFileURL;
 @synthesize secureContainers = _secureContainers;
-
-@synthesize popoverController = _myPopoverController, displayContainerView = _displayContainerView,path = _path, image = _image;
+@synthesize popoverController = _myPopoverController;
+@synthesize displayContainerView = _displayContainerView;
+@synthesize path = _path;
+@synthesize image = _image;
 
 
 #pragma mark - lifecycle methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    /*if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        SplitViewController *split = (SplitViewController*)self.splitViewController;
-        split.preview = self;
-        
-        self.displayContainerView = YES;
-        
-        // portrait
-        [self.toolbar setBackgroundImage:[UIImage imageNamed:@"NavBarIPad"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-        
-        // landscape
-        [self.toolbar setBackgroundImage:[UIImage imageNamed:@"NavBarIPad"] forToolbarPosition:UIToolbarPositionAny barMetrics: UIBarMetricsLandscapePhone];
-
-        
-        
-    }*/
         
     if(self.path)
     {
         [self refreshPreview];
     }
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -74,7 +58,6 @@
 {
     [self setToolbar:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 

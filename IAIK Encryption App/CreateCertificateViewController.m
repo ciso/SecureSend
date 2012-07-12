@@ -43,13 +43,6 @@
 
 #pragma mark - View lifecycle
 
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView
- {
- }
- */
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -63,19 +56,15 @@
     
     self.scrollview.contentSize = CGSizeMake(320, 650);
     
+    //TODO
     //remove this in final
     [self fillWithTempData];
     
 }
 
-/*- (void)viewWillAppear:(BOOL)animated
- {
- [UIApplication sharedApplication].statusBarOrientation = self.interfaceOrientation;
- }*/
-
-
 - (void)fillWithTempData
 {
+    //TODO
     self.firstname.text = @"Christof";
     self.lastname.text = @"Stromberger";
     self.emailaddress.text = @"stromberger@student.tugraz.at";
@@ -89,8 +78,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -110,7 +97,9 @@
     
     if(self.firstname.text.length == 0 || self.lastname.text.length == 0|| self.emailaddress.text.length == 0)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mandatory data not present" message:@"Please enter all required data to generate the certificate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Mandatory data not present", @"Title of alert view in create certificate view") 
+                                                        message:NSLocalizedString(@"Please enter all required data to generate the certificate", @"Message of alert view in create certificate view") 
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [alert show];
     }
@@ -119,7 +108,7 @@
         //creating certificate from user input
         Crypto *crypto = [Crypto getInstance];
         
-        UIView* load = [LoadingView showLoadingViewInView:self.view withMessage:@"Creating Certificate"];
+        UIView* load = [LoadingView showLoadingViewInView:self.view withMessage:NSLocalizedString(@"Creating Certificate", @"Loading text in create certificate view")];
         
         //running key and cert generation in own thread
         dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

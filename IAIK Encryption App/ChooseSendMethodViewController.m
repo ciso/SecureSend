@@ -110,11 +110,15 @@
     
     if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
     {
-        alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ has been received and stored in your keychain",id] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", @"Title of alert view in choose send method view") 
+                                           message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ has been received and stored in your keychain", @"Message of alert view in choose send method view"), 
+                                                                                                 id] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     }
     else
     {
-        alert = [[UIAlertView alloc] initWithTitle:@"Problem saving to keychain" message:@"Seems like you got the same certificate in your keychain associated with another person?!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem saving to keychain", @"Title of alert view in choose sendmethod view") 
+                                           message:NSLocalizedString(@"Seems like you got the same certificate in your keychain associated with another person?!", @"Message of alert view in choosse send method view") 
+                                          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     }
     
     [alert show];    
@@ -130,47 +134,5 @@
     
     return NO;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 
 @end

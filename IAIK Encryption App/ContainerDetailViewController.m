@@ -183,7 +183,7 @@
         if(indexPath.row == rowAddFile)
         {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"Add file";
+            cell.textLabel.text = NSLocalizedString(@"Add file", @"Text for cell label in container detail view. This label is the action button for adding a new file to a container");
         }
         else
         {
@@ -206,7 +206,7 @@
         if(indexPath.row == ROW_SEND_CONTAINER)
         {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"Encrypt / Share container";
+            cell.textLabel.text = NSLocalizedString(@"Encrypt / Share container", @"Text for cell label in container detail view. This button is for encrypt and share container");
         }
     }
 
@@ -216,22 +216,21 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     if(section == SECTION_ACTION)
-        return @"Actions";
+        return NSLocalizedString(@"Actions", @"Headline for action section in container detail");
     else if(section == SECTION_FILES)
-        return @"Files";
+        return NSLocalizedString(@"Files", @"Headline for files section in container detail");
     else if(section == SECTION_NAME)
-        return @"Name";
+        return NSLocalizedString(@"Name", @"Headline for name section in container detail");
     else
-        return @"ERROR";
+        return NSLocalizedString(@"ERROR", @"Headline for erro section. Should not occur");
     
-    return @"Files in Container";
+    return NSLocalizedString(@"Files in Container", @"Headline for section in container detail");
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if(indexPath.section == SECTION_ACTION)
     {
         if(indexPath.row == ROW_SEND_CONTAINER)
@@ -270,23 +269,15 @@
                 browser.displayActionButton = YES;
                 
                 [self.navigationController pushViewController:browser animated:YES];
-
-                
             }
  
-
-            
-            
-            
-            
+                //old preview
 //            NSString* pathextension = [path pathExtension];
 //            if([pathextension isEqualToString:EXTENSION_JPG] || [pathextension isEqualToString:EXTENSION_PDF])
 //            {
 //                [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
 //            }
-            
         }
-        
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -370,10 +361,14 @@
         
         if([textField.text isEqualToString:@""])
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Enter a name" message:@"Please enter a name for the container" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view") 
+                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view") 
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         else {
-            alert = [[UIAlertView alloc] initWithTitle:@"Container allready exists" message:@"There seems to exist another container with the same namne, please choose a different one" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view") 
+                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view") 
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         
         [alert show];
@@ -447,7 +442,8 @@
     [self dismissModalViewControllerAnimated:YES];
     
     
-    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:@"Choose action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share via Dropbox",@"Send Container via Mail", nil];
+    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"), 
+                             NSLocalizedString(@"Send Container via Email", @"Button in alter view in container detail view for sending a container via email"), nil];
     
     [action showInView:self.view];
     
@@ -460,8 +456,8 @@
     
     //creating and initialising mail composer
     MFMailComposeViewController* mailcontroller = [[MFMailComposeViewController alloc] init];
-    [mailcontroller setSubject:@"Container"];
-    [mailcontroller setTitle:@"Secure files via container"];
+    [mailcontroller setSubject:NSLocalizedString(@"Container", @"Subject for mail when sending an encrypted container in container detail view")];
+    [mailcontroller setTitle:NSLocalizedString(@"Secure files via container", @"Title for mail when sending an encrypted container in container detail view")];
     mailcontroller.mailComposeDelegate = self;
     
     

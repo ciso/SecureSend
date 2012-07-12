@@ -42,8 +42,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -84,7 +82,7 @@
         UITextField *textField = (UITextField*)[cell viewWithTag:101];
         
         NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-        nameLabel.text = @"Email";
+        nameLabel.text = NSLocalizedString(@"Email", @"Text in user settings view");
         textField.text = email;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -95,7 +93,7 @@
         UITextField *textField = (UITextField*)[cell viewWithTag:101];
         
         NSString *phone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
-        phoneLabel.text = @"Phone";
+        phoneLabel.text = NSLocalizedString(@"Phone", @"Text in user settings view");
         textField.text = phone;
         textField.keyboardType = UIKeyboardTypePhonePad;
     }
@@ -105,7 +103,7 @@
         UITextField *textField = (UITextField*)[cell viewWithTag:101];
         
         NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_forename"];
-        nameLabel.text = @"Forename";
+        nameLabel.text = NSLocalizedString(@"Forename", @"Text in user settings view");
         textField.text = username;
     }
     else if (indexPath.section == 1 && indexPath.row == 1)
@@ -114,7 +112,7 @@
         UITextField *textField = (UITextField*)[cell viewWithTag:101];
         
         NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_surname"];
-        nameLabel.text = @"Surname";
+        nameLabel.text = NSLocalizedString(@"Surname", @"Text in user settings view");
         textField.text = username;
     }
     
@@ -133,7 +131,7 @@
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor whiteColor];
         headerLabel.font = [UIFont boldSystemFontOfSize:17];
-        headerLabel.text = @"   Mandatory";
+        headerLabel.text = NSLocalizedString(@"   Mandatory", @"Section headline in user settings view");
         headerLabel.alpha = 1.0;
         
         return headerLabel;
@@ -147,7 +145,7 @@
             headerLabel.backgroundColor = [UIColor clearColor];
             headerLabel.textColor = [UIColor whiteColor];
             headerLabel.font = [UIFont boldSystemFontOfSize:17];
-            headerLabel.text = @"   Optional";
+            headerLabel.text = NSLocalizedString(@"   Optional", @"Section headline in user settings view");
             headerLabel.alpha = 1.0;
             
             return headerLabel;
@@ -189,7 +187,8 @@
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.textColor = [UIColor whiteColor];
         footerLabel.font = [UIFont systemFontOfSize:14];
-        footerLabel.text =  [[NSString alloc] initWithFormat:@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone."];
+        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.", 
+                                                                               @"Footer text in user setting view")];
         footerLabel.alpha = 0.85;
         footerLabel.lineBreakMode = UILineBreakModeWordWrap;
         
@@ -211,7 +210,8 @@
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.textColor = [UIColor whiteColor];
         footerLabel.font = [UIFont systemFontOfSize:14];
-        footerLabel.text =  [[NSString alloc] initWithFormat:@"You can change this later in the \nSettings of your %@.", device];
+        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"You can change this later in the \nSettings of your %@.", 
+                                                                               @"Footer text in user settings view"), device];
         footerLabel.alpha = 0.85;
         footerLabel.lineBreakMode = UILineBreakModeWordWrap;
         
@@ -230,13 +230,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
 }
 
 - (IBAction)doneButtonClicked:(UIBarButtonItem *)sender 
@@ -259,8 +253,8 @@
     
     if (![Validation emailIsValid:email] || ![Validation phoneNumberIsValid:phone])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-                                                        message:@"Please enter a valid email address and/or phone number"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Title of alert view in user settings view") 
+                                                        message:NSLocalizedString(@"Please enter a valid email address and/or phone number", @"Message of alert view in user settings view")
                                                        delegate:nil 
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -268,20 +262,16 @@
     }
     else 
     {
-        NSString *title = [NSString stringWithFormat:@"Email: %@\nPhone: %@", email, phone];
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Email: %@\nPhone: %@", @"Message of alert view in user settings view"), email, phone];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Is this correct?"
-                                                        message:title
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Is this correct?", @"Title of alert view in user settings view")
+                                                        message:message
                                                        delegate:self 
-                                              cancelButtonTitle:@"NO"
-                                              otherButtonTitles:@"YES", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"NO", @"...")
+                                              otherButtonTitles:NSLocalizedString(@"YES", @"..."), nil];
         [alert show];
-        
-        
-                
     }
 }
-
 
 #pragma mark - UIAlertViewDelegateMethods
 
@@ -329,10 +319,6 @@
 {
     
 }
-
-
-
-
 
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender 
 {
