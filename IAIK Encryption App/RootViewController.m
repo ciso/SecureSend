@@ -201,7 +201,7 @@
     {
         if(indexPath.row == rowAddContainer)
         {
-            cell.textLabel.text = @"Create Container";
+            cell.textLabel.text = NSLocalizedString(@"Create Container", @"Text for create a new container in the root view");
         }
         else
         {
@@ -213,19 +213,19 @@
     {
         if(indexPath.row == ROW_ACTION_SEND_BT)
         {
-            cell.textLabel.text = @"Send Certificate via Bluetooth";
+            cell.textLabel.text = NSLocalizedString(@"Send Certificate via Bluetooth", @"Button for sending a certificate via bluetooth in the root view");
         }
         else if(indexPath.row == ROW_ACTION_RECEIVE_BT)
         {
-            cell.textLabel.text = @"Receive Certificate via Bluetooth";
+            cell.textLabel.text = NSLocalizedString(@"Receive Certificate via Bluetooth", @"Button for receiving a certificate via bluetooth in the root view");
         }
         else if(indexPath.row == ROW_ACTION_SEND_MAIL)
         {
-            cell.textLabel.text = @"Send Certificate via Email/SMS";
+            cell.textLabel.text = NSLocalizedString(@"Send Certificate via Email/SMS", @"Button for sending certificate via two-way exchange (Email/SMS) in the root view");
         }
         else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
         {
-            cell.textLabel.text = @"Send a Certificate-Request";
+            cell.textLabel.text = NSLocalizedString(@"Send a Certificate-Request", @"Button for sending a certificate-request to another user in the roow view");
         }
     }
     
@@ -235,11 +235,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     if(section == SECTION_CONTAINERS)
-        return @"Containers";
+        return NSLocalizedString(@"Containers", @"Cell headline for containers section in the root view");
     else if(section == SECTION_ACTIONS)
-        return @"Actions";
+        return NSLocalizedString(@"Actions", @"Cell headline for actions section in the root view");
     
-    return @"ERROR";
+    return NSLocalizedString(@"ERROR", @"Cell headline for error (this should not appear in productive environment");
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -371,11 +371,11 @@
         
         if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Certificate stored in Keychain" message:[NSString stringWithFormat: @"The certificate of %@ %@ has been received and stored in your keychain", name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", nil) message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ %@ has been received and stored in your keychain", nil), name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         else
         {
-            alert = [[UIAlertView alloc] initWithTitle:@"Problem saving to keychain" message:@"Seems like you got the same certificate in your keychain associated with another person?!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Problem saving to keychain", @"Title of alert message when the certificate could not be saved") message:NSLocalizedString(@"Seems like you got the same certificate in your keychain associated with another person?!", "Body of alert message when the certificate could not be saved") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         
         [alert show];
@@ -413,52 +413,13 @@
         if (![Validation emailIsValid:defaultEmail] || ![Validation phoneNumberIsValid:defaultPhone])
         {
             
-            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];
-            
-            //TODO: open modal view (for default email address) here!!!
-                        
-//            NSString *title = @"Please enter your Email address. You can change this later in the Settings.";
-//            NSString *message = @"You can change this later in the Settings.";
-//            
-//            //showing alert to enter code, setting rootviewcontroller as delegate
-//            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-//            
-//            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//            [alert show];
-            
-            
-            
-            //notes:
-            
-            //        {
-            //            self.obtainDefaultEmail = NO;
-            //            
-            //            //storing default email address
-            //            [[NSUserDefaults standardUserDefaults] setObject:[alertView textFieldAtIndex:0].text forKey:@"default_email"];
-            //            
-            //            [alertView dismissWithClickedButtonIndex:-1 animated:NO];
-            //            
-            //            //[self performSelectorOnMainThread:@selector(openMailComposer) withObject:nil waitUntilDone:NO];
-            //            
-            
-            
-            //todo: call this in the modal view!!!
-            //[self openMailComposer];
-            
-            
+            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];            
         }
         else 
         {
             [self openMailComposer];
         }
-        
-        
-        //[defaults setObject:appDefaults forKey:USERS_DEFAULT_EMAIL];
-        
-
-
     }
-
     
     return NO;
 }
@@ -623,7 +584,8 @@
     }
     @catch (NSException *exception) 
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Could not decrypt" message:@"The container was not encrypted using your certificate" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not decrypt", @"Title of alert in root view. The container could not be decrypted") 
+                                                        message:NSLocalizedString(@"The container was not encrypted using your certificate", @"Message of alert in root view. The container could not be decrypted") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
@@ -757,7 +719,7 @@
         
         if (self.certData == nil)
         {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error opening certificate" message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error opening certificate", @"Title of alert view in root view. The certificate could not be opened") message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
             
             [alert show];
         }
@@ -790,6 +752,11 @@
     [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers objectAtIndex:index]];
 }
 
+
+
+// -------------------------------------
+// CURRENTLY NOT IN USE?????????????????
+// -------------------------------------
 -(BOOL) isDataProtectionEnabled
 {
     
@@ -815,10 +782,7 @@
     BOOL fileProtectionEnabled = [NSFileProtectionNone isEqualToString:[testFileAttributes objectForKey:NSFileProtectionKey]];
     
     return fileProtectionEnabled;
-    
 }
-
-
 
 -(void) dealloc
 {
@@ -826,7 +790,6 @@
     self.btConnectionHandler = nil;
     self.receivedFileURL = nil;
 }
-
 
 #pragma mark - certificate request
 - (void)sendCertificateRequest
@@ -845,7 +808,8 @@
 {
     if(result == MFMailComposeResultFailed)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Problem sending mail" message:@"A problem occured while trying to send mail, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending mail", @"Title of alert view in root view. The mail could not be sent") 
+                                                        message:NSLocalizedString(@"A problem occured while trying to send mail, please try again", @"Message of alert view in root view. The mail could not be sent. The user is told to try it again.") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [alert show];
     }
@@ -857,12 +821,9 @@
             
             [self dismissModalViewControllerAnimated:NO];
             
-            NSLog(@"nooow open next view...");
-
-            
             MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
             composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:@"The checksum for my certificate is: %@", self.hash];
+            composer.body = [NSString stringWithFormat:NSLocalizedString(@"The checksum for my certificate is: %@", @"Text for body of hash message. The user is told the checksum (hash)of the certificate"), self.hash];
             composer.messageComposeDelegate = self;
             
             [self presentModalViewController:composer animated:YES];
@@ -886,7 +847,7 @@
 {  
     if(result == MessageComposeResultFailed)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Problem sending text message" message:@"A Problem occured when trying to send text message, please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending text message", @"Title of alert view in root view. There was a problem with sending the hash message") message:NSLocalizedString(@"A Problem occured when trying to send text message, please try again", @"Message of alert view in root view. There was a problem with sending the hash message") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     else if(result == MessageComposeResultSent)
@@ -907,9 +868,9 @@
     BOOL success = [xmlParser parse];
     
     if(success)
-        NSLog(@"No Errors");
+        NSLog(@"XML parser succeeded!");
     else
-        NSLog(@"Error Error Error!!!");
+        NSLog(@"A XML parser ERROR occured!");
     
     CertificateRequest *certRequest = parser.certRequest;
     
@@ -917,13 +878,10 @@
     NSLog(@"phone number: %@", certRequest.phoneNumber);
     self.phoneNumber = certRequest.phoneNumber;
     
-    //just debug
-    //[self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil];
-    
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
     [composer setToRecipients:[NSArray arrayWithObject:certRequest.emailAddress]];
-    [composer setSubject:@"My Certificate"];
-    [composer setMessageBody:@"You will receive the chechsum for my certificate shortly via SMS or iMessage" isHTML:NO];
+    [composer setSubject:NSLocalizedString(@"My Certificate", @"Subject for certificate email in root view")];
+    [composer setMessageBody:NSLocalizedString(@"You will receive the chechsum for my certificate shortly via SMS or iMessage", @"Body for certificate email in root view") isHTML:NO];
     composer.mailComposeDelegate = self;
     
     
