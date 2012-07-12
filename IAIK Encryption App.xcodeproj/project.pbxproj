@@ -297,7 +297,6 @@
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
-				B45DC5A815ADCE7500E39899 /* ImageIO.framework */,
 				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
 				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
 				B4118B2415AAC61B00D050B2 /* Frameworks */,
@@ -317,6 +316,8 @@
 		B4118B2415AAC61B00D050B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B45DC56115ADC7D000E39899 /* MWPhotoBrowser */,
+				B45DC5A815ADCE7500E39899 /* ImageIO.framework */,
 				B4118BD215AAF5B900D050B2 /* AddressBookUI.framework */,
 				B4118BD015AAF5B400D050B2 /* AddressBook.framework */,
 				B4118BCE15AAF5AF00D050B2 /* Security.framework */,
@@ -336,7 +337,6 @@
 		B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */ = {
 			isa = PBXGroup;
 			children = (
-				B45DC56115ADC7D000E39899 /* MWPhotoBrowser */,
 				B4118B7D15AADDEF00D050B2 /* CustomControls */,
 				B4118B8215AADE0B00D050B2 /* Security */,
 				B4118B7B15AADD6A00D050B2 /* Delegates */,
@@ -702,7 +702,8 @@
 				B45DC58B15ADC7D000E39899 /* MWPhotoBrowser.bundle */,
 				B45DC58C15ADC7D000E39899 /* MWPhotoBrowser.xcodeproj */,
 			);
-			path = MWPhotoBrowser;
+			name = MWPhotoBrowser;
+			path = "IAIK Encryption App/MWPhotoBrowser";
 			sourceTree = "<group>";
 		};
 		B45DC56215ADC7D000E39899 /* Classes */ = {

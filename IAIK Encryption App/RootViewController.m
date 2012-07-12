@@ -354,6 +354,7 @@
 (ABPeoplePickerNavigationController *)peoplePicker
 {
     [self dismissModalViewControllerAnimated:YES];
+    self.sendRequest = NO;
 }
 
 
@@ -386,7 +387,8 @@
     else 
     {
         [self dismissModalViewControllerAnimated:NO];
-        
+     
+        self.sendRequest = NO;
         
         //ABRecordID rec_id = ABRecordGetRecordID(person);
         NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);

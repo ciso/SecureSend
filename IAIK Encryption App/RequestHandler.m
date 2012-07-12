@@ -19,8 +19,8 @@
     
     //showing alert to enter code, setting rootviewcontroller as delegate
     NSString *title = @"You have received a Certificate-Request from another user. This app will guide you through the certificate exchange process.\n\n"
-    @"First it opens the Mail composer for you. After that it opens the Message composer.\n\n"
-    @"You must only click 'send' in the composers.";
+    @"It opens the Mail and Message composer for you.\n\n"
+    @"You must only click 'send' in the composers.\n";
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     alert.alertViewStyle = UIAlertViewStyleDefault;
     alert.delegate = self;
