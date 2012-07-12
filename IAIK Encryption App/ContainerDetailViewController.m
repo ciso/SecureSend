@@ -189,7 +189,11 @@
         {
             NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
             cell.textLabel.text = [path lastPathComponent];
-            if([[path pathExtension] isEqualToString:EXTENSION_JPG] || [[path pathExtension] isEqualToString:EXTENSION_PDF])
+            if([[path pathExtension] isEqualToString:EXTENSION_JPG] 
+               || [[path pathExtension] isEqualToString:EXTENSION_JPEG]
+               || [[path pathExtension] isEqualToString:EXTENSION_GIF]
+               || [[path pathExtension] isEqualToString:EXTENSION_PNG]
+               || [[path pathExtension] isEqualToString:EXTENSION_PDF])
             {
                 cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -252,7 +256,10 @@
             //test
             NSString *pathExtension = [path pathExtension];
             
-            if ([pathExtension isEqualToString:EXTENSION_JPG])
+            if ([pathExtension isEqualToString:EXTENSION_JPG] 
+                || [pathExtension isEqualToString:EXTENSION_JPEG]
+                || [pathExtension isEqualToString:EXTENSION_PNG]
+                || [pathExtension isEqualToString:EXTENSION_GIF])
             {
                 NSMutableArray *photos = [[NSMutableArray alloc] init];
                 MWPhoto *photo;
@@ -269,6 +276,10 @@
                 browser.displayActionButton = YES;
                 
                 [self.navigationController pushViewController:browser animated:YES];
+            }
+            else if ([pathExtension isEqualToString:EXTENSION_PDF])
+            {
+                [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
             }
  
                 //old preview

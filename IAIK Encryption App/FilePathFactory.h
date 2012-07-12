@@ -14,7 +14,12 @@
 #define DIRECTORY_EXTENSION @"iaikencryptiondirectory"
 
 #define EXTENSION_PDF @"pdf"
-#define EXTENSION_JPG @"jpeg"
+#define EXTENSION_JPG @"jpg"
+#define EXTENSION_JPEG @"jpeg"
+#define EXTENSION_PNG @"png"
+#define EXTENSION_GIF @"gif"
+
+
 
 @class SecureContainer;
 
