@@ -38,23 +38,15 @@
 #define ROW_SEND_CONTAINER 0
 #define ROW_NAME 0
 
-
-
 #define SEGUE_TO_SOURCESEL @"toSourceSelectionViewController"
 #define SEGUE_TO_XPLORER @"toCertificateXplorer"
 #define SEGUE_TO_PREVIEW @"toPreviewImageScreen"
 #define SEGUE_TO_SOURCESELVIEW @"toSourceSelectionView"
 #define SEGUE_TO_ENCRYPT @"toEncryptAndSend"
 
-
-@synthesize navigationBar = _navigationBar;
-@synthesize addFileButton = _addFileButton;
 @synthesize container, currentCertificate = _currentCertificate;
-@synthesize show = _show;
 @synthesize popoverController=_myPopoverController;
 @synthesize photos = _photos;
-
-
 
 - (void)awakeFromNib
 {
@@ -95,8 +87,6 @@
 
 - (void)viewDidUnload
 {
-    [self setAddFileButton:nil];
-    [self setNavigationBar:nil];
     [super viewDidUnload];
 }
 
@@ -605,7 +595,6 @@
     else if ([segue.identifier isEqualToString:SEGUE_TO_SOURCESELVIEW])
     {
         SourceSelectionViewController *destination = (SourceSelectionViewController*)segue.destinationViewController;
-        destination.button = self.addFileButton;
         destination.basePath = self.container.basePath;
         destination.delegate = self;
         

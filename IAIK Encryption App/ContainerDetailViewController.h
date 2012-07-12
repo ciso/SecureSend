@@ -14,20 +14,14 @@
 
 @class SecureContainer, NameCell;
 
-@interface ContainerDetailViewController : UITableViewController <ModifyContainerPropertyDelegate,MFMailComposeViewControllerDelegate,UIActionSheetDelegate,ModifyCertPropertyDelegate,UITextFieldDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
+@interface ContainerDetailViewController : UITableViewController <ModifyContainerPropertyDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, ModifyCertPropertyDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 
 @property (nonatomic, strong) SecureContainer* container;
 @property (nonatomic, strong) NSData* currentCertificate;
-
 @property (nonatomic, retain) NSArray *photos;
 
 
 - (void) setCert: (NSData*) cert;
 - (IBAction) addFile;
-
-// iPad
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *addFileButton;
-@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
-@property (nonatomic, assign) BOOL show;
 
 @end
