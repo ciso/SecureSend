@@ -3,7 +3,7 @@
 //  bac_01
 //
 //  Created by Christoph Hechenblaikner on 22.02.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
 #import "RootViewController.h"
@@ -27,10 +27,9 @@
 #import "Validation.h"
 #import "UserSettingsViewController.h"
 #import "TextProvider.h"
-
-//test
 #import "XMLParser.h"
 #import "CertificateRequest.h"
+
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -43,7 +42,6 @@
 #define NUMBER_ROWS_ACTIONS 4
 #define TEST_CERTIFICAT_OWNER @"Christof"
 #define USERS_DEFAULT_EMAIL @"default_email_property"
-
 
 
 @interface RootViewController() {
@@ -94,8 +92,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.s
 }
 
 #pragma mark - View lifecycle

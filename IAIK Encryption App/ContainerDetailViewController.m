@@ -19,10 +19,6 @@
 #import "LoadingView.h"
 #import "PreviewViewController.h"
 
-//test
-#import "MWPhotoBrowser.h"
-
-
 @interface ContainerDetailViewController() {
 @private
     NSInteger rowAddFile;
