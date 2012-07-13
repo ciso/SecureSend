@@ -17,15 +17,6 @@
 @property(nonatomic,retain) UIWebView* webview;
 
 - (void)refreshPreview;
-
-//iPad
-@property (nonatomic, assign) BOOL displayContainerView;
-@property (nonatomic,retain) NSURL* receivedFileURL;
-@property (nonatomic, strong) NSMutableArray *secureContainers;
-
 - (IBAction)buttonEncryptAndSend:(id)sender;
-
-- (void)showContainerView;
-
 
 @end

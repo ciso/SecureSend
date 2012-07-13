@@ -26,10 +26,7 @@
 @implementation PreviewViewController
 @synthesize toolbar = _toolbar;
 @synthesize webview = _webview;
-@synthesize receivedFileURL = _receivedFileURL;
-@synthesize secureContainers = _secureContainers;
 @synthesize popoverController = _myPopoverController;
-@synthesize displayContainerView = _displayContainerView;
 @synthesize path = _path;
 @synthesize image = _image;
 
@@ -160,16 +157,16 @@
     } 
     else if([segue.identifier isEqualToString:SEGUE_TO_CHOOSE_CONTROLLER])
     {
-        self.receivedFileURL = (NSURL*)sender;
+       // self.receivedFileURL = (NSURL*)sender;
         
         //UINavigationController* nav = (UINavigationController*) segue.destinationViewController;
         
         /*ChooseContainerViewController* choose = (ChooseContainerViewController*) [nav.viewControllers objectAtIndex:0];*/
-        
+       /* 
         ChooseContainerViewController *choose = (ChooseContainerViewController*)segue.destinationViewController;
         
         choose.containers = self.secureContainers;
-        choose.delegate = self;
+        choose.delegate = self;*/
     }
 
 }
@@ -181,73 +178,15 @@
     
 }
 
-- (void)showContainerView
-{
-    /*SplitViewController *split = (SplitViewController*)self.splitViewController;
-    
-    [split.controller setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentModalViewController:split.controller animated:YES];*/
-}
-
-
 -(void) choosedContainer:(NSInteger) index
 {
-    
     [self dismissModalViewControllerAnimated:YES];
-    
-    //[self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers objectAtIndex:index]];
-    
-    
-    //ContainerDetailViewController* detail = (ContainerDetailViewController*) [segue destinationViewController];
-    /*
-    ContainerDetailViewController *detail;// = ((SplitViewController*)self.splitViewController).detail;
-    
-    if (((SplitViewController*)self.splitViewController).detail == nil)
-    {
-        detail = [[ContainerDetailViewController alloc] init];
-        
-        SplitViewController *split = (SplitViewController*)self.splitViewController;
-        
-        split.detail = detail;
-    }
-    else
-    {
-        detail = ((SplitViewController*)self.splitViewController).detail;
-    }
-    
-    SecureContainer* container = (SecureContainer*) [self.secureContainers objectAtIndex:index];
-    
-    [detail setContainer:container];
-    
-    if(self.receivedFileURL != nil)
-    {
-        NSString* filename = [[self.receivedFileURL lastPathComponent] stringByDeletingPathExtension];
-        
-        NSString* path = [FilePathFactory getUniquePathInFolder:container.basePath forFileExtension:[self.receivedFileURL pathExtension] andFileName:filename];
-        
-        NSData* recfile = [NSData dataWithContentsOfURL:self.receivedFileURL];
-        
-        BOOL success = [recfile writeToFile:path options:NSDataWritingFileProtectionComplete error:nil];
-        
-        if(success == NO)
-        {
-            NSLog(@"error saving file");
-        }
-        
-        [detail addFilesToContainer:[NSArray arrayWithObject:path]];
-        
-        [detail.tableView reloadData]; //test
-        
-        [[NSFileManager defaultManager] removeItemAtURL:self.receivedFileURL error:nil];
-    }
-    
-    self.receivedFileURL = nil;*/
-    
     
 }
 
 
-- (void)dealloc {
+- (void)dealloc 
+{
 
 }
 @end
