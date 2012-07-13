@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import <MessageUI/MessageUI.h>
 #import "BluetoothConnectionHandler.h"
 
-@interface CertificateActionViewController : UITableViewController <BluetoothConnectionHandlerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface CertificateActionViewController : UITableViewController <BluetoothConnectionHandlerDelegate, ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
 

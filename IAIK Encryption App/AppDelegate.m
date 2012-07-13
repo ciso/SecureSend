@@ -149,8 +149,8 @@
 #pragma mark - import files into this app
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    
-    UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+    UITabBarController *tabBar = (UITabBarController*)self.window.rootViewController;
+    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
     RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
     id delegate;
     
@@ -190,7 +190,7 @@
             //setting certdata of rootviewcontroller
             root.certData = certdata;
             
-            delegate = root;  
+            delegate = root;
             
             //showing alert to enter code, setting rootviewcontroller as delegate
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];

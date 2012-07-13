@@ -358,6 +358,7 @@
                     <navigationItem key="navigationItem" title="Actions" id="a3H-Xi-In3"/>
                     <connections>
                         <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="yuf-QE-k7G"/>
+                        <segue destination="ETl-E8-Dvy" kind="modal" identifier="toDefaultEmail" id="fQR-SJ-lCQ"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -753,5 +754,6 @@ exchange data in a secure way you have to create a certificate which you can use
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="yuf-QE-k7G"/>
+        <segue reference="fQR-SJ-lCQ"/>
     </inferredMetricsTieBreakers>
 </document>
