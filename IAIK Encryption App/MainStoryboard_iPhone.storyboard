@@ -99,7 +99,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="654" y="985"/>
+            <point key="canvasLocation" x="1866" y="985"/>
         </scene>
         <!--Preview View Controller - Image Preview-->
         <scene sceneID="GvK-fi-lNM">
@@ -115,7 +115,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1352" y="670"/>
+            <point key="canvasLocation" x="2564" y="670"/>
         </scene>
         <!--Choose Container View Controller - Choose container-->
         <scene sceneID="Xox-Fl-lrz">
@@ -147,7 +147,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="-348" y="1000"/>
+            <point key="canvasLocation" x="864" y="1000"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="56y-Uc-GcL">
@@ -162,7 +162,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-880" y="1000"/>
+            <point key="canvasLocation" x="332" y="1000"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfI-lX-hcj">
@@ -177,7 +177,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="182" y="985"/>
+            <point key="canvasLocation" x="1394" y="985"/>
         </scene>
         <!--Certificate Xplorer View Controller - Certificates-->
         <scene sceneID="Wtg-6t-26i">
@@ -552,8 +552,6 @@ exchange data in a secure way you have to create a certificate which you can use
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addFile"/>
-                <relationship kind="outlet" name="addFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationItem"/>
             </relationships>
         </class>
         <class className="CreateCertificateViewController" superclassName="UIViewController">
