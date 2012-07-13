@@ -38,4 +38,6 @@
 
 +(SecureContainer*) parseContainerAtPath: (NSString*) containerpath;
 
++ (NSString *)getUniqueContainer:(NSString*)folder;
+
 @end

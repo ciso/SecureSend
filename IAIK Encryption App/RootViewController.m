@@ -274,7 +274,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0;
+    return 70.0;
 }
 
 #pragma mark - Table view delegate
@@ -806,7 +806,10 @@
     
     NSError* directory_creation_error = nil;
     
-    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
+//    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
+    NSString* path = [FilePathFactory getUniqueContainer:[FilePathFactory applicationDocumentsDirectory]];
+
+    
     
     NSLog(@"Path: %@",path);
     

@@ -81,6 +81,23 @@
     return uniquePath;
 }
 
++ (NSString *)getUniqueContainer:(NSString*)folder
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *existingFiles = [fileManager contentsOfDirectoryAtPath:folder error:nil];
+    NSString *uniquePath;
+    NSString *uniqueName;
+    NSInteger count = 1;
+    NSString *containerName = @"New Container";
+    
+    do {
+        uniqueName = [NSString stringWithFormat:@"%@ #%d", containerName, count++];
+        uniquePath = [folder stringByAppendingPathComponent:uniqueName];
+    } while ([existingFiles containsObject:uniqueName]);
+    
+    return uniquePath;
+}
+
 
 +(NSString*) getTemporaryZipPath
 {
