@@ -32,7 +32,12 @@
 @property (nonatomic, strong) NSMutableArray* containers;
 @property (nonatomic, strong) NSData* certData;
 @property (nonatomic, strong) NSURL* receivedFileURL;
+@property (nonatomic, assign) BOOL sendRequest;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) BOOL certMailSent;
 @property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, strong) NSString *hash;
 
 
 - (void)receivedBluetoothData:(NSData*) data;

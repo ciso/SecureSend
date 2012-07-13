@@ -209,8 +209,9 @@
         
              
         //getting rootviewcontroller
-        UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+        /*UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
         RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+        */
         
         [root decryptContainer:containerdata];
         
@@ -221,9 +222,9 @@
     {
         NSData *request = [[NSData alloc] initWithContentsOfURL:url];
         //getting rootviewcontroller
-        UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
+        /*UINavigationController* navi = (UINavigationController*)self.window.rootViewController;
         RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
-        
+        */
         
         self.reqHandler = [[RequestHandler alloc] init];
         self.reqHandler.request = request;

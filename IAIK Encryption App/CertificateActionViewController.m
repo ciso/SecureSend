@@ -12,6 +12,7 @@
 #import "TextProvider.h"
 #import "CertificateRequest.h"
 #import "UserSettingsViewController.h"
+#import "RootViewController.h"
 
 #define SEGUE_TO_CERT_ASS @"toCertSendAssist"
 #define SEGUE_TO_DEFAULT_EMAIL @"toDefaultEmail"
@@ -198,11 +199,15 @@
 
 - (void) receivedBluetoothData: (NSData*) data
 {
-    self.receivedCertificateData = data;
+    UITabBarController *tabBar = self.tabBarController;
+    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
     
+    root.receivedCertificateData = data;
+
     //showing people picker do identify owner of the certificate
     ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
+    picker.peoplePickerDelegate = root;
     [self presentModalViewController:picker animated:YES];
 }
 
@@ -215,175 +220,18 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person 
-{   
-    if (!self.sendRequest)
-    {    
-        ABRecordID rec_id = ABRecordGetRecordID(person);
-        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-        NSString* id = [NSString stringWithFormat:@"%d",rec_id];
-        
-        [self dismissModalViewControllerAnimated:YES];
-        
-        UIAlertView* alert = nil;
-        
-        if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
-        {
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", nil) message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ %@ has been received and stored in your keychain", nil), name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        }
-        else
-        {
-            alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Problem saving to keychain", @"Title of alert message when the certificate could not be saved") message:NSLocalizedString(@"Seems like you got the same certificate in your keychain associated with another person?!", "Body of alert message when the certificate could not be saved") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        }
-        
-        [alert show];
-    }
-    else 
-    {
-        [self dismissModalViewControllerAnimated:NO];
-        
-        self.sendRequest = NO;
-        
-        //ABRecordID rec_id = ABRecordGetRecordID(person);
-        NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-        NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-        ABMultiValueRef emails  = ABRecordCopyValue(person, kABPersonEmailProperty);
-        //NSString* id = [NSString stringWithFormat:@"%d",rec_id];
-        
-        NSMutableArray *emailArray = [[NSMutableArray alloc] init];
-        
-        if(ABMultiValueGetCount(emails) != 0){
-            for(int i=0;i<ABMultiValueGetCount(emails);i++)
-            {
-                CFStringRef em = ABMultiValueCopyValueAtIndex(emails, i);
-                [emailArray addObject:[NSString stringWithFormat:@"%@",em]];
-                CFRelease(em);
-            }
-        }
-        
-        self.email = [emailArray objectAtIndex:0];
-        self.name = [NSString stringWithFormat:@"%@ %@", name, lastname];
-        
-        //obtain email address from the user
-        NSString *defaultEmail = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-        NSString *defaultPhone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
-        
-        if (![Validation emailIsValid:defaultEmail] || ![Validation phoneNumberIsValid:defaultPhone])
-        {
-            
-            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];            
-        }
-        else 
-        {
-            [self openMailComposer];
-        }
-    }
-    
-    return NO;
-}
-
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property
-                              identifier:(ABMultiValueIdentifier)identifier
-{
-    
-    return NO;
-}
-
 #pragma mark - certificate request
 - (void)sendCertificateRequest
 {
+    UITabBarController *tabBar = self.tabBarController;
+    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+    
     ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    self.sendRequest = YES;
+    picker.peoplePickerDelegate = root;//root;
+    //self.sendRequest = YES;
+    root.sendRequest = YES;
     [self presentModalViewController:picker animated:YES];
-}
-
-#pragma mark - mail composer
-
-//openMailComposer
-//this method is used to invoke the mail composer for sending a certificate request
-- (void)openMailComposer
-{
-    MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-    [composer setToRecipients:[NSArray arrayWithObject:self.email]];
-    [composer setSubject:[TextProvider getEmailSubject]];
-    NSString *body = [TextProvider getEmailBodyForRecipient:self.name];
-    [composer setMessageBody:body isHTML:NO];
-    composer.mailComposeDelegate = self;
-    
-    //todo: create real certrequest object here
-    CertificateRequest *certRequest = [[CertificateRequest alloc] init];
-    certRequest.date = [NSDate date];
-    certRequest.emailAddress = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-    certRequest.phoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
-    NSString *xml = [certRequest toXML];
-    
-    NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
-    
-    [self presentModalViewController:composer animated:YES];
-}
-
-#pragma mark - MFMailComposerDelegate methods
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
-    if(result == MFMailComposeResultFailed)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending mail", @"Title of alert view in root view. The mail could not be sent") 
-                                                        message:NSLocalizedString(@"A problem occured while trying to send mail, please try again", @"Message of alert view in root view. The mail could not be sent. The user is told to try it again.") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [alert show];
-    }
-    else if(result == MFMailComposeResultSent)
-    {
-        if (self.certMailSent == YES)
-        {
-            self.certMailSent = NO;
-            
-            [self dismissModalViewControllerAnimated:NO];
-            
-            MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
-            composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:NSLocalizedString(@"The checksum for my certificate is: %@", @"Text for body of hash message. The user is told the checksum (hash)of the certificate"), self.hash];
-            composer.messageComposeDelegate = self;
-            
-            [self presentModalViewController:composer animated:YES];
-            
-            self.hash = nil;
-            self.phoneNumber = nil;
-            return;
-            
-        }
-    }
-    
-    [self.tableView reloadData];
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-#pragma mark - MFMessageComposerViewControllerDelegate methods
-
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{  
-    if(result == MessageComposeResultFailed)
-    {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending text message", @"Title of alert view in root view. There was a problem with sending the hash message") message:NSLocalizedString(@"A Problem occured when trying to send text message, please try again", @"Message of alert view in root view. There was a problem with sending the hash message") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else if(result == MessageComposeResultSent)
-    {
-        
-    }
-    [self dismissModalViewControllerAnimated:YES]; 
 }
 
 
