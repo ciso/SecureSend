@@ -558,7 +558,7 @@
 {
     NSData* encryptedcontainer = [self zipAndEncryptContainer];
     switch (buttonIndex) {
-        case 1:
+        case 0: //change this to 1 if dropbox action is also visible
         {
             if([MFMailComposeViewController canSendMail])
             {
