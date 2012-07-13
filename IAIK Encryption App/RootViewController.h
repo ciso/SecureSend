@@ -49,4 +49,5 @@
 - (void)decryptContainer:(NSData*) encryptedContainer;
 - (void)manageCertificateRequest:(NSData*)request;
 - (BOOL)isDataProtectionEnabled;
+- (IBAction)addNewContainer:(UIBarButtonItem *)sender;
 @end

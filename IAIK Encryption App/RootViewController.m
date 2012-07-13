@@ -71,7 +71,6 @@
     
     if(self)
     {
-        
         self.containers = [FilePathFactory getContainersOfFileStructure];
         
         //[KeyChainManager deleteCertificatewithOwner:CERT_ID_USER];
@@ -100,14 +99,17 @@
 {
     [super viewDidLoad];
     
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-    CGRect background_frame = self.tableView.frame;
-    background_frame.origin.x = 0;
-    background_frame.origin.y = 0;
-    background.frame = background_frame;
-    background.contentMode = UIViewContentModeTop;
-    self.tableView.backgroundView = background;
+//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+//    CGRect background_frame = self.tableView.frame;
+//    background_frame.origin.x = 0;
+//    background_frame.origin.y = 0;
+//    background.frame = background_frame;
+//    background.contentMode = UIViewContentModeTop;
+//    self.tableView.backgroundView = background;
 
+    self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+
+    
     
     //checking if a certificate has to be created
     if([KeyChainManager getCertificateofOwner:CERT_ID_USER] == nil)
@@ -163,7 +165,7 @@
     if(section == SECTION_CONTAINERS)
     {
         rowAddContainer = [self.containers count];
-        return rowAddContainer+1;
+        return rowAddContainer;//+1; //removed +1 cuz of "create container" cell
     }
     /*else if(section == SECTION_ACTIONS)
         return NUMBER_ROWS_ACTIONS;*/
@@ -199,13 +201,16 @@
     
     if(indexPath.section == SECTION_CONTAINERS)
     {
-        if(indexPath.row == rowAddContainer)
-        {
-            cell.textLabel.text = NSLocalizedString(@"Create Container", @"Text for create a new container in the root view");
-        }
-        else
+//        if(indexPath.row == rowAddContainer)
+//        {
+//            cell.textLabel.text = NSLocalizedString(@"Create Container", @"Text for create a new container in the root view");
+//            cell.detailTextLabel.text = @"Click here to create a new container";
+//
+//        }
+//        else
         {
             cell.textLabel.text = [[self.containers objectAtIndex:indexPath.row] name];
+            cell.detailTextLabel.text = @"13.7.2012 13:02";
         }
         
     }
@@ -232,39 +237,44 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-    if(section == SECTION_CONTAINERS)
-        return NSLocalizedString(@"Containers", @"Cell headline for containers section in the root view");
-    else if(section == SECTION_ACTIONS)
-        return NSLocalizedString(@"Actions", @"Cell headline for actions section in the root view");
-    
-    return NSLocalizedString(@"ERROR", @"Cell headline for error (this should not appear in productive environment");
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+//{
+//    if(section == SECTION_CONTAINERS)
+//        return NSLocalizedString(@"Containers", @"Cell headline for containers section in the root view");
+//    else if(section == SECTION_ACTIONS)
+//        return NSLocalizedString(@"Actions", @"Cell headline for actions section in the root view");
+//    
+//    return NSLocalizedString(@"ERROR", @"Cell headline for error (this should not appear in productive environment");
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
+//    hView.backgroundColor=[UIColor clearColor];
+//    
+//    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
+//    
+//    hLabel.backgroundColor=[UIColor clearColor];
+//    hLabel.shadowColor = [UIColor blackColor];
+//    hLabel.shadowOffset = CGSizeMake(0.5,1);
+//    hLabel.textColor = [UIColor whiteColor];
+//    hLabel.font = [UIFont boldSystemFontOfSize:17];
+//    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+//    
+//    [hView addSubview:hLabel];
+//    
+//    
+//    return hView;
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
-    hView.backgroundColor=[UIColor clearColor];
-    
-    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
-    
-    hLabel.backgroundColor=[UIColor clearColor];
-    hLabel.shadowColor = [UIColor blackColor];
-    hLabel.shadowOffset = CGSizeMake(0.5,1);
-    hLabel.textColor = [UIColor whiteColor];
-    hLabel.font = [UIFont boldSystemFontOfSize:17];
-    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    [hView addSubview:hLabel];
-    
-    
-    return hView;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 35;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 35;
+    return 60.0;
 }
 
 #pragma mark - Table view delegate
@@ -273,57 +283,57 @@
 {
     if(indexPath.section == SECTION_CONTAINERS)
     {
-        if(indexPath.row == rowAddContainer)
-        {
-            NSError* directory_creation_error = nil;
-            
-            NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
-            
-            NSLog(@"Path: %@",path);
-            
-            NSDictionary* attributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
-            
-            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
-            if(directory_creation_error != nil)
-            {
-                NSLog(@"Problem creating directory!!");
-            }
-            
-            SecureContainer* newcontainer = [[SecureContainer alloc] init];
-            newcontainer.basePath = path;
-            newcontainer.name = [path lastPathComponent];
-            newcontainer.creationDate = [NSDate date];
-            [self.containers addObject:newcontainer];
-                        
-            [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers lastObject]];
-        }
-        else
+//        if(indexPath.row == rowAddContainer)
+//        {
+//            NSError* directory_creation_error = nil;
+//            
+//            NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
+//            
+//            NSLog(@"Path: %@",path);
+//            
+//            NSDictionary* attributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+//            
+//            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
+//            if(directory_creation_error != nil)
+//            {
+//                NSLog(@"Problem creating directory!!");
+//            }
+//            
+//            SecureContainer* newcontainer = [[SecureContainer alloc] init];
+//            newcontainer.basePath = path;
+//            newcontainer.name = [path lastPathComponent];
+//            newcontainer.creationDate = [NSDate date];
+//            [self.containers addObject:newcontainer];
+//                        
+//            [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers lastObject]];
+//        }
+//        else
         {
             [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers objectAtIndex:indexPath.row]];
         }
     }
-    else if(indexPath.section == SECTION_ACTIONS)
-    {
-        if(indexPath.row == ROW_ACTION_SEND_BT)
-        {
-            [self sendCertificateBluetooth];
-            
-        } 
-        else if (indexPath.row == ROW_ACTION_RECEIVE_BT)
-        {
-            [self.btConnectionHandler receiveDataWithHandlerDelegate:self];
-        }
-        else if(indexPath.row == ROW_ACTION_SEND_MAIL)
-        {
-            [self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil]; 
-        }
-        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
-        {
-            [self sendCertificateRequest]; 
-        }
-        
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   
-    }
+//    else if(indexPath.section == SECTION_ACTIONS)
+//    {
+//        if(indexPath.row == ROW_ACTION_SEND_BT)
+//        {
+//            [self sendCertificateBluetooth];
+//            
+//        } 
+//        else if (indexPath.row == ROW_ACTION_RECEIVE_BT)
+//        {
+//            [self.btConnectionHandler receiveDataWithHandlerDelegate:self];
+//        }
+//        else if(indexPath.row == ROW_ACTION_SEND_MAIL)
+//        {
+//            [self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil]; 
+//        }
+//        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
+//        {
+//            [self sendCertificateRequest]; 
+//        }
+//        
+//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   
+//    }
     
 }
 
@@ -491,12 +501,12 @@
 -(void) showEditBarButtonItem
 {
     
-    [self.navigationItem setRightBarButtonItem:nil];
+    [self.navigationItem setLeftBarButtonItem:nil];
     
     if([self.containers count] > 0)
     {
         UIBarButtonItem* editbutton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTableView)];
-        [self.navigationItem setRightBarButtonItem:editbutton animated:YES];
+        [self.navigationItem setLeftBarButtonItem:editbutton animated:YES];
     }
 }
 
@@ -504,7 +514,7 @@
 {
     
     UIBarButtonItem* donebutton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(endEditTableView)];
-    [self.navigationItem setRightBarButtonItem:donebutton animated:YES];    
+    [self.navigationItem setLeftBarButtonItem:donebutton animated:YES];    
 }
 
 
@@ -789,6 +799,36 @@
     BOOL fileProtectionEnabled = [NSFileProtectionNone isEqualToString:[testFileAttributes objectForKey:NSFileProtectionKey]];
     
     return fileProtectionEnabled;
+}
+
+- (IBAction)addNewContainer:(UIBarButtonItem *)sender 
+{
+    
+    NSError* directory_creation_error = nil;
+    
+    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
+    
+    NSLog(@"Path: %@",path);
+    
+    NSDictionary* attributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
+    if(directory_creation_error != nil)
+    {
+        NSLog(@"Problem creating directory!!");
+    }
+    
+    SecureContainer* newcontainer = [[SecureContainer alloc] init];
+    newcontainer.basePath = path;
+    newcontainer.name = [path lastPathComponent];
+    newcontainer.creationDate = [NSDate date];
+    [self.containers addObject:newcontainer];
+    
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.containers count] - 1 inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView endUpdates];
+
 }
 
 -(void) dealloc
