@@ -94,6 +94,9 @@
 		B4AC1B3515AD5D7C00AAC18F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B3415AD5D7C00AAC18F /* Settings.bundle */; };
 		B4AC1B3915AD5ECC00AAC18F /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B3815AD5ECC00AAC18F /* Validation.m */; };
 		B4AC1B3D15AD69EA00AAC18F /* TextProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B3C15AD69EA00AAC18F /* TextProvider.m */; };
+		B4B4096E15B4005500DCFAE5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4096D15B4005500DCFAE5 /* UIImage+Resize.m */; };
+		B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */; };
+		B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +266,12 @@
 		B4AC1B3815AD5ECC00AAC18F /* Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validation.m; sourceTree = "<group>"; };
 		B4AC1B3B15AD69EA00AAC18F /* TextProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextProvider.h; sourceTree = "<group>"; };
 		B4AC1B3C15AD69EA00AAC18F /* TextProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextProvider.m; sourceTree = "<group>"; };
+		B4B4096C15B4005500DCFAE5 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		B4B4096D15B4005500DCFAE5 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		B4B4096F15B400C700DCFAE5 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		B4B4097115B400C700DCFAE5 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +460,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4B4096B15B4002900DCFAE5 /* UIImage */,
 				B45DC55015AD8D0700E39899 /* RequestHandler */,
 				B4AC1B3A15AD69B200AAC18F /* TextProvider */,
 				B4AC1B3615AD5EAE00AAC18F /* Validation */,
@@ -902,6 +912,19 @@
 			name = TextProvider;
 			sourceTree = "<group>";
 		};
+		B4B4096B15B4002900DCFAE5 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4096F15B400C700DCFAE5 /* UIImage+Alpha.h */,
+				B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */,
+				B4B4097115B400C700DCFAE5 /* UIImage+RoundedCorner.h */,
+				B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */,
+				B4B4096C15B4005500DCFAE5 /* UIImage+Resize.h */,
+				B4B4096D15B4005500DCFAE5 /* UIImage+Resize.m */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1094,6 +1117,9 @@
 				B45DC5A115ADC7D000E39899 /* UIButton+WebCache.m in Sources */,
 				B45DC5A215ADC7D000E39899 /* UIImageView+WebCache.m in Sources */,
 				B40C29E315AFFA1400C7B47A /* CertificateActionViewController.m in Sources */,
+				B4B4096E15B4005500DCFAE5 /* UIImage+Resize.m in Sources */,
+				B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */,
+				B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

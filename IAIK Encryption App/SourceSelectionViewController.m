@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SourceSelectionViewController.h"
 #import <UIKit/UIImagePickerController.h>
+#import "SourceSelectionViewController.h"
 #import "FilePathFactory.h"
 #import "ContainerDetailViewController.h"
+#import "UIImage+Resize.h"
 
 @implementation SourceSelectionViewController
 
@@ -163,7 +164,10 @@
 -(void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [pickedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:pickedImage.size interpolationQuality:kCGInterpolationHigh];
     
     NSString* path = [FilePathFactory getUniquePathInFolder:self.basePath forFileExtension:@"jpeg"];
     

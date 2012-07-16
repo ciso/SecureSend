@@ -252,6 +252,24 @@
                 NSMutableArray *photos = [[NSMutableArray alloc] init];
                 MWPhoto *photo;
                 
+                UIImage *temp = [UIImage imageWithContentsOfFile:path];
+                if (temp.imageOrientation == UIImageOrientationUp)
+                {
+                    NSLog(@"UP");
+                }
+                else if (temp.imageOrientation == UIImageOrientationDown)
+                {
+                    NSLog(@"DOWN");
+                }
+                else if (temp.imageOrientation == UIImageOrientationLeft)
+                {
+                    NSLog(@"LEFT");
+                }
+                else if (temp.imageOrientation == UIImageOrientationRight)
+                {
+                    NSLog(@"RIGHT");
+                }
+                
                 photo = [MWPhoto photoWithFilePath:path];
                 
                 [photos addObject:photo];
