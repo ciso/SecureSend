@@ -24,7 +24,7 @@
 
 @class BluetoothConnectionHandler;
 
-@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate>
+@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate>
 
 
 @property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
@@ -38,7 +38,7 @@
 @property (nonatomic, assign) BOOL certMailSent;
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSString *hash;
-
+@property (nonatomic, assign) BOOL editable;
 
 - (void)receivedBluetoothData:(NSData*) data;
 - (void)sendCertificateBluetooth;

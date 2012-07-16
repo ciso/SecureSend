@@ -64,6 +64,7 @@
 @synthesize certMailSent = _certMailSent;
 @synthesize phoneNumber = _phoneNumber;
 @synthesize hash = _hash;
+@synthesize editable = _editable;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -119,6 +120,7 @@
     
     self.sendRequest = NO;
     self.certMailSent = NO;
+    self.editable = NO;
 }
 
 - (void)viewDidUnload
@@ -195,72 +197,69 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    if(indexPath.section == SECTION_CONTAINERS)
+    UITableViewCell *cell = nil;
+    if (self.editable)
     {
-//        if(indexPath.row == rowAddContainer)
-//        {
-//            cell.textLabel.text = NSLocalizedString(@"Create Container", @"Text for create a new container in the root view");
-//            cell.detailTextLabel.text = @"Click here to create a new container";
-//
-//        }
-//        else
-        {
-            cell.textLabel.text = [[self.containers objectAtIndex:indexPath.row] name];
-            
-            
-            
-            //test
-            SecureContainer *container = [self.containers objectAtIndex:indexPath.row];
-            
-            
-            NSError *error;
-            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath error:&error];
-            NSLog(@"attributes: %@", attributes);
-            
-            if (error)
-            {
-                NSLog(@"Error occured by receiving file attributes");
-            }
-            
-            //date created
-            NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-            //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
-            NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
-            //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
-            
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
-            
+        cell = [tableView dequeueReusableCellWithIdentifier:@"EditCell"];
+        UITextField *nameTextField = (UITextField*)[cell viewWithTag:100];
+        nameTextField.text = [[self.containers objectAtIndex:indexPath.row] name];
+        cell.contentView.tag = indexPath.row;
+        nameTextField.clearButtonMode = UITextFieldViewModeAlways;
+        nameTextField.delegate = self;
 
-        }
         
     }
-    /*else if(indexPath.section == SECTION_ACTIONS)
+    else 
     {
-        if(indexPath.row == ROW_ACTION_SEND_BT)
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+
+        UITextField *nameTextField = (UITextField*)[cell viewWithTag:100];
+        UILabel *detailLabel = (UILabel*)[cell viewWithTag:101];
+        //nameTextField.tag = indexPath.row;
+        cell.contentView.tag = indexPath.row;
+        nameTextField.text = [[self.containers objectAtIndex:indexPath.row] name];
+        
+        //test
+        nameTextField.userInteractionEnabled = self.editable;
+        if (self.editable)
         {
-            cell.textLabel.text = NSLocalizedString(@"Send Certificate via Bluetooth", @"Button for sending a certificate via bluetooth in the root view");
+            nameTextField.clearButtonMode = UITextFieldViewModeAlways;
         }
-        else if(indexPath.row == ROW_ACTION_RECEIVE_BT)
+        else 
         {
-            cell.textLabel.text = NSLocalizedString(@"Receive Certificate via Bluetooth", @"Button for receiving a certificate via bluetooth in the root view");
+            nameTextField.clearButtonMode = UITextFieldViewModeNever;
         }
-        else if(indexPath.row == ROW_ACTION_SEND_MAIL)
+        
+        
+        
+        //test
+        SecureContainer *container = [self.containers objectAtIndex:indexPath.row];
+        
+        
+        NSError *error;
+        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath error:&error];
+        NSLog(@"attributes: %@", attributes);
+        
+        if (error)
         {
-            cell.textLabel.text = NSLocalizedString(@"Send Certificate via Email/SMS", @"Button for sending certificate via two-way exchange (Email/SMS) in the root view");
+            NSLog(@"Error occured by receiving file attributes");
         }
-        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
-        {
-            cell.textLabel.text = NSLocalizedString(@"Send a Certificate-Request", @"Button for sending a certificate-request to another user in the roow view");
-        }
-    }*/
+        
+        //date created
+        NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
+        NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
+        //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
+        
+        //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
+        detailLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
+        
+    }
+    
     
     return cell;
 }
@@ -516,14 +515,25 @@
 #pragma mark - methods for provide editing BarButtonItem
 -(void) editTableView
 {
+    self.editable = YES;
+    
     [self.tableView setEditing:YES animated:YES];
     [self showDoneBarButtonItem];
+
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
+    
 }
 
 -(void) endEditTableView
 {
+    self.editable = NO;
+    //[self.tableView reloadData];
+    
     [self.tableView setEditing:NO animated:YES];
     [self showEditBarButtonItem];
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+
 }
 
 -(void) showEditBarButtonItem
@@ -975,6 +985,68 @@
     [self presentModalViewController:composer animated:YES];
     
 }
+
+#pragma mark - UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"tag: %d", textField.superview.tag);
+    SecureContainer *container = [self.containers objectAtIndex:textField.superview.tag];
+    //creating new path
+    NSString* newpath = [[FilePathFactory applicationDocumentsDirectory] stringByAppendingPathComponent:textField.text];
+    
+    //check if the filename is allready present, checking if name is not an emtpy string
+    if([[NSFileManager defaultManager] fileExistsAtPath:newpath] == YES && ![container.name isEqualToString:textField.text])
+    {
+        UIAlertView* alert;
+        
+        if([textField.text isEqualToString:@""])
+        {
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view") 
+                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view") 
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        else {
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view") 
+                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view") 
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        
+        [alert show];
+        
+        textField.text = container.name;
+        
+    }
+    else if([container.name isEqualToString:textField.text] == NO)
+    {
+        //assigning container properties and renamind directory
+        container.name = textField.text;
+        
+        NSError* err = 0;
+        [[NSFileManager defaultManager] moveItemAtPath:container.basePath toPath:newpath error:&err];
+        if(err != 0)
+        {
+            NSLog(@"Problem renaming container directory!!");
+        }
+        
+        container.basePath = newpath;
+        
+        //changing paths of the existing files
+        NSMutableArray* newfileurls = [[NSMutableArray alloc] init];
+        
+        for(NSString __strong *file in container.fileUrls)
+        {
+            file = [container.basePath stringByAppendingPathComponent:[file lastPathComponent]];
+            [newfileurls addObject:file];
+        }
+        
+        container.fileUrls = newfileurls;
+    }
+    
+    [textField endEditing:YES];
+    return YES;
+}
+
 
 
 @end
