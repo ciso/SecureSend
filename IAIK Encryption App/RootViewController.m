@@ -210,7 +210,35 @@
 //        else
         {
             cell.textLabel.text = [[self.containers objectAtIndex:indexPath.row] name];
-            cell.detailTextLabel.text = @"13.7.2012 13:02";
+            
+            
+            
+            //test
+            SecureContainer *container = [self.containers objectAtIndex:indexPath.row];
+            
+            
+            NSError *error;
+            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath error:&error];
+            NSLog(@"attributes: %@", attributes);
+            
+            if (error)
+            {
+                NSLog(@"Error occured by receiving file attributes");
+            }
+            
+            //date created
+            NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+            //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
+            NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
+            //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
+            
+
         }
         
     }
