@@ -211,12 +211,12 @@
     
     if(indexPath.section == SECTION_FILES)
     {
-//        if(indexPath.row == rowAddFile)
-//        {
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//            cell.textLabel.text = NSLocalizedString(@"Add file", @"Text for cell label in container detail view. This label is the action button for adding a new file to a container");
-//        }
-//        else
+        if(indexPath.row == rowAddFile)
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = NSLocalizedString(@"Add file", @"Text for cell label in container detail view. This label is the action button for adding a new file to a container");
+        }
+        else
         {
             //get path of file
             NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
