@@ -169,22 +169,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     picker.delegate = nil;
     [self dismissModalViewControllerAnimated:YES];
     
-    //if ipad
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) 
-    {
-        //[self.view removeFromSuperview];
-        [self.popover dismissPopoverAnimated:YES];
-       
-        //[self.caller dismissPopover];
-    }
-    
     [self.delegate addFilesToContainer:[NSArray arrayWithObject:path]];
     
-    //if iphone
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) 
-    {
-        [self.navigationController popViewControllerAnimated:NO];
-    }
+    
+//    UINavigationController *nav = self.navigationController;
+//    UIViewController *view = nav.parentViewController;
+//    [view dismissModalViewControllerAnimated:YES];
+//    [picker.navigationController.parentViewController dismissModalViewControllerAnimated:NO];
+//    
+//    //[picker.parentViewController dismissModalViewControllerAnimated:YES];
+    
+    
+    //[self.navigationController popViewControllerAnimated:NO];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -200,4 +196,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     self.caller = nil;
 }
 
+- (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender 
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

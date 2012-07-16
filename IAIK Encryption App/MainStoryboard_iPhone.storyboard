@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Y95-LI-iO5">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -66,7 +67,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCA-Xe-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="A11-n0-L7e" customClass="SourceSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pOZ-1V-3gN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -85,10 +86,16 @@
                             <outlet property="delegate" destination="A11-n0-L7e" id="5pL-ut-YAA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sources" id="ITW-Gr-aZB"/>
+                    <navigationItem key="navigationItem" title="Sources" id="ITW-Gr-aZB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dxA-kx-UCw">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="A11-n0-L7e" id="r7c-f6-3wI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1986" y="-107"/>
+            <point key="canvasLocation" x="2512" y="-107"/>
         </scene>
         <!--Send Certificate Two Way View Controller - Send Certificate-->
         <scene sceneID="Dce-qh-liI">
@@ -311,7 +318,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="A11-n0-L7e" kind="modal" identifier="toSourceSelectionViewController" id="etd-Ou-KAE"/>
+                        <segue destination="LKu-FG-Czz" kind="modal" identifier="toSourceSelectionViewController" id="etd-Ou-KAE"/>
                         <segue destination="E9v-Ud-cNT" kind="modal" identifier="toCertificateXplorer" id="dxF-53-zdp"/>
                         <segue destination="n99-5J-QcL" kind="push" identifier="toPreviewImageScreen" id="q2c-7K-s76"/>
                     </connections>
@@ -691,6 +698,24 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="-464" y="1425"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xIw-IR-o7q">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JjB-aq-jJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="LKu-FG-Czz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0iC-h5-1bG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A11-n0-L7e" kind="relationship" relationship="rootViewController" id="1o9-WG-IFC"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1986" y="-107"/>
+        </scene>
     </scenes>
     <resources>
         <image name="145-persondot.png" width="24" height="26"/>
@@ -698,79 +723,6 @@ exchange data in a secure way you have to create a certificate which you can use
         <image name="33-cabinet.png" width="20" height="26"/>
         <image name="tugLogo_farb.gif" width="250" height="95"/>
     </resources>
-    <classes>
-        <class className="CertificateActionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateActionViewController.h"/>
-        </class>
-        <class className="CertificateXplorerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateXplorerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ChooseContainerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseContainerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ContainerDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addFile"/>
-            </relationships>
-        </class>
-        <class className="CreateCertificateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateCertificateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="savePressed:"/>
-                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="countrycode" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="emailaddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisationalunit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="NameCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PreviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonEncryptAndSend:"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="RootViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewContainer:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SendCertificateTwoWayViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SendCertificateTwoWayViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="SourceSelectionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
-        </class>
-        <class className="UserSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="doneButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

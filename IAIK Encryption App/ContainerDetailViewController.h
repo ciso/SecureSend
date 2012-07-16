@@ -13,13 +13,13 @@
 #import "MWPhotoBrowser.h"
 
 @class SecureContainer, NameCell;
+@class SourceSelectionViewController;
 
 @interface ContainerDetailViewController : UITableViewController <ModifyContainerPropertyDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, ModifyCertPropertyDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate>
 
 @property (nonatomic, strong) SecureContainer* container;
 @property (nonatomic, strong) NSData* currentCertificate;
 @property (nonatomic, retain) NSArray *photos;
-
 
 - (void) setCert: (NSData*) cert;
 - (IBAction) addFile;

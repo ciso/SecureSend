@@ -410,12 +410,10 @@
 -(void) addFilesToContainer:(NSArray*) filePaths
 {
     [self.container.fileUrls addObjectsFromArray:filePaths];
-    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
     //todo! didn't work after refactoring of iPad UI
     
-    [self.popoverController dismissPopoverAnimated:YES];
-    
-    [self.tableView reloadData]; 
+    //[self.tableView reloadData]; 
 }
 
 -(IBAction)addFile
@@ -569,7 +567,8 @@
 {
     if([segue.identifier isEqualToString:SEGUE_TO_SOURCESEL])
     {
-        SourceSelectionViewController* src = (SourceSelectionViewController*) segue.destinationViewController;
+        UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+        SourceSelectionViewController* src = (SourceSelectionViewController*)[nav.viewControllers objectAtIndex:0];//(SourceSelectionViewController*) segue.destinationViewController;
         src.basePath = self.container.basePath;
         src.delegate = self;
     }
