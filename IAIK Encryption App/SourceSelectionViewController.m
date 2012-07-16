@@ -99,7 +99,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +110,14 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    cell.textLabel.text = NSLocalizedString(@"Image Gallery", @"Select image gallery as input source for contaier files in source selection view");
+    if (indexPath.section == 0 && indexPath.row == 0) 
+    {
+        cell.textLabel.text = NSLocalizedString(@"Image Gallery", @"Select image gallery as input source for contaier files in source selection view");
+    }
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        cell.textLabel.text = NSLocalizedString(@"Camera", @"Get a new image from the camera");
+    }
     
     return cell;
 }
@@ -121,32 +127,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    if (indexPath.section == 0 && indexPath.row == 0)
     {
-        UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.allowsEditing = NO;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePicker.delegate = self;
-    
-        //if ipad
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
         {
+            UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.allowsEditing = NO;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePicker.delegate = self;
             
-            self.popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];        
-                        
-            [self.popover presentPopoverFromBarButtonItem:self.button 
-                            permittedArrowDirections:UIPopoverArrowDirectionUp 
-                                            animated:YES];
-
-        }
-        else { //iphone
             [self presentModalViewController:imagePicker animated:YES];
         }
     }
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.allowsEditing = NO;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.delegate = self;
+
+        // Place image picker on the screen
+        [self presentModalViewController:imagePicker animated:YES];
+    }
+
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
+    return NO;
+    //return YES; //todo: rethink this
 }
 
 #pragma mark - UIImagePickerControllerDelegate 
