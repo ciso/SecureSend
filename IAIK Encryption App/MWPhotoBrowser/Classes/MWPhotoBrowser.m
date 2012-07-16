@@ -239,7 +239,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	[self.view addSubview:_pagingScrollView];
 	
     // Toolbar
-    /*_toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
+    _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
     _toolbar.tintColor = nil;
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
@@ -252,7 +252,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     _previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowLeft.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPreviousPage)];
     _nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowRight.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
-    */
+    
     
     
     // Update
@@ -274,14 +274,14 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     [_recycledPages removeAllObjects];
     
     // Toolbar
-   /* if (numberOfPhotos > 1 || _displayActionButton) {
+    if (numberOfPhotos > 1 || _displayActionButton) {
         [self.view addSubview:_toolbar];
     } else {
         [_toolbar removeFromSuperview];
-    }*/
+    }
     
     // Toolbar items & navigation
-    /*UIBarButtonItem *fixedLeftSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil] autorelease];
+    UIBarButtonItem *fixedLeftSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil] autorelease];
     fixedLeftSpace.width = 32; // To balance action button
     UIBarButtonItem *flexSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
     NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -290,10 +290,10 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     if (numberOfPhotos > 1) [items addObject:_previousButton];
     [items addObject:flexSpace];
     if (numberOfPhotos > 1) [items addObject:_nextButton];
-    [items addObject:flexSpace];*/
-    //if (_displayActionButton) [items addObject:_actionButton];
-    //[_toolbar setItems:items];
-    //[items release];
+    [items addObject:flexSpace];
+    if (_displayActionButton) [items addObject:_actionButton];
+    [_toolbar setItems:items];
+    [items release];
 	[self updateNavigation];
     
     // Navigation buttons

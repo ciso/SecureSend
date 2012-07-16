@@ -261,7 +261,7 @@
                 
                 // Create browser
                 MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-                browser.displayActionButton = YES;
+                browser.displayActionButton = NO;
                 
                 [self.navigationController pushViewController:browser animated:YES];
             }
