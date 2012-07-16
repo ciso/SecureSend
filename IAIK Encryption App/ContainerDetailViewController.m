@@ -47,6 +47,7 @@
 @synthesize container, currentCertificate = _currentCertificate;
 @synthesize popoverController=_myPopoverController;
 @synthesize photos = _photos;
+@synthesize shouldRotateToPortrait = _shouldRotateToPortrait;
 
 - (void)awakeFromNib
 {
@@ -93,12 +94,54 @@
     [super viewDidUnload];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+
+    
+//    [self showTabBar:self.tabBarController];
+}
+
+//- (void) showTabBar:(UITabBarController *) tabbarcontroller {
+//    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.5];
+//    for(UIView *view in tabbarcontroller.view.subviews)
+//    {
+//        NSLog(@"%@", view);
+//        
+//        if([view isKindOfClass:[UITabBar class]])
+//        {
+//            [view setFrame:CGRectMake(view.frame.origin.x, 431, view.frame.size.width, view.frame.size.height)];
+//            
+//        } 
+//        else 
+//        {
+//            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 431)];
+//        }
+//        
+//        
+//    }
+//    
+//    [UIView commitAnimations]; 
+//}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     [self.view setNeedsLayout];
     [self.view setNeedsDisplay];
+
+//    if (self.shouldRotateToPortrait)
+//    {
+//        self.shouldRotateToPortrait = NO;
+//        
+//        UIViewController *c = [[UIViewController alloc]init];
+//        [self presentModalViewController:c animated:NO];
+//        [self dismissModalViewControllerAnimated:NO];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -113,7 +156,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -162,7 +205,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     
@@ -175,8 +218,34 @@
         }
         else
         {
+            //get path of file
             NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
             cell.textLabel.text = [path lastPathComponent];
+            
+            //test
+            NSError *error;
+            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+            NSLog(@"attributes: %@", attributes);
+            
+            if (error)
+            {
+                NSLog(@"Error occured by receiving file attributes");
+            }
+            
+            //date created
+            NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+            //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
+            NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
+            //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
+            
+            
+            //check extensions
             if([[path pathExtension] isEqualToString:EXTENSION_JPG] 
                || [[path pathExtension] isEqualToString:EXTENSION_JPEG]
                || [[path pathExtension] isEqualToString:EXTENSION_GIF]
@@ -238,6 +307,11 @@
         }
         else 
         {
+            
+            
+            //teeeeest! debug
+            self.shouldRotateToPortrait = YES;
+            
             NSString* path = [self.container.fileUrls objectAtIndex:indexPath.row];
             
             
@@ -358,6 +432,18 @@
 //        
 //    return hView;
 //}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1)
+    {
+        return 60;
+    }
+    else
+    {
+        return 45;
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

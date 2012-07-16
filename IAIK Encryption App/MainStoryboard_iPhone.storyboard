@@ -392,11 +392,11 @@
             </objects>
             <point key="canvasLocation" x="62" y="763"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="A3q-TK-IRy">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbR-q5-lZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="BQ0-Re-szW" sceneMemberID="viewController">
+                <tableViewController id="BQ0-Re-szW" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nFg-XB-L09">
                         <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -641,11 +641,11 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="578" y="-942"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="gTn-ea-OaH">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MU7-9I-Ue6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController id="Y95-LI-iO5" sceneMemberID="viewController">
+                <tabBarController id="Y95-LI-iO5" customClass="CustomTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="QV2-9R-MzE">
@@ -760,6 +760,9 @@ exchange data in a secure way you have to create a certificate which you can use
                 <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
             </relationships>
         </class>
+        <class className="CustomTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
+        </class>
         <class className="NameCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
             <relationships>
@@ -784,6 +787,9 @@ exchange data in a secure way you have to create a certificate which you can use
             <relationships>
                 <relationship kind="action" name="didCancel:"/>
             </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
         </class>
         <class className="SourceSelectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>

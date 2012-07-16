@@ -155,8 +155,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
-    return NO;
-    //return YES; //todo: rethink this
+    return NO; //todo: rethink this
 }
 
 #pragma mark - UIImagePickerControllerDelegate 

@@ -12,6 +12,7 @@
 #import "FilePathFactory.h"
 #import "ChooseContainerViewController.h"
 #import "ChoosedContainerDelegate.h"
+#import "CustomTabBarController.h"
 
 #define SEGUE_TO_ENCRYPT @"toEncryptAndSend"
 #define SEGUE_TO_CHOOSE_CONTROLLER @"toChooseContainer"
@@ -49,6 +50,72 @@
     
     [super viewDidDisappear:animated];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CustomTabBarController *tabBar = (CustomTabBarController*)self.tabBarController;
+    tabBar.landscapeAllowed = YES;
+    
+    [self hideTabBar:self.tabBarController];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    CustomTabBarController *tabBar = (CustomTabBarController*)self.tabBarController;
+    tabBar.landscapeAllowed = NO;
+    
+    [self showTabBar:self.tabBarController];
+}
+
+- (void) hideTabBar:(UITabBarController *) tabbarcontroller 
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    for(UIView *view in tabbarcontroller.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, 480, view.frame.size.width, view.frame.size.height)];
+        } 
+        else 
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 480)];
+        }
+        
+    }
+    
+    [UIView commitAnimations];
+}
+
+- (void) showTabBar:(UITabBarController *) tabbarcontroller {
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    for(UIView *view in tabbarcontroller.view.subviews)
+    {
+        NSLog(@"%@", view);
+        
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, 431, view.frame.size.width, view.frame.size.height)];
+            
+        } 
+        else 
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 431)];
+        }
+        
+        
+    }
+    
+    [UIView commitAnimations]; 
+}
+
 
 
 - (void)viewDidUnload

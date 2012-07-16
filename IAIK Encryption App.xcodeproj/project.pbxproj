@@ -97,6 +97,8 @@
 		B4B4096E15B4005500DCFAE5 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4096D15B4005500DCFAE5 /* UIImage+Resize.m */; };
 		B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */; };
 		B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */; };
+		B4B4097815B4037200DCFAE5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097715B4037100DCFAE5 /* SettingsViewController.m */; };
+		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +274,10 @@
 		B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		B4B4097115B400C700DCFAE5 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		B4B4097615B4037100DCFAE5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B4B4097715B4037100DCFAE5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B4B4097A15B4090D00DCFAE5 /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
+		B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +335,7 @@
 		B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */ = {
 			isa = PBXGroup;
 			children = (
+				B4B4097515B4035F00DCFAE5 /* SettingsViewController */,
 				B40C29E015AFF9F800C7B47A /* CertificateActionViewController */,
 			);
 			name = "NEW VIEW CONTROLLERS";
@@ -433,6 +440,7 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4B4097915B408F100DCFAE5 /* CustomTabBarController */,
 				B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */,
 				B4AC1B2815AD4AEA00AAC18F /* UserSettingsViewController */,
 				B4118BB115AAE10400D050B2 /* SendCertificateViewController */,
@@ -925,6 +933,24 @@
 			name = UIImage;
 			sourceTree = "<group>";
 		};
+		B4B4097515B4035F00DCFAE5 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4097615B4037100DCFAE5 /* SettingsViewController.h */,
+				B4B4097715B4037100DCFAE5 /* SettingsViewController.m */,
+			);
+			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		B4B4097915B408F100DCFAE5 /* CustomTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				B4B4097A15B4090D00DCFAE5 /* CustomTabBarController.h */,
+				B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */,
+			);
+			name = CustomTabBarController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1120,6 +1146,8 @@
 				B4B4096E15B4005500DCFAE5 /* UIImage+Resize.m in Sources */,
 				B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */,
 				B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */,
+				B4B4097815B4037200DCFAE5 /* SettingsViewController.m in Sources */,
+				B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

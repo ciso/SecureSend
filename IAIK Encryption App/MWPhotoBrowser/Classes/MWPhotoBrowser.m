@@ -11,6 +11,7 @@
 #import "MWZoomingScrollView.h"
 #import "MBProgressHUD.h"
 #import "SDImageCache.h"
+#import "../../CustomTabBarController.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -365,6 +366,10 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 	// Super
 	[super viewWillAppear:animated];
 	
+    
+    CustomTabBarController *tabBar = (CustomTabBarController*)self.tabBarController;
+    tabBar.landscapeAllowed = YES;
+    
 	// Layout manually (iOS < 5)
     if (SYSTEM_VERSION_LESS_THAN(@"5")) [self viewWillLayoutSubviews];
     
@@ -386,6 +391,9 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    CustomTabBarController *tabBar = (CustomTabBarController*)self.tabBarController;
+    tabBar.landscapeAllowed = NO;
     
     // Check that we're being popped for good
     if ([self.navigationController.viewControllers objectAtIndex:0] != self &&
