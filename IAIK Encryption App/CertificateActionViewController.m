@@ -56,7 +56,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
     //disabling scrolling
-    self.tableView.scrollEnabled = NO;
+    //self.tableView.scrollEnabled = NO;
     
     //allocating bluetooth connection handler
     self.btConnectionHandler = [[BluetoothConnectionHandler alloc] init];
