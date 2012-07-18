@@ -167,22 +167,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return NUMBER_SECTIONS;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if(section == SECTION_FILES)
+    if(section == 0)
     {
         rowAddFile = [self.container.fileUrls count];
         return rowAddFile; // + 1;
     }
-    else if(section == SECTION_ACTION)
+    else if(section == 1)
         return NUMBER_ROWS_ACTION;
     
-    else if(section == SECTION_NAME)
-        return NUMBER_ROWS_INFOS;
+//    else if(section == SECTION_NAME)
+//        return NUMBER_ROWS_INFOS;
     else
         return [self.container.fileUrls count];
     
@@ -192,17 +192,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == SECTION_NAME)
-    {
-        if(indexPath.row == ROW_NAME)
-        {
-            NameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NameCell"];
-            
-            cell.nameField.text = self.container.name;
-            
-            return cell;
-        }
-    }
+//    if(indexPath.section == SECTION_NAME)
+//    {
+//        if(indexPath.row == ROW_NAME)
+//        {
+//            NameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NameCell"];
+//            
+//            cell.nameField.text = self.container.name;
+//            
+//            return cell;
+//        }
+//    }
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -212,7 +212,7 @@
     }
     
     
-    if(indexPath.section == SECTION_FILES)
+    if(indexPath.section == 0)
     {
         if(indexPath.row == rowAddFile)
         {
@@ -265,7 +265,7 @@
             }
         }
     }
-    else if(indexPath.section == SECTION_ACTION)
+    else if(indexPath.section == 1)
     {
         if(indexPath.row == ROW_SEND_CONTAINER)
         {
@@ -279,16 +279,13 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    if(section == SECTION_ACTION)
+    if(section == 1)
         return NSLocalizedString(@"Actions", @"Headline for action section in container detail");
-    else if(section == SECTION_FILES)
-        return NSLocalizedString(@"Files", @"Headline for files section in container detail");
-    else if(section == SECTION_NAME)
-        return NSLocalizedString(@"Name", @"Headline for name section in container detail");
-    else
-        return NSLocalizedString(@"ERROR", @"Headline for erro section. Should not occur");
-    
-    return NSLocalizedString(@"Files in Container", @"Headline for section in container detail");
+//    else if(section == 0)
+//        return NSLocalizedString(@"Files", @"Headline for files section in container detail");
+//    else if(section == SECTION_NAME)
+//        return NSLocalizedString(@"Name", @"Headline for name section in container detail");
+    return nil;
 }
 
 #pragma mark - Table view delegate
@@ -438,7 +435,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1)
+    if (indexPath.section == 0)
     {
         return 60;
     }
@@ -642,9 +639,7 @@
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    
     self.currentCertificate = nil;
-    
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
