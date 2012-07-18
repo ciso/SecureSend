@@ -1086,7 +1086,7 @@
            forFile:(NSString*)path
 {
     UIAlertView* alert = nil;
-    NSString *message = [NSString stringWithFormat:@"File uploaded successfully to your Public folder. Your public link to this file is %@", link];
+    NSString *message = [NSString stringWithFormat:@"File uploaded successfully into your Public folder. Your public link to this file is %@", link];
     alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Upload" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
     [alert show];

@@ -12,6 +12,8 @@
 #import "NSData+CommonCrypto.h"
 #import "Base64.h"
 #import "RequestHandler.h"
+#import "ContainerDetailViewController.h"
+#import "SecureContainer.h"
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
@@ -179,7 +181,15 @@
     if ([[DBSession sharedSession] handleOpenURL:url]) {
         if ([[DBSession sharedSession] isLinked]) {
             NSLog(@"App linked successfully!");
-            // At this point you can start making API calls
+
+            ContainerDetailViewController *detailView = (ContainerDetailViewController*)[navi.viewControllers objectAtIndex:1];
+            if ([detailView isKindOfClass:[ContainerDetailViewController class]])
+            {
+                NSData* encryptedcontainer = [detailView zipAndEncryptContainer];
+
+                [root uploadFileToDropbox:encryptedcontainer withName:detailView.container.name];
+            }
+
         }
         return YES;
     }

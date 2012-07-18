@@ -653,7 +653,7 @@
     switch (buttonIndex) {
         case 0:
         {   //todo just for debug purposes
-            //[[DBSession sharedSession] unlinkAll];
+            [[DBSession sharedSession] unlinkAll];
 
             UITabBarController *tabBar = self.tabBarController;
             UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];

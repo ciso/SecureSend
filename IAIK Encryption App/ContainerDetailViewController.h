@@ -26,5 +26,6 @@
 
 - (void) setCert: (NSData*) cert;
 - (IBAction) addFile;
+-(NSData*) zipAndEncryptContainer;
 
 @end
