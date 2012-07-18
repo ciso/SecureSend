@@ -7,7 +7,7 @@
 //
 
 
-@class SecureContainer;
+#import <DropboxSDK/DropboxSDK.h>
 #import "BluetoothConnectionHandler.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import "ChoosedContainerDelegate.h"
@@ -21,11 +21,13 @@
 #define SEGUE_TO_CERT_REQUEST @"toCertRequest"
 #define SEGUE_TO_DEFAULT_EMAIL @"toDefaultEmail"
 
-
+@class SecureContainer;
 @class BluetoothConnectionHandler;
 
-@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate>
-
+@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate, DBRestClientDelegate>
+{
+    DBRestClient *restClient; //dropbox sdk
+}
 
 @property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
 @property (nonatomic, strong) NSData* receivedCertificateData;
@@ -50,4 +52,7 @@
 - (void)manageCertificateRequest:(NSData*)request;
 - (BOOL)isDataProtectionEnabled;
 - (IBAction)addNewContainer:(UIBarButtonItem *)sender;
+
+//test
+- (void)uploadFileToDropbox:(NSData*)encryptedContainer withName:(NSString*)name;
 @end

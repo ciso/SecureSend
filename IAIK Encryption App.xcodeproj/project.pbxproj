@@ -86,6 +86,10 @@
 		B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45DC5A815ADCE7500E39899 /* ImageIO.framework */; };
 		B45DC5B715AEA6E400E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5B515AEA6E400E39899 /* Localizable.strings */; };
 		B45DC5BE15AEA6EE00E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5BB15AEA6EE00E39899 /* Localizable.strings */; };
+		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
+		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
+		B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF115B59F7300A07FCB /* apikey.txt */; };
+		B4A7ADF415B59F7B00A07FCB /* secretkey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF315B59F7B00A07FCB /* secretkey.txt */; };
 		B4AC1B0D15AC427200AAC18F /* linenbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4AC1B0C15AC427200AAC18F /* linenbg.png */; };
 		B4AC1B1B15AC85F500AAC18F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1A15AC85F500AAC18F /* XMLParser.m */; };
 		B4AC1B1F15AC869700AAC18F /* XMLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AC1B1E15AC869700AAC18F /* XMLAppDelegate.m */; };
@@ -254,6 +258,10 @@
 		B45DC5A815ADCE7500E39899 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		B45DC5B615AEA6E400E39899 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		B45DC5BC15AEA6EE00E39899 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
+		B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B4A7ADF115B59F7300A07FCB /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
+		B4A7ADF315B59F7B00A07FCB /* secretkey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secretkey.txt; sourceTree = "<group>"; };
 		B4AC1B0C15AC427200AAC18F /* linenbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenbg.png; sourceTree = "<group>"; };
 		B4AC1B1915AC85F500AAC18F /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		B4AC1B1A15AC85F500AAC18F /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
@@ -285,6 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */,
 				B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */,
 				B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */,
 				B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */,
@@ -297,6 +306,7 @@
 				B4118BC915AAF5A200D050B2 /* libz.1.1.3.dylib in Frameworks */,
 				B4118BA215AAE07400D050B2 /* libcrypto.a in Frameworks */,
 				B4118BA315AAE07400D050B2 /* libssl.a in Frameworks */,
+				B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +382,8 @@
 		B4118B2415AAC61B00D050B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */,
+				B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */,
 				B45DC56115ADC7D000E39899 /* MWPhotoBrowser */,
 				B45DC5A815ADCE7500E39899 /* ImageIO.framework */,
 				B4118BD215AAF5B900D050B2 /* AddressBookUI.framework */,
@@ -393,6 +405,7 @@
 		B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */ = {
 			isa = PBXGroup;
 			children = (
+				B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */,
 				B4118B7D15AADDEF00D050B2 /* CustomControls */,
 				B4118B8215AADE0B00D050B2 /* Security */,
 				B4118B7B15AADD6A00D050B2 /* Delegates */,
@@ -858,6 +871,15 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
+		B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */ = {
+			isa = PBXGroup;
+			children = (
+				B4A7ADF315B59F7B00A07FCB /* secretkey.txt */,
+				B4A7ADF115B59F7300A07FCB /* apikey.txt */,
+			);
+			name = NOT_VISIBLE_ON_GITHUB;
+			sourceTree = "<group>";
+		};
 		B4AC1AFA15AC1CE400AAC18F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,6 +1084,8 @@
 				B40C29DA15AFF87A00C7B47A /* 33-cabinet.png in Resources */,
 				B40C29DC15AFF92000C7B47A /* 145-persondot.png in Resources */,
 				B40C29DE15AFF95F00C7B47A /* 158-wrench-2.png in Resources */,
+				B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */,
+				B4A7ADF415B59F7B00A07FCB /* secretkey.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,6 +1279,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/IAIK Encryption App\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
@@ -1275,6 +1303,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/IAIK Encryption App\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";

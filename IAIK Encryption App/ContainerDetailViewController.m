@@ -18,6 +18,7 @@
 #import "CertificateXplorerViewController.h"
 #import "LoadingView.h"
 #import "PreviewViewController.h"
+#import "RootViewController.h"
 
 @interface ContainerDetailViewController() {
 @private
@@ -48,6 +49,8 @@
 @synthesize popoverController=_myPopoverController;
 @synthesize photos = _photos;
 @synthesize shouldRotateToPortrait = _shouldRotateToPortrait;
+
+
 
 - (void)awakeFromNib
 {
@@ -543,7 +546,7 @@
     [self dismissModalViewControllerAnimated:YES];
     
     
-    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:/*NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"),*/ 
+    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"), 
                              NSLocalizedString(@"Send Container via Email", @"Button in alter view in container detail view for sending a container via email"), nil];
     
     [action showInView:self.view];
@@ -648,7 +651,26 @@
 {
     NSData* encryptedcontainer = [self zipAndEncryptContainer];
     switch (buttonIndex) {
-        case 0: //change this to 1 if dropbox action is also visible
+        case 0:
+        {   //todo just for debug purposes
+            //[[DBSession sharedSession] unlinkAll];
+
+            UITabBarController *tabBar = self.tabBarController;
+            UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+            RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+
+            if (![[DBSession sharedSession] isLinked]) 
+            {
+                [[DBSession sharedSession] linkFromController:root];
+                
+            }
+            else 
+            {
+                [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
+            }
+            break;
+        }
+        case 1: //change this to 1 if dropbox action is also visible
         {
             if([MFMailComposeViewController canSendMail])
             {

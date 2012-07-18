@@ -67,9 +67,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Containers" id="GhX-ri-wPI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YOo-b1-Mkl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kd5-Dp-Zxu">
                             <connections>
-                                <action selector="addNewContainer:" destination="9Kz-Px-2p0" id="iUG-tr-xD9"/>
+                                <action selector="addNewContainer:" destination="9Kz-Px-2p0" id="kIF-o0-fn7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -746,88 +746,6 @@ exchange data in a secure way you have to create a certificate which you can use
         <image name="33-cabinet.png" width="20" height="26"/>
         <image name="tugLogo_farb.gif" width="250" height="95"/>
     </resources>
-    <classes>
-        <class className="CertificateActionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateActionViewController.h"/>
-        </class>
-        <class className="CertificateXplorerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateXplorerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ChooseContainerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseContainerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ContainerDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addFile"/>
-            </relationships>
-        </class>
-        <class className="CreateCertificateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateCertificateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="savePressed:"/>
-                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="countrycode" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="emailaddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisationalunit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="CustomTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
-        </class>
-        <class className="NameCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="PreviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonEncryptAndSend:"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="RootViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewContainer:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SendCertificateTwoWayViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SendCertificateTwoWayViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="SourceSelectionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="UserSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="doneButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

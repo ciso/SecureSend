@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
+#import <DropboxSDK/DropboxSDK.h>
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "NSData+CommonCrypto.h"
@@ -112,9 +113,30 @@
                                                 forState:UIControlStateNormal];
     
     
-    //test
+    //register settings bundle
     [self registerDefaultsFromSettingsBundle];
-
+    
+    
+    //nope... no private api keys on github... :P
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *apiKeyFilePath = [bundle pathForResource:@"apikey" ofType:@"txt"];
+    NSString *secretKeyFilePath = [bundle pathForResource:@"secretkey" ofType:@"txt"];
+    
+    NSError *error;
+    NSString *apiKey = [NSString stringWithContentsOfFile:apiKeyFilePath encoding:NSUTF8StringEncoding error:&error];
+    NSString *secretKey = [NSString stringWithContentsOfFile:secretKeyFilePath encoding:NSUTF8StringEncoding error:&error];
+    NSString* appKey = @"ho9jgi6ybs9bju3";
+	NSString* appSecret = @"93zuoyi0ylpkr64";
+    
+    //register dropbox
+    DBSession* dbSession =
+    [[DBSession alloc]
+      initWithAppKey:appKey
+      appSecret:appSecret
+      root:kDBRootDropbox]; // either kDBRootAppFolder or kDBRootDropbox
+    
+    [DBSession setSharedSession:dbSession];
+    
     
     return YES;
 }
@@ -153,6 +175,15 @@
     UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
     RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
     id delegate;
+    
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        }
+        return YES;
+    }
+
     
     if([[url pathExtension] isEqual:EXTENSION_CERT])
     {

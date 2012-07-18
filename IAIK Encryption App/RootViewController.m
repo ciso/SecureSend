@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
+#import <DropboxSDK/DropboxSDK.h>
 #import "RootViewController.h"
 #import "SecureContainer.h"
 #import "ContainerDetailViewController.h"
@@ -65,6 +66,15 @@
 @synthesize phoneNumber = _phoneNumber;
 @synthesize hash = _hash;
 @synthesize editable = _editable;
+
+- (DBRestClient *)restClient {
+    if (!restClient) {
+        restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
+    }
+    return restClient;
+}
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -841,7 +851,6 @@
 
 - (IBAction)addNewContainer:(UIBarButtonItem *)sender 
 {
-    
     NSError* directory_creation_error = nil;
     
 //    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
@@ -869,7 +878,6 @@
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView endUpdates];
-
 }
 
 -(void) dealloc
@@ -1047,6 +1055,46 @@
     return YES;
 }
 
+
+- (void)uploadFileToDropbox:(NSData*)encryptedContainer withName:(NSString*)name
+{
+    NSString *fileName = [NSString stringWithFormat:@"%@.iaikcontainer", name];
+    NSString *localPath = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+    [encryptedContainer writeToFile:localPath atomically:YES];
+    
+    NSString *destDir = @"/Public";
+    
+    [[self restClient] uploadFile:fileName toPath:destDir
+                    withParentRev:nil fromPath:localPath];
+}
+
+#pragma mark - dropbox file upload delegates
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata 
+{
+    [[self restClient] loadSharableLinkForFile:metadata.path];
+    
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    NSLog(@"File upload failed with error - %@", error);
+}
+
+#pragma mark - shareable link dropbox delegates
+- (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link 
+           forFile:(NSString*)path
+{
+    UIAlertView* alert = nil;
+    NSString *message = [NSString stringWithFormat:@"File uploaded successfully to your Public folder. Your public link to this file is %@", link];
+    alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Upload" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    [alert show];
+}
+- (void)restClient:(DBRestClient*)restClient loadSharableLinkFailedWithError:(NSError*)error
+{
+    
+}
 
 
 @end
