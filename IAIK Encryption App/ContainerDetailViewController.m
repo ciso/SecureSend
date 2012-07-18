@@ -90,6 +90,40 @@
     
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
+    
+    
+    //right buttons
+    
+    
+    UIToolbar *tools = [[UIToolbar alloc]
+                        initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
+    tools.clearsContextBeforeDrawing = NO;
+    tools.clipsToBounds = NO;
+    tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
+    // anyone know how to get it perfect?
+    tools.barStyle = -1; // clear background
+    NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
+    
+    // Create a standard refresh button.
+    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refresh:)];
+    [buttons addObject:bi];
+    
+    // Create a spacer.
+//    bi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    bi.width = 12.0f;
+//    [buttons addObject:bi];
+    
+    // Add profile button.
+    bi = [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+    bi.style = UIBarButtonItemStyleBordered;
+    [buttons addObject:bi];
+    
+    // Add buttons to toolbar and toolbar to nav bar.
+    [tools setItems:buttons animated:NO];
+    UIBarButtonItem *twoButtons = [[UIBarButtonItem alloc] initWithCustomView:tools];
+    self.navigationItem.rightBarButtonItem = twoButtons;
 }
 
 - (void)viewDidUnload
