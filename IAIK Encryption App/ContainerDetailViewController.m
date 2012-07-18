@@ -292,14 +292,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == SECTION_ACTION)
+    if(indexPath.section == 1)
     {
         if(indexPath.row == ROW_SEND_CONTAINER)
         {
             [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
         }
     }
-    else if(indexPath.section == SECTION_FILES)
+    else if(indexPath.section == 0)
     {
         if(indexPath.row == rowAddFile)
         {
@@ -448,65 +448,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 35;
-}
-
-#pragma mark - UITextFieldDelegate methods
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    //creating new path
-    NSString* newpath = [[FilePathFactory applicationDocumentsDirectory] stringByAppendingPathComponent:textField.text];
-    
-    //check if the filename is allready present, checking if name is not an emtpy string
-    if([[NSFileManager defaultManager] fileExistsAtPath:newpath] == YES && ![self.container.name isEqualToString:textField.text])
-    {
-        UIAlertView* alert;
-        
-        if([textField.text isEqualToString:@""])
-        {
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view") 
-                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view") 
-                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        }
-        else {
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view") 
-                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view") 
-                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        }
-        
-        [alert show];
-        
-        textField.text = self.container.name;
-        
-    }
-    else if([self.container.name isEqualToString:textField.text] == NO)
-    {
-        //assigning container properties and renamind directory
-        self.container.name = textField.text;
-        
-        NSError* err = 0;
-        [[NSFileManager defaultManager] moveItemAtPath:self.container.basePath toPath:newpath error:&err];
-        if(err != 0)
-        {
-            NSLog(@"Problem renaming container directory!!");
-        }
-        
-        self.container.basePath = newpath;
-        
-        //changing paths of the existing files
-        NSMutableArray* newfileurls = [[NSMutableArray alloc] init];
-        
-        for(NSString __strong *file in self.container.fileUrls)
-        {
-            file = [self.container.basePath stringByAppendingPathComponent:[file lastPathComponent]];
-            [newfileurls addObject:file];
-        }
-        
-        self.container.fileUrls = newfileurls;
-    }
-    
-    [textField endEditing:YES];
-    return YES;
 }
 
 #pragma mark - ModifyContainerPropertyDelegate methods
