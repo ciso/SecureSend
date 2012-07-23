@@ -10,6 +10,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "RecipientDetailViewController.h"
 #import "Recipient.h"
+#import "KeyChainManager.h"
 
 @interface RecipientDetailViewController ()
 
@@ -34,13 +35,10 @@
 
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
-    NSString* firstname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef,kABPersonFirstNameProperty);
-    NSString* lastname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef, kABPersonLastNameProperty);
-    
     self.title = @"Info";
     
     
-    NSLog(@"details for: %@ %@", firstname, lastname);
+    //NSLog(@"details for: %@ %@", firstname, lastname);
 }
 
 - (void)viewDidUnload
@@ -59,15 +57,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    if (section == 0)
+    {
+        return 1; 
+    }
+    else if (section == 1)
+    {
+        return 2;
+    }
+    else if (section == 2)
+    {
+        return 1;
+    }
+    
     return 0;
 }
 
@@ -76,7 +83,51 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    NSString *title = @"";
+    NSString *detail = @"";
+    
+    if (indexPath.section == 0 && indexPath.row == 0)
+    { 
+        NSString* firstname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef,kABPersonFirstNameProperty);
+        NSString* lastname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef, kABPersonLastNameProperty);
+        
+        title = @"Name";
+        detail = [NSString stringWithFormat:@"%@ %@", firstname, lastname];
+        
+    }
+    else if (indexPath.section == 1 && indexPath.row == 0)
+    {
+        ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.recipient.recordRef, kABPersonPhoneProperty);
+        NSString *phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+        
+        title = @"Phone";
+        detail = phone;
+    }
+    else if (indexPath.section == 1 && indexPath.row == 1)
+    {
+        ABMultiValueRef mailAddresses = ABRecordCopyValue(self.recipient.recordRef, kABPersonEmailProperty);
+        NSString *email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(mailAddresses, 0);
+
+        title = @"Email";
+        detail = email;
+    }
+    else if (indexPath.section == 2 && indexPath.row == 0)
+    {
+        title = @"Expires";
+        
+        NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:self.recipient.expirationDate]];
+        
+        detail = datestring;
+
+        
+    }
+     
     // Configure the cell...
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = detail;
+    
     
     return cell;
 }
