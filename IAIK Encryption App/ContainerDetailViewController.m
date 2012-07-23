@@ -145,45 +145,12 @@
     [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
 }
 
-//- (void) showTabBar:(UITabBarController *) tabbarcontroller {
-//    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.5];
-//    for(UIView *view in tabbarcontroller.view.subviews)
-//    {
-//        NSLog(@"%@", view);
-//        
-//        if([view isKindOfClass:[UITabBar class]])
-//        {
-//            [view setFrame:CGRectMake(view.frame.origin.x, 431, view.frame.size.width, view.frame.size.height)];
-//            
-//        } 
-//        else 
-//        {
-//            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 431)];
-//        }
-//        
-//        
-//    }
-//    
-//    [UIView commitAnimations]; 
-//}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     [self.view setNeedsLayout];
     [self.view setNeedsDisplay];
-
-//    if (self.shouldRotateToPortrait)
-//    {
-//        self.shouldRotateToPortrait = NO;
-//        
-//        UIViewController *c = [[UIViewController alloc]init];
-//        [self presentModalViewController:c animated:NO];
-//        [self dismissModalViewControllerAnimated:NO];
-//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -206,43 +173,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    if(section == 0)
-    {
-        rowAddFile = [self.container.fileUrls count];
-        return rowAddFile; // + 1;
-    }
-    else if(section == 1)
-        return NUMBER_ROWS_ACTION;
-    
-//    else if(section == SECTION_NAME)
-//        return NUMBER_ROWS_INFOS;
-    else
-        return [self.container.fileUrls count];
-    
-    
-    return 0;
+    return [self.container.fileUrls count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if(indexPath.section == SECTION_NAME)
-//    {
-//        if(indexPath.row == ROW_NAME)
-//        {
-//            NameCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NameCell"];
-//            
-//            cell.nameField.text = self.container.name;
-//            
-//            return cell;
-//        }
-//    }
-    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -253,163 +193,89 @@
     
     if(indexPath.section == 0)
     {
-        if(indexPath.row == rowAddFile)
+        //get path of file
+        NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
+        cell.textLabel.text = [path lastPathComponent];
+        
+        //test
+        NSError *error;
+        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+        NSLog(@"attributes: %@", attributes);
+        
+        if (error)
         {
+            NSLog(@"Error occured by receiving file attributes");
+        }
+        
+        //date created
+        NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
+        NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
+        //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
+        
+        //check extensions
+        if([[path pathExtension] isEqualToString:EXTENSION_JPG] 
+           || [[path pathExtension] isEqualToString:EXTENSION_JPEG]
+           || [[path pathExtension] isEqualToString:EXTENSION_GIF]
+           || [[path pathExtension] isEqualToString:EXTENSION_PNG]
+           || [[path pathExtension] isEqualToString:EXTENSION_PDF])
+        {
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = NSLocalizedString(@"Add file", @"Text for cell label in container detail view. This label is the action button for adding a new file to a container");
         }
-        else
+        else 
         {
-            //get path of file
-            NSString* path = [container.fileUrls objectAtIndex:indexPath.row];
-            cell.textLabel.text = [path lastPathComponent];
-            
-            //test
-            NSError *error;
-            NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
-            NSLog(@"attributes: %@", attributes);
-            
-            if (error)
-            {
-                NSLog(@"Error occured by receiving file attributes");
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
             }
-            
-            //date created
-            NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-            [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-            //NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];
-            NSString *formattedDateString = [dateFormatter stringFromDate:dateCreated];
-            //NSLog(@"formattedDateString for locale %@: %@", [[dateFormatter locale] localeIdentifier], formattedDateString);
-            
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
-            
-            
-            //check extensions
-            if([[path pathExtension] isEqualToString:EXTENSION_JPG] 
-               || [[path pathExtension] isEqualToString:EXTENSION_JPEG]
-               || [[path pathExtension] isEqualToString:EXTENSION_GIF]
-               || [[path pathExtension] isEqualToString:EXTENSION_PNG]
-               || [[path pathExtension] isEqualToString:EXTENSION_PDF])
-            {
-                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            else 
-            {
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-        }
-    }
-    else if(indexPath.section == 1)
-    {
-        if(indexPath.row == ROW_SEND_CONTAINER)
-        {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = NSLocalizedString(@"Encrypt / Share container", @"Text for cell label in container detail view. This button is for encrypt and share container");
-        }
     }
 
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-    if(section == 1)
-        return NSLocalizedString(@"Actions", @"Headline for action section in container detail");
-//    else if(section == 0)
-//        return NSLocalizedString(@"Files", @"Headline for files section in container detail");
-//    else if(section == SECTION_NAME)
-//        return NSLocalizedString(@"Name", @"Headline for name section in container detail");
-    return nil;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 1)
-    {
-        if(indexPath.row == ROW_SEND_CONTAINER)
-        {
-            [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
-        }
-    }
-    else if(indexPath.section == 0)
-    {
-        if(indexPath.row == rowAddFile)
-        {
-            [self addFile];
-        }
-        else 
-        {
-            
-            
-            //teeeeest! debug
-            self.shouldRotateToPortrait = YES;
-            
-            NSString* path = [self.container.fileUrls objectAtIndex:indexPath.row];
-            
-            
-            //test
-            NSString *pathExtension = [path pathExtension];
-            
-            if ([pathExtension isEqualToString:EXTENSION_JPG] 
-                || [pathExtension isEqualToString:EXTENSION_JPEG]
-                || [pathExtension isEqualToString:EXTENSION_PNG]
-                || [pathExtension isEqualToString:EXTENSION_GIF])
-            {
-                NSMutableArray *photos = [[NSMutableArray alloc] init];
-                MWPhoto *photo;
-                
-                UIImage *temp = [UIImage imageWithContentsOfFile:path];
-                if (temp.imageOrientation == UIImageOrientationUp)
-                {
-                    NSLog(@"UP");
-                }
-                else if (temp.imageOrientation == UIImageOrientationDown)
-                {
-                    NSLog(@"DOWN");
-                }
-                else if (temp.imageOrientation == UIImageOrientationLeft)
-                {
-                    NSLog(@"LEFT");
-                }
-                else if (temp.imageOrientation == UIImageOrientationRight)
-                {
-                    NSLog(@"RIGHT");
-                }
-                
-                photo = [MWPhoto photoWithFilePath:path];
-                
-                [photos addObject:photo];
-                
-                self.photos = photos;
 
-                
-                // Create browser
-                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-                browser.displayActionButton = NO;
-                
-                [self.navigationController pushViewController:browser animated:YES];
-            }
-            else if ([pathExtension isEqualToString:EXTENSION_PDF])
-            {
-                [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
-            }
- 
-                //old preview
-//            NSString* pathextension = [path pathExtension];
-//            if([pathextension isEqualToString:EXTENSION_JPG] || [pathextension isEqualToString:EXTENSION_PDF])
-//            {
-//                [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
-//            }
-        }
-    }
+    //teeeeest! debug
+    self.shouldRotateToPortrait = YES;
     
+    NSString* path = [self.container.fileUrls objectAtIndex:indexPath.row];
+    
+    
+    //test
+    NSString *pathExtension = [path pathExtension];
+    
+    if ([pathExtension isEqualToString:EXTENSION_JPG] 
+        || [pathExtension isEqualToString:EXTENSION_JPEG]
+        || [pathExtension isEqualToString:EXTENSION_PNG]
+        || [pathExtension isEqualToString:EXTENSION_GIF])
+    {
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        MWPhoto *photo;
+        
+        photo = [MWPhoto photoWithFilePath:path];
+        [photos addObject:photo];
+        self.photos = photos;
+        
+        // Create browser
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = NO;
+        
+        [self.navigationController pushViewController:browser animated:YES];
+    }
+    else if ([pathExtension isEqualToString:EXTENSION_PDF])
+    {
+        [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
+    }
+
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -452,41 +318,9 @@
     
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
-//    hView.backgroundColor=[UIColor clearColor];
-//    
-//    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
-//    
-//    hLabel.backgroundColor=[UIColor clearColor];
-//    hLabel.shadowColor = [UIColor blackColor];
-//    hLabel.shadowOffset = CGSizeMake(0.5,1);
-//    hLabel.textColor = [UIColor whiteColor];
-//    hLabel.font = [UIFont boldSystemFontOfSize:17];
-//    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-//    
-//    [hView addSubview:hLabel];
-//        
-//    return hView;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        return 60;
-    }
-    else
-    {
-        return 45;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 35;
+    return 60;
 }
 
 #pragma mark - ModifyContainerPropertyDelegate methods
@@ -494,10 +328,10 @@
 -(void) addFilesToContainer:(NSArray*) filePaths
 {
     [self.container.fileUrls addObjectsFromArray:filePaths];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
+    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
     //todo! didn't work after refactoring of iPad UI
     
-    //[self.tableView reloadData]; 
+    [self.tableView reloadData]; 
 }
 
 -(void)addFile
