@@ -7,12 +7,24 @@
 //
 
 #import "RecipientsViewController.h"
+#import <AddressBookUI/AddressBookUI.h>
+#import <AddressBook/ABAddressBook.h>
+#import "KeyChainManager.h"
+#import "Recipient.h"
+#import "Crypto.h"
+#import "RecipientDetailViewController.h"
+
+#define SEGUE_TO_DETAIL @"segueToRecipientDetail"
 
 @interface RecipientsViewController ()
+
+@property (nonatomic, strong) NSMutableArray *recipients;
 
 @end
 
 @implementation RecipientsViewController
+
+@synthesize recipients = _recipients;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,12 +38,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+    
+    
+    ABAddressBookRef addressbookref = ABAddressBookCreate();
+    NSArray* allpeople = (__bridge NSArray*) ABAddressBookCopyArrayOfAllPeople(addressbookref);
+    
+    Crypto* crypto = [Crypto getInstance];
+    
+    self.recipients = [[NSMutableArray alloc] init];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    for(int i = 0; i < allpeople.count; i++)
+    {
+        ABRecordRef ref = (__bridge_retained  ABRecordRef)[allpeople objectAtIndex:i];
+        
+        NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
+        
+        NSData* cert = [KeyChainManager getCertificateofOwner:identifier];
+              
+        if(cert != nil)
+        {
+            
+            Recipient *recipient = [[Recipient alloc] init];
+            recipient.recordRef = ref;
+            recipient.expirationDate = [crypto getExpirationDateOfCertificate:cert];
+            
+            [self.recipients addObject:recipient];
+        }
+    }
+     
+    
 }
 
 - (void)viewDidUnload
@@ -50,16 +88,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSLog(@"Creating tableview section with %d rows", [self.recipients count]);
+    return [self.recipients count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +103,26 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
+    
+    Recipient *recipient = [self.recipients objectAtIndex:indexPath.row];
+        
+    NSString* firstname = (__bridge NSString*) ABRecordCopyValue(recipient.recordRef,kABPersonFirstNameProperty);
+    NSString* lastname = (__bridge NSString*) ABRecordCopyValue(recipient.recordRef, kABPersonLastNameProperty);
+    
+    NSString* name = [firstname stringByAppendingFormat:@" %@",lastname];
+    
+    cell.textLabel.text = name;
+    
+    //creating formatter and displaying expiration date
+//    NSDateFormatter* formatter= [[NSDateFormatter alloc] init];
+//    
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    
+//    NSString *datestring = [NSString stringWithFormat:@"Certificate expires on %@", [formatter stringFromDate:recipient.expirationDate]];
+//    
+   // cell.detailTextLabel.text = datestring;
+    
+    //NSLog(@"Recipient: %x, expiration date: %@", recipient.recordRef, recipient.expirationDate);
     
     return cell;
 }
@@ -115,13 +170,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:indexPath];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:SEGUE_TO_DETAIL])
+    {
+        if ([segue.destinationViewController isMemberOfClass:[RecipientDetailViewController class]])
+        {
+            RecipientDetailViewController *view = segue.destinationViewController;
+            view.recipient = [self.recipients objectAtIndex:((NSIndexPath*)sender).row];
+        }
+    }
 }
 
 @end

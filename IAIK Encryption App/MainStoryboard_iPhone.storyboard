@@ -415,7 +415,7 @@
             </objects>
             <point key="canvasLocation" x="62" y="763"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="A3q-TK-IRy">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbR-q5-lZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -440,7 +440,7 @@
                             <outlet property="delegate" destination="BQ0-Re-szW" id="Waj-2W-cye"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="f7R-9k-vhj"/>
+                    <navigationItem key="navigationItem" title="Settings" id="f7R-9k-vhj"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="62" y="1425"/>
@@ -703,17 +703,59 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="-464" y="763"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Recipients View Controller - Recipients-->
         <scene sceneID="53A-7K-73Q">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9d-1i-hau" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="TBd-Db-bgg" sceneMemberID="viewController">
+                <tableViewController id="TBd-Db-bgg" customClass="RecipientsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x5V-KL-cgs">
                         <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="a1g-Ej-CXp">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="gYo-sO-ci4" style="IBUITableViewCellStyleDefault" id="a1g-Ej-CXp">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gYo-sO-ci4">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TBd-Db-bgg" id="7Rq-uH-Yna"/>
+                            <outlet property="delegate" destination="TBd-Db-bgg" id="4Nn-w4-faE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Recipients" id="5ba-qh-PlC"/>
+                    <connections>
+                        <segue destination="y6l-lo-e0f" kind="push" identifier="segueToRecipientDetail" id="R1G-GX-RPY"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="62" y="2075"/>
+        </scene>
+        <!--Recipient Detail View Controller-->
+        <scene sceneID="sQi-Nj-6bW">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y7e-6I-krC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="y6l-lo-e0f" customClass="RecipientDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kIa-EF-UN2">
+                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="R0U-wP-lIN">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -724,14 +766,14 @@ exchange data in a secure way you have to create a certificate which you can use
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="TBd-Db-bgg" id="7Rq-uH-Yna"/>
-                            <outlet property="delegate" destination="TBd-Db-bgg" id="4Nn-w4-faE"/>
+                            <outlet property="dataSource" destination="y6l-lo-e0f" id="ifd-w6-i8N"/>
+                            <outlet property="delegate" destination="y6l-lo-e0f" id="S8L-fU-42x"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5ba-qh-PlC"/>
+                    <navigationItem key="navigationItem" id="GJx-tx-3eV"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="62" y="2075"/>
+            <point key="canvasLocation" x="578" y="2075"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="fpX-kH-2XH">
@@ -849,6 +891,12 @@ exchange data in a secure way you have to create a certificate which you can use
                 <relationship kind="action" name="buttonEncryptAndSend:"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
+        </class>
+        <class className="RecipientDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientDetailViewController.h"/>
+        </class>
+        <class className="RecipientsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientsViewController.h"/>
         </class>
         <class className="RootViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>

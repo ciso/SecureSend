@@ -64,6 +64,7 @@
 		B4118BEA15AB123D00D050B2 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BE815AB123D00D050B2 /* navigationBar@2x.png */; };
 		B4118BF215AB16CC00D050B2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF115AB16CC00D050B2 /* Default.png */; };
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
+		B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = B42BCE9115BD53BF00D856A5 /* Recipient.m */; };
 		B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC55215AD8D1600E39899 /* RequestHandler.m */; };
 		B45DC59215ADC7D000E39899 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC56415ADC7D000E39899 /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B45DC59315ADC7D000E39899 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC56615ADC7D000E39899 /* MWPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -86,6 +87,7 @@
 		B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45DC5A815ADCE7500E39899 /* ImageIO.framework */; };
 		B45DC5B715AEA6E400E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5B515AEA6E400E39899 /* Localizable.strings */; };
 		B45DC5BE15AEA6EE00E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5BB15AEA6EE00E39899 /* Localizable.strings */; };
+		B48B97AF15BD6EDB000F0D57 /* RecipientDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B97AE15BD6EDB000F0D57 /* RecipientDetailViewController.m */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
 		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
 		B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF115B59F7300A07FCB /* apikey.txt */; };
@@ -216,6 +218,8 @@
 		B4118BE815AB123D00D050B2 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		B4118BF115AB16CC00D050B2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B4118BF315AB16D200D050B2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		B42BCE9015BD53BF00D856A5 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
+		B42BCE9115BD53BF00D856A5 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
 		B45DC55115AD8D1600E39899 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
 		B45DC55215AD8D1600E39899 /* RequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHandler.m; sourceTree = "<group>"; };
 		B45DC56315ADC7D000E39899 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 		B45DC5A815ADCE7500E39899 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		B45DC5B615AEA6E400E39899 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		B45DC5BC15AEA6EE00E39899 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		B48B97AD15BD6EDB000F0D57 /* RecipientDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientDetailViewController.h; sourceTree = "<group>"; };
+		B48B97AE15BD6EDB000F0D57 /* RecipientDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientDetailViewController.m; sourceTree = "<group>"; };
 		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
 		B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A7ADF115B59F7300A07FCB /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
@@ -351,6 +357,7 @@
 		B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */ = {
 			isa = PBXGroup;
 			children = (
+				B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */,
 				B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */,
 				B4B4097515B4035F00DCFAE5 /* SettingsViewController */,
 				B40C29E015AFF9F800C7B47A /* CertificateActionViewController */,
@@ -488,6 +495,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B42BCE8F15BD538800D856A5 /* Recipient */,
 				B4B4096B15B4002900DCFAE5 /* UIImage */,
 				B45DC55015AD8D0700E39899 /* RequestHandler */,
 				B4AC1B3A15AD69B200AAC18F /* TextProvider */,
@@ -766,6 +774,15 @@
 			name = "Splash Screen";
 			sourceTree = "<group>";
 		};
+		B42BCE8F15BD538800D856A5 /* Recipient */ = {
+			isa = PBXGroup;
+			children = (
+				B42BCE9015BD53BF00D856A5 /* Recipient.h */,
+				B42BCE9115BD53BF00D856A5 /* Recipient.m */,
+			);
+			name = Recipient;
+			sourceTree = "<group>";
+		};
 		B45DC55015AD8D0700E39899 /* RequestHandler */ = {
 			isa = PBXGroup;
 			children = (
@@ -876,6 +893,15 @@
 				B45DC5BB15AEA6EE00E39899 /* Localizable.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B48B97AD15BD6EDB000F0D57 /* RecipientDetailViewController.h */,
+				B48B97AE15BD6EDB000F0D57 /* RecipientDetailViewController.m */,
+			);
+			name = RecipientDetailViewController;
 			sourceTree = "<group>";
 		};
 		B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */ = {
@@ -1190,6 +1216,8 @@
 				B4B4097815B4037200DCFAE5 /* SettingsViewController.m in Sources */,
 				B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */,
 				B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */,
+				B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */,
+				B48B97AF15BD6EDB000F0D57 /* RecipientDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
