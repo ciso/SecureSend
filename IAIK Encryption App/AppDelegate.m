@@ -127,14 +127,12 @@
     NSError *error;
     NSString *apiKey = [NSString stringWithContentsOfFile:apiKeyFilePath encoding:NSUTF8StringEncoding error:&error];
     NSString *secretKey = [NSString stringWithContentsOfFile:secretKeyFilePath encoding:NSUTF8StringEncoding error:&error];
-    NSString* appKey = @"ho9jgi6ybs9bju3";
-	NSString* appSecret = @"93zuoyi0ylpkr64";
     
     //register dropbox
     DBSession* dbSession =
     [[DBSession alloc]
-      initWithAppKey:appKey
-      appSecret:appSecret
+      initWithAppKey:apiKey
+      appSecret:secretKey
       root:kDBRootDropbox]; // either kDBRootAppFolder or kDBRootDropbox
     
     [DBSession setSharedSession:dbSession];

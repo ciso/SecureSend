@@ -96,7 +96,7 @@
     
     
     UIToolbar *tools = [[UIToolbar alloc]
-                        initWithFrame:CGRectMake(0.0f, 0.0f, 103.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
+                        initWithFrame:CGRectMake(0.0f, 0.0f, 80.0f, 44.01f)]; // 44.01 shifts it up 1px for some reason
     tools.clearsContextBeforeDrawing = NO;
     tools.clipsToBounds = NO;
     tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
@@ -106,17 +106,17 @@
     
     // Create a standard refresh button.
     UIBarButtonItem *bi = [[UIBarButtonItem alloc]
-                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(refresh:)];
+                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
     [buttons addObject:bi];
     
     // Create a spacer.
-//    bi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    bi.width = 12.0f;
-//    [buttons addObject:bi];
+    bi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    bi.width = 10.0f;
+    [buttons addObject:bi];
     
     // Add profile button.
     bi = [[UIBarButtonItem alloc]
-          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(refresh:)];
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFile)];
     bi.style = UIBarButtonItemStyleBordered;
     [buttons addObject:bi];
     
@@ -138,6 +138,11 @@
 
     
 //    [self showTabBar:self.tabBarController];
+}
+
+- (void)exportContainer
+{
+    [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
 }
 
 //- (void) showTabBar:(UITabBarController *) tabbarcontroller {
@@ -495,7 +500,7 @@
     //[self.tableView reloadData]; 
 }
 
--(IBAction)addFile
+-(void)addFile
 {
     [self performSegueWithIdentifier:SEGUE_TO_SOURCESEL sender:nil];
 }
@@ -615,6 +620,8 @@
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
     self.currentCertificate = nil;
+    
+    //[actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
