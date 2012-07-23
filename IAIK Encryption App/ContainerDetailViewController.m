@@ -425,10 +425,10 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == SECTION_FILES && indexPath.row != rowAddFile)
+    //if(indexPath.section == 0 && indexPath.row != rowAddFile)
         return YES;
     
-    return NO;
+    //return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -623,7 +623,7 @@
     switch (buttonIndex) {
         case 0:
         {   //todo just for debug purposes
-            [[DBSession sharedSession] unlinkAll];
+            //[[DBSession sharedSession] unlinkAll];
 
             UITabBarController *tabBar = self.tabBarController;
             UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
