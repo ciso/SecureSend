@@ -8,14 +8,31 @@
 
 #import "CreateNewCertificateViewController.h"
 #import "KeyChainManager.h"
+#import "Crypto.h"
 
 @interface CreateNewCertificateViewController ()
+
+@property (nonatomic, strong) NSData *certificate;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *country;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *organization;
+@property (nonatomic, strong) NSString *organizationUnit;
 
 @end
 
 @implementation CreateNewCertificateViewController
 
 @synthesize certificate = _certificate;
+@synthesize firstName = _firstName;
+@synthesize lastName = _lastName;
+@synthesize email = _email;
+@synthesize country = _country;
+@synthesize city = _city;
+@synthesize organization = _organization;
+@synthesize organizationUnit = _organizationUnit;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -68,7 +85,7 @@
     NSInteger ret = 0;
     if (section == 0)
     {
-        ret = 3;
+        ret = 4;
     }
     else if (section == 1)
     {
@@ -85,6 +102,7 @@
     
     UILabel *titleLabel = (UILabel*)[cell viewWithTag:100];
     UITextField *textfield = (UITextField*)[cell viewWithTag:101];
+    textfield.delegate = self;
     
     NSString *title = @"";
     NSString *detail = @"";
@@ -106,6 +124,12 @@
     else if (indexPath.section == 0 && indexPath.row == 2)
     {
         title = @"Email";
+        detail = @"";
+        placeholder = @"max@mustermann.at";
+    }
+    else if (indexPath.section == 0 && indexPath.row == 3)
+    {
+        title = @"Repeat Email";
         detail = @"";
         placeholder = @"max@mustermann.at";
     }
@@ -173,56 +197,11 @@
     return ret;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -230,15 +209,134 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    BOOL nextExists = NO;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    
+    NSLog(@"row: %d, section: %d", indexPath.row, indexPath.section);
+
+    //check if there is another row in this section
+    NSInteger nextRow = 0;
+    NSInteger nextSection = 0;
+    if (indexPath.row+1 < [self.tableView numberOfRowsInSection:indexPath.section])
+    {
+        nextRow = indexPath.row + 1;
+        nextSection = indexPath.section;
+        nextExists = YES;
+    }
+    else if ((indexPath.row+1 == [self.tableView numberOfRowsInSection:indexPath.section]) 
+             && indexPath.section < [self.tableView numberOfSections])
+    {
+        nextRow = 0; 
+        nextSection = indexPath.section + 1;
+        nextExists = YES;
+    }
+    
+    if (nextExists)
+    {
+        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:nextRow inSection:nextSection];
+        
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:nextIndexPath];
+        UITextField *nextTextField = (UITextField*)[cell viewWithTag:101];
+        
+        NSLog(@"next: %@", nextTextField.text);
+        
+        [nextTextField becomeFirstResponder]; 
+    }
+    
     return YES;
 }
+
+- (void) textFieldDidEndEditing:(UITextField *)textField 
+{
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:(CustomCell*)[[textField superview] superview]]; // this should return you your current indexPath
+    
+//    // From here on you can (switch) your indexPath.section or indexPath.row
+//    // as appropriate to get the textValue and assign it to a variable, for instance:
+//    if (indexPath.section == kMandatorySection) {
+//        if (indexPath.row == kEmailField) self.emailFieldValue = textField.text;
+//        if (indexPath.row == kPasswordField) self.passwordFieldValue = textField.text;
+//        if (indexPath.row == kPasswordConfirmField) self.passwordConfirmFieldValue = textField.text;
+//    }
+//    else if (indexPath.section == kOptionalSection) {
+//        if (indexPath.row == kFirstNameField) self.firstNameFieldValue = textField.text;
+//        if (indexPath.row == kLastNameField) self.lastNameFieldValue = textField.text;
+//        if (indexPath.row == kPostcodeField) self.postcodeFieldValue = textField.text;
+//    }   
+}
+
+
+#pragma mark- UINavigationBar buttons
 
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender 
 {
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)saveButtonClicked:(UIBarButtonItem *)sender {
+- (IBAction)saveButtonClicked:(UIBarButtonItem *)sender 
+{
+    UITextField *firstNameTextField = (UITextField*)[[self tableView:self.tableView 
+                                               cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] viewWithTag:101];
+    
+    NSString *firstName = firstNameTextField.text;
+    
+    NSLog(@"firstname: %@", firstName);
+//    
+//    if(self.firstname.text.length == 0 || self.lastname.text.length == 0|| self.emailaddress.text.length == 0)
+//    {
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Mandatory data not present", @"Title of alert view in create certificate view") 
+//                                                        message:NSLocalizedString(@"Please enter all required data to generate the certificate", @"Message of alert view in create certificate view") 
+//                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//    }
+//    else 
+//    {     
+//        //creating certificate from user input
+//        Crypto *crypto = [Crypto getInstance];
+//        
+//        UIView* load = [LoadingView showLoadingViewInView:self.view withMessage:NSLocalizedString(@"Creating Certificate", @"Loading text in create certificate view")];
+//        
+//        //running key and cert generation in own thread
+//        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            
+//            //create a rsa key
+//            NSData *key = [crypto createRSAKeyWithKeyLength:2048];
+//            
+//            if([KeyChainManager addUsersPrivateKey:key] == NO)
+//            {
+//                NSLog(@"NEIIIIIIIIIIIINNNNN");
+//            }
+//            
+//            //create new certificate based on the before created key
+//            NSData* cert = [crypto createX509CertificateWithPrivateKey:key 
+//                                                              withName:self.firstname.text
+//                                                          emailAddress:self.lastname.text
+//                                                               country:self.countrycode.text 
+//                                                                  city:self.city.text
+//                                                          organization:self.organisation.text
+//                                                      organizationUnit:self.organisationalunit.text];
+//            
+//            
+//            if([KeyChainManager addCertificate:cert withOwner:CERT_ID_USER] == NO)
+//            {
+//                NSLog(@"NEEEEIIIIINNN");
+//            }
+//            
+//            dispatch_async( dispatch_get_main_queue(), ^{
+//                
+//                [load removeFromSuperview];
+//                
+//                [self dismissModalViewControllerAnimated:YES];
+//                
+//            });
+//        });
+//        
+//    }
+
 }
+
+
+
 
 @end

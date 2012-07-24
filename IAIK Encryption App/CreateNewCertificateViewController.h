@@ -13,6 +13,4 @@
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender;
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender;
 
-@property (nonatomic, strong) NSData *certificate;
-
 @end
