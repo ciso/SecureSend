@@ -73,7 +73,7 @@
     if (indexPath.section == 0 && indexPath.row == 0)
     {
         cell.textLabel.text = @"Create new Certificate";
-        cell.detailTextLabel.text = @"Send your certificate to another person via a Bluetooth connection";
+        cell.detailTextLabel.text = @"You can create a new certificate here. Please use this only if you realy need a new certificate. For example if your old one is leaked or was stolen";
     }    
     return cell;
 }

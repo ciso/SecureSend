@@ -90,6 +90,7 @@
 		B48B97C615BD9AF4000F0D57 /* 123-id-card.png in Resources */ = {isa = PBXBuildFile; fileRef = B48B97C515BD9AF4000F0D57 /* 123-id-card.png */; };
 		B48B97C815BD9B26000F0D57 /* 44-shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = B48B97C715BD9B26000F0D57 /* 44-shoebox.png */; };
 		B48B97CC15BD9B85000F0D57 /* MyCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B97CB15BD9B85000F0D57 /* MyCertificateViewController.m */; };
+		B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
 		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
 		B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF115B59F7300A07FCB /* apikey.txt */; };
@@ -270,6 +271,8 @@
 		B48B97C715BD9B26000F0D57 /* 44-shoebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "44-shoebox.png"; sourceTree = "<group>"; };
 		B48B97CA15BD9B85000F0D57 /* MyCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCertificateViewController.h; sourceTree = "<group>"; };
 		B48B97CB15BD9B85000F0D57 /* MyCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCertificateViewController.m; sourceTree = "<group>"; };
+		B48B980B15BEAA40000F0D57 /* CreateNewCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewCertificateViewController.h; sourceTree = "<group>"; };
+		B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewCertificateViewController.m; sourceTree = "<group>"; };
 		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
 		B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A7ADF115B59F7300A07FCB /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
@@ -360,6 +363,7 @@
 		B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */ = {
 			isa = PBXGroup;
 			children = (
+				B48B980A15BEAA30000F0D57 /* CreateNewCertificateViewController */,
 				B48B97C915BD9B75000F0D57 /* MyCertificateViewController */,
 				B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */,
 				B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */,
@@ -916,6 +920,15 @@
 			name = MyCertificateViewController;
 			sourceTree = "<group>";
 		};
+		B48B980A15BEAA30000F0D57 /* CreateNewCertificateViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B48B980B15BEAA40000F0D57 /* CreateNewCertificateViewController.h */,
+				B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */,
+			);
+			name = CreateNewCertificateViewController;
+			sourceTree = "<group>";
+		};
 		B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1222,6 +1235,7 @@
 				B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */,
 				B48B97AF15BD6EDB000F0D57 /* RecipientDetailViewController.m in Sources */,
 				B48B97CC15BD9B85000F0D57 /* MyCertificateViewController.m in Sources */,
+				B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

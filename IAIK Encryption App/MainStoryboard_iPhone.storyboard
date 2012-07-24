@@ -439,7 +439,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P3c-Uj-gac">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P3c-Uj-gac">
                                             <rect key="frame" x="10" y="24" width="36" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -449,6 +449,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="iPd-Oy-CAw" kind="modal" id="nnY-4E-f0I"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -460,6 +463,63 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="62" y="2021"/>
+        </scene>
+        <!--Create New Certificate View Controller - Certificate-->
+        <scene sceneID="YYO-eH-h1p">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIW-6w-Xta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="WaF-6V-MDJ" customClass="CreateNewCertificateViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="53" sectionHeaderHeight="10" sectionFooterHeight="10" id="zgY-aM-Xob">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="53" id="xsO-8C-M3m">
+                                <rect key="frame" x="0.0" y="46" width="320" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="52"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" id="mNh-5r-nXK">
+                                            <rect key="frame" x="8" y="15" width="85" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="15" clearButtonMode="always" id="jIw-eQ-lpE">
+                                            <rect key="frame" x="95" y="1" width="197" height="51"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WaF-6V-MDJ" id="5f9-XT-uGz"/>
+                            <outlet property="delegate" destination="WaF-6V-MDJ" id="wrz-eS-Opw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Certificate" id="h8z-AV-OKF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I0z-AQ-UVq">
+                            <connections>
+                                <action selector="cancelButtonClicked:" destination="WaF-6V-MDJ" id="TnZ-9N-A9r"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qxb-yo-WLr">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="WaF-6V-MDJ" id="P9A-Tk-Cdb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1104" y="2021"/>
         </scene>
         <!--Create Certificate View Controller - Create Certificate-->
         <scene sceneID="JDn-9w-pKL">
@@ -863,6 +923,24 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="-464" y="1403"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nxi-2h-pmC">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S2e-gL-q5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="iPd-Oy-CAw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ooG-EL-6vZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WaF-6V-MDJ" kind="relationship" relationship="rootViewController" id="rmY-OH-M60"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="578" y="2021"/>
+        </scene>
     </scenes>
     <resources>
         <image name="112-group.png" width="32" height="21"/>
@@ -906,6 +984,13 @@ exchange data in a secure way you have to create a certificate which you can use
                 <relationship kind="outlet" name="organisation" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="organisationalunit" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="CreateNewCertificateViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewCertificateViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="saveButtonClicked:" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="CustomTabBarController" superclassName="UITabBarController">
@@ -965,7 +1050,7 @@ exchange data in a secure way you have to create a certificate which you can use
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KLi-m5-Kv2"/>
-        <segue reference="MjX-0A-OTa"/>
+        <segue reference="fQR-SJ-lCQ"/>
+        <segue reference="yuf-QE-k7G"/>
     </inferredMetricsTieBreakers>
 </document>
