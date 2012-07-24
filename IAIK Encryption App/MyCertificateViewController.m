@@ -1,18 +1,23 @@
 //
-//  SettingsViewController.m
+//  MyCertificateViewController.m
 //  IAIK Encryption App
 //
-//  Created by Christof Stromberger on 16.07.12.
+//  Created by Christof Stromberger on 23.07.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "MyCertificateViewController.h"
+#import "KeyChainManager.h"
 
-@interface SettingsViewController ()
+@interface MyCertificateViewController ()
+
+@property (nonatomic, strong) NSData *certificate;
 
 @end
 
-@implementation SettingsViewController
+@implementation MyCertificateViewController
+
+@synthesize certificate = _certificate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,11 +32,9 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.certificate = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 }
 
 - (void)viewDidUnload
@@ -43,23 +46,19 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,9 +66,38 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    //generics
+    cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
     
+    //cell specific
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+        cell.textLabel.text = @"Create new Certificate";
+        cell.detailTextLabel.text = @"Send your certificate to another person via a Bluetooth connection";
+    }    
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    //NSLog(@"width: %f", cell.detailTextLabel.frame.size.width);
+    
+    float padding = 10.0;
+    
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cell.detailTextLabel.text sizeWithFont:cell.detailTextLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    float descriptionHeight = labelSize.height;
+    NSLog(@"DescriptionHeight: %f", descriptionHeight);
+    
+    labelSize = [cell.textLabel.text sizeWithFont:cell.textLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeClip];
+    
+    float titleHeight = labelSize.height;
+    NSLog(@"TitleHeight: %f", titleHeight);
+    
+    
+    return descriptionHeight + titleHeight + (2*padding);
 }
 
 /*

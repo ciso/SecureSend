@@ -354,7 +354,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qed-oL-78p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="62C-gZ-1uR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Containers" image="33-cabinet.png" id="VI7-77-H3t"/>
+                    <tabBarItem key="tabBarItem" title="Containers" image="44-shoebox.png" id="VI7-77-H3t"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XAs-u0-KRu">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -415,22 +415,38 @@
             </objects>
             <point key="canvasLocation" x="62" y="763"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--My Certificate View Controller - My Certificate-->
         <scene sceneID="A3q-TK-IRy">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbR-q5-lZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="BQ0-Re-szW" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nFg-XB-L09">
+                <tableViewController id="BQ0-Re-szW" customClass="MyCertificateViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nFg-XB-L09">
                         <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="akL-bJ-qtA">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="u0S-Fd-ofv" detailTextLabel="P3c-Uj-gac" style="IBUITableViewCellStyleSubtitle" id="akL-bJ-qtA">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="10" y="1" width="280" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u0S-Fd-ofv">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P3c-Uj-gac">
+                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -440,10 +456,10 @@
                             <outlet property="delegate" destination="BQ0-Re-szW" id="Waj-2W-cye"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="f7R-9k-vhj"/>
+                    <navigationItem key="navigationItem" title="My Certificate" id="f7R-9k-vhj"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="62" y="1425"/>
+            <point key="canvasLocation" x="62" y="2021"/>
         </scene>
         <!--Create Certificate View Controller - Create Certificate-->
         <scene sceneID="JDn-9w-pKL">
@@ -743,14 +759,14 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="62" y="2075"/>
+            <point key="canvasLocation" x="62" y="1403"/>
         </scene>
         <!--Recipient Detail View Controller-->
         <scene sceneID="sQi-Nj-6bW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7e-6I-krC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="y6l-lo-e0f" customClass="RecipientDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kIa-EF-UN2">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kIa-EF-UN2">
                         <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -789,14 +805,14 @@ exchange data in a secure way you have to create a certificate which you can use
                     <navigationItem key="navigationItem" id="GJx-tx-3eV"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="578" y="2075"/>
+            <point key="canvasLocation" x="578" y="1403"/>
         </scene>
-        <!--Navigation Controller - Settings-->
+        <!--Navigation Controller - My Certificate-->
         <scene sceneID="fpX-kH-2XH">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gA1-fz-8a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="PVY-MG-CFg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="158-wrench-2.png" id="mtN-Eg-FyN"/>
+                    <tabBarItem key="tabBarItem" title="My Certificate" image="123-id-card.png" id="mtN-Eg-FyN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="V78-Lp-n0r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -808,7 +824,7 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-464" y="1425"/>
+            <point key="canvasLocation" x="-464" y="2021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xIw-IR-o7q">
@@ -845,14 +861,14 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-464" y="2075"/>
+            <point key="canvasLocation" x="-464" y="1403"/>
         </scene>
     </scenes>
     <resources>
         <image name="112-group.png" width="32" height="21"/>
+        <image name="123-id-card.png" width="24" height="17"/>
         <image name="145-persondot.png" width="24" height="26"/>
-        <image name="158-wrench-2.png" width="22" height="22"/>
-        <image name="33-cabinet.png" width="20" height="26"/>
+        <image name="44-shoebox.png" width="24" height="22"/>
         <image name="tugLogo_farb.gif" width="250" height="95"/>
     </resources>
     <classes>
@@ -895,6 +911,9 @@ exchange data in a secure way you have to create a certificate which you can use
         <class className="CustomTabBarController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
         </class>
+        <class className="MyCertificateViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyCertificateViewController.h"/>
+        </class>
         <class className="NameCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
             <relationships>
@@ -925,9 +944,6 @@ exchange data in a secure way you have to create a certificate which you can use
             <relationships>
                 <relationship kind="action" name="didCancel:"/>
             </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
         </class>
         <class className="SourceSelectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
