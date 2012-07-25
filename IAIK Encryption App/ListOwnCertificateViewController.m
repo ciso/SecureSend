@@ -1,24 +1,33 @@
 //
-//  RecipientDetailViewController.m
+//  ListOwnCertificateViewController.m
 //  IAIK Encryption App
 //
-//  Created by Christof Stromberger on 23.07.12.
+//  Created by Christof Stromberger on 25.07.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import <AddressBook/ABAddressBook.h>
-#import <AddressBookUI/AddressBookUI.h>
-#import "RecipientDetailViewController.h"
-#import "Recipient.h"
+#import "ListOwnCertificateViewController.h"
 #import "KeyChainManager.h"
+#import "Crypto.h"
 
-@interface RecipientDetailViewController ()
+@interface ListOwnCertificateViewController ()
+
+@property (nonatomic, strong) NSMutableArray *certificates;
 
 @end
 
-@implementation RecipientDetailViewController
+@implementation ListOwnCertificateViewController
 
-@synthesize recipient = _recipient;
+@synthesize certificates = _certificates;
+
+#pragma mark - Custom getters
+- (NSMutableArray*)certificates
+{
+    if (_certificates == nil)
+        _certificates = [[NSMutableArray alloc] init];
+    
+    return _certificates;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,9 +42,9 @@
 {
     [super viewDidLoad];
 
-    self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+    NSData *certificate = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
     
-    self.title = @"Info";
+    [self.certificates addObject:certificate];
 }
 
 - (void)viewDidUnload
@@ -54,25 +63,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 1; 
-    }
-    else if (section == 1)
-    {
-        return 2;
-    }
-    else if (section == 2)
-    {
-        return 1;
-    }
-    
-    return 0;
+    return [self.certificates count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,51 +76,17 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSString *title = @"";
-    NSString *detail = @"";
+    Crypto *crypto = [Crypto getInstance];
     
-    if (indexPath.section == 0 && indexPath.row == 0)
-    { 
-        NSString* firstname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef,kABPersonFirstNameProperty);
-        NSString* lastname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef, kABPersonLastNameProperty);
-        
-        title = @"Name";
-        detail = [NSString stringWithFormat:@"%@ %@", firstname, lastname];
-        
-    }
-    else if (indexPath.section == 1 && indexPath.row == 0)
-    {
-        ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.recipient.recordRef, kABPersonPhoneProperty);
-        NSString *phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-        
-        title = @"Phone";
-        detail = phone;
-    }
-    else if (indexPath.section == 1 && indexPath.row == 1)
-    {
-        ABMultiValueRef mailAddresses = ABRecordCopyValue(self.recipient.recordRef, kABPersonEmailProperty);
-        NSString *email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(mailAddresses, 0);
-
-        title = @"Email";
-        detail = email;
-    }
-    else if (indexPath.section == 2 && indexPath.row == 0)
-    {
-        title = @"Expires";
-        
-        NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterMediumStyle];
-        NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:self.recipient.expirationDate]];
-        
-        detail = datestring;
-
-        
-    }
-     
-    // Configure the cell...
-    cell.textLabel.text = title;
-    cell.detailTextLabel.text = detail;
+    NSData *certificate = [self.certificates objectAtIndex:indexPath.row];
     
+    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:[crypto getExpirationDateOfCertificate:certificate]]];
+    
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%x", certificate];
+    cell.detailTextLabel.text = datestring;
     
     return cell;
 }
