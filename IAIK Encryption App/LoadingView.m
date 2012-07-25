@@ -26,7 +26,7 @@
     UIView *newView = [[UIView alloc] init];
     CGRect newFrame;
     //calculating size and center
-    newFrame.size.width = aView.frame.size.width / 1.7;
+    newFrame.size.width = aView.frame.size.width / 2.0;
     newFrame.size.height = newFrame.size.width;
     newFrame.origin.x = 0;
     newFrame.origin.y = 0;
@@ -64,7 +64,7 @@
     //creating message label and initialising it
     UILabel* messageLabel = [[UILabel alloc] init];
     
-    message = [message stringByAppendingString:@"..."];
+    //message = [message stringByAppendingString:@"..."];
     
     messageLabel.backgroundColor = [UIColor clearColor];
     messageLabel.textColor = [UIColor whiteColor];

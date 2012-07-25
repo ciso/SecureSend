@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum {
+    kFieldFirstName,
+    kFieldLastName,
+    kFieldEmail,
+    kFieldRepeatEmail,
+    kFieldCountry,
+    kFieldCity,
+    kFieldOrganization,
+    kFieldOrganizationUnit
+} FieldTypes;
+
 @interface CreateNewCertificateViewController : UITableViewController <UITextFieldDelegate>
 
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender;
