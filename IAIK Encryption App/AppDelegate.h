@@ -14,5 +14,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) RequestHandler *reqHandler;
+@property (readonly, strong, atomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, atomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, atomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end

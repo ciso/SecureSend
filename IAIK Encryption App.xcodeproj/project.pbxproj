@@ -109,6 +109,8 @@
 		B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */; };
 		B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */; };
 		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
+		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
+		B4E38F4B15C133F8008AEF89 /* UserCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4A15C133F8008AEF89 /* UserCertificate.m */; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -304,6 +306,10 @@
 		B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		B4B4097A15B4090D00DCFAE5 /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
 		B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
+		B4E38F4215C12F51008AEF89 /* IAIK Encryption App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "IAIK Encryption App.entitlements"; sourceTree = "<group>"; };
+		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
+		B4E38F4915C133F8008AEF89 /* UserCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCertificate.h; sourceTree = "<group>"; };
+		B4E38F4A15C133F8008AEF89 /* UserCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCertificate.m; sourceTree = "<group>"; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -432,6 +438,8 @@
 		B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */ = {
 			isa = PBXGroup;
 			children = (
+				B4E38F4315C132C6008AEF89 /* DataModel */,
+				B4E38F4215C12F51008AEF89 /* IAIK Encryption App.entitlements */,
 				B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */,
 				B4118B7D15AADDEF00D050B2 /* CustomControls */,
 				B4118B8215AADE0B00D050B2 /* Security */,
@@ -1046,6 +1054,32 @@
 			name = CustomTabBarController;
 			sourceTree = "<group>";
 		};
+		B4E38F4315C132C6008AEF89 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F4815C133E7008AEF89 /* Model */,
+				B4E38F4715C133D2008AEF89 /* ManagedObjects */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		B4E38F4715C133D2008AEF89 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F4915C133F8008AEF89 /* UserCertificate.h */,
+				B4E38F4A15C133F8008AEF89 /* UserCertificate.m */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		B4E38F4815C133E7008AEF89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1262,6 +1296,8 @@
 				B48B97CC15BD9B85000F0D57 /* MyCertificateViewController.m in Sources */,
 				B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */,
 				B420F06615C0094400FEF4D5 /* ListOwnCertificateViewController.m in Sources */,
+				B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */,
+				B4E38F4B15C133F8008AEF89 /* UserCertificate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1368,6 +1404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "IAIK Encryption App/IAIK Encryption App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1392,6 +1429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "IAIK Encryption App/IAIK Encryption App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1477,6 +1515,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */,
+			);
+			currentVersion = B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */;
+			path = SecureSendModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B4118B1815AAC61B00D050B2 /* Project object */;
 }
