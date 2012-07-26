@@ -111,6 +111,7 @@
 		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F4B15C133F8008AEF89 /* UserCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4A15C133F8008AEF89 /* UserCertificate.m */; };
+		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -310,6 +311,7 @@
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F4915C133F8008AEF89 /* UserCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCertificate.h; sourceTree = "<group>"; };
 		B4E38F4A15C133F8008AEF89 /* UserCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCertificate.m; sourceTree = "<group>"; };
+		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */,
 				B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */,
 				B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */,
 				B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */,
@@ -396,6 +399,7 @@
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
+				B4E38F5015C13CFF008AEF89 /* CoreData.framework */,
 				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
 				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
 				B4118B2415AAC61B00D050B2 /* Frameworks */,
