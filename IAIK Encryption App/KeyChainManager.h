@@ -24,4 +24,6 @@
 +(NSMutableDictionary*) createSearchDirectoryAttributesForOwner: (NSString*) name;
 +(NSDictionary*) getAttributesOfCertificateWithOwner: (NSString*) name;
 
++(BOOL) addUsersPrivateKey: (NSData*) privateKey withOwner:(NSString*)owner;
+
 @end

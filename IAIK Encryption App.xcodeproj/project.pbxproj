@@ -110,8 +110,13 @@
 		B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */; };
 		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
-		B4E38F4B15C133F8008AEF89 /* UserCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4A15C133F8008AEF89 /* UserCertificate.m */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
+		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
+		B4E38F5815C15297008AEF89 /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5715C15297008AEF89 /* UserIdentity.m */; };
+		B4E38F5B15C15297008AEF89 /* UserPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5A15C15297008AEF89 /* UserPrivateKey.m */; };
+		B4E38F5E15C15298008AEF89 /* UserCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5D15C15298008AEF89 /* UserCertificate.m */; };
+		B4E38F6515C154A7008AEF89 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F6415C154A7008AEF89 /* Util.m */; };
+		B4E38F6915C156DB008AEF89 /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F6815C156DB008AEF89 /* KeyChainStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -309,9 +314,19 @@
 		B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
 		B4E38F4215C12F51008AEF89 /* IAIK Encryption App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "IAIK Encryption App.entitlements"; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
-		B4E38F4915C133F8008AEF89 /* UserCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCertificate.h; sourceTree = "<group>"; };
-		B4E38F4A15C133F8008AEF89 /* UserCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCertificate.m; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
+		B4E38F5415C1449E008AEF89 /* PersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStore.m; sourceTree = "<group>"; };
+		B4E38F5615C15297008AEF89 /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
+		B4E38F5715C15297008AEF89 /* UserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIdentity.m; sourceTree = "<group>"; };
+		B4E38F5915C15297008AEF89 /* UserPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPrivateKey.h; sourceTree = "<group>"; };
+		B4E38F5A15C15297008AEF89 /* UserPrivateKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPrivateKey.m; sourceTree = "<group>"; };
+		B4E38F5C15C15298008AEF89 /* UserCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCertificate.h; sourceTree = "<group>"; };
+		B4E38F5D15C15298008AEF89 /* UserCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCertificate.m; sourceTree = "<group>"; };
+		B4E38F6315C154A7008AEF89 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		B4E38F6415C154A7008AEF89 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		B4E38F6715C156DB008AEF89 /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
+		B4E38F6815C156DB008AEF89 /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -521,6 +536,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4E38F6215C1549D008AEF89 /* Util */,
 				B42BCE8F15BD538800D856A5 /* Recipient */,
 				B4B4096B15B4002900DCFAE5 /* UIImage */,
 				B45DC55015AD8D0700E39899 /* RequestHandler */,
@@ -1061,6 +1077,8 @@
 		B4E38F4315C132C6008AEF89 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				B4E38F6615C156BE008AEF89 /* KeyChainStore */,
+				B4E38F5215C14489008AEF89 /* PersistentStore */,
 				B4E38F4815C133E7008AEF89 /* Model */,
 				B4E38F4715C133D2008AEF89 /* ManagedObjects */,
 			);
@@ -1070,8 +1088,9 @@
 		B4E38F4715C133D2008AEF89 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				B4E38F4915C133F8008AEF89 /* UserCertificate.h */,
-				B4E38F4A15C133F8008AEF89 /* UserCertificate.m */,
+				B4E38F6115C152B6008AEF89 /* UserPrivateKey */,
+				B4E38F6015C152B1008AEF89 /* UserIdentity */,
+				B4E38F5F15C152A9008AEF89 /* UserCertificate */,
 			);
 			name = ManagedObjects;
 			sourceTree = "<group>";
@@ -1082,6 +1101,60 @@
 				B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B4E38F5215C14489008AEF89 /* PersistentStore */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F5315C1449E008AEF89 /* PersistentStore.h */,
+				B4E38F5415C1449E008AEF89 /* PersistentStore.m */,
+			);
+			name = PersistentStore;
+			sourceTree = "<group>";
+		};
+		B4E38F5F15C152A9008AEF89 /* UserCertificate */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F5C15C15298008AEF89 /* UserCertificate.h */,
+				B4E38F5D15C15298008AEF89 /* UserCertificate.m */,
+			);
+			name = UserCertificate;
+			sourceTree = "<group>";
+		};
+		B4E38F6015C152B1008AEF89 /* UserIdentity */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F5615C15297008AEF89 /* UserIdentity.h */,
+				B4E38F5715C15297008AEF89 /* UserIdentity.m */,
+			);
+			name = UserIdentity;
+			sourceTree = "<group>";
+		};
+		B4E38F6115C152B6008AEF89 /* UserPrivateKey */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F5915C15297008AEF89 /* UserPrivateKey.h */,
+				B4E38F5A15C15297008AEF89 /* UserPrivateKey.m */,
+			);
+			name = UserPrivateKey;
+			sourceTree = "<group>";
+		};
+		B4E38F6215C1549D008AEF89 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F6315C154A7008AEF89 /* Util.h */,
+				B4E38F6415C154A7008AEF89 /* Util.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		B4E38F6615C156BE008AEF89 /* KeyChainStore */ = {
+			isa = PBXGroup;
+			children = (
+				B4E38F6715C156DB008AEF89 /* KeyChainStore.h */,
+				B4E38F6815C156DB008AEF89 /* KeyChainStore.m */,
+			);
+			name = KeyChainStore;
 			sourceTree = "<group>";
 		};
 		B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */ = {
@@ -1301,7 +1374,12 @@
 				B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */,
 				B420F06615C0094400FEF4D5 /* ListOwnCertificateViewController.m in Sources */,
 				B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */,
-				B4E38F4B15C133F8008AEF89 /* UserCertificate.m in Sources */,
+				B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */,
+				B4E38F5815C15297008AEF89 /* UserIdentity.m in Sources */,
+				B4E38F5B15C15297008AEF89 /* UserPrivateKey.m in Sources */,
+				B4E38F5E15C15298008AEF89 /* UserCertificate.m in Sources */,
+				B4E38F6515C154A7008AEF89 /* Util.m in Sources */,
+				B4E38F6915C156DB008AEF89 /* KeyChainStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

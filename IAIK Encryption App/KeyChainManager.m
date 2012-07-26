@@ -7,6 +7,7 @@
 //
 
 #import "KeyChainManager.h"
+#import "PersistentStore.h"
 
 @implementation KeyChainManager
 
@@ -42,8 +43,16 @@
     
     if (status != errSecItemNotFound)
     {
-        SecItemDelete(cfquery);
+        if (![name isEqualToString:CERT_ID_USER])
+        {
+            SecItemDelete(cfquery);
+        }
     }
+    
+    //store into db
+    name = [PersistentStore storeNewCertificate:CERT_ID_USER];
+    
+    dict = [self createSearchDictionaryForOwner:name];
     
     [dict setObject:(__bridge id)cert forKey:(__bridge id)kSecValueRef];
     
@@ -93,6 +102,12 @@
 +(NSData*) getCertificateofOwner:(NSString*) name
 {
     
+    if ([name isEqualToString:CERT_ID_USER])
+    {
+        name = [PersistentStore getKeyForCertificateUser];
+    }
+    
+    
     NSMutableDictionary* dict = [self createSearchDictionaryForOwner:name];
     
     CFTypeRef item = NULL;
@@ -108,6 +123,12 @@
     return resultdict;
 }
 
++ (NSArray*)getAllCertificatesOfUser
+{
+    
+}
+
+//old
 +(BOOL) addUsersPrivateKey: (NSData*) privateKey
 {
     NSMutableDictionary* searchdict = [self createKeySearchDirectory];
@@ -132,9 +153,50 @@
 return YES;
 }
 
+//new
++(BOOL) addUsersPrivateKey: (NSData*) privateKey withOwner:(NSString*)owner
+{
+    owner = @"lulu";
+    NSMutableDictionary* searchdict = [self createKeySearchDirectory:owner];
+    
+    CFTypeRef item = NULL;
+    OSStatus error = SecItemCopyMatching((__bridge_retained CFDictionaryRef) searchdict, &item);
+    
+    if(error != errSecItemNotFound)
+    {
+        SecItemDelete((__bridge_retained CFDictionaryRef) searchdict);
+    }
+    
+    [searchdict setObject:(id)privateKey forKey:(__bridge id)kSecValueData];
+    
+    OSStatus adderror = SecItemAdd((__bridge_retained CFDictionaryRef) searchdict, &item);
+    
+    if(adderror != 0)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
 +(NSMutableDictionary*) createKeySearchDirectory
 {
     const char * namestring = [KEY_ID_USER UTF8String];
+    
+    CFStringRef labelstring = CFStringCreateWithCString(NULL, namestring, kCFStringEncodingUTF8);
+    
+    NSArray* keys = [NSArray arrayWithObjects:(__bridge id)kSecClass,kSecAttrLabel,kSecReturnData,kSecAttrAccessible,nil];
+    NSArray* values = [NSArray arrayWithObjects:(__bridge id)kSecClassKey,labelstring,kCFBooleanTrue,kSecAttrAccessibleWhenUnlocked,nil];
+    NSMutableDictionary* searchdict = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
+    
+    CFRelease(labelstring);
+    
+    return searchdict;
+}
+
++(NSMutableDictionary*) createKeySearchDirectory:(NSString*)owner
+{
+    const char * namestring = [owner UTF8String];
     
     CFStringRef labelstring = CFStringCreateWithCString(NULL, namestring, kCFStringEncodingUTF8);
     

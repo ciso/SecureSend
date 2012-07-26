@@ -1,5 +1,5 @@
 //
-//  UserCertificate.h
+//  UserPrivateKey.h
 //  IAIK Encryption App
 //
 //  Created by Christof Stromberger on 26.07.12.
@@ -11,7 +11,7 @@
 
 @class UserIdentity;
 
-@interface UserCertificate : NSManagedObject
+@interface UserPrivateKey : NSManagedObject
 
 @property (nonatomic, retain) NSString * accessKey;
 @property (nonatomic, retain) NSDate * dateCreated;

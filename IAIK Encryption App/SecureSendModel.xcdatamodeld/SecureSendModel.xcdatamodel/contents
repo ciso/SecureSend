@@ -3,8 +3,20 @@
     <entity name="UserCertificate" representedClassName="UserCertificate" syncable="YES">
         <attribute name="accessKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="ref_identity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="UserIdentity" inverseName="ref_certificate" inverseEntity="UserIdentity" syncable="YES"/>
+    </entity>
+    <entity name="UserIdentity" representedClassName="UserIdentity" syncable="YES">
+        <relationship name="ref_certificate" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="UserCertificate" inverseName="ref_identity" inverseEntity="UserCertificate" syncable="YES"/>
+        <relationship name="ref_private_key" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="UserPrivateKey" inverseName="ref_identity" inverseEntity="UserPrivateKey" syncable="YES"/>
+    </entity>
+    <entity name="UserPrivateKey" representedClassName="UserPrivateKey" syncable="YES">
+        <attribute name="accessKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="ref_identity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="UserIdentity" inverseName="ref_private_key" inverseEntity="UserIdentity" syncable="YES"/>
     </entity>
     <elements>
         <element name="UserCertificate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserIdentity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserPrivateKey" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

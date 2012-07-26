@@ -11,6 +11,7 @@
 #import "Crypto.h"
 #import "Validation.h"
 #import "LoadingView.h"
+#import "PersistentStore.h"
 
 @interface CreateNewCertificateViewController ()
 
@@ -377,10 +378,10 @@
         NSData *key = [crypto createRSAKeyWithKeyLength:2048];
                     
         //adding users' private key into keychain
-        if([KeyChainManager addUsersPrivateKey:key] == NO)
-        {
-            NSLog(@"Error occured when adding private key of user into Keychain!");
-        }
+//        if([KeyChainManager addUsersPrivateKey:key] == NO)
+//        {
+//            NSLog(@"Error occured when adding private key of user into Keychain!");
+//        }
         
         //create new certificate based on the before created key
         NSData* cert = [crypto createX509CertificateWithPrivateKey:key 
@@ -392,10 +393,16 @@
                                                   organizationUnit:self.organizationUnit];
         
         //adding users' certificate into keychain
-        if([KeyChainManager addCertificate:cert withOwner:CERT_ID_USER] == NO)
-        {
-            NSLog(@"Error occured when adding certificate of user into Keychain!");
-        }
+        //old
+//        if([KeyChainManager addCertificate:cert withOwner:CERT_ID_USER] == NO)
+//        {
+//            NSLog(@"Error occured when adding certificate of user into Keychain!");
+//        }
+        
+        
+        
+        //new
+        [PersistentStore storeForUserCertificate:cert privateKey:key]; //test
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.tableView.scrollEnabled = YES; //should not change anything...

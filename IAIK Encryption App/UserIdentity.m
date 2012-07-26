@@ -1,19 +1,18 @@
 //
-//  UserCertificate.m
+//  UserIdentity.m
 //  IAIK Encryption App
 //
 //  Created by Christof Stromberger on 26.07.12.
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
-#import "UserCertificate.h"
 #import "UserIdentity.h"
+#import "UserCertificate.h"
 
 
-@implementation UserCertificate
+@implementation UserIdentity
 
-@dynamic accessKey;
-@dynamic dateCreated;
-@dynamic ref_identity;
+@dynamic ref_private_key;
+@dynamic ref_certificate;
 
 @end
