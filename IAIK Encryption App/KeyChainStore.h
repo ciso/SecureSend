@@ -16,5 +16,7 @@ typedef enum {
 @interface KeyChainStore : NSObject
 
 + (BOOL)setData:(NSData*)data forKey:(NSString*)key type:(KeyChainDataType)type;
++ (NSData*)dataForKey:(NSString*)key type:(KeyChainDataType)type;
++ (BOOL)removeItemForKey:(NSString*)key type:(KeyChainDataType)type;
 
 @end

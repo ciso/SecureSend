@@ -14,6 +14,7 @@
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
+#include <openssl/bn.h>
 
 
 @interface Crypto()
@@ -735,8 +736,15 @@ static void callback(int p, int n, void *arg);
     BN_to_ASN1_INTEGER(b, sno);
     
     //setting serial number
-    X509_set_serialNumber(x, sno);
-
+    X509_set_serialNumber(x, sno); //todo use this for a random serial number
+    //int serial = 123456789;
+    //ASN1_INTEGER_set(X509_get_serialNumber(x), serial);
+    
+    
+    //debug test!!!
+//    BIO *stdoutput = BIO_new_fp(stdout, BIO_NOCLOSE);
+//    BN_print(stdoutput, b); //todo
+//    
 	X509_gmtime_adj(X509_get_notBefore(x), 0);
 	X509_gmtime_adj(X509_get_notAfter(x), (long)60*60*24*days);
 	X509_set_pubkey(x, pk);
