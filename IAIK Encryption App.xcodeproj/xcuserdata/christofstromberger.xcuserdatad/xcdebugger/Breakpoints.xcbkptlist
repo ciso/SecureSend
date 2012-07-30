@@ -99,38 +99,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/PersistentStore.m"
-         timestampString = "364999104.578309"
+         timestampString = "365332168.112447"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
          landmarkName = "+storeNewCertificate:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365330325.731227"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "318"
-         endingLineNumber = "318"
-         landmarkName = "+setData:forKey:type:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365330325.731227"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
-         landmarkName = "+setData:forKey:type:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -160,19 +134,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/PersistentStore.m"
-         timestampString = "365001933.703133"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
-         landmarkName = "+storeForUserCertificate:privateKey:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -183,58 +144,6 @@
          startingLineNumber = "134"
          endingLineNumber = "134"
          landmarkName = "+addUsersPrivateKey:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365330325.731227"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "372"
-         endingLineNumber = "372"
-         landmarkName = "+setData:forKey:type:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption AppTests/KeyChainStoreTests.m"
-         timestampString = "365073224.891113"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
-         landmarkName = "-test001_storeTestEntryIntoKeyChain"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365330325.731227"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "215"
-         endingLineNumber = "215"
-         landmarkName = "+setData:forKey:type:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365325172.455633"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
-         landmarkName = "+dataForKey:type:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -352,32 +261,6 @@
          startingLineNumber = "113"
          endingLineNumber = "113"
          landmarkName = "-parser:foundNumber:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/Crypto.m"
-         timestampString = "365325160.175897"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "741"
-         endingLineNumber = "741"
-         landmarkName = "-createNewCertificate:withPrivateKey:andExpiresIn:andWithName:andEmailAddress:andCountry:andCity:andOrganization:andOrganizationUnit:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/KeyChainStore.m"
-         timestampString = "365330325.731227"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "168"
-         endingLineNumber = "168"
-         landmarkName = "+dataForKey:type:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

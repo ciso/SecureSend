@@ -66,6 +66,7 @@
 		B420F06215C007AE00FEF4D5 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = B420F06115C007AE00FEF4D5 /* 117-todo.png */; };
 		B420F06615C0094400FEF4D5 /* ListOwnCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B420F06515C0094400FEF4D5 /* ListOwnCertificateViewController.m */; };
 		B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = B42BCE9115BD53BF00D856A5 /* Recipient.m */; };
+		B459A9A015C6A11F0051D5FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC55215AD8D1600E39899 /* RequestHandler.m */; };
 		B45DC59215ADC7D000E39899 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC56415ADC7D000E39899 /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B45DC59315ADC7D000E39899 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC56615ADC7D000E39899 /* MWPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -94,7 +95,6 @@
 		B48B97CC15BD9B85000F0D57 /* MyCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B97CB15BD9B85000F0D57 /* MyCertificateViewController.m */; };
 		B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */; };
 		B49506C515C277430062F9E4 /* KeyChainStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506C415C277430062F9E4 /* KeyChainStoreTests.m */; };
-		B49506C915C27A180062F9E4 /* client.der in Resources */ = {isa = PBXBuildFile; fileRef = B49506C815C27A180062F9E4 /* client.der */; };
 		B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
 		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
@@ -291,7 +291,6 @@
 		B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewCertificateViewController.m; sourceTree = "<group>"; };
 		B49506C315C277430062F9E4 /* KeyChainStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStoreTests.h; sourceTree = "<group>"; };
 		B49506C415C277430062F9E4 /* KeyChainStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStoreTests.m; sourceTree = "<group>"; };
-		B49506C815C27A180062F9E4 /* client.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.der; sourceTree = "<group>"; };
 		B49506CB15C2ACD60062F9E4 /* X509CertificateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X509CertificateUtil.h; sourceTree = "<group>"; };
 		B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X509CertificateUtil.m; sourceTree = "<group>"; };
 		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
@@ -367,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B459A9A015C6A11F0051D5FD /* CoreData.framework in Frameworks */,
 				B4118B4415AAC61B00D050B2 /* SenTestingKit.framework in Frameworks */,
 				B4118B4515AAC61B00D050B2 /* UIKit.framework in Frameworks */,
 				B4118B4615AAC61B00D050B2 /* Foundation.framework in Frameworks */,
@@ -422,7 +422,6 @@
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
-				B4E38F5015C13CFF008AEF89 /* CoreData.framework */,
 				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
 				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
 				B4118B2415AAC61B00D050B2 /* Frameworks */,
@@ -442,6 +441,7 @@
 		B4118B2415AAC61B00D050B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4E38F5015C13CFF008AEF89 /* CoreData.framework */,
 				B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */,
 				B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */,
 				B45DC56115ADC7D000E39899 /* MWPhotoBrowser */,
@@ -1012,7 +1012,6 @@
 		B49506C715C279CB0062F9E4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B49506C815C27A180062F9E4 /* client.der */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1335,7 +1334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4118B4E15AAC61B00D050B2 /* InfoPlist.strings in Resources */,
-				B49506C915C27A180062F9E4 /* client.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

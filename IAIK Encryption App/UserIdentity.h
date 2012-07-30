@@ -10,10 +10,11 @@
 #import <CoreData/CoreData.h>
 
 @class UserCertificate;
+@class UserPrivateKey;
 
 @interface UserIdentity : NSManagedObject
 
-@property (nonatomic, retain) NSManagedObject *ref_private_key;
+@property (nonatomic, retain) UserPrivateKey *ref_private_key;
 @property (nonatomic, retain) UserCertificate *ref_certificate;
 
 @end

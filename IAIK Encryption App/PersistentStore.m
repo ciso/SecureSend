@@ -14,6 +14,7 @@
 #import "UserPrivateKey.h"
 #import "Util.h"
 #import "KeyChainStore.h"
+#import "X509CertificateUtil.h"
 
 #define DB_USERCERTIFICATE @"UserCertificate"
 #define DB_USERIDENTITY @"UserIdentity"
@@ -113,7 +114,8 @@
     dbPrivateKey.dateCreated = [NSDate date];
     
     //creating access keys
-    NSString *certificateAccessKey = [Util createNewUUID];
+//    NSString *certificateAccessKey = [Util createNewUUID];
+    NSString *certificateAccessKey = [X509CertificateUtil getSerialNumber:certificate];
     NSString *privateKeyAccessKey = [Util createNewUUID];
     
     //assuming access keys
