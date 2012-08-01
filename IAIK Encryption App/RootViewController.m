@@ -275,40 +275,6 @@
     return cell;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-//{
-//    if(section == SECTION_CONTAINERS)
-//        return NSLocalizedString(@"Containers", @"Cell headline for containers section in the root view");
-//    else if(section == SECTION_ACTIONS)
-//        return NSLocalizedString(@"Actions", @"Cell headline for actions section in the root view");
-//    
-//    return NSLocalizedString(@"ERROR", @"Cell headline for error (this should not appear in productive environment");
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
-//    hView.backgroundColor=[UIColor clearColor];
-//    
-//    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
-//    
-//    hLabel.backgroundColor=[UIColor clearColor];
-//    hLabel.shadowColor = [UIColor blackColor];
-//    hLabel.shadowOffset = CGSizeMake(0.5,1);
-//    hLabel.textColor = [UIColor whiteColor];
-//    hLabel.font = [UIFont boldSystemFontOfSize:17];
-//    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-//    
-//    [hView addSubview:hLabel];
-//    
-//    
-//    return hView;
-//}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 35;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -321,58 +287,10 @@
 {
     if(indexPath.section == SECTION_CONTAINERS)
     {
-//        if(indexPath.row == rowAddContainer)
-//        {
-//            NSError* directory_creation_error = nil;
-//            
-//            NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
-//            
-//            NSLog(@"Path: %@",path);
-//            
-//            NSDictionary* attributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
-//            
-//            [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
-//            if(directory_creation_error != nil)
-//            {
-//                NSLog(@"Problem creating directory!!");
-//            }
-//            
-//            SecureContainer* newcontainer = [[SecureContainer alloc] init];
-//            newcontainer.basePath = path;
-//            newcontainer.name = [path lastPathComponent];
-//            newcontainer.creationDate = [NSDate date];
-//            [self.containers addObject:newcontainer];
-//                        
-//            [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers lastObject]];
-//        }
-//        else
         {
             [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers objectAtIndex:indexPath.row]];
         }
     }
-//    else if(indexPath.section == SECTION_ACTIONS)
-//    {
-//        if(indexPath.row == ROW_ACTION_SEND_BT)
-//        {
-//            [self sendCertificateBluetooth];
-//            
-//        } 
-//        else if (indexPath.row == ROW_ACTION_RECEIVE_BT)
-//        {
-//            [self.btConnectionHandler receiveDataWithHandlerDelegate:self];
-//        }
-//        else if(indexPath.row == ROW_ACTION_SEND_MAIL)
-//        {
-//            [self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil]; 
-//        }
-//        else if(indexPath.row == ROW_ACTION_SEND_REQUEST)
-//        {
-//            [self sendCertificateRequest]; 
-//        }
-//        
-//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];   
-//    }
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -383,7 +301,6 @@
 
 - (void) receivedBluetoothData: (NSData*) data
 {
-    
     self.receivedCertificateData = data;
     
     //showing people picker do identify owner of the certificate
@@ -856,8 +773,6 @@
     
 //    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
     NSString* path = [FilePathFactory getUniqueContainer:[FilePathFactory applicationDocumentsDirectory]];
-
-    
     
     NSLog(@"Path: %@",path);
     
@@ -874,6 +789,9 @@
     newcontainer.name = [path lastPathComponent];
     newcontainer.creationDate = [NSDate date];
     [self.containers addObject:newcontainer];
+    
+    //enabling edit button
+    [self showEditBarButtonItem];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.containers count] - 1 inSection:0];
     [self.tableView beginUpdates];
