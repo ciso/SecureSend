@@ -74,10 +74,10 @@
                     </navigationItem>
                     <connections>
                         <segue destination="mBQ-Fv-9a7" kind="push" identifier="toDetailViewController" id="0qL-DO-5Sm"/>
-                        <segue destination="3ms-Me-AcL" kind="modal" identifier="toCreateCertificate" id="O03-xn-rQr"/>
                         <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="MjX-0A-OTa"/>
                         <segue destination="PgO-Ap-xUJ" kind="modal" identifier="toChooseContainer" id="pfp-d5-RoJ"/>
                         <segue destination="ETl-E8-Dvy" kind="modal" identifier="toDefaultEmail" id="KLi-m5-Kv2"/>
+                        <segue destination="iPd-Oy-CAw" kind="modal" identifier="toCreateCertificate" id="YDp-e6-swT"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -526,15 +526,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSf-R6-vWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CreateCertificateViewController" title="Create Certificate" id="3ms-Me-AcL" customClass="CreateCertificateViewController" sceneMemberID="viewController">
                     <view key="view" tag="2" contentMode="scaleToFill" id="2wR-tI-JoW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" id="kr5-9Y-Wf7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="550"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="tugLogo_farb.gif" id="sFj-cQ-ldT">
-                                        <rect key="frame" x="59" y="52" width="150" height="63"/>
+                                        <rect key="frame" x="59" y="52" width="150" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" minimumFontSize="17" clearButtonMode="whileEditing" id="q0f-zx-Ta6">
@@ -597,7 +597,7 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="H8z-06-rYm">
-                                        <rect key="frame" x="20" y="120" width="280" height="105"/>
+                                        <rect key="frame" x="20" y="120" width="280" height="110"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">Welcome to the IAIK Encryption App.To 
 exchange data in a secure way you have to create a certificate which you can use send to your partners to prove your identity. However, to create such a certificate for you we need some basic information about yourself. </string>
@@ -1203,7 +1203,8 @@ exchange data in a secure way you have to create a certificate which you can use
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fQR-SJ-lCQ"/>
-        <segue reference="yuf-QE-k7G"/>
+        <segue reference="YDp-e6-swT"/>
+        <segue reference="MjX-0A-OTa"/>
+        <segue reference="KLi-m5-Kv2"/>
     </inferredMetricsTieBreakers>
 </document>

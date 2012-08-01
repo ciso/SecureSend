@@ -50,12 +50,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (section == 0)
+        return 7;
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +80,39 @@
     else if (indexPath.section == 0 && indexPath.row == 1)
     {
         title = @"CN";
-        detail = [];
+        detail = [X509CertificateUtil getCommonName:certificate];
+    }
+    else if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        title = @"Expiration Date";
+        
+        NSDate *expirationDate = [X509CertificateUtil getExpirationDate:certificate];
+        
+        NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:expirationDate]];
+        
+        detail = datestring;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 3)
+    {
+        title = @"Organization";
+        detail = [X509CertificateUtil getOrganization:certificate];
+    }
+    else if (indexPath.section == 0 && indexPath.row == 4)
+    {
+        title = @"Email";
+        detail = [X509CertificateUtil getEmail:certificate];
+    }
+    else if (indexPath.section == 0 && indexPath.row == 5)
+    {
+        title = @"Org. Unit";
+        detail = [X509CertificateUtil getOrganizationUnit:certificate];
+    }
+    else if (indexPath.section == 0 && indexPath.row == 6)
+    {
+        title = @"City";
+        detail = [X509CertificateUtil getCity:certificate];
     }
     
     cell.textLabel.text = title;

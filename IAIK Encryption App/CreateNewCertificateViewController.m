@@ -372,32 +372,18 @@
     Crypto *crypto = [Crypto getInstance];
     
     self.tableView.scrollEnabled = NO;
-    UIView *load = [LoadingView showLoadingViewInView:self.tableView withMessage:@"Creating Certificate"];
+    UIView *load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Creating Certificate"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *key = [crypto createRSAKeyWithKeyLength:2048];
-                    
-        //adding users' private key into keychain
-//        if([KeyChainManager addUsersPrivateKey:key] == NO)
-//        {
-//            NSLog(@"Error occured when adding private key of user into Keychain!");
-//        }
         
         //create new certificate based on the before created key
         NSData* cert = [crypto createX509CertificateWithPrivateKey:key 
-                                                          withName:self.firstName
-                                                      emailAddress:self.lastName
+                                                          withName:[NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName]
+                                                      emailAddress:self.email
                                                            country:self.country 
                                                               city:self.city
                                                       organization:self.organization
                                                   organizationUnit:self.organizationUnit];
-        
-        //adding users' certificate into keychain
-        //old
-//        if([KeyChainManager addCertificate:cert withOwner:CERT_ID_USER] == NO)
-//        {
-//            NSLog(@"Error occured when adding certificate of user into Keychain!");
-//        }
-        
         
         
         //new

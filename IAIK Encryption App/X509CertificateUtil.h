@@ -12,6 +12,15 @@
 @interface X509CertificateUtil : NSObject
 
 + (NSString*)getSerialNumber:(NSData*)cert;
++ (NSDate*)getExpirationDate:(NSData*)cert;
++ (NSString*)getCommonName:(NSData*)cert;
++ (NSString*)getOrganization:(NSData*)cert;
++ (NSString*)getEmail:(NSData*)cert;
++ (NSString*)getOrganizationUnit:(NSData*)cert;
++ (NSString*)getCity:(NSData*)cert;
+
+
+//helper
 + (NSString*)X509IntegerToNSString:(ASN1_INTEGER*)integer;
 
 @end
