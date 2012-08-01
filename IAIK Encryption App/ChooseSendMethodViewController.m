@@ -7,8 +7,9 @@
 //
 
 #import "ChooseSendMethodViewController.h"
-#import "KeyChainManager.h"
 #import "BluetoothConnectionHandler.h"
+#import "PersistentStore.h"
+#import "KeyChainStore.h"
 
 @interface ChooseSendMethodViewController ()
 
@@ -66,7 +67,7 @@
     }
     else if (indexPath.row == 1)
     {
-        NSData* sendData = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+        NSData *sendData = [PersistentStore getActiveCertificateOfUser];
         
         [self.btConnectionHandler sendDataToAll:sendData];
     }
@@ -108,7 +109,8 @@
     
     UIAlertView* alert = nil;
     
-    if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
+    
+    if([KeyChainStore setData:self.receivedCertificateData forKey:id type:kDataTypeCertificate])
     {
         alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", @"Title of alert view in choose send method view") 
                                            message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ has been received and stored in your keychain", @"Message of alert view in choose send method view"), 

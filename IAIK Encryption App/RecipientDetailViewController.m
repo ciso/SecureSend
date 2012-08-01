@@ -10,7 +10,6 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "RecipientDetailViewController.h"
 #import "Recipient.h"
-#import "KeyChainManager.h"
 
 @interface RecipientDetailViewController ()
 

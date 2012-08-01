@@ -9,9 +9,9 @@
 #import "CertificateXplorerViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/ABAddressBook.h>
-#import "KeyChainManager.h"
 #import "FilePathFactory.h"
 #import "Crypto.h"
+#import "KeyChainStore.h"
 
 
 @interface CertificateXplorerViewController ()
@@ -47,8 +47,8 @@
             
             NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
             
-            NSData* cert = [KeyChainManager getCertificateofOwner:identifier];
-            
+            NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
+                
             if(cert != nil)
             {
                 [self.relevantPeople addObject:(__bridge id)ref];
@@ -224,7 +224,7 @@
     
     NSString* identifier = [NSString stringWithFormat:@"%d",person_id];
     
-    NSData* cert = [KeyChainManager getCertificateofOwner:identifier];
+    NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
     
     [self.delegate setCert:cert];
 }
@@ -281,9 +281,11 @@
     
     NSString* identifier = [NSString stringWithFormat:@"%d",ABRecordGetRecordID(ref)];
     
-    if([KeyChainManager deleteCertificatewithOwner:identifier] == NO)
+    
+    if (![KeyChainStore removeItemForKey:identifier type:kDataTypeCertificate])
     {
         NSLog(@"Could not delete certificate in keychain");
+
     }
     
     [self.relevantPeople removeObjectAtIndex:selected_index];

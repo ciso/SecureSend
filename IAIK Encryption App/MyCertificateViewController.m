@@ -7,7 +7,7 @@
 //
 
 #import "MyCertificateViewController.h"
-#import "KeyChainManager.h"
+#import "PersistentStore.h"
 
 @interface MyCertificateViewController ()
 
@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
 
-    self.certificate = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    self.certificate = [PersistentStore getActiveCertificateOfUser];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 }

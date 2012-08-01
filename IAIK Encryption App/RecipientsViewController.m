@@ -9,10 +9,10 @@
 #import "RecipientsViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/ABAddressBook.h>
-#import "KeyChainManager.h"
 #import "Recipient.h"
 #import "Crypto.h"
 #import "RecipientDetailViewController.h"
+#import "KeyChainStore.h"
 
 #define SEGUE_TO_DETAIL @"segueToRecipientDetail"
 
@@ -55,9 +55,9 @@
         ABRecordRef ref = (__bridge_retained  ABRecordRef)[allpeople objectAtIndex:i];
         
         NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
+                      
+        NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
         
-        NSData* cert = [KeyChainManager getCertificateofOwner:identifier];
-              
         if(cert != nil)
         {
             

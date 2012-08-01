@@ -9,9 +9,9 @@
 #import "CreateCertificateViewController.h"
 #import "Crypto.h"
 #import "FilePathFactory.h"
-#import "KeyChainManager.h"
 #import "LoadingView.h"
-
+#import "KeyChainStore.h"
+#import "PersistentStore.h"
 
 //todo: just temp! remove in final
 #include <openssl/cms.h>
@@ -115,11 +115,8 @@
             
             //create a rsa key
             NSData *key = [crypto createRSAKeyWithKeyLength:2048];
-            
-            if([KeyChainManager addUsersPrivateKey:key] == NO)
-            {
-                NSLog(@"NEIIIIIIIIIIIINNNNN");
-            }
+                        
+            //[KeyChainStore setData:key forKey:<#(NSString *)#> type:<#(KeyChainDataType)#>]
             
             //create new certificate based on the before created key
             NSData* cert = [crypto createX509CertificateWithPrivateKey:key 
@@ -131,9 +128,9 @@
                                                       organizationUnit:self.organisationalunit.text];
             
             
-            if([KeyChainManager addCertificate:cert withOwner:CERT_ID_USER] == NO)
+            if (![PersistentStore storeForUserCertificate:cert privateKey:key])
             {
-                NSLog(@"NEEEEIIIIINNN");
+                NSLog(@"Storing certificate and private key failed!");
             }
             
             dispatch_async( dispatch_get_main_queue(), ^{

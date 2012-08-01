@@ -11,6 +11,7 @@
 		B40C29DA15AFF87A00C7B47A /* 33-cabinet.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C29D915AFF87A00C7B47A /* 33-cabinet.png */; };
 		B40C29DC15AFF92000C7B47A /* 145-persondot.png in Resources */ = {isa = PBXBuildFile; fileRef = B40C29DB15AFF92000C7B47A /* 145-persondot.png */; };
 		B40C29E315AFFA1400C7B47A /* CertificateActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C29E215AFFA1400C7B47A /* CertificateActionViewController.m */; };
+		B40F1D9B15C946C600660350 /* KeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F1D9A15C946C600660350 /* KeyPair.m */; };
 		B4118B2615AAC61B00D050B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2515AAC61B00D050B2 /* UIKit.framework */; };
 		B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2715AAC61B00D050B2 /* Foundation.framework */; };
 		B4118B2A15AAC61B00D050B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2915AAC61B00D050B2 /* CoreGraphics.framework */; };
@@ -24,7 +25,6 @@
 		B4118B5115AAC61B00D050B2 /* IAIK_Encryption_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B5015AAC61B00D050B2 /* IAIK_Encryption_AppTests.m */; };
 		B4118B5F15AAD7BA00D050B2 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4118B5E15AAD7BA00D050B2 /* MainStoryboard_iPhone.storyboard */; };
 		B4118B6A15AAD8CA00D050B2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B6915AAD8CA00D050B2 /* RootViewController.m */; };
-		B4118B6D15AADCD600D050B2 /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B6C15AADCD600D050B2 /* KeyChainManager.m */; };
 		B4118B7215AADD0A00D050B2 /* BluetoothConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B7115AADD0A00D050B2 /* BluetoothConnectionHandler.m */; };
 		B4118B7615AADD2D00D050B2 /* ContainerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B7515AADD2D00D050B2 /* ContainerDetailViewController.m */; };
 		B4118B7A15AADD4C00D050B2 /* FilePathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B7915AADD4C00D050B2 /* FilePathFactory.m */; };
@@ -89,6 +89,7 @@
 		B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45DC5A815ADCE7500E39899 /* ImageIO.framework */; };
 		B45DC5B715AEA6E400E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5B515AEA6E400E39899 /* Localizable.strings */; };
 		B45DC5BE15AEA6EE00E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5BB15AEA6EE00E39899 /* Localizable.strings */; };
+		B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */; };
 		B48B97AF15BD6EDB000F0D57 /* RecipientDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B97AE15BD6EDB000F0D57 /* RecipientDetailViewController.m */; };
 		B48B97C615BD9AF4000F0D57 /* 123-id-card.png in Resources */ = {isa = PBXBuildFile; fileRef = B48B97C515BD9AF4000F0D57 /* 123-id-card.png */; };
 		B48B97C815BD9B26000F0D57 /* 44-shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = B48B97C715BD9B26000F0D57 /* 44-shoebox.png */; };
@@ -148,6 +149,8 @@
 		B40C29DB15AFF92000C7B47A /* 145-persondot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "145-persondot.png"; sourceTree = "<group>"; };
 		B40C29E115AFFA1400C7B47A /* CertificateActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateActionViewController.h; sourceTree = "<group>"; };
 		B40C29E215AFFA1400C7B47A /* CertificateActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateActionViewController.m; sourceTree = "<group>"; };
+		B40F1D9915C946C600660350 /* KeyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPair.h; sourceTree = "<group>"; };
+		B40F1D9A15C946C600660350 /* KeyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyPair.m; sourceTree = "<group>"; };
 		B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IAIK Encryption App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4118B2515AAC61B00D050B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4118B2715AAC61B00D050B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -167,8 +170,6 @@
 		B4118B5E15AAD7BA00D050B2 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		B4118B6815AAD8CA00D050B2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		B4118B6915AAD8CA00D050B2 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		B4118B6B15AADCD600D050B2 /* KeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainManager.h; sourceTree = "<group>"; };
-		B4118B6C15AADCD600D050B2 /* KeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainManager.m; sourceTree = "<group>"; };
 		B4118B7015AADD0A00D050B2 /* BluetoothConnectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnectionHandler.h; sourceTree = "<group>"; };
 		B4118B7115AADD0A00D050B2 /* BluetoothConnectionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnectionHandler.m; sourceTree = "<group>"; };
 		B4118B7415AADD2D00D050B2 /* ContainerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerDetailViewController.h; sourceTree = "<group>"; };
@@ -281,6 +282,8 @@
 		B45DC5A815ADCE7500E39899 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		B45DC5B615AEA6E400E39899 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		B45DC5BC15AEA6EE00E39899 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		B47D26F015C951C50094A21E /* KeyPairDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPairDetailsViewController.h; sourceTree = "<group>"; };
+		B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyPairDetailsViewController.m; sourceTree = "<group>"; };
 		B48B97AD15BD6EDB000F0D57 /* RecipientDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientDetailViewController.h; sourceTree = "<group>"; };
 		B48B97AE15BD6EDB000F0D57 /* RecipientDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientDetailViewController.m; sourceTree = "<group>"; };
 		B48B97C515BD9AF4000F0D57 /* 123-id-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "123-id-card.png"; sourceTree = "<group>"; };
@@ -319,7 +322,6 @@
 		B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		B4B4097A15B4090D00DCFAE5 /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
 		B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
-		B4E38F4215C12F51008AEF89 /* IAIK Encryption App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "IAIK Encryption App.entitlements"; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -419,6 +421,15 @@
 			name = CertificateActionViewController;
 			sourceTree = "<group>";
 		};
+		B40F1D9815C946AF00660350 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B40F1D9915C946C600660350 /* KeyPair.h */,
+				B40F1D9A15C946C600660350 /* KeyPair.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
@@ -466,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				B4E38F4315C132C6008AEF89 /* DataModel */,
-				B4E38F4215C12F51008AEF89 /* IAIK Encryption App.entitlements */,
 				B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */,
 				B4118B7D15AADDEF00D050B2 /* CustomControls */,
 				B4118B8215AADE0B00D050B2 /* Security */,
@@ -568,18 +578,8 @@
 		B4118B6615AAD85B00D050B2 /* KeychainAccess */ = {
 			isa = PBXGroup;
 			children = (
-				B4118B6715AAD86400D050B2 /* KeyChainManager */,
 			);
 			name = KeychainAccess;
-			sourceTree = "<group>";
-		};
-		B4118B6715AAD86400D050B2 /* KeyChainManager */ = {
-			isa = PBXGroup;
-			children = (
-				B4118B6B15AADCD600D050B2 /* KeyChainManager.h */,
-				B4118B6C15AADCD600D050B2 /* KeyChainManager.m */,
-			);
-			name = KeyChainManager;
 			sourceTree = "<group>";
 		};
 		B4118B6E15AADCE600D050B2 /* Connection */ = {
@@ -829,6 +829,7 @@
 		B420F06315C0092700FEF4D5 /* DEVELOPER */ = {
 			isa = PBXGroup;
 			children = (
+				B47D26EF15C9518E0094A21E /* KeyPairDetailsViewController */,
 				B420F06715C0094800FEF4D5 /* ListOwnCertificateViewController */,
 			);
 			name = DEVELOPER;
@@ -962,6 +963,15 @@
 				B45DC5BB15AEA6EE00E39899 /* Localizable.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		B47D26EF15C9518E0094A21E /* KeyPairDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B47D26F015C951C50094A21E /* KeyPairDetailsViewController.h */,
+				B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */,
+			);
+			name = KeyPairDetailsViewController;
 			sourceTree = "<group>";
 		};
 		B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */ = {
@@ -1150,6 +1160,7 @@
 		B4E38F5215C14489008AEF89 /* PersistentStore */ = {
 			isa = PBXGroup;
 			children = (
+				B40F1D9815C946AF00660350 /* Model */,
 				B4E38F5315C1449E008AEF89 /* PersistentStore.h */,
 				B4E38F5415C1449E008AEF89 /* PersistentStore.m */,
 			);
@@ -1363,7 +1374,6 @@
 				B4118B3215AAC61B00D050B2 /* main.m in Sources */,
 				B4118B3615AAC61B00D050B2 /* AppDelegate.m in Sources */,
 				B4118B6A15AAD8CA00D050B2 /* RootViewController.m in Sources */,
-				B4118B6D15AADCD600D050B2 /* KeyChainManager.m in Sources */,
 				B4118B7215AADD0A00D050B2 /* BluetoothConnectionHandler.m in Sources */,
 				B4118B7615AADD2D00D050B2 /* ContainerDetailViewController.m in Sources */,
 				B4118B7A15AADD4C00D050B2 /* FilePathFactory.m in Sources */,
@@ -1425,6 +1435,8 @@
 				B4E38F6515C154A7008AEF89 /* Util.m in Sources */,
 				B4E38F6915C156DB008AEF89 /* KeyChainStore.m in Sources */,
 				B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */,
+				B40F1D9B15C946C600660350 /* KeyPair.m in Sources */,
+				B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1532,7 +1544,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_ENTITLEMENTS = "IAIK Encryption App/IAIK Encryption App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1557,7 +1568,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_ENTITLEMENTS = "IAIK Encryption App/IAIK Encryption App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

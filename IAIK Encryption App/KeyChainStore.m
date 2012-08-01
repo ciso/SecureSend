@@ -11,7 +11,6 @@
 #import "X509CertificateUtil.h"
 
 //just temp
-#import "KeyChainManager.h"
 #import "Crypto.h"
 
 @implementation KeyChainStore
@@ -200,7 +199,7 @@ errSecAuthFailed             = -25293,	* The user name or passphrase you entered
         
         OSStatus status = SecItemDelete((CFDictionaryRef) query);
         
-        if(status != errSecItemNotFound)
+        if(status != 0 && status != errSecItemNotFound)
         {
             NSLog(@"Keychain error occured: %ld (statuscode)", status);
             return NO;

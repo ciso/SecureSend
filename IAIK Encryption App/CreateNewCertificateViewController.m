@@ -7,7 +7,6 @@
 //
 
 #import "CreateNewCertificateViewController.h"
-#import "KeyChainManager.h"
 #import "Crypto.h"
 #import "Validation.h"
 #import "LoadingView.h"
@@ -63,8 +62,8 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
     //check if the user is obtaining his first certificate
-    //or renewing an old one
-    self.certificate = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    //or renewing an old one    
+    self.certificate = [PersistentStore getActiveCertificateOfUser];
     
     if (self.certificate != nil)
     {

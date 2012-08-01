@@ -7,12 +7,12 @@
 //
 
 #import "CertificateActionViewController.h"
-#import "KeyChainManager.h"
 #import "Validation.h"
 #import "TextProvider.h"
 #import "CertificateRequest.h"
 #import "UserSettingsViewController.h"
 #import "RootViewController.h"
+#import "PersistentStore.h"
 
 #define SEGUE_TO_CERT_ASS @"toCertSendAssist"
 #define SEGUE_TO_DEFAULT_EMAIL @"toDefaultEmail"
@@ -190,8 +190,8 @@
 #pragma mark - methods to send certificate
 
 -(void) sendCertificateBluetooth
-{
-    NSData* sendData = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+{    
+    NSData *sendData = [PersistentStore getActiveCertificateOfUser];
     
     [self.btConnectionHandler sendDataToAll:sendData];
 }

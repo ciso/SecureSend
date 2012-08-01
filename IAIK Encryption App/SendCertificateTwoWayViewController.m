@@ -8,8 +8,8 @@
 
 #import "SendCertificateTwoWayViewController.h"
 #import "NSData+CommonCrypto.h"
-#import "KeyChainManager.h"
 #import "Base64.h"
+#import "PersistentStore.h"
 
 #define NUMBER_SECTIONS 3
 #define NUMBER_ROWS_STEP_1 1
@@ -256,7 +256,9 @@
 
 -(NSData*) getOwnEncryptedCertificate
 {
-    NSData *cert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    
+    NSData *cert = [PersistentStore getActiveCertificateOfUser];
+    
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
     
     //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);

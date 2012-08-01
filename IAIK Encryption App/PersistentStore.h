@@ -10,10 +10,14 @@
 
 @interface PersistentStore : NSObject
 
-+ (NSString*)storeNewCertificate:(NSString*)name;
-+ (NSString*)getKeyForCertificateUser;
+//+ (NSString*)storeNewCertificate:(NSString*)name;
+//+ (NSString*)getKeyForCertificateUser;
 
 + (BOOL)storeForUserCertificate:(NSData*)certificate privateKey:(NSData*)privateKey;
++ (NSData*)getActiveCertificateOfUser;
++ (NSData*)getActivePrivateKeyOfUser;
 
+//JUST FOR DEBUG PURPOSES
++ (NSArray*)getAllKeyPairsOfUser;
 
 @end

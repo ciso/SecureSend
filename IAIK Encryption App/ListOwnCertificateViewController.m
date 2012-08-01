@@ -7,12 +7,14 @@
 //
 
 #import "ListOwnCertificateViewController.h"
-#import "KeyChainManager.h"
 #import "Crypto.h"
+#import "PersistentStore.h"
+#import "KeyPair.h"
+#import "KeyPairDetailsViewController.h"
 
 @interface ListOwnCertificateViewController ()
 
-@property (nonatomic, strong) NSMutableArray *certificates;
+@property (nonatomic, strong) NSArray *certificates;
 
 @end
 
@@ -21,10 +23,10 @@
 @synthesize certificates = _certificates;
 
 #pragma mark - Custom getters
-- (NSMutableArray*)certificates
+- (NSArray*)certificates
 {
     if (_certificates == nil)
-        _certificates = [[NSMutableArray alloc] init];
+        _certificates = [[NSArray alloc] init];
     
     return _certificates;
 }
@@ -42,9 +44,7 @@
 {
     [super viewDidLoad];
 
-    NSData *certificate = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
-    
-    [self.certificates addObject:certificate];
+    self.certificates = [PersistentStore getAllKeyPairsOfUser];
 }
 
 - (void)viewDidUnload
@@ -78,7 +78,8 @@
     
     Crypto *crypto = [Crypto getInstance];
     
-    NSData *certificate = [self.certificates objectAtIndex:indexPath.row];
+    KeyPair *keypair = [self.certificates objectAtIndex:indexPath.row];
+    NSData *certificate = [keypair certificate];
     
     NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -141,6 +142,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toKeyPairDetails"])
+    {
+        KeyPairDetailsViewController *view = (KeyPairDetailsViewController*)segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        view.keyPair = [self.certificates objectAtIndex:indexPath.row];
+    }
 }
 
 @end

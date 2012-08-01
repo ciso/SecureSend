@@ -12,7 +12,6 @@
 #import "ContainerDetailViewController.h"
 #import "BluetoothConnectionHandler.h"
 #import <Security/Security.h>
-#import "KeyChainManager.h"
 #import "FilePathFactory.h"
 #import "NSData+CommonCrypto.h"
 #import "CreateCertificateViewController.h"
@@ -30,6 +29,8 @@
 #import "TextProvider.h"
 #import "XMLParser.h"
 #import "CertificateRequest.h"
+#import "PersistentStore.h"
+#import "KeyChainStore.h"
 
 
 #define SECTION_CONTAINERS 0
@@ -123,7 +124,7 @@
     
     
     //checking if a certificate has to be created
-    if([KeyChainManager getCertificateofOwner:CERT_ID_USER] == nil)
+    if([PersistentStore getActiveCertificateOfUser] == nil)
     {
         [self performSegueWithIdentifier:SEGUE_TO_CREATE_CERT sender:nil];
     }
@@ -416,7 +417,7 @@
         
         UIAlertView* alert = nil;
         
-        if([KeyChainManager addCertificate:self.receivedCertificateData withOwner:id] == YES)
+        if([KeyChainStore setData:self.receivedCertificateData forKey:id type:kDataTypeCertificate])
         {
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", nil) message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ %@ has been received and stored in your keychain", nil), name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
@@ -512,7 +513,7 @@
 
 -(void) sendCertificateBluetooth
 {
-    NSData* sendData = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSData *sendData = [PersistentStore getActiveCertificateOfUser];
     
     [self.btConnectionHandler sendDataToAll:sendData];
 }
@@ -624,10 +625,10 @@
 
 -(void) decryptContainer:(NSData*) encryptedContainer
 {
-    NSData* usercert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
-    
-    NSData* userprivateKey = [KeyChainManager getUsersPrivateKey];
-    
+    NSData *usercert = [PersistentStore getActiveCertificateOfUser];
+
+    NSData *userprivateKey = [PersistentStore getActivePrivateKeyOfUser];
+        
     if(usercert == nil || userprivateKey == nil)
     {
         NSLog(@"Could not decrypt container because of missing key / certificate");
@@ -981,7 +982,7 @@
     composer.mailComposeDelegate = self;
     
     
-    NSData *cert = [KeyChainManager getCertificateofOwner:CERT_ID_USER];
+    NSData *cert = [PersistentStore getActiveCertificateOfUser];
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
     CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
     NSString *encoded =  [Base64 encode:macOut];

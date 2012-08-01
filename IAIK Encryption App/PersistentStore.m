@@ -9,12 +9,14 @@
 #import "PersistentStore.h"
 #import "UserCertificate.h"
 #import "AppDelegate.h"
-#import "KeyChainManager.h"
 #import "UserIdentity.h"
 #import "UserPrivateKey.h"
 #import "Util.h"
 #import "KeyChainStore.h"
 #import "X509CertificateUtil.h"
+
+//for debug
+#import "KeyPair.h"
 
 #define DB_USERCERTIFICATE @"UserCertificate"
 #define DB_USERIDENTITY @"UserIdentity"
@@ -22,72 +24,72 @@
 
 @implementation PersistentStore
 
-+ (NSString*)storeNewCertificate:(NSString*)name
-{
-    //check if certificate belongs to iPhone user
-    if ([name isEqualToString:CERT_ID_USER])
-    {
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        NSEntityDescription *entity = [NSEntityDescription entityForName:DB_USERCERTIFICATE inManagedObjectContext:appDelegate.managedObjectContext];
-        UserCertificate *dbCertificate = [[UserCertificate alloc] initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
-        
-        //creating new UUID for key/value keychain store
-        CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-        NSString *uuidString = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-        CFRelease(uuid);
-        
-        dbCertificate.accessKey = uuidString;
-        dbCertificate.dateCreated = [NSDate date];
-        
-        //storing into db
-        NSError *error;
-        
-        [appDelegate saveContext];
-        //[appDelegate.managedObjectContext save:&error];
-        if (error)
-        {
-            NSLog(@"An Error occured: %@", [error localizedDescription]);
-        }
-        
-        return uuidString;
-    }
-    else
-    {
-        return name; //nothing changed
-    } 
-}
-
-+ (NSString*)getKeyForCertificateUser
-{
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:DB_USERCERTIFICATE];
-    NSSortDescriptor *sortByDate = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortByDate, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    fetchRequest.fetchLimit = 1;
-    
-    NSError *error;
-    NSArray *fetchedObjects = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error)
-    {
-        NSLog(@"An error occured: %@", [error localizedDescription]);
-    }
-    
-    NSLog(@"Items found: %d", [fetchedObjects count]);
-    
-    if ([fetchedObjects count] > 0)
-    {
-        UserCertificate *dbCertificate = [fetchedObjects objectAtIndex:0];
-        return dbCertificate.accessKey;
-    }
-    else
-    {
-        return @"";
-    }
-
-}
+//+ (NSString*)storeNewCertificate:(NSString*)name
+//{
+//    //check if certificate belongs to iPhone user
+//    if ([name isEqualToString:CERT_ID_USER])
+//    {
+//        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:DB_USERCERTIFICATE inManagedObjectContext:appDelegate.managedObjectContext];
+//        UserCertificate *dbCertificate = [[UserCertificate alloc] initWithEntity:entity insertIntoManagedObjectContext:appDelegate.managedObjectContext];
+//        
+//        //creating new UUID for key/value keychain store
+//        CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+//        NSString *uuidString = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+//        CFRelease(uuid);
+//        
+//        dbCertificate.accessKey = uuidString;
+//        dbCertificate.dateCreated = [NSDate date];
+//        
+//        //storing into db
+//        NSError *error;
+//        
+//        [appDelegate saveContext];
+//        //[appDelegate.managedObjectContext save:&error];
+//        if (error)
+//        {
+//            NSLog(@"An Error occured: %@", [error localizedDescription]);
+//        }
+//        
+//        return uuidString;
+//    }
+//    else
+//    {
+//        return name; //nothing changed
+//    } 
+//}
+//
+//+ (NSString*)getKeyForCertificateUser
+//{
+//    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:DB_USERCERTIFICATE];
+//    NSSortDescriptor *sortByDate = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
+//    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortByDate, nil];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+//    fetchRequest.fetchLimit = 1;
+//    
+//    NSError *error;
+//    NSArray *fetchedObjects = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//    if (error)
+//    {
+//        NSLog(@"An error occured: %@", [error localizedDescription]);
+//    }
+//    
+//    NSLog(@"Items found: %d", [fetchedObjects count]);
+//    
+//    if ([fetchedObjects count] > 0)
+//    {
+//        UserCertificate *dbCertificate = [fetchedObjects objectAtIndex:0];
+//        return dbCertificate.accessKey;
+//    }
+//    else
+//    {
+//        return @"";
+//    }
+//
+//}
 
 + (BOOL)storeForUserCertificate:(NSData*)certificate privateKey:(NSData*)privateKey
 {
@@ -142,5 +144,93 @@
     
     return YES;
 }
+
+
+//todo: test this!!!
++ (NSData*)getActiveCertificateOfUser
+{
+    NSData *ret = nil;
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    //fetching entries from core data
+    NSError *error;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"UserCertificate"];
+    NSSortDescriptor *sortById = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortById, nil];
+    [request setSortDescriptors:sortDescriptors];
+    request.fetchLimit = 1;
+    
+    //fetchiing identities
+    NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    if ([allIdentities count] > 0)
+    {
+        UserCertificate *certificate = [allIdentities objectAtIndex:0];
+    
+        NSData *certData = [KeyChainStore dataForKey:certificate.accessKey type:kDataTypeCertificate];
+        ret = certData;
+    }
+    
+    return ret;
+}
+
+//todo: test this!!!
++ (NSData*)getActivePrivateKeyOfUser
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    //fetching entries from core data
+    NSError *error;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"UserCertificate"];
+    NSSortDescriptor *sortById = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortById, nil];
+    [request setSortDescriptors:sortDescriptors];
+    request.fetchLimit = 1;
+    
+    //fetchiing identities
+    NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    UserCertificate *certificate = [allIdentities objectAtIndex:0];
+    UserIdentity *identity = certificate.ref_identity;
+    UserPrivateKey *privateKey = identity.ref_private_key;
+    
+    NSData *certData = [KeyChainStore dataForKey:privateKey.accessKey type:kDataTypePrivateKey];
+    
+    return certData;
+}
+
+#pragma mark - DEBUG
++ (NSArray*)getAllKeyPairsOfUser
+{
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    //fetching entries from core data
+    NSError *error;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"UserCertificate"];
+    NSSortDescriptor *sortById = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortById, nil];
+    [request setSortDescriptors:sortDescriptors];
+    
+    //fetchiing identities
+    NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    for (UserCertificate *certificate in allIdentities)
+    {
+        UserIdentity *identity = certificate.ref_identity;
+        UserPrivateKey *privateKey = identity.ref_private_key;
+        
+        NSData *certData = [KeyChainStore dataForKey:certificate.accessKey type:kDataTypeCertificate];
+        NSData *privateKeyData = [KeyChainStore dataForKey:privateKey.accessKey type:kDataTypePrivateKey];
+        
+        KeyPair *pair = [[KeyPair alloc] initWithCertificate:certData privateKey:privateKeyData];
+        pair.certificateDateCreated = certificate.dateCreated;
+        pair.privateKeyDateCreated = privateKey.dateCreated;
+        
+        [ret addObject:pair];
+    }
+    
+    return ret;
+}
+
+
 
 @end

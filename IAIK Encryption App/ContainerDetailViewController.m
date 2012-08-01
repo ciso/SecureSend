@@ -14,7 +14,6 @@
 #import "FilePathFactory.h"
 #import "NameCell.h"
 #import "ZipArchive.h"
-#import "KeyChainManager.h"
 #import "CertificateXplorerViewController.h"
 #import "LoadingView.h"
 #import "PreviewViewController.h"
@@ -360,8 +359,8 @@
     UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"), 
                              NSLocalizedString(@"Send Container via Email", @"Button in alter view in container detail view for sending a container via email"), nil];
     
-    [action showInView:self.view];
-    
+//    [action showInView:self.view];
+    [action showFromTabBar:self.tabBarController.tabBar];
 }
 
 #pragma mark - methods for sharing container
