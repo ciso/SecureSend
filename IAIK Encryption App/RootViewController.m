@@ -50,23 +50,27 @@
 @private
     NSInteger rowAddContainer;
 }
+
+@property (nonatomic, strong) UITextField *activeInput;
+
 @end
 
 
 @implementation RootViewController
 
-@synthesize btConnectionHandler = _btConnectionHandler;
+@synthesize btConnectionHandler     = _btConnectionHandler;
 @synthesize receivedCertificateData = _receivedCertificateData;
-@synthesize containers = _containers;
-@synthesize certData = _certData;
-@synthesize receivedFileURL = _receivedFileURL;
-@synthesize sendRequest = _sendRequest;
-@synthesize email = _email;
-@synthesize name = _name;
-@synthesize certMailSent = _certMailSent;
-@synthesize phoneNumber = _phoneNumber;
-@synthesize hash = _hash;
-@synthesize editable = _editable;
+@synthesize containers              = _containers;
+@synthesize certData                = _certData;
+@synthesize receivedFileURL         = _receivedFileURL;
+@synthesize sendRequest             = _sendRequest;
+@synthesize email                   = _email;
+@synthesize name                    = _name;
+@synthesize certMailSent            = _certMailSent;
+@synthesize phoneNumber             = _phoneNumber;
+@synthesize hash                    = _hash;
+@synthesize editable                = _editable;
+@synthesize activeInput             = _activeInput;
 
 - (DBRestClient *)restClient {
     if (!restClient) {
@@ -206,6 +210,19 @@
     
 }
 
+// textfield delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    self.activeInput = textField;
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    self.activeInput = nil;
+    return [self textFieldShouldReturn:textField];
+    
+    //return YES;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
@@ -220,7 +237,7 @@
 
         
     }
-    else 
+    else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
