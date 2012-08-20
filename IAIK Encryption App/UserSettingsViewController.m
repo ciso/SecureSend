@@ -30,13 +30,15 @@
 {
     [super viewDidLoad];
 
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-    CGRect background_frame = self.tableView.frame;
-    background_frame.origin.x = 0;
-    background_frame.origin.y = 0;
-    background.frame = background_frame;
-    background.contentMode = UIViewContentModeTop;
-    self.tableView.backgroundView = background;
+//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+//    CGRect background_frame = self.tableView.frame;
+//    background_frame.origin.x = 0;
+//    background_frame.origin.y = 0;
+//    background.frame = background_frame;
+//    background.contentMode = UIViewContentModeTop;
+//    self.tableView.backgroundView = background;
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 }
 
 - (void)viewDidUnload
@@ -122,108 +124,133 @@
 }
 
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        //creating header label
-        UILabel* headerLabel = [[UILabel alloc] init];
-        headerLabel.frame = CGRectMake(30, 5, 220, 30);
-        headerLabel.backgroundColor = [UIColor clearColor];
-        headerLabel.textColor = [UIColor whiteColor];
-        headerLabel.font = [UIFont boldSystemFontOfSize:17];
-        headerLabel.text = NSLocalizedString(@"   Mandatory", @"Section headline in user settings view");
-        headerLabel.alpha = 1.0;
-        
-        return headerLabel;
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return NSLocalizedString(@"Mandatory", @"Section headline in user settings view");
     }
-    else if (section == 1)
-    {
-        {
-            //creating header label
-            UILabel* headerLabel = [[UILabel alloc] init];
-            headerLabel.frame = CGRectMake(30, 5, 220, 30);
-            headerLabel.backgroundColor = [UIColor clearColor];
-            headerLabel.textColor = [UIColor whiteColor];
-            headerLabel.font = [UIFont boldSystemFontOfSize:17];
-            headerLabel.text = NSLocalizedString(@"   Optional", @"Section headline in user settings view");
-            headerLabel.alpha = 1.0;
-            
-            return headerLabel;
-        }
+    else if (section == 1) {
+        return NSLocalizedString(@"Optional", @"Section headline in user settings view");
     }
     
     return nil;
 }
 
+//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (section == 0)
+//    {
+//        //creating header label
+//        UILabel* headerLabel = [[UILabel alloc] init];
+//        headerLabel.frame = CGRectMake(30, 5, 220, 30);
+//        headerLabel.backgroundColor = [UIColor clearColor];
+//        headerLabel.textColor = [UIColor whiteColor];
+//        headerLabel.font = [UIFont boldSystemFontOfSize:17];
+//        headerLabel.text = NSLocalizedString(@"   Mandatory", @"Section headline in user settings view");
+//        headerLabel.alpha = 1.0;
+//        
+//        return headerLabel;
+//    }
+//    else if (section == 1)
+//    {
+//        {
+//            //creating header label
+//            UILabel* headerLabel = [[UILabel alloc] init];
+//            headerLabel.frame = CGRectMake(30, 5, 220, 30);
+//            headerLabel.backgroundColor = [UIColor clearColor];
+//            headerLabel.textColor = [UIColor whiteColor];
+//            headerLabel.font = [UIFont boldSystemFontOfSize:17];
+//            headerLabel.text = NSLocalizedString(@"   Optional", @"Section headline in user settings view");
+//            headerLabel.alpha = 1.0;
+//            
+//            return headerLabel;
+//        }
+//    }
+//    
+//    return nil;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        return 65.0;
-    }
-    if (section == 1)
-    {
-        return 45.0;
-    }
-    
-    return 0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 30;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    if (section == 0)
+//    {
+//        return 65.0;
+//    }
+//    if (section == 1)
+//    {
+//        return 45.0;
+//    }
+//    
+//    return 0;
+//}
 
-- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        //creating footer label
-        UILabel* footerLabel = [[UILabel alloc] init];
-        footerLabel.frame = CGRectMake(20, 15, 280, 100);
-        footerLabel.textAlignment = UITextAlignmentCenter;
-        footerLabel.numberOfLines = 0;
-        footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.textColor = [UIColor whiteColor];
-        footerLabel.font = [UIFont systemFontOfSize:14];
-        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.", 
-                                                                               @"Footer text in user setting view")];
-        footerLabel.alpha = 0.85;
-        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
-        
-        return footerLabel;
-    }
-    if (section == 1)
-    {
-        NSString* device = @"iPhone";
-        UIDevice* thisDevice = [UIDevice currentDevice];
-        if (thisDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-            device = @"iPad";
-        
-        
-        //creating footer label
-        UILabel* footerLabel = [[UILabel alloc] init];
-        footerLabel.frame = CGRectMake(20, 15, 280, 100);
-        footerLabel.textAlignment = UITextAlignmentCenter;
-        footerLabel.numberOfLines = 0;
-        footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.textColor = [UIColor whiteColor];
-        footerLabel.font = [UIFont systemFontOfSize:14];
-        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"You can change this later in the \nSettings of your %@.", 
-                                                                               @"Footer text in user settings view"), device];
-        footerLabel.alpha = 0.85;
-        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
-        
-        return footerLabel;
-    }
-        
 
-        
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        return NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.",
+                                 @"Footer text in user setting view");
+    }
+    else if (section == 1) {
+        return NSLocalizedString(@"You can change this later in the \nSettings of your %@.",
+                          @"Footer text in user settings view");
+    }
     
     return nil;
 }
+
+//- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    if (section == 0)
+//    {
+//        //creating footer label
+//        UILabel* footerLabel = [[UILabel alloc] init];
+//        footerLabel.frame = CGRectMake(20, 15, 280, 100);
+//        footerLabel.textAlignment = UITextAlignmentCenter;
+//        footerLabel.numberOfLines = 0;
+//        footerLabel.backgroundColor = [UIColor clearColor];
+//        footerLabel.textColor = [UIColor whiteColor];
+//        footerLabel.font = [UIFont systemFontOfSize:14];
+//        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.", 
+//                                                                               @"Footer text in user setting view")];
+//        footerLabel.alpha = 0.85;
+//        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
+//        
+//        return footerLabel;
+//    }
+//    if (section == 1)
+//    {
+//        NSString* device = @"iPhone";
+//        UIDevice* thisDevice = [UIDevice currentDevice];
+//        if (thisDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+//            device = @"iPad";
+//        
+//        
+//        //creating footer label
+//        UILabel* footerLabel = [[UILabel alloc] init];
+//        footerLabel.frame = CGRectMake(20, 15, 280, 100);
+//        footerLabel.textAlignment = UITextAlignmentCenter;
+//        footerLabel.numberOfLines = 0;
+//        footerLabel.backgroundColor = [UIColor clearColor];
+//        footerLabel.textColor = [UIColor whiteColor];
+//        footerLabel.font = [UIFont systemFontOfSize:14];
+//        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"You can change this later in the \nSettings of your %@.", 
+//                                                                               @"Footer text in user settings view"), device];
+//        footerLabel.alpha = 0.85;
+//        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
+//        
+//        return footerLabel;
+//    }
+//        
+//
+//        
+//    
+//    return nil;
+//}
 
 
 

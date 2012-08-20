@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/SendCertificateTwoWayViewController.m"
-         timestampString = "363791082.849275"
+         timestampString = "367142678.293068"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
+         startingLineNumber = "255"
+         endingLineNumber = "255"
          landmarkName = "-tableView:heightForHeaderInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/CreateNewCertificateViewController.m"
-         timestampString = "365508612.041891"
+         timestampString = "367141656.638886"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "294"
-         endingLineNumber = "294"
+         startingLineNumber = "295"
+         endingLineNumber = "295"
          landmarkName = "-textFieldDidEndEditing:"
          landmarkType = "5">
       </FileBreakpoint>

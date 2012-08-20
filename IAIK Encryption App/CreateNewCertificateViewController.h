@@ -22,6 +22,8 @@ typedef enum {
 
 @interface CreateNewCertificateViewController : UITableViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) UIViewController *owner;
+
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender;
 - (IBAction)saveButtonClicked:(UIBarButtonItem *)sender;
 

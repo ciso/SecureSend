@@ -81,13 +81,15 @@
 {
     [super viewDidLoad];
     
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-    CGRect background_frame = self.tableView.frame;
-    background_frame.origin.x = 0;
-    background_frame.origin.y = 0;
-    background.frame = background_frame;
-    background.contentMode = UIViewContentModeTop;
-    self.tableView.backgroundView = background;
+//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+//    CGRect background_frame = self.tableView.frame;
+//    background_frame.origin.x = 0;
+//    background_frame.origin.y = 0;
+//    background.frame = background_frame;
+//    background.contentMode = UIViewContentModeTop;
+//    self.tableView.backgroundView = background;
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -228,24 +230,24 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
-    hView.backgroundColor=[UIColor clearColor];
-    
-    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
-    
-    hLabel.backgroundColor=[UIColor clearColor];
-    hLabel.shadowColor = [UIColor blackColor];
-    hLabel.shadowOffset = CGSizeMake(0.5,1);
-    hLabel.textColor = [UIColor whiteColor];
-    hLabel.font = [UIFont boldSystemFontOfSize:17];
-    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    [hView addSubview:hLabel];
-        
-    return hView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
+//    hView.backgroundColor=[UIColor clearColor];
+//    
+//    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
+//    
+//    hLabel.backgroundColor=[UIColor clearColor];
+//    hLabel.shadowColor = [UIColor blackColor];
+//    hLabel.shadowOffset = CGSizeMake(0.5,1);
+//    hLabel.textColor = [UIColor whiteColor];
+//    hLabel.font = [UIFont boldSystemFontOfSize:17];
+//    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+//    
+//    [hView addSubview:hLabel];
+//        
+//    return hView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

@@ -8,6 +8,8 @@
 
 #import "MyCertificateViewController.h"
 #import "PersistentStore.h"
+#import "X509CertificateUtil.h"
+#import "CreateNewCertificateViewController.h"
 
 @interface MyCertificateViewController ()
 
@@ -31,10 +33,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.certificate = [PersistentStore getActiveCertificateOfUser];
     
+    [self loadCertificate];
+
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
+- (void)loadCertificate {
+    self.certificate = [PersistentStore getActiveCertificateOfUser];
 }
 
 - (void)viewDidUnload
@@ -53,91 +65,148 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (section == 0) {
+        return 1;
+    }
+    else if (section == 1) {
+        return 7;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = nil;
     
-    //generics
-    cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
-    
-    //cell specific
-    if (indexPath.section == 0 && indexPath.row == 0)
-    {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+        //generics
+        cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
         cell.textLabel.text = @"Create new Certificate";
         cell.detailTextLabel.text = @"You can create a new certificate here. Please use this only if you realy need a new certificate. For example if your old one is leaked or was stolen";
-    }    
+    }
+    else {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
+
+        NSString *title = @"";
+        NSString *detail = @"";
+        
+        if (indexPath.section == 1 && indexPath.row == 0)
+        {
+            title = @"Name";
+            
+            detail = [X509CertificateUtil getCommonName:self.certificate];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 1)
+        {
+            title = @"Email";
+            
+            detail = [X509CertificateUtil getEmail:self.certificate];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 2)
+        {
+            title = @"Expires";
+            
+            NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterMediumStyle];
+            NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:[X509CertificateUtil getExpirationDate:self.certificate]]];
+            
+            detail = datestring;
+        }
+        else if (indexPath.section == 1 && indexPath.row == 3)
+        {
+            title = @"Serial";
+            
+            detail = [X509CertificateUtil getSerialNumber:self.certificate];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 4)
+        {
+            title = @"Org.";
+            
+            detail = [X509CertificateUtil getOrganization:self.certificate];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 5)
+        {
+            title = @"Org. Unit";
+            
+            detail = [X509CertificateUtil getOrganizationUnit:self.certificate];
+        }
+        else if (indexPath.section == 1 && indexPath.row == 6)
+        {
+            title = @"City";
+            
+            detail = [X509CertificateUtil getCity:self.certificate];
+        }
+        
+        // Configure the cell...
+        cell.textLabel.text = title;
+        cell.detailTextLabel.text = detail;
+    }
+    
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-    //NSLog(@"width: %f", cell.detailTextLabel.frame.size.width);
-    
-    float padding = 10.0;
-    
-    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
-    CGSize labelSize = [cell.detailTextLabel.text sizeWithFont:cell.detailTextLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
-    
-    float descriptionHeight = labelSize.height;
-    NSLog(@"DescriptionHeight: %f", descriptionHeight);
-    
-    labelSize = [cell.textLabel.text sizeWithFont:cell.textLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeClip];
-    
-    float titleHeight = labelSize.height;
-    NSLog(@"TitleHeight: %f", titleHeight);
-    
-    
-    return descriptionHeight + titleHeight + (2*padding);
+    if (indexPath.section == 0) {
+        UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+        //NSLog(@"width: %f", cell.detailTextLabel.frame.size.width);
+        
+        float padding = 10.0;
+        
+        CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+        CGSize labelSize = [cell.detailTextLabel.text sizeWithFont:cell.detailTextLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        
+        float descriptionHeight = labelSize.height;
+        NSLog(@"DescriptionHeight: %f", descriptionHeight);
+        
+        labelSize = [cell.textLabel.text sizeWithFont:cell.textLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeClip];
+        
+        float titleHeight = labelSize.height;
+        NSLog(@"TitleHeight: %f", titleHeight);
+        
+        
+        return descriptionHeight + titleHeight + (2*padding);
+    }
+    else {
+        return 44.0;
+    }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *ret = nil;
+    
+    if (section == 1) {
+        ret = @"Certificate";
+    }
+    
+    return ret;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"createNewCertSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+            
+            if ([[nav.viewControllers objectAtIndex:0] isKindOfClass:[CreateNewCertificateViewController class]]) {
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+                CreateNewCertificateViewController *destination = (CreateNewCertificateViewController*)[nav.viewControllers objectAtIndex:0];
+                destination.owner = self;
+            }
+        }
+    }
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

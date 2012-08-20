@@ -45,6 +45,7 @@
 @synthesize organizationUnit = _organizationUnit;
 @synthesize activeIndexPath  = _activeIndexPath;
 @synthesize activeTextField  = _activeTextField;
+@synthesize owner            = _owner;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -391,6 +392,11 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.tableView.scrollEnabled = YES; //should not change anything...
+            
+            //renew fields in certificate view
+            
+            [self.owner performSelectorOnMainThread:@selector(loadCertificate) withObject:nil waitUntilDone:YES];
+            
             [load removeFromSuperview];
             [self dismissModalViewControllerAnimated:YES];
         });
