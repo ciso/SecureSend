@@ -8,16 +8,22 @@
 
 #import <AddressBook/ABAddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import <QuartzCore/QuartzCore.h>
 #import "RecipientDetailViewController.h"
 #import "Recipient.h"
+#import "KeyChainStore.h"
+#import "X509CertificateUtil.h"
 
 @interface RecipientDetailViewController ()
+
+@property (nonatomic, strong) NSData *certificate;
 
 @end
 
 @implementation RecipientDetailViewController
 
 @synthesize recipient = _recipient;
+@synthesize certificate = _certificate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,6 +41,8 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
     self.title = @"Info";
+    NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(self.recipient.recordRef)];
+    self.certificate = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
 }
 
 - (void)viewDidUnload
@@ -68,7 +76,7 @@
     }
     else if (section == 2)
     {
-        return 1;
+        return 7;
     }
     
     return 0;
@@ -83,12 +91,34 @@
     NSString *detail = @"";
     
     if (indexPath.section == 0 && indexPath.row == 0)
-    { 
-        NSString* firstname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef,kABPersonFirstNameProperty);
-        NSString* lastname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef, kABPersonLastNameProperty);
+    {
+        UITableViewCell *newCell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
+        newCell.backgroundColor = [UIColor clearColor];
+        newCell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         
-        title = @"Name";
-        detail = [NSString stringWithFormat:@"%@ %@", firstname, lastname];
+        NSString *firstname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef,kABPersonFirstNameProperty);
+        NSString *lastname = (__bridge NSString*) ABRecordCopyValue(self.recipient.recordRef, kABPersonLastNameProperty);
+        //ABPersonCopyImageDataWithFormat
+        NSData *profileImage = (__bridge NSData*)ABPersonCopyImageDataWithFormat(self.recipient.recordRef, kABPersonImageFormatThumbnail);
+        
+        UIImage *image = [UIImage imageWithData:profileImage];
+        
+        UIImageView *imageView = (UIImageView*)[newCell viewWithTag:100];
+        UILabel *detailLabel = (UILabel*)[newCell viewWithTag:101];
+                
+        imageView.layer.masksToBounds = YES;
+        imageView.layer.borderColor = [UIColor blackColor].CGColor;
+        imageView.layer.borderWidth = 1;
+        imageView.layer.cornerRadius = 5.0;
+
+        
+        //title = @"Name";
+        //detail = [NSString stringWithFormat:@"%@ %@", firstname, lastname];
+        
+        imageView.image = image;
+        detailLabel.text = [NSString stringWithFormat:@"%@ %@", firstname, lastname];
+        
+        cell = newCell;
         
     }
     else if (indexPath.section == 1 && indexPath.row == 0)
@@ -109,6 +139,18 @@
     }
     else if (indexPath.section == 2 && indexPath.row == 0)
     {
+        title = @"Name";
+
+        detail = [X509CertificateUtil getCommonName:self.certificate];
+    }
+    else if (indexPath.section == 2 && indexPath.row == 1)
+    {
+        title = @"Email";
+        
+        detail = [X509CertificateUtil getEmail:self.certificate];
+    }
+    else if (indexPath.section == 2 && indexPath.row == 2)
+    {
         title = @"Expires";
         
         NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
@@ -116,8 +158,30 @@
         NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:self.recipient.expirationDate]];
         
         detail = datestring;
-
+    }
+    else if (indexPath.section == 2 && indexPath.row == 3)
+    {
+        title = @"Serial";
         
+        detail = [X509CertificateUtil getSerialNumber:self.certificate];
+    }
+    else if (indexPath.section == 2 && indexPath.row == 4)
+    {
+        title = @"Org.";
+        
+        detail = [X509CertificateUtil getOrganization:self.certificate];
+    }
+    else if (indexPath.section == 2 && indexPath.row == 5)
+    {
+        title = @"Org. Unit";
+        
+        detail = [X509CertificateUtil getOrganizationUnit:self.certificate];
+    }
+    else if (indexPath.section == 2 && indexPath.row == 6)
+    {
+        title = @"City";
+        
+        detail = [X509CertificateUtil getCity:self.certificate];
     }
      
     // Configure the cell...
@@ -128,44 +192,27 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *ret = nil;
+    
+    if (section == 1) {
+        ret = @"General";
+    }
+    else if (section == 2) {
+        ret = @"Certificate";
+    }
+    
+    return ret;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 70.0;
+    }
+    else {
+        return 44.0;
+    }
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
