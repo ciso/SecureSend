@@ -121,6 +121,10 @@
 		B4E38F5E15C15298008AEF89 /* UserCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5D15C15298008AEF89 /* UserCertificate.m */; };
 		B4E38F6515C154A7008AEF89 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F6415C154A7008AEF89 /* Util.m */; };
 		B4E38F6915C156DB008AEF89 /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F6815C156DB008AEF89 /* KeyChainStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B4F1307C15E2329300289B03 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1307B15E2329300289B03 /* NotificationViewController.m */; };
+		B4F1308115E2413200289B03 /* tugraz.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1307F15E2413200289B03 /* tugraz.png */; };
+		B4F1308215E2413200289B03 /* tugraz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308015E2413200289B03 /* tugraz@2x.png */; };
+		B4F1308415E2537100289B03 /* notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308315E2537100289B03 /* notification@2x.png */; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -336,6 +340,11 @@
 		B4E38F6415C154A7008AEF89 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		B4E38F6715C156DB008AEF89 /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
 		B4E38F6815C156DB008AEF89 /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		B4F1307A15E2329300289B03 /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		B4F1307B15E2329300289B03 /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		B4F1307F15E2413200289B03 /* tugraz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tugraz.png; sourceTree = "<group>"; };
+		B4F1308015E2413200289B03 /* tugraz@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tugraz@2x.png"; sourceTree = "<group>"; };
+		B4F1308315E2537100289B03 /* notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification@2x.png"; sourceTree = "<group>"; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -526,6 +535,7 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1307915E2327300289B03 /* NotificationViewController */,
 				B420F06315C0092700FEF4D5 /* DEVELOPER */,
 				B4B4097915B408F100DCFAE5 /* CustomTabBarController */,
 				B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */,
@@ -794,6 +804,9 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1308315E2537100289B03 /* notification@2x.png */,
+				B4F1307F15E2413200289B03 /* tugraz.png */,
+				B4F1308015E2413200289B03 /* tugraz@2x.png */,
 				B40C29D815AFF85A00C7B47A /* Tabbar */,
 				B4118BF515AB16D700D050B2 /* Splash Screen */,
 				B4118BD615AB11D400D050B2 /* UIImages */,
@@ -1212,6 +1225,15 @@
 			name = KeyChainStore;
 			sourceTree = "<group>";
 		};
+		B4F1307915E2327300289B03 /* NotificationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4F1307A15E2329300289B03 /* NotificationViewController.h */,
+				B4F1307B15E2329300289B03 /* NotificationViewController.m */,
+			);
+			name = NotificationViewController;
+			sourceTree = "<group>";
+		};
 		B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,6 +1359,9 @@
 				B48B97C615BD9AF4000F0D57 /* 123-id-card.png in Resources */,
 				B48B97C815BD9B26000F0D57 /* 44-shoebox.png in Resources */,
 				B420F06215C007AE00FEF4D5 /* 117-todo.png in Resources */,
+				B4F1308115E2413200289B03 /* tugraz.png in Resources */,
+				B4F1308215E2413200289B03 /* tugraz@2x.png in Resources */,
+				B4F1308415E2537100289B03 /* notification@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1462,7 @@
 				B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */,
 				B40F1D9B15C946C600660350 /* KeyPair.m in Sources */,
 				B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */,
+				B4F1307C15E2329300289B03 /* NotificationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

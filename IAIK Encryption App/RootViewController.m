@@ -31,6 +31,7 @@
 #import "CertificateRequest.h"
 #import "PersistentStore.h"
 #import "KeyChainStore.h"
+#import "NotificationViewController.h"
 
 
 #define SECTION_CONTAINERS 0
@@ -125,17 +126,67 @@
 
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 
+    [self showDataProtectionNotification];
     
     
+    self.sendRequest = NO;
+    self.certMailSent = NO;
+    self.editable = NO;
+}
+
+- (void)notificationViewClosed {
+    [self openCreateCertificateView];
+}
+
+- (void)openCreateCertificateView {
     //checking if a certificate has to be created
     if([PersistentStore getActiveCertificateOfUser] == nil)
     {
         [self performSegueWithIdentifier:SEGUE_TO_CREATE_CERT sender:nil];
     }
+}
+
+- (void)showDataProtectionNotification {
+    BOOL shownotification = NO;
     
-    self.sendRequest = NO;
-    self.certMailSent = NO;
-    self.editable = NO;
+    
+    // Get current version ("Bundle Version") from the default Info.plist file
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"prevStartupVersions"];
+    if (prevStartupVersions == nil)
+    {
+        //Fresh install!!
+        shownotification = YES;
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:@"prevStartupVersions"];
+    }
+    else
+    {
+        if (![prevStartupVersions containsObject:currentVersion])
+        {
+            
+            //first start of this version
+            shownotification = YES;
+            
+            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
+            [updatedPrevStartVersions addObject:currentVersion];
+            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:@"prevStartupVersions"];
+        }
+    }
+    
+    // Save changes to disk
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (shownotification) {
+        [self performSegueWithIdentifier:@"toDataProtectionNotification" sender:self];
+    }
+    
+//    if(shownotification)
+//    {
+//        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data Protection", nil) message:NSLocalizedString(@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [enableDP show];
+//    }
 }
 
 - (void)viewDidUnload
@@ -552,6 +603,13 @@
         UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
         UserSettingsViewController *settings = (UserSettingsViewController*)[nav.viewControllers objectAtIndex:0];
         settings.sender = self;
+    }
+    else if ([segue.identifier isEqualToString:@"toDataProtectionNotification"]) {
+        
+        UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+        NotificationViewController *view = (NotificationViewController*)[nav.viewControllers objectAtIndex:0];
+        view.delegate = self;
+        
     }
 }
 

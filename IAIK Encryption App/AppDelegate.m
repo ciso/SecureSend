@@ -32,44 +32,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    BOOL shownotification = NO;
-    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
-    // Get current version ("Bundle Version") from the default Info.plist file
-    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"prevStartupVersions"];
-    if (prevStartupVersions == nil) 
-    {
-        //Fresh install!!
-        shownotification = YES;
-        
-        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:@"prevStartupVersions"];
-    }
-    else
-    {
-        if (![prevStartupVersions containsObject:currentVersion]) 
-        {
-            
-            //first start of this version
-            shownotification = YES;
-            
-            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
-            [updatedPrevStartVersions addObject:currentVersion];
-            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:@"prevStartupVersions"];
-        }
-    }
-    
-    // Save changes to disk
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    if(shownotification)
-    {
-        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data Protection", nil) message:NSLocalizedString(@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [enableDP show];
-    }
-    
+
+       
     //navbar customization
     UIImage *gradientImage44 = [[UIImage imageNamed:@"navigationBar"] 
                                 resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
