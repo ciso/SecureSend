@@ -125,6 +125,7 @@
 		B4F1308115E2413200289B03 /* tugraz.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1307F15E2413200289B03 /* tugraz.png */; };
 		B4F1308215E2413200289B03 /* tugraz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308015E2413200289B03 /* tugraz@2x.png */; };
 		B4F1308415E2537100289B03 /* notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308315E2537100289B03 /* notification@2x.png */; };
+		B4F1308815E25D7600289B03 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1308715E25D7600289B03 /* TutorialViewController.m */; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -345,6 +346,8 @@
 		B4F1307F15E2413200289B03 /* tugraz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tugraz.png; sourceTree = "<group>"; };
 		B4F1308015E2413200289B03 /* tugraz@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tugraz@2x.png"; sourceTree = "<group>"; };
 		B4F1308315E2537100289B03 /* notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification@2x.png"; sourceTree = "<group>"; };
+		B4F1308615E25D7600289B03 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
+		B4F1308715E25D7600289B03 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -535,6 +538,7 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1308515E25D5D00289B03 /* TutorialViewController */,
 				B4F1307915E2327300289B03 /* NotificationViewController */,
 				B420F06315C0092700FEF4D5 /* DEVELOPER */,
 				B4B4097915B408F100DCFAE5 /* CustomTabBarController */,
@@ -1234,6 +1238,15 @@
 			name = NotificationViewController;
 			sourceTree = "<group>";
 		};
+		B4F1308515E25D5D00289B03 /* TutorialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4F1308615E25D7600289B03 /* TutorialViewController.h */,
+				B4F1308715E25D7600289B03 /* TutorialViewController.m */,
+			);
+			name = TutorialViewController;
+			sourceTree = "<group>";
+		};
 		B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1463,6 +1476,7 @@
 				B40F1D9B15C946C600660350 /* KeyPair.m in Sources */,
 				B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */,
 				B4F1307C15E2329300289B03 /* NotificationViewController.m in Sources */,
+				B4F1308815E25D7600289B03 /* TutorialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
