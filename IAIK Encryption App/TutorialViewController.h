@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GetStartedBaseViewController.h"
 
-@interface TutorialViewController : UIViewController <UIScrollViewDelegate>
+@interface TutorialViewController : GetStartedBaseViewController
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControlOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
 - (IBAction)nextButtonClicked:(UIBarButtonItem *)sender;

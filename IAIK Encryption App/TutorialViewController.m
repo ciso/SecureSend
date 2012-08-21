@@ -13,8 +13,8 @@
 @end
 
 @implementation TutorialViewController
-@synthesize pageControlOutlet;
-@synthesize scrollViewOutlet;
+@synthesize pageControlOutlet = _pageControlOutlet;
+@synthesize scrollViewOutlet = _scrollViewOutlet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,26 +30,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.scrollViewOutlet.delegate = self;
+    self.pageControl = self.pageControlOutlet;
+    self.scrollView = self.scrollViewOutlet;
+    self.delegate = self;
     
+    UIImage *newImage = [UIImage imageNamed:@"tut1"];
+    [self.pages addObject:newImage];
+    [self.pages addObject:newImage];
+    [self.pages addObject:newImage];
+    [self.pages addObject:newImage];
     
-    NSArray *colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor blueColor], nil];
-    for (int i = 0; i < colors.count; i++) {
-        CGRect frame;
-        frame.origin.x = self.scrollViewOutlet.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = self.scrollViewOutlet.frame.size;
-        
-        //UIView *subview = [[UIView alloc] initWithFrame:frame];
-        //subview.backgroundColor = [colors objectAtIndex:i];
-        UIImage *image = [UIImage imageNamed:@"tut1"];
-        UIImageView *imageview = [[UIImageView alloc] initWithFrame:frame];
-        imageview.image = image;
-        
-        [self.scrollViewOutlet addSubview:imageview];
-    }
-    
-    self.scrollViewOutlet.contentSize = CGSizeMake(self.scrollViewOutlet.frame.size.width * colors.count, self.scrollViewOutlet.frame.size.height);
+    [self initialized];
     
 }
 
@@ -66,13 +57,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-    // Update the page when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = self.scrollViewOutlet.frame.size.width;
-    int page = floor((self.scrollViewOutlet.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControlOutlet.currentPage = page;
-}
-
 
 //- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 //    pageControlBeingUsed = NO;
@@ -83,14 +67,35 @@
 //}
 
 - (IBAction)nextButtonClicked:(UIBarButtonItem *)sender {
-    CGRect frame;
-    frame.origin.x = self.scrollViewOutlet.frame.size.width * (self.pageControlOutlet.currentPage + 1); //added +1
-    frame.origin.y = 0;
-    frame.size = self.scrollViewOutlet.frame.size;
-    [self.scrollViewOutlet scrollRectToVisible:frame animated:YES];
+    if (!self.isOnLastPage) {
+        [self next];
+    }
+    else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)skipButtonClicked:(UIBarButtonItem *)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void)userClickedNextOnLastPage {
+    NSLog(@"last clicked...");
+}
+
+- (void)userEnteredLastPage {
+    NSLog(@"user entered last page");
+    
+    UIBarButtonItem *item = self.navigationItem.rightBarButtonItem;
+    item.title = @"Done";
+    [self.navigationItem setRightBarButtonItem:item animated:YES];}
+
+- (void)userLeftLastPage {
+    NSLog(@"user left last page");
+    
+    UIBarButtonItem *item = self.navigationItem.rightBarButtonItem;
+    item.title = @"Next";
+    [self.navigationItem setRightBarButtonItem:item animated:YES];
+}
+
 @end

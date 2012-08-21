@@ -13,5 +13,10 @@
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *pages;
+@property (nonatomic, strong) id delegate;
+@property (nonatomic, assign) BOOL isOnLastPage;
+
+- (void)initialized;
+- (void)next;
 
 @end
