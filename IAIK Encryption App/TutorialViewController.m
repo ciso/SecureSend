@@ -14,7 +14,8 @@
 
 @implementation TutorialViewController
 @synthesize pageControlOutlet = _pageControlOutlet;
-@synthesize scrollViewOutlet = _scrollViewOutlet;
+@synthesize scrollViewOutlet  = _scrollViewOutlet;
+@synthesize root               = _root;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,12 +37,16 @@
     
     UIImage *tutImage1 = [UIImage imageNamed:@"tut1"];
     UIImage *tutImage2 = [UIImage imageNamed:@"tut2"];
+    UIImage *tutImage3 = [UIImage imageNamed:@"tut3"];
+    UIImage *tutImage4 = [UIImage imageNamed:@"tut4"];
+    UIImage *tutImage5 = [UIImage imageNamed:@"tut5"];
 
     [self.pages addObject:tutImage1];
     [self.pages addObject:tutImage2];
-    [self.pages addObject:tutImage1];
-    [self.pages addObject:tutImage1];
-    
+    [self.pages addObject:tutImage3];
+    [self.pages addObject:tutImage4];
+    [self.pages addObject:tutImage5];
+
     [self initialized];
     
 }
@@ -73,12 +78,22 @@
         [self next];
     }
     else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self close];
     }
 }
 
 - (IBAction)skipButtonClicked:(UIBarButtonItem *)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self close];
+}
+
+- (void)close {
+    if ([self.root respondsToSelector:@selector(getStartedViewClosed)]) {
+        [self dismissModalViewControllerAnimated:NO];
+        [self.root performSelector:@selector(getStartedViewClosed)];
+    }
+    else {
+      [self dismissModalViewControllerAnimated:YES];  
+    }
 }
 
 - (void)userClickedNextOnLastPage {
@@ -89,7 +104,7 @@
     NSLog(@"user entered last page");
     
     UIBarButtonItem *item = self.navigationItem.rightBarButtonItem;
-    item.title = @"Done";
+    item.title = @"Start";
     [self.navigationItem setRightBarButtonItem:item animated:YES];}
 
 - (void)userLeftLastPage {

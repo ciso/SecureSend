@@ -79,6 +79,7 @@
                         <segue destination="ETl-E8-Dvy" kind="modal" identifier="toDefaultEmail" id="KLi-m5-Kv2"/>
                         <segue destination="iPd-Oy-CAw" kind="modal" identifier="toCreateCertificate" id="YDp-e6-swT"/>
                         <segue destination="9Xr-xM-f9Y" kind="modal" identifier="toDataProtectionNotification" id="yDN-f4-IdL"/>
+                        <segue destination="NcW-Nl-JeT" kind="modal" identifier="toGetStartedView" id="Zeq-zY-hTX"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -277,7 +278,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2591" y="-891"/>
+            <point key="canvasLocation" x="3643" y="-891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rc6-tY-3Nb">
@@ -292,7 +293,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="2057" y="-891"/>
+            <point key="canvasLocation" x="3109" y="-891"/>
         </scene>
         <!--Container Detail View Controller - Details-->
         <scene sceneID="QQ2-sT-v01">
@@ -546,149 +547,6 @@
             </objects>
             <point key="canvasLocation" x="1104" y="2021"/>
         </scene>
-        <!--Create Certificate View Controller - Create Certificate-->
-        <scene sceneID="JDn-9w-pKL">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xSf-R6-vWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="CreateCertificateViewController" title="Create Certificate" id="3ms-Me-AcL" customClass="CreateCertificateViewController" sceneMemberID="viewController">
-                    <view key="view" tag="2" contentMode="scaleToFill" id="2wR-tI-JoW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" id="kr5-9Y-Wf7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="tugLogo_farb.gif" id="sFj-cQ-ldT">
-                                        <rect key="frame" x="59" y="52" width="150" height="65"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" minimumFontSize="17" clearButtonMode="whileEditing" id="q0f-zx-Ta6">
-                                        <rect key="frame" x="20" y="230" width="274" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="755-5L-0GK"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" minimumFontSize="17" clearButtonMode="whileEditing" id="Qj4-cA-3AV">
-                                        <rect key="frame" x="20" y="269" width="274" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="sYd-47-JYe"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail address" minimumFontSize="17" clearButtonMode="whileEditing" id="JXI-St-d3E">
-                                        <rect key="frame" x="20" y="308" width="274" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="lKX-MG-hKK"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mandatory fields" lineBreakMode="tailTruncation" minimumFontSize="10" id="aHZ-3K-oWG">
-                                        <rect key="frame" x="20" y="206" width="127" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Optional" lineBreakMode="tailTruncation" minimumFontSize="10" id="pFP-MZ-gjO">
-                                        <rect key="frame" x="20" y="347" width="127" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country code" minimumFontSize="17" clearButtonMode="whileEditing" id="Rre-3Z-84T">
-                                        <rect key="frame" x="20" y="376" width="127" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="RvE-20-5ls"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" clearButtonMode="whileEditing" id="h7a-gM-B3f">
-                                        <rect key="frame" x="20" y="415" width="275" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="2fh-NX-qyq"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="H8z-06-rYm">
-                                        <rect key="frame" x="20" y="120" width="280" height="110"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <string key="text">Welcome to the IAIK Encryption App.To 
-exchange data in a secure way you have to create a certificate which you can use send to your partners to prove your identity. However, to create such a certificate for you we need some basic information about yourself. </string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <navigationBar contentMode="scaleToFill" id="4yw-eV-Fvg">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <items>
-                                            <navigationItem title="Create Certificate" id="xec-CX-0D9">
-                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UDR-X0-Irs">
-                                                    <connections>
-                                                        <action selector="cancelPressed:" destination="3ms-Me-AcL" id="kwd-xt-xIi"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" systemItem="save" id="PF4-ga-krR">
-                                                    <connections>
-                                                        <action selector="savePressed:" destination="3ms-Me-AcL" id="hZb-4k-ke3"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organisation" minimumFontSize="17" id="vkd-LD-Sug">
-                                        <rect key="frame" x="20" y="454" width="274" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="Bt1-9k-svV"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organisational Unit" minimumFontSize="17" id="Qip-WI-Fzf">
-                                        <rect key="frame" x="20" y="493" width="274" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="3ms-Me-AcL" id="0X0-yl-viw"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <accessibility key="accessibilityConfiguration">
-                            <bool key="isElement" value="YES"/>
-                        </accessibility>
-                    </view>
-                    <connections>
-                        <outlet property="city" destination="h7a-gM-B3f" id="xBk-Ip-2PU"/>
-                        <outlet property="countrycode" destination="Rre-3Z-84T" id="TTk-4E-BHc"/>
-                        <outlet property="emailaddress" destination="JXI-St-d3E" id="5Lr-Sg-EqL"/>
-                        <outlet property="firstname" destination="q0f-zx-Ta6" id="1ci-Hb-pd1"/>
-                        <outlet property="lastname" destination="Qj4-cA-3AV" id="Dkd-fW-Aml"/>
-                        <outlet property="organisation" destination="vkd-LD-Sug" id="M66-iN-9AC"/>
-                        <outlet property="organisationalunit" destination="Qip-WI-Fzf" id="MBs-8z-OhV"/>
-                        <outlet property="scrollview" destination="kr5-9Y-Wf7" id="pOL-rk-O89"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="-66" y="-891"/>
-        </scene>
         <!--User Settings View Controller-->
         <scene sceneID="xo0-n4-jyE">
             <objects>
@@ -745,7 +603,7 @@ exchange data in a secure way you have to create a certificate which you can use
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1104" y="-942"/>
+            <point key="canvasLocation" x="2156" y="-942"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MIJ-V1-BpN">
@@ -763,7 +621,7 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="578" y="-942"/>
+            <point key="canvasLocation" x="1630" y="-942"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="gTn-ea-OaH">
@@ -934,11 +792,11 @@ exchange data in a secure way you have to create a certificate which you can use
             </objects>
             <point key="canvasLocation" x="-464" y="2021"/>
         </scene>
-        <!--View Controller - DEVELOPER-->
+        <!--Developer View Controller - DEVELOPER-->
         <scene sceneID="wEO-80-Ik8">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddM-E7-QjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="xC2-EV-SSo" sceneMemberID="viewController">
+                <viewController id="xC2-EV-SSo" customClass="DeveloperViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjH-cP-9lj">
                         <rect key="frame" x="0.0" y="44" width="320" height="387"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -986,6 +844,21 @@ exchange data in a secure way you have to create a certificate which you can use
                                 </state>
                                 <connections>
                                     <segue destination="NcW-Nl-JeT" kind="modal" id="gDd-fw-sLS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D5f-x3-rHa">
+                                <rect key="frame" x="20" y="176" width="280" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="RESET USER DEFAULTS">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetUserDefaults:" destination="xC2-EV-SSo" eventType="touchUpInside" id="aYZ-4I-0R8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1242,7 +1115,7 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1112" y="4061"/>
+            <point key="canvasLocation" x="1131" y="4125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fyV-ek-LTe">
@@ -1279,7 +1152,7 @@ exchange data in a secure way you have to create a certificate which you can use
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="586" y="4061"/>
+            <point key="canvasLocation" x="690" y="4115"/>
         </scene>
     </scenes>
     <resources>
@@ -1289,7 +1162,6 @@ exchange data in a secure way you have to create a certificate which you can use
         <image name="145-persondot.png" width="24" height="26"/>
         <image name="44-shoebox.png" width="24" height="22"/>
         <image name="notification@2x.png" width="640" height="650"/>
-        <image name="tugLogo_farb.gif" width="16" height="16"/>
     </resources>
     <classes>
         <class className="CertificateActionViewController" superclassName="UITableViewController">
@@ -1313,21 +1185,6 @@ exchange data in a secure way you have to create a certificate which you can use
                 <relationship kind="action" name="addFile"/>
             </relationships>
         </class>
-        <class className="CreateCertificateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateCertificateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="savePressed:"/>
-                <relationship kind="outlet" name="city" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="countrycode" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="emailaddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastname" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="organisationalunit" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
         <class className="CreateNewCertificateViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewCertificateViewController.h"/>
             <relationships>
@@ -1337,6 +1194,12 @@ exchange data in a secure way you have to create a certificate which you can use
         </class>
         <class className="CustomTabBarController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
+        </class>
+        <class className="DeveloperViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeveloperViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="resetUserDefaults:" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="GetStartedBaseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GetStartedBaseViewController.h"/>
@@ -1417,9 +1280,10 @@ exchange data in a secure way you have to create a certificate which you can use
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="MjX-0A-OTa"/>
-        <segue reference="rJ7-aU-XC7"/>
+        <segue reference="Zeq-zY-hTX"/>
         <segue reference="YDp-e6-swT"/>
         <segue reference="KLi-m5-Kv2"/>
+        <segue reference="MjX-0A-OTa"/>
+        <segue reference="yDN-f4-IdL"/>
     </inferredMetricsTieBreakers>
 </document>

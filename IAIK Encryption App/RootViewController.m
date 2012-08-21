@@ -32,6 +32,7 @@
 #import "PersistentStore.h"
 #import "KeyChainStore.h"
 #import "NotificationViewController.h"
+#import "TutorialViewController.h"
 
 
 #define SECTION_CONTAINERS 0
@@ -126,8 +127,11 @@
 
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 
+    
     [self showDataProtectionNotification];
     
+    //should never be needed... but who knows...
+    [self openCreateCertificateView];
     
     self.sendRequest = NO;
     self.certMailSent = NO;
@@ -135,7 +139,12 @@
 }
 
 - (void)notificationViewClosed {
-    [self openCreateCertificateView];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"getstarted"] == 1) {
+        [self openGetStartedView];
+    }
+    else {
+        [self openCreateCertificateView];
+    }
 }
 
 - (void)openCreateCertificateView {
@@ -144,6 +153,14 @@
     {
         [self performSegueWithIdentifier:SEGUE_TO_CREATE_CERT sender:nil];
     }
+}
+
+- (void)openGetStartedView {
+    [self performSegueWithIdentifier:@"toGetStartedView" sender:nil];
+}
+
+- (void)getStartedViewClosed {
+    [self openCreateCertificateView];
 }
 
 - (void)showDataProtectionNotification {
@@ -610,6 +627,11 @@
         NotificationViewController *view = (NotificationViewController*)[nav.viewControllers objectAtIndex:0];
         view.delegate = self;
         
+    }
+    else if ([segue.identifier isEqualToString:@"toGetStartedView"]) {
+        UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+        TutorialViewController *view = (TutorialViewController*)[nav.viewControllers objectAtIndex:0];
+        view.root = self;
     }
 }
 

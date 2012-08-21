@@ -12,6 +12,9 @@
 @interface TutorialViewController : GetStartedBaseViewController
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControlOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
+
+@property (nonatomic, strong) id root;
+
 - (IBAction)nextButtonClicked:(UIBarButtonItem *)sender;
 - (IBAction)skipButtonClicked:(UIBarButtonItem *)sender;
 
