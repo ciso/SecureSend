@@ -42,10 +42,10 @@
     NSLog(@"%f, %f", self.buttonOutlet.layer.bounds.size.width, self.buttonOutlet.layer.bounds.size.height);
     
     gradientLayer.colors = [NSArray arrayWithObjects:
-                            (id)[UIColor colorWithRed:58.0f/255.0f green:199.0f/255.0f blue:84.0f/255.0f alpha:1.0f].CGColor,
-                            (id)[UIColor colorWithRed:0.0f/255.0f green:138/255.0f blue:24/255.0f alpha:1.0f].CGColor,
-//                            (id)[UIColor colorWithHue:131 saturation:71/100.0f brightness:78/100.0f alpha:1.0f].CGColor,
-//                            (id)[UIColor colorWithHue:130 saturation:100/100.0f brightness:54/100.0f alpha:1.0f].CGColor,
+//                            (id)[UIColor colorWithRed:58.0f/255.0f green:199.0f/255.0f blue:84.0f/255.0f alpha:1.0f].CGColor,
+//                            (id)[UIColor colorWithRed:0.0f/255.0f green:138/255.0f blue:24/255.0f alpha:1.0f].CGColor,
+                            (id)[UIColor colorWithRed:54/255.0f green:157/255.0f blue:244/255.0f alpha:1.0f].CGColor,
+                            (id)[UIColor colorWithRed:58/255.0f green:136/255.0f blue:191/255.0f alpha:1.0f].CGColor,
                             nil];
     
     gradientLayer.locations = [NSArray arrayWithObjects:
@@ -58,7 +58,7 @@
     [self.buttonOutlet.layer insertSublayer:gradientLayer atIndex:0];
     
     self.buttonOutlet.layer.masksToBounds = YES;
-    
+        
     //text shadow
     self.buttonOutlet.titleLabel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.buttonOutlet.titleLabel.layer.shadowOpacity = 0.3f;
@@ -66,7 +66,8 @@
     self.buttonOutlet.titleLabel.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     
     //border
-    self.buttonOutlet.layer.borderColor = [UIColor colorWithRed:2/255.0f green:73/255.0f blue:14/255.0f alpha:0.5f].CGColor;
+//    self.buttonOutlet.layer.borderColor = [UIColor colorWithRed:2/255.0f green:73/255.0f blue:14/255.0f alpha:0.5f].CGColor;
+    self.buttonOutlet.layer.borderColor = [UIColor colorWithRed:41/255.0f green:103/255.0f blue:147/255.0f alpha:0.5f].CGColor;
     self.buttonOutlet.layer.borderWidth = 1.0f;
     
     

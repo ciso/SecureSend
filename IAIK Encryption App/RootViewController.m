@@ -219,8 +219,42 @@
     
     [self showEditBarButtonItem];
     
+    if (self.containers.count == 0) {
+        [self showHelpView];
+    }
+    else {
+        [self removeHelpView];
+    }
+    
     [self.tableView reloadData];
 }
+
+
+
+// help view begin
+- (void)showHelpView {
+    if ([self.view viewWithTag:200] == nil) {
+        UIImage *image = [UIImage imageNamed:@"containerhelp"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.tag = 200;
+        
+        [self.view addSubview:imageView];
+    }
+}
+
+- (void)removeHelpView {
+    UIView *view = [self.view viewWithTag:200];
+    if (view != nil) {
+        view.hidden = YES;
+        [self.view bringSubviewToFront:view];
+        [view removeFromSuperview];
+        [self.view setNeedsLayout];
+        [self.view setNeedsDisplay];
+    }
+}
+//end of help view
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -274,6 +308,7 @@
     if([self.containers count] == 0)
     {
         [self endEditTableView];
+        [self showHelpView];
     }
     
 }
@@ -894,6 +929,11 @@
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView endUpdates];
+    
+    
+    if (self.containers.count > 0) {
+        [self removeHelpView];
+    }
 }
 
 -(void) dealloc

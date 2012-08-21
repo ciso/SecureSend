@@ -1063,7 +1063,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="notification@2x.png" id="Lcu-Ck-k4b">
-                                <rect key="frame" x="0.0" y="13" width="320" height="325"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

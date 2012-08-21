@@ -134,10 +134,43 @@
 {
     [super viewWillAppear:animated];
     
+    if (self.container.fileUrls.count == 0) {
+        [self showHelpView];
+    }
+    else {
+        [self removeHelpView];
+    }
+    
 
     
 //    [self showTabBar:self.tabBarController];
 }
+
+
+// help view begin
+- (void)showHelpView {
+    if ([self.view viewWithTag:200] == nil) {
+        UIImage *image = [UIImage imageNamed:@"filehelp"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.tag = 200;
+        
+        [self.view addSubview:imageView];
+    }
+}
+
+- (void)removeHelpView {
+    UIView *view = [self.view viewWithTag:200];
+    if (view != nil) {
+        view.hidden = YES;
+        [self.view bringSubviewToFront:view];
+        [view removeFromSuperview];
+        [self.view setNeedsLayout];
+        [self.view setNeedsDisplay];
+    }
+}
+//end of help view
+
+
 
 - (void)exportContainer
 {
@@ -315,6 +348,10 @@
     
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
     
+    if (self.container.fileUrls.count == 0) {
+        [self showHelpView];
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -329,6 +366,10 @@
     [self.container.fileUrls addObjectsFromArray:filePaths];
     //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
     //todo! didn't work after refactoring of iPad UI
+    
+    if (self.container.fileUrls.count > 0) {
+        [self removeHelpView];
+    }
     
     [self.tableView reloadData]; 
 }
