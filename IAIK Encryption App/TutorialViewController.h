@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControlOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
 - (IBAction)nextButtonClicked:(UIBarButtonItem *)sender;
+- (IBAction)skipButtonClicked:(UIBarButtonItem *)sender;
 
 @end

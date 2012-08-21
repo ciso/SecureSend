@@ -40,9 +40,13 @@
         frame.origin.y = 0;
         frame.size = self.scrollViewOutlet.frame.size;
         
-        UIView *subview = [[UIView alloc] initWithFrame:frame];
-        subview.backgroundColor = [colors objectAtIndex:i];
-        [self.scrollViewOutlet addSubview:subview];
+        //UIView *subview = [[UIView alloc] initWithFrame:frame];
+        //subview.backgroundColor = [colors objectAtIndex:i];
+        UIImage *image = [UIImage imageNamed:@"tut1"];
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:frame];
+        imageview.image = image;
+        
+        [self.scrollViewOutlet addSubview:imageview];
     }
     
     self.scrollViewOutlet.contentSize = CGSizeMake(self.scrollViewOutlet.frame.size.width * colors.count, self.scrollViewOutlet.frame.size.height);
@@ -84,5 +88,9 @@
     frame.origin.y = 0;
     frame.size = self.scrollViewOutlet.frame.size;
     [self.scrollViewOutlet scrollRectToVisible:frame animated:YES];
+}
+
+- (IBAction)skipButtonClicked:(UIBarButtonItem *)sender {
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end

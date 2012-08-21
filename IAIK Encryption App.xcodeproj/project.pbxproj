@@ -126,6 +126,8 @@
 		B4F1308215E2413200289B03 /* tugraz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308015E2413200289B03 /* tugraz@2x.png */; };
 		B4F1308415E2537100289B03 /* notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1308315E2537100289B03 /* notification@2x.png */; };
 		B4F1308815E25D7600289B03 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1308715E25D7600289B03 /* TutorialViewController.m */; };
+		B4F1309415E3591C00289B03 /* tut1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F1309315E3591C00289B03 /* tut1@2x.png */; };
+		B4F1309C15E35F5F00289B03 /* GetStartedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F1309B15E35F5F00289B03 /* GetStartedBaseViewController.m */; };
 		B4FF5A8615BD4EFD00ED10A8 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */; };
 		B4FF5A8A15BD4F5100ED10A8 /* RecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */; };
 /* End PBXBuildFile section */
@@ -348,6 +350,9 @@
 		B4F1308315E2537100289B03 /* notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification@2x.png"; sourceTree = "<group>"; };
 		B4F1308615E25D7600289B03 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		B4F1308715E25D7600289B03 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		B4F1309315E3591C00289B03 /* tut1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut1@2x.png"; sourceTree = "<group>"; };
+		B4F1309A15E35F5F00289B03 /* GetStartedBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetStartedBaseViewController.h; sourceTree = "<group>"; };
+		B4F1309B15E35F5F00289B03 /* GetStartedBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetStartedBaseViewController.m; sourceTree = "<group>"; };
 		B4FF5A8515BD4EFD00ED10A8 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		B4FF5A8815BD4F5100ED10A8 /* RecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipientsViewController.h; sourceTree = "<group>"; };
 		B4FF5A8915BD4F5100ED10A8 /* RecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipientsViewController.m; sourceTree = "<group>"; };
@@ -488,6 +493,7 @@
 		B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1309515E35EAD00289B03 /* BaseClasses */,
 				B4E38F4315C132C6008AEF89 /* DataModel */,
 				B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */,
 				B4118B7D15AADDEF00D050B2 /* CustomControls */,
@@ -808,6 +814,7 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B4F1309315E3591C00289B03 /* tut1@2x.png */,
 				B4F1308315E2537100289B03 /* notification@2x.png */,
 				B4F1307F15E2413200289B03 /* tugraz.png */,
 				B4F1308015E2413200289B03 /* tugraz@2x.png */,
@@ -1247,6 +1254,23 @@
 			name = TutorialViewController;
 			sourceTree = "<group>";
 		};
+		B4F1309515E35EAD00289B03 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B4F1309615E35EB900289B03 /* GetStarted */,
+			);
+			name = BaseClasses;
+			sourceTree = "<group>";
+		};
+		B4F1309615E35EB900289B03 /* GetStarted */ = {
+			isa = PBXGroup;
+			children = (
+				B4F1309A15E35F5F00289B03 /* GetStartedBaseViewController.h */,
+				B4F1309B15E35F5F00289B03 /* GetStartedBaseViewController.m */,
+			);
+			name = GetStarted;
+			sourceTree = "<group>";
+		};
 		B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,6 +1399,7 @@
 				B4F1308115E2413200289B03 /* tugraz.png in Resources */,
 				B4F1308215E2413200289B03 /* tugraz@2x.png in Resources */,
 				B4F1308415E2537100289B03 /* notification@2x.png in Resources */,
+				B4F1309415E3591C00289B03 /* tut1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1477,6 +1502,7 @@
 				B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */,
 				B4F1307C15E2329300289B03 /* NotificationViewController.m in Sources */,
 				B4F1308815E25D7600289B03 /* TutorialViewController.m in Sources */,
+				B4F1309C15E35F5F00289B03 /* GetStartedBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
