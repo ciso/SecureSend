@@ -34,11 +34,13 @@
     self.scrollView = self.scrollViewOutlet;
     self.delegate = self;
     
-    UIImage *newImage = [UIImage imageNamed:@"tut1"];
-    [self.pages addObject:newImage];
-    [self.pages addObject:newImage];
-    [self.pages addObject:newImage];
-    [self.pages addObject:newImage];
+    UIImage *tutImage1 = [UIImage imageNamed:@"tut1"];
+    UIImage *tutImage2 = [UIImage imageNamed:@"tut2"];
+
+    [self.pages addObject:tutImage1];
+    [self.pages addObject:tutImage2];
+    [self.pages addObject:tutImage1];
+    [self.pages addObject:tutImage1];
     
     [self initialized];
     
