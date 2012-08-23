@@ -1,1 +1,1 @@
-Test
+SecureSend is a research project of the Institute for Applied Information Processing and Communications at the Graz University of Technology.

@@ -103,6 +103,7 @@
 		B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */; };
 		B49506C515C277430062F9E4 /* KeyChainStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506C415C277430062F9E4 /* KeyChainStoreTests.m */; };
 		B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */; };
+		B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = B49BCCE215E5FCC7009BCEC4 /* readme.md */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
 		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
 		B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF115B59F7300A07FCB /* apikey.txt */; };
@@ -317,6 +318,7 @@
 		B49506C415C277430062F9E4 /* KeyChainStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStoreTests.m; sourceTree = "<group>"; };
 		B49506CB15C2ACD60062F9E4 /* X509CertificateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X509CertificateUtil.h; sourceTree = "<group>"; };
 		B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X509CertificateUtil.m; sourceTree = "<group>"; };
+		B49BCCE215E5FCC7009BCEC4 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
 		B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A7ADF115B59F7300A07FCB /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 		B4118BD415AB11C600D050B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B49BCCE215E5FCC7009BCEC4 /* readme.md */,
 				B45DC5B815AEA6EE00E39899 /* en.lproj */,
 				B45DC5B415AEA6E400E39899 /* de.lproj */,
 				B4AC1AFA15AC1CE400AAC18F /* Settings */,
@@ -1437,6 +1440,7 @@
 				B47FF3EA15E3890B001041C7 /* tut4@2x.png in Resources */,
 				B47FF3F015E3A5E0001041C7 /* containerhelp@2x.png in Resources */,
 				B47FF3F215E3AC7E001041C7 /* filehelp@2x.png in Resources */,
+				B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
