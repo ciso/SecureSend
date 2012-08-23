@@ -134,6 +134,8 @@
 {
     [super viewWillAppear:animated];
     
+    
+    
     if (self.container.fileUrls.count == 0) {
         [self showHelpView];
     }
@@ -428,8 +430,7 @@
 #pragma mark - methods for encrypting/zipping containers
 
 -(NSData*) zipAndEncryptContainer
-{    
-    
+{
     //Creating zipper for compressing data
     ZipArchive* zipper = [[ZipArchive alloc] init];
     
@@ -500,43 +501,74 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSData* encryptedcontainer = [self zipAndEncryptContainer];
-    switch (buttonIndex) {
-        case 0:
-        {   //todo just for debug purposes
-            //[[DBSession sharedSession] unlinkAll];
-
-            UITabBarController *tabBar = self.tabBarController;
-            UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
-            RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
-
-            if (![[DBSession sharedSession] isLinked]) 
-            {
-                [[DBSession sharedSession] linkFromController:root];
-                
-            }
-            else 
-            {
-                [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
-            }
-            break;
-        }
-        case 1: //change this to 1 if dropbox action is also visible
-        {
-            if([MFMailComposeViewController canSendMail])
-            {
-                [self sendContainerMail:encryptedcontainer];
-            }
-            else 
-            {
-                NSLog(@"cannot send mail");    
-            }
-            break;
-        }
-        default:
-            break;
+    if (buttonIndex > 1) { //not so pretty...
+        return;
     }
-}
+    
+    self.tableView.userInteractionEnabled = NO;
+    self.navigationController.view.userInteractionEnabled = NO;
+    self.tabBarController.view.userInteractionEnabled = NO;
+    
+    UIView *load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Encrypting Container"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData* encryptedcontainer = [self zipAndEncryptContainer];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [load removeFromSuperview];
+            self.tableView.userInteractionEnabled = YES;
+            self.navigationController.view.userInteractionEnabled = YES;
+            self.tabBarController.view.userInteractionEnabled = YES;
+            
+            switch (buttonIndex) {
+                case 0:
+                {   //todo just for debug purposes
+                    //[[DBSession sharedSession] unlinkAll];
+                    
+                    UITabBarController *tabBar = self.tabBarController;
+                    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+                    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+                    
+                    if (![[DBSession sharedSession] isLinked])
+                    {
+                        [[DBSession sharedSession] linkFromController:root];
+                        
+                    }
+                    else
+                    {
+                        [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
+                            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dropbox"
+                                                                              message:@"Uploading can take several minutes based on the container size. The App will notify you when it is finished."
+                                                                             delegate:nil
+                                                                    cancelButtonTitle:@"OK"
+                                                                    otherButtonTitles:nil];
+                            
+                            [message show];
+                    }
+                    break;
+                }
+                case 1: //change this to 1 if dropbox action is also visible
+                {
+                    if([MFMailComposeViewController canSendMail])
+                    {
+                        [self sendContainerMail:encryptedcontainer];
+                    }
+                    else 
+                    {
+                        NSLog(@"cannot send mail");    
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+
+            
+        }); 
+    });
+    
+    
+    
+   }
 
 #pragma mark - segue control methods
 

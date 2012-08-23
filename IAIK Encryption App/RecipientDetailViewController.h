@@ -13,5 +13,6 @@
 @interface RecipientDetailViewController : UITableViewController
 
 @property (nonatomic, strong) Recipient *recipient;
+- (IBAction)deleteButtonClicked:(UIButton *)sender;
 
 @end

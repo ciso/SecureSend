@@ -104,6 +104,7 @@
 		B49506C515C277430062F9E4 /* KeyChainStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506C415C277430062F9E4 /* KeyChainStoreTests.m */; };
 		B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */; };
 		B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = B49BCCE215E5FCC7009BCEC4 /* readme.md */; };
+		B49BCCE715E63717009BCEC4 /* DropboxBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49BCCE615E63717009BCEC4 /* DropboxBrowserViewController.m */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
 		B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */; };
 		B4A7ADF215B59F7300A07FCB /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4A7ADF115B59F7300A07FCB /* apikey.txt */; };
@@ -319,6 +320,8 @@
 		B49506CB15C2ACD60062F9E4 /* X509CertificateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X509CertificateUtil.h; sourceTree = "<group>"; };
 		B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X509CertificateUtil.m; sourceTree = "<group>"; };
 		B49BCCE215E5FCC7009BCEC4 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
+		B49BCCE515E63717009BCEC4 /* DropboxBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxBrowserViewController.h; sourceTree = "<group>"; };
+		B49BCCE615E63717009BCEC4 /* DropboxBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxBrowserViewController.m; sourceTree = "<group>"; };
 		B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxSDK.framework; path = "IAIK Encryption App/DropboxSDK.framework"; sourceTree = "<group>"; };
 		B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B4A7ADF115B59F7300A07FCB /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
@@ -561,6 +564,7 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B49BCCE415E636FD009BCEC4 /* DropboxBrowserViewController */,
 				B4F1308515E25D5D00289B03 /* TutorialViewController */,
 				B4F1307915E2327300289B03 /* NotificationViewController */,
 				B420F06315C0092700FEF4D5 /* DEVELOPER */,
@@ -1093,6 +1097,15 @@
 			name = X509CertificateUtil;
 			sourceTree = "<group>";
 		};
+		B49BCCE415E636FD009BCEC4 /* DropboxBrowserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B49BCCE515E63717009BCEC4 /* DropboxBrowserViewController.h */,
+				B49BCCE615E63717009BCEC4 /* DropboxBrowserViewController.m */,
+			);
+			name = DropboxBrowserViewController;
+			sourceTree = "<group>";
+		};
 		B4A7ADF015B59F5100A07FCB /* NOT_VISIBLE_ON_GITHUB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1558,7 @@
 				B4F1308815E25D7600289B03 /* TutorialViewController.m in Sources */,
 				B4F1309C15E35F5F00289B03 /* GetStartedBaseViewController.m in Sources */,
 				B47FF3EE15E38E0E001041C7 /* DeveloperViewController.m in Sources */,
+				B49BCCE715E63717009BCEC4 /* DropboxBrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,7 +1666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
@@ -1666,7 +1680,7 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79BC2FDE-0C8B-46D5-8D83-F811C4F9B116";
+				PROVISIONING_PROFILE = "E42CBAF8-F9CA-4147-A146-8D644B2339A7";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1676,7 +1690,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Christof Stromberger (S2WZLUCLWL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
@@ -1690,7 +1704,7 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79BC2FDE-0C8B-46D5-8D83-F811C4F9B116";
+				PROVISIONING_PROFILE = "E42CBAF8-F9CA-4147-A146-8D644B2339A7";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};

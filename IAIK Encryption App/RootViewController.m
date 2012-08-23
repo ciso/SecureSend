@@ -73,14 +73,15 @@
 @synthesize hash                    = _hash;
 @synthesize editable                = _editable;
 @synthesize activeInput             = _activeInput;
+@synthesize restClient              = _restClient;
 
 - (DBRestClient *)restClient {
-    if (!restClient) {
-        restClient =
+    if (!_restClient) {
+        _restClient =
         [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        restClient.delegate = self;
+        _restClient.delegate = self;
     }
-    return restClient;
+    return _restClient;
 }
 
 -(id) initWithCoder:(NSCoder *)aDecoder
@@ -1112,6 +1113,7 @@
 }
 
 
+#pragma mark - dropbox integration
 - (void)uploadFileToDropbox:(NSData*)encryptedContainer withName:(NSString*)name
 {
     NSString *fileName = [NSString stringWithFormat:@"%@.iaikcontainer", name];

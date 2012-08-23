@@ -26,7 +26,7 @@
 
 @interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate, DBRestClientDelegate>
 {
-    DBRestClient *restClient; //dropbox sdk
+    //DBRestClient *restClient; //dropbox sdk
 }
 
 @property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
@@ -41,6 +41,7 @@
 @property (nonatomic, strong) NSString *phoneNumber;
 @property (nonatomic, strong) NSString *hash;
 @property (nonatomic, assign) BOOL editable;
+@property (nonatomic, strong) DBRestClient *restClient;
 
 - (void)receivedBluetoothData:(NSData*) data;
 - (void)sendCertificateBluetooth;

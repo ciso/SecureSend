@@ -3,7 +3,7 @@
 //  bac_01
 //
 //  Created by Christoph Hechenblaikner on 22.02.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
 #import <UIKit/UIImagePickerController.h>
@@ -11,13 +11,16 @@
 #import "FilePathFactory.h"
 #import "ContainerDetailViewController.h"
 #import "UIImage+Resize.h"
+#import "RootViewController.h"
+#import "DropboxBrowserViewController.h"
 
 @implementation SourceSelectionViewController
 
-@synthesize delegate, basePath;
-@synthesize button = _button;
-@synthesize popover = _popover;
-@synthesize caller = _caller;
+@synthesize delegate = _delegate;
+@synthesize basePath = _basePath;
+@synthesize button   = _button;
+@synthesize popover  = _popover;
+@synthesize caller   = _caller;
 
 
 -(id) initWithCoder:(NSCoder *)aDecoder
@@ -100,7 +103,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,6 +121,9 @@
     else if (indexPath.section == 0 && indexPath.row == 1)
     {
         cell.textLabel.text = NSLocalizedString(@"Camera", @"Get a new image from the camera");
+    }
+    else if (indexPath.section == 0 && indexPath.row == 2) {
+        cell.textLabel.text = @"Dropbox (NOT WORKING!)";
     }
     
     return cell;
@@ -150,10 +156,14 @@
         // Place image picker on the screen
         [self presentModalViewController:imagePicker animated:YES];
     }
+    else if (indexPath.section == 0 && indexPath.row == 2) {
+        
+        [self performSegueWithIdentifier:@"toDropboxBrowser" sender:nil];
+    }
 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return NO; //todo: rethink this
 }
@@ -212,4 +222,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toDropboxBrowser"]) {
+        
+        UITabBarController *tabBar = (UITabBarController*)((ContainerDetailViewController*)self.delegate).tabBarController;
+        UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+        RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+        DropboxBrowserViewController *view = (DropboxBrowserViewController*)segue.destinationViewController;
+        view.root = root;
+    }
+}
+
 @end

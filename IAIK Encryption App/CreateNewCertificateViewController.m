@@ -372,7 +372,8 @@
     
     Crypto *crypto = [Crypto getInstance];
     
-    self.tableView.scrollEnabled = NO;
+    self.navigationController.view.userInteractionEnabled = NO;
+    self.tableView.userInteractionEnabled = NO;
     UIView *load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Creating Certificate"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *key = [crypto createRSAKeyWithKeyLength:2048];
@@ -391,7 +392,8 @@
         [PersistentStore storeForUserCertificate:cert privateKey:key]; //test
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.tableView.scrollEnabled = YES; //should not change anything...
+            self.navigationController.view.userInteractionEnabled = YES;
+            self.tableView.userInteractionEnabled = YES;
             
             //renew fields in certificate view
             

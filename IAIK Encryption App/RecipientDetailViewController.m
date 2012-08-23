@@ -61,7 +61,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -77,6 +77,9 @@
     else if (section == 2)
     {
         return 7;
+    }
+    else if (section == 3) {
+        return 1;
     }
     
     return 0;
@@ -189,6 +192,50 @@
     cell.detailTextLabel.text = detail;
     
     
+    if (indexPath.section == 3 && indexPath.row == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"DeleteCell"];
+
+        cell.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        UIButton *button = (UIButton*)[cell viewWithTag:300];
+        
+        //setting up button
+        button.layer.cornerRadius = 5.0;
+        
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.frame = button.layer.bounds;
+        
+        NSLog(@"%f, %f", button.layer.bounds.size.width, button.layer.bounds.size.height);
+        
+        gradientLayer.colors = [NSArray arrayWithObjects:
+                                (id)[UIColor colorWithRed:240/255.0f green:124/255.0f blue:132/255.0f alpha:1.0f].CGColor,
+                                (id)[UIColor colorWithRed:237/255.0f green:19/255.0f blue:19/255.0f alpha:1.0f].CGColor,
+                                nil];
+        
+        gradientLayer.locations = [NSArray arrayWithObjects:
+                                   [NSNumber numberWithFloat:0.0f],
+                                   [NSNumber numberWithFloat:1.0f],
+                                   nil];
+        
+        gradientLayer.cornerRadius = button.layer.cornerRadius;
+        [button.layer insertSublayer:gradientLayer atIndex:0];
+        
+        button.layer.masksToBounds = YES;
+        button.titleLabel.textColor = [UIColor whiteColor];
+        
+        //text shadow
+        button.titleLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+        button.titleLabel.layer.shadowOpacity = 0.3f;
+        button.titleLabel.layer.shadowRadius = 1;
+        button.titleLabel.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+        
+        //border
+        button.layer.borderColor = [UIColor colorWithRed:237/255.0f green:19/255.0f blue:19/255.0f alpha:0.5f].CGColor;
+        button.layer.borderWidth = 1.0f;
+
+
+    }
+    
     return cell;
 }
 
@@ -227,4 +274,17 @@
      */
 }
 
+- (IBAction)deleteButtonClicked:(UIButton *)sender {
+    ABRecordRef ref = self.recipient.recordRef;
+    
+    NSString* identifier = [NSString stringWithFormat:@"%d",ABRecordGetRecordID(ref)];
+    
+    
+    if (![KeyChainStore removeItemForKey:identifier type:kDataTypeCertificate])
+    {
+        NSLog(@"Could not delete certificate in keychain");
+        
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

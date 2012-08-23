@@ -168,42 +168,42 @@
 
 #pragma mark - UIActionSheetDelegate methods
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-        {
-            //deleting certificate
-            [self deleteSelectedCertificate];
-            
-            NSIndexPath* affected = [NSIndexPath indexPathForRow:selected_index inSection:0];
-            
-            //reloading data
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:affected] withRowAnimation:UITableViewRowAnimationRight];
-
-            break;
-        }
-        case 1:
-        {
-            //getting person
-            ABRecordRef person = (__bridge_retained ABRecordRef)[self.relevantPeople objectAtIndex:selected_index];
-            
-            NSString* mailaddress = (__bridge NSString*) ABRecordCopyValue(person, kABPersonEmailProperty);
-            
-            //creating and initialising mail composer
-            MFMailComposeViewController* mailcontroller = [[MFMailComposeViewController alloc] init];
-            [mailcontroller setToRecipients:[NSArray arrayWithObject:mailaddress]];
-            [mailcontroller setSubject:NSLocalizedString(@"Request for certificate", @"Subject for mail in certificate explorer")];
-            [mailcontroller setTitle:NSLocalizedString(@"Request for certificate", @"Title for mail in certificate explorer")];
-            [mailcontroller setMessageBody:NSLocalizedString(@"Please send me your IAIK enryption certificate", @"Body for mail in certificate explorer") isHTML:NO];
-            
-            [self presentModalViewController:mailcontroller animated:YES];
-            
-        }
-        default:
-            break;
-    }
-}
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    switch (buttonIndex) {
+//        case 0:
+//        {
+//            //deleting certificate
+//            [self deleteSelectedCertificate];
+//            
+//            NSIndexPath* affected = [NSIndexPath indexPathForRow:selected_index inSection:0];
+//            
+//            //reloading data
+//            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:affected] withRowAnimation:UITableViewRowAnimationRight];
+//
+//            break;
+//        }
+//        case 1:
+//        {
+//            //getting person
+//            ABRecordRef person = (__bridge_retained ABRecordRef)[self.relevantPeople objectAtIndex:selected_index];
+//            
+//            NSString* mailaddress = (__bridge NSString*) ABRecordCopyValue(person, kABPersonEmailProperty);
+//            
+//            //creating and initialising mail composer
+//            MFMailComposeViewController* mailcontroller = [[MFMailComposeViewController alloc] init];
+//            [mailcontroller setToRecipients:[NSArray arrayWithObject:mailaddress]];
+//            [mailcontroller setSubject:NSLocalizedString(@"Request for certificate", @"Subject for mail in certificate explorer")];
+//            [mailcontroller setTitle:NSLocalizedString(@"Request for certificate", @"Title for mail in certificate explorer")];
+//            [mailcontroller setMessageBody:NSLocalizedString(@"Please send me your IAIK enryption certificate", @"Body for mail in certificate explorer") isHTML:NO];
+//            
+//            [self presentModalViewController:mailcontroller animated:YES];
+//            
+//        }
+//        default:
+//            break;
+//    }
+//}
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
@@ -231,15 +231,15 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    selected_index = indexPath.row;
-    
-    UIActionSheet* certoptions = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Certificate", @"certificate") delegate:self 
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel") 
-                                               destructiveButtonTitle:NSLocalizedString(@"Delete Certificate", @"Delete Certificate") 
-                                                    otherButtonTitles:NSLocalizedString(@"Request new certificate of contact", @"Button title in action sheet in certificate explorer"), 
-                                                                                        nil];
-    
-    [certoptions showInView:self.view];
+//    selected_index = indexPath.row;
+//    
+//    UIActionSheet* certoptions = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Certificate", @"certificate") delegate:self 
+//                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel") 
+//                                               destructiveButtonTitle:NSLocalizedString(@"Delete Certificate", @"Delete Certificate") 
+//                                                    otherButtonTitles:NSLocalizedString(@"Request new certificate of contact", @"Button title in action sheet in certificate explorer"), 
+//                                                                                        nil];
+//    
+//    [certoptions showInView:self.view];
     
 }
 

@@ -42,20 +42,24 @@
     //self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
     
+}
+
+- (void)loadRecipients {
+    
     ABAddressBookRef addressbookref = ABAddressBookCreate();
     NSArray* allpeople = (__bridge NSArray*) ABAddressBookCopyArrayOfAllPeople(addressbookref);
     
     Crypto* crypto = [Crypto getInstance];
     
     self.recipients = [[NSMutableArray alloc] init];
-
+    
     
     for(int i = 0; i < allpeople.count; i++)
     {
         ABRecordRef ref = (__bridge_retained  ABRecordRef)[allpeople objectAtIndex:i];
         
         NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
-                      
+        
         NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
         
         if(cert != nil)
@@ -68,8 +72,14 @@
             [self.recipients addObject:recipient];
         }
     }
-     
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    [self loadRecipients];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload

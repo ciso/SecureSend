@@ -83,7 +83,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>at.tugraz.DEViaiktest01</string>
+	<string>at.tugraz.iaik.SecureSend</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
