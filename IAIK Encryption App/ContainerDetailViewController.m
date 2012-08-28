@@ -50,7 +50,6 @@
 @synthesize shouldRotateToPortrait = _shouldRotateToPortrait;
 
 
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -373,6 +372,10 @@
     }
     
     [self.tableView reloadData]; 
+}
+
+- (void)closeModalView {
+    
 }
 
 -(void)addFile

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIBarButtonItem *button;
 @property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) ContainerDetailViewController *caller;
+
 - (IBAction)cancelButtonClicked:(UIBarButtonItem *)sender;
 
 

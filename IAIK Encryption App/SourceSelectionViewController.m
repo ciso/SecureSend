@@ -16,11 +16,11 @@
 
 @implementation SourceSelectionViewController
 
-@synthesize delegate = _delegate;
-@synthesize basePath = _basePath;
-@synthesize button   = _button;
-@synthesize popover  = _popover;
-@synthesize caller   = _caller;
+@synthesize delegate  = _delegate;
+@synthesize basePath  = _basePath;
+@synthesize button    = _button;
+@synthesize popover   = _popover;
+@synthesize caller    = _caller;
 
 
 -(id) initWithCoder:(NSCoder *)aDecoder
@@ -189,7 +189,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     }
     
     picker.delegate = nil;
+    [picker dismissModalViewControllerAnimated:NO];
     [self dismissModalViewControllerAnimated:YES];
+    
+    NSLog(@"%@", self.parentViewController);
     
     [self.delegate addFilesToContainer:[NSArray arrayWithObject:path]];
     

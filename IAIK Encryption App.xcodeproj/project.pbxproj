@@ -121,6 +121,7 @@
 		B4B4097315B400C700DCFAE5 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097015B400C700DCFAE5 /* UIImage+Alpha.m */; };
 		B4B4097415B400C700DCFAE5 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */; };
 		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
+		B4B772B515ECA69300D2556B /* recipienthelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772B415ECA69300D2556B /* recipienthelp@2x.png */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
@@ -348,6 +349,7 @@
 		B4B4097215B400C700DCFAE5 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		B4B4097A15B4090D00DCFAE5 /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
 		B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
+		B4B772B415ECA69300D2556B /* recipienthelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipienthelp@2x.png"; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -435,18 +437,6 @@
 				B40C29D915AFF87A00C7B47A /* 33-cabinet.png */,
 			);
 			name = Tabbar;
-			sourceTree = "<group>";
-		};
-		B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */ = {
-			isa = PBXGroup;
-			children = (
-				B48B980A15BEAA30000F0D57 /* CreateNewCertificateViewController */,
-				B48B97C915BD9B75000F0D57 /* MyCertificateViewController */,
-				B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */,
-				B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */,
-				B40C29E015AFF9F800C7B47A /* CertificateActionViewController */,
-			);
-			name = "NEW VIEW CONTROLLERS";
 			sourceTree = "<group>";
 		};
 		B40C29E015AFF9F800C7B47A /* CertificateActionViewController */ = {
@@ -564,12 +554,16 @@
 		B4118B6015AAD82300D050B2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B48B980A15BEAA30000F0D57 /* CreateNewCertificateViewController */,
+				B48B97C915BD9B75000F0D57 /* MyCertificateViewController */,
+				B48B97AC15BD6EC6000F0D57 /* RecipientDetailViewController */,
+				B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */,
+				B40C29E015AFF9F800C7B47A /* CertificateActionViewController */,
 				B49BCCE415E636FD009BCEC4 /* DropboxBrowserViewController */,
 				B4F1308515E25D5D00289B03 /* TutorialViewController */,
 				B4F1307915E2327300289B03 /* NotificationViewController */,
 				B420F06315C0092700FEF4D5 /* DEVELOPER */,
 				B4B4097915B408F100DCFAE5 /* CustomTabBarController */,
-				B40C29DF15AFF9EC00C7B47A /* NEW VIEW CONTROLLERS */,
 				B4AC1B2815AD4AEA00AAC18F /* UserSettingsViewController */,
 				B4118BB115AAE10400D050B2 /* SendCertificateViewController */,
 				B4118BAD15AAE0E500D050B2 /* PreviewViewController */,
@@ -836,6 +830,7 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772B415ECA69300D2556B /* recipienthelp@2x.png */,
 				B47FF3F115E3AC7E001041C7 /* filehelp@2x.png */,
 				B47FF3EF15E3A5E0001041C7 /* containerhelp@2x.png */,
 				B47FF3E515E388FF001041C7 /* tut5@2x.png */,
@@ -1454,6 +1449,7 @@
 				B47FF3F015E3A5E0001041C7 /* containerhelp@2x.png in Resources */,
 				B47FF3F215E3AC7E001041C7 /* filehelp@2x.png in Resources */,
 				B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */,
+				B4B772B515ECA69300D2556B /* recipienthelp@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

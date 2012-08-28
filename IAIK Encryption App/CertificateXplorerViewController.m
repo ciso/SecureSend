@@ -92,11 +92,14 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.relevantPeople.count == 0) {
+        UIImage *image = [UIImage imageNamed:@"recipienthelp"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.tag = 200;
+        
+        [self.view addSubview:imageView];
+
+    }
 }
 
 - (void)viewDidUnload
