@@ -14,6 +14,7 @@
 #import "Util.h"
 #import "KeyChainStore.h"
 #import "X509CertificateUtil.h"
+#import "Error.h"
 
 //for debug
 #import "KeyPair.h"
@@ -162,6 +163,11 @@
     
     //fetchiing identities
     NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
+    
     if ([allIdentities count] > 0)
     {
         UserCertificate *certificate = [allIdentities objectAtIndex:0];
@@ -188,6 +194,11 @@
     
     //fetchiing identities
     NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
+    
     UserCertificate *certificate = [allIdentities objectAtIndex:0];
     UserIdentity *identity = certificate.ref_identity;
     UserPrivateKey *privateKey = identity.ref_private_key;
@@ -212,6 +223,10 @@
     
     //fetchiing identities
     NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
     
     for (UserCertificate *certificate in allIdentities)
     {

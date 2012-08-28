@@ -7,6 +7,7 @@
 //
 
 #import "SecureContainer.h"
+#import "Error.h"
 
 @implementation SecureContainer
 
@@ -30,12 +31,11 @@
     NSLog(@"Secure container gets destructed!!");
     
     //Deleting saved files in Documents directory that belong to that container!
-    NSError* deletionerror = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:self.basePath error:&deletionerror];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:self.basePath error:&error];
     
-    if(deletionerror)
-    {
-        NSLog(@"Problem deleting container files!: %@",deletionerror.description);
+    if (error) {
+        [Error log:error];
     }
     else
     {

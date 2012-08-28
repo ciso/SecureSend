@@ -13,6 +13,7 @@
 #import "UserSettingsViewController.h"
 #import "RootViewController.h"
 #import "PersistentStore.h"
+#import "TestFlight.h"
 
 #define SEGUE_TO_CERT_ASS @"toCertSendAssist"
 #define SEGUE_TO_DEFAULT_EMAIL @"toDefaultEmail"
@@ -163,6 +164,9 @@
     }
     else if (indexPath.section == 0 && indexPath.row == 2) //send cert via two-way exchange
     {
+        //beta
+        [TestFlight passCheckpoint:@"SendCertificateTwoWay"];
+        
         [self performSegueWithIdentifier:SEGUE_TO_CERT_ASS sender:nil]; 
     }
     else if (indexPath.section == 0 && indexPath.row == 3) //send cert-request
@@ -190,7 +194,10 @@
 #pragma mark - methods to send certificate
 
 -(void) sendCertificateBluetooth
-{    
+{
+    //beta
+    [TestFlight passCheckpoint:@"SendCertificateBluetooth"];
+    
     NSData *sendData = [PersistentStore getActiveCertificateOfUser];
     
     [self.btConnectionHandler sendDataToAll:sendData];
@@ -198,8 +205,11 @@
 
 #pragma mark - BluetoothConnectionHandlerDelegate methods
 
-- (void) receivedBluetoothData: (NSData*) data
+- (void) receivedBluetoothData:(NSData*)data
 {
+    //beta
+    [TestFlight passCheckpoint:@"ReceivedBluetoothData"];
+    
     UITabBarController *tabBar = self.tabBarController;
     UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
     RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
@@ -224,6 +234,10 @@
 #pragma mark - certificate request
 - (void)sendCertificateRequest
 {
+    //beta
+    [TestFlight passCheckpoint:@"SendCertificateRequest"];
+    
+    
     UITabBarController *tabBar = self.tabBarController;
     UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
     RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];

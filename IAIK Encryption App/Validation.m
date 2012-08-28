@@ -7,6 +7,7 @@
 //
 
 #import "Validation.h"
+#import "Error.h"
 
 #define DEFAULT_EMAIL @"max@mustermann.at"
 #define DEFAULT_PHONE @"06641234567890"
@@ -52,6 +53,10 @@
     //complex phone number check
     NSError *error = NULL;
     NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypePhoneNumber error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
     
     NSRange inputRange = NSMakeRange(0, [phone length]);
     NSArray *matches = [detector matchesInString:phone options:0 range:inputRange];

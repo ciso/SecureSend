@@ -18,6 +18,8 @@
 #import "LoadingView.h"
 #import "PreviewViewController.h"
 #import "RootViewController.h"
+#import "TestFlight.h"
+#import "Error.h"
 
 @interface ContainerDetailViewController() {
 @private
@@ -234,9 +236,8 @@
         NSError *error;
         NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
         
-        if (error)
-        {
-            NSLog(@"Error occured by receiving file attributes");
+        if (error) {
+            [Error log:error];
         }
         
         //date created
@@ -339,9 +340,7 @@
     NSError * error;
     if([[NSFileManager defaultManager] removeItemAtPath:[self.container.fileUrls objectAtIndex:indexPath.row] error:&error] == NO)
     {
-        NSLog(@"Problem deleting file");
-        
-        //TODO error description
+        [Error log:error];
     }
     
     [self.container.fileUrls removeObjectAtIndex:indexPath.row];
@@ -363,6 +362,9 @@
 
 -(void) addFilesToContainer:(NSArray*) filePaths
 {
+    //beta
+    [TestFlight passCheckpoint:@"AddedFile"];
+    
     [self.container.fileUrls addObjectsFromArray:filePaths];
     //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_FILES] withRowAnimation:UITableViewRowAnimationRight];
     //todo! didn't work after refactoring of iPad UI
@@ -433,6 +435,9 @@
 
 -(NSData*) zipAndEncryptContainer
 {
+    //beta
+    [TestFlight passCheckpoint:@"ZippingAndEncryptingContainer"];
+    
     //Creating zipper for compressing data
     ZipArchive* zipper = [[ZipArchive alloc] init];
     

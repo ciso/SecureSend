@@ -33,6 +33,7 @@
 #import "KeyChainStore.h"
 #import "NotificationViewController.h"
 #import "TutorialViewController.h"
+#import "Error.h"
 
 
 #define SECTION_CONTAINERS 0
@@ -373,9 +374,8 @@
         NSError *error;
         attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath  error:nil];
         
-        if (error)
-        {
-            NSLog(@"Error occured by receiving file attributes");
+        if (error) {
+            [Error log:error];
         }
         
         NSDate *lastModifiedDate = (NSDate*)[attributes objectForKey:NSFileModificationDate];
@@ -914,7 +914,7 @@
     
     if([testdata writeToFile:testFilePath options:NSDataWritingFileProtectionComplete error:&savingerror])
     {
-        NSLog(@"writing to file failed");
+            [Error log:savingerror];
     }// obviously, do better error handling
     
     NSArray* doccontentes = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[FilePathFactory applicationDocumentsDirectory] error:nil];
@@ -944,9 +944,8 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
     if(directory_creation_error != nil)
     {
-        NSLog(@"Problem creating directory!!");
+            [Error log:directory_creation_error];
     }
-    
     SecureContainer* newcontainer = [[SecureContainer alloc] init];
     newcontainer.basePath = path;
     newcontainer.name = [path lastPathComponent];
@@ -1119,9 +1118,8 @@
         
         NSError* err = 0;
         [[NSFileManager defaultManager] moveItemAtPath:container.basePath toPath:newpath error:&err];
-        if(err != 0)
-        {
-            NSLog(@"Problem renaming container directory!!");
+        if (err) {
+            [Error log:err];
         }
         
         container.basePath = newpath;
@@ -1166,7 +1164,9 @@
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
-    NSLog(@"File upload failed with error - %@", error);
+    if (error) {
+        [Error log:error];
+    }
 }
 
 #pragma mark - shareable link dropbox delegates
@@ -1179,9 +1179,10 @@
     
     [alert show];
 }
-- (void)restClient:(DBRestClient*)restClient loadSharableLinkFailedWithError:(NSError*)error
-{
-    
+- (void)restClient:(DBRestClient*)restClient loadSharableLinkFailedWithError:(NSError*)error {
+    if (error) {
+        [Error log:error];
+    }
 }
 
 

@@ -13,6 +13,7 @@
 #import "UIImage+Resize.h"
 #import "RootViewController.h"
 #import "DropboxBrowserViewController.h"
+#import "Error.h"
 
 @implementation SourceSelectionViewController
 
@@ -185,9 +186,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     NSError* error;
     if([UIImageJPEGRepresentation(image, 0.5) writeToFile:path options:NSDataWritingFileProtectionComplete error:&error] == NO)
     {
-        NSLog(@"Saving image to file failed with error %@",[error localizedDescription]);
+            [Error log:error];
     }
-    
     picker.delegate = nil;
     [picker dismissModalViewControllerAnimated:NO];
     [self dismissModalViewControllerAnimated:YES];

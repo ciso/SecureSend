@@ -8,6 +8,7 @@
 
 #import "DropboxBrowserViewController.h"
 #import "LoadingView.h"
+#import "Error.h"
 
 @interface DropboxBrowserViewController ()
 
@@ -154,7 +155,9 @@
 - (void)restClient:(DBRestClient *)client
     loadMetadataFailedWithError:(NSError *)error {
     
-    NSLog(@"Error loading metadata: %@", error);
+    if (error) {
+        [Error log:error];
+    }
     [self.load removeFromSuperview]; //temp
     [self dismissModalViewControllerAnimated:YES]; //temp
 }

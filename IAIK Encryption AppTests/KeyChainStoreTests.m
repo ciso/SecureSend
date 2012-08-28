@@ -17,6 +17,7 @@
 #import "UserIdentity.h"
 #import "UserCertificate.h"
 #import "UserPrivateKey.h"
+#import "Error.h"
 
 @implementation KeyChainStoreTests
 
@@ -128,6 +129,10 @@
     
     //fetchiing identities
     NSArray *allIdentities = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
     
     UserCertificate *certificate = [allIdentities objectAtIndex:0];
     tempCertificateAccessKey = certificate.accessKey;

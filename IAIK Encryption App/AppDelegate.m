@@ -16,6 +16,7 @@
 #import "ContainerDetailViewController.h"
 #import "SecureContainer.h"
 #import "TestFlight.h"
+#import "Error.h"
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
@@ -96,7 +97,16 @@
     
     NSError *error;
     NSString *apiKey = [NSString stringWithContentsOfFile:apiKeyFilePath encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
+    
     NSString *secretKey = [NSString stringWithContentsOfFile:secretKeyFilePath encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error) {
+        [Error log:error];
+    }
     
     //register dropbox
     DBSession* dbSession =
@@ -297,7 +307,9 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            if (error) {
+                [Error log:error];
+            }
             abort();
         }
     }
@@ -346,7 +358,9 @@
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        if (error) {
+            [Error log:error];
+        }
         abort();
     }
     

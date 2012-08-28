@@ -126,6 +126,7 @@
 		B4B772BB15ECA95900D2556B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B772BA15ECA95900D2556B /* libz.dylib */; };
 		B4B772BD15ECB50400D2556B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BC15ECB50400D2556B /* icon@2x.png */; };
 		B4B772BF15ECB50E00D2556B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BE15ECB50E00D2556B /* icon.png */; };
+		B4B772C315ECBA6800D2556B /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772C215ECBA6800D2556B /* Error.m */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
@@ -359,6 +360,8 @@
 		B4B772BA15ECA95900D2556B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B4B772BC15ECB50400D2556B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		B4B772BE15ECB50E00D2556B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B4B772C115ECBA6800D2556B /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		B4B772C215ECBA6800D2556B /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -605,6 +608,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772C015ECBA5500D2556B /* ErrorHelper */,
 				B49506CA15C2ACC00062F9E4 /* X509CertificateUtil */,
 				B4E38F6215C1549D008AEF89 /* Util */,
 				B42BCE8F15BD538800D856A5 /* Recipient */,
@@ -1218,6 +1222,15 @@
 			name = BetaTestSDK;
 			sourceTree = "<group>";
 		};
+		B4B772C015ECBA5500D2556B /* ErrorHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772C115ECBA6800D2556B /* Error.h */,
+				B4B772C215ECBA6800D2556B /* Error.m */,
+			);
+			name = ErrorHelper;
+			sourceTree = "<group>";
+		};
 		B4E38F4315C132C6008AEF89 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,6 +1594,7 @@
 				B4F1309C15E35F5F00289B03 /* GetStartedBaseViewController.m in Sources */,
 				B47FF3EE15E38E0E001041C7 /* DeveloperViewController.m in Sources */,
 				B49BCCE715E63717009BCEC4 /* DropboxBrowserViewController.m in Sources */,
+				B4B772C315ECBA6800D2556B /* Error.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

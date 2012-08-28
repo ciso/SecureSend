@@ -7,6 +7,7 @@
 //
 
 #import "DeveloperViewController.h"
+#import "TestFlight.h"
 
 @interface DeveloperViewController ()
 
@@ -43,5 +44,9 @@
 - (IBAction)resetUserDefaults:(UIButton *)sender {    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"prevStartupVersions"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)openFeedback:(UIButton *)sender {
+    [TestFlight openFeedbackView];
 }
 @end
