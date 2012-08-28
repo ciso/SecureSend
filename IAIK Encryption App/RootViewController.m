@@ -347,6 +347,8 @@
 
         UITextField *nameTextField = (UITextField*)[cell viewWithTag:100];
         UILabel *detailLabel = (UILabel*)[cell viewWithTag:101];
+        UILabel *lastModifiedLabel = (UILabel*)[cell viewWithTag:102];
+
         //nameTextField.tag = indexPath.row;
         cell.contentView.tag = indexPath.row;
         nameTextField.text = [[self.containers objectAtIndex:indexPath.row] name];
@@ -363,15 +365,44 @@
         }
         
         
-        
-        //test
+        //obtaining secure container
         SecureContainer *container = [self.containers objectAtIndex:indexPath.row];
         
-        
+        //setting last modified date
+        NSDictionary *attributes;
         NSError *error;
-        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath error:&error];
-        NSLog(@"attributes: %@", attributes);
+        attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:container.basePath  error:nil];
         
+        if (error)
+        {
+            NSLog(@"Error occured by receiving file attributes");
+        }
+        
+        NSDate *lastModifiedDate = (NSDate*)[attributes objectForKey:NSFileModificationDate];
+        NSDate *today = [NSDate date];
+
+        NSDate *date1 = lastModifiedDate;
+        NSDate *date2 = today;
+        
+        NSCalendar *gregorian = [[NSCalendar alloc]
+                                 initWithCalendarIdentifier:NSGregorianCalendar];
+        
+        NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit;
+        
+        NSDateComponents *components = [gregorian components:unitFlags
+                                                    fromDate:date1
+                                                      toDate:date2 options:0];
+        
+        NSInteger days = [components day];
+        
+        if (days == 0) {
+            lastModifiedLabel.text = [NSString stringWithFormat:@"Last modified today"];
+        }
+        else {
+            lastModifiedLabel.text = [NSString stringWithFormat:@"Last modified %d days ago", days];
+        }
+        
+
         if (error)
         {
             NSLog(@"Error occured by receiving file attributes");
@@ -379,7 +410,6 @@
         
         //date created
         NSDate *dateCreated = [attributes objectForKey:NSFileCreationDate]; //vs. NSFileModificationDate
-        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];

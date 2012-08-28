@@ -234,7 +234,6 @@
         //test
         NSError *error;
         NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
-        NSLog(@"attributes: %@", attributes);
         
         if (error)
         {
