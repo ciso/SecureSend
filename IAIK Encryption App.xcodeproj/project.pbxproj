@@ -123,6 +123,9 @@
 		B4B4097C15B4090D00DCFAE5 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B4097B15B4090D00DCFAE5 /* CustomTabBarController.m */; };
 		B4B772B515ECA69300D2556B /* recipienthelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772B415ECA69300D2556B /* recipienthelp@2x.png */; };
 		B4B772B815ECA8C300D2556B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B772B715ECA8C300D2556B /* libTestFlight.a */; };
+		B4B772BB15ECA95900D2556B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B772BA15ECA95900D2556B /* libz.dylib */; };
+		B4B772BD15ECB50400D2556B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BC15ECB50400D2556B /* icon@2x.png */; };
+		B4B772BF15ECB50E00D2556B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BE15ECB50E00D2556B /* icon.png */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
@@ -353,6 +356,9 @@
 		B4B772B415ECA69300D2556B /* recipienthelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipienthelp@2x.png"; sourceTree = "<group>"; };
 		B4B772B715ECA8C300D2556B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		B4B772B915ECA8D800D2556B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		B4B772BA15ECA95900D2556B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B4B772BC15ECB50400D2556B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		B4B772BE15ECB50E00D2556B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -388,6 +394,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B772BB15ECA95900D2556B /* libz.dylib in Frameworks */,
 				B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */,
 				B4A7ADEF15B59C5600A07FCB /* QuartzCore.framework in Frameworks */,
 				B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */,
@@ -464,6 +471,8 @@
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
+				B4B772BE15ECB50E00D2556B /* icon.png */,
+				B4B772BC15ECB50400D2556B /* icon@2x.png */,
 				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
 				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
 				B4118B2415AAC61B00D050B2 /* Frameworks */,
@@ -483,6 +492,7 @@
 		B4118B2415AAC61B00D050B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772BA15ECA95900D2556B /* libz.dylib */,
 				B4E38F5015C13CFF008AEF89 /* CoreData.framework */,
 				B4A7ADEE15B59C5600A07FCB /* QuartzCore.framework */,
 				B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */,
@@ -1464,6 +1474,8 @@
 				B47FF3F215E3AC7E001041C7 /* filehelp@2x.png in Resources */,
 				B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */,
 				B4B772B515ECA69300D2556B /* recipienthelp@2x.png in Resources */,
+				B4B772BD15ECB50400D2556B /* icon@2x.png in Resources */,
+				B4B772BF15ECB50E00D2556B /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

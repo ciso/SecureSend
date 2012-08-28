@@ -15,6 +15,7 @@
 #import "RequestHandler.h"
 #import "ContainerDetailViewController.h"
 #import "SecureContainer.h"
+#import "TestFlight.h"
 
 #define EXTENSION_CERT @"iaikcert"
 #define EXTENSION_CONTAINER @"iaikcontainer"
@@ -106,6 +107,10 @@
     
     [DBSession setSharedSession:dbSession];
     
+    
+    //beta test sdk
+    [TestFlight takeOff:@"13503e91f118dfbe3cf7cfa141afed6e_MTI1ODk0MjAxMi0wOC0yOCAwMzoyNjowOC44MDM0MzA"];
+
     
     return YES;
 }
