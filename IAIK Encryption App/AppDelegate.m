@@ -206,7 +206,7 @@
         }
         else 
         {
-            NSString *title = [NSString stringWithString:NSLocalizedString(@"You have been sent a verification SMS. Please check the following checksum and compare it.", 
+            NSString *title = [NSString stringWithString:NSLocalizedString(@"You have been sent a verification SMS. Please check the following checksum and compare it. After successfull verification you can assign this certificate to a contact.", 
                                                                            @"Title for alert view in app delegate")];
             NSString *message = [NSString stringWithFormat:@"%@", base64hash];
             

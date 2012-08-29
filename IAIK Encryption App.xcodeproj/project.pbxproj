@@ -86,7 +86,6 @@
 		B45DC5A215ADC7D000E39899 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC58915ADC7D000E39899 /* UIImageView+WebCache.m */; };
 		B45DC5A315ADC7D000E39899 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B45DC58B15ADC7D000E39899 /* MWPhotoBrowser.bundle */; };
 		B45DC5A915ADCE7500E39899 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45DC5A815ADCE7500E39899 /* ImageIO.framework */; };
-		B45DC5B715AEA6E400E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5B515AEA6E400E39899 /* Localizable.strings */; };
 		B45DC5BE15AEA6EE00E39899 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B45DC5BB15AEA6EE00E39899 /* Localizable.strings */; };
 		B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */; };
 		B47FF3E615E388FF001041C7 /* tut5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B47FF3E515E388FF001041C7 /* tut5@2x.png */; };
@@ -303,7 +302,6 @@
 		B45DC58B15ADC7D000E39899 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		B45DC58C15ADC7D000E39899 /* MWPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MWPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
 		B45DC5A815ADCE7500E39899 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		B45DC5B615AEA6E400E39899 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		B45DC5BC15AEA6EE00E39899 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		B47D26F015C951C50094A21E /* KeyPairDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPairDetailsViewController.h; sourceTree = "<group>"; };
 		B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyPairDetailsViewController.m; sourceTree = "<group>"; };
@@ -1013,7 +1011,6 @@
 		B45DC5B415AEA6E400E39899 /* de.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				B45DC5B515AEA6E400E39899 /* Localizable.strings */,
 			);
 			path = de.lproj;
 			sourceTree = "<group>";
@@ -1504,7 +1501,6 @@
 				B45DC59A15ADC7D000E39899 /* LICENSE in Resources */,
 				B45DC59B15ADC7D000E39899 /* README.md in Resources */,
 				B45DC5A315ADC7D000E39899 /* MWPhotoBrowser.bundle in Resources */,
-				B45DC5B715AEA6E400E39899 /* Localizable.strings in Resources */,
 				B45DC5BE15AEA6EE00E39899 /* Localizable.strings in Resources */,
 				B40C29DA15AFF87A00C7B47A /* 33-cabinet.png in Resources */,
 				B40C29DC15AFF92000C7B47A /* 145-persondot.png in Resources */,
@@ -1674,14 +1670,6 @@
 				B4118B4D15AAC61B00D050B2 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B45DC5B515AEA6E400E39899 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B45DC5B615AEA6E400E39899 /* de */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		B45DC5BB15AEA6EE00E39899 /* Localizable.strings */ = {
