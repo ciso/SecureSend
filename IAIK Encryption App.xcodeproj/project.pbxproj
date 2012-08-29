@@ -127,6 +127,8 @@
 		B4B772BD15ECB50400D2556B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BC15ECB50400D2556B /* icon@2x.png */; };
 		B4B772BF15ECB50E00D2556B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4B772BE15ECB50E00D2556B /* icon.png */; };
 		B4B772C315ECBA6800D2556B /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772C215ECBA6800D2556B /* Error.m */; };
+		B4B772D515EDFA0100D2556B /* DropboxAlertViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */; };
+		B4B772D915EDFDDD00D2556B /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772D815EDFDDD00D2556B /* Email.m */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
@@ -358,10 +360,14 @@
 		B4B772B715ECA8C300D2556B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		B4B772B915ECA8D800D2556B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		B4B772BA15ECA95900D2556B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		B4B772BC15ECB50400D2556B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		B4B772BE15ECB50E00D2556B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B4B772BC15ECB50400D2556B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
+		B4B772BE15ECB50E00D2556B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		B4B772C115ECBA6800D2556B /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		B4B772C215ECBA6800D2556B /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		B4B772D315EDFA0100D2556B /* DropboxAlertViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxAlertViewHandler.h; sourceTree = "<group>"; };
+		B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxAlertViewHandler.m; sourceTree = "<group>"; };
+		B4B772D715EDFDDD00D2556B /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
+		B4B772D815EDFDDD00D2556B /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -474,8 +480,6 @@
 		B4118B1615AAC61B00D050B2 = {
 			isa = PBXGroup;
 			children = (
-				B4B772BE15ECB50E00D2556B /* icon.png */,
-				B4B772BC15ECB50400D2556B /* icon@2x.png */,
 				B4118B2B15AAC61B00D050B2 /* IAIK Encryption App */,
 				B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */,
 				B4118B2415AAC61B00D050B2 /* Frameworks */,
@@ -608,6 +612,7 @@
 		B4118B6515AAD85600D050B2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772D615EDFDCD00D2556B /* Email */,
 				B4B772C015ECBA5500D2556B /* ErrorHelper */,
 				B49506CA15C2ACC00062F9E4 /* X509CertificateUtil */,
 				B4E38F6215C1549D008AEF89 /* Util */,
@@ -625,6 +630,7 @@
 				B4118B7715AADD3A00D050B2 /* FilePathFactory */,
 				B4118B6E15AADCE600D050B2 /* Connection */,
 				B4118B6615AAD85B00D050B2 /* KeychainAccess */,
+				B4B772DA15EE009300D2556B /* DropboxAlertViewHandler */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -849,6 +855,7 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772D215EDF7BE00D2556B /* Icons */,
 				B4B772B415ECA69300D2556B /* recipienthelp@2x.png */,
 				B47FF3F115E3AC7E001041C7 /* filehelp@2x.png */,
 				B47FF3EF15E3A5E0001041C7 /* containerhelp@2x.png */,
@@ -1231,6 +1238,33 @@
 			name = ErrorHelper;
 			sourceTree = "<group>";
 		};
+		B4B772D215EDF7BE00D2556B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772BE15ECB50E00D2556B /* icon.png */,
+				B4B772BC15ECB50400D2556B /* icon@2x.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		B4B772D615EDFDCD00D2556B /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772D715EDFDDD00D2556B /* Email.h */,
+				B4B772D815EDFDDD00D2556B /* Email.m */,
+			);
+			name = Email;
+			sourceTree = "<group>";
+		};
+		B4B772DA15EE009300D2556B /* DropboxAlertViewHandler */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772D315EDFA0100D2556B /* DropboxAlertViewHandler.h */,
+				B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */,
+			);
+			name = DropboxAlertViewHandler;
+			sourceTree = "<group>";
+		};
 		B4E38F4315C132C6008AEF89 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1595,6 +1629,8 @@
 				B47FF3EE15E38E0E001041C7 /* DeveloperViewController.m in Sources */,
 				B49BCCE715E63717009BCEC4 /* DropboxBrowserViewController.m in Sources */,
 				B4B772C315ECBA6800D2556B /* Error.m in Sources */,
+				B4B772D515EDFA0100D2556B /* DropboxAlertViewHandler.m in Sources */,
+				B4B772D915EDFDDD00D2556B /* Email.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1716,7 +1752,7 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E42CBAF8-F9CA-4147-A146-8D644B2339A7";
+				PROVISIONING_PROFILE = "0E36CA03-A089-4707-BF34-7413F2A2A9BA";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1740,7 +1776,7 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E42CBAF8-F9CA-4147-A146-8D644B2339A7";
+				PROVISIONING_PROFILE = "0E36CA03-A089-4707-BF34-7413F2A2A9BA";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};

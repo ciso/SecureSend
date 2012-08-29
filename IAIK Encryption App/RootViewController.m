@@ -34,6 +34,8 @@
 #import "NotificationViewController.h"
 #import "TutorialViewController.h"
 #import "Error.h"
+#import "DropboxAlertViewHandler.h"
+#import "Email.h"
 
 
 #define SECTION_CONTAINERS 0
@@ -55,7 +57,7 @@
 }
 
 @property (nonatomic, strong) UITextField *activeInput;
-
+@property (nonatomic, strong) DropboxAlertViewHandler *handler;
 @end
 
 
@@ -75,6 +77,7 @@
 @synthesize editable                = _editable;
 @synthesize activeInput             = _activeInput;
 @synthesize restClient              = _restClient;
+@synthesize handler                 = _handler;
 
 - (DBRestClient *)restClient {
     if (!_restClient) {
@@ -118,6 +121,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.handler = [[DropboxAlertViewHandler alloc] init];
+
+    
     
 //    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
 //    CGRect background_frame = self.tableView.frame;
@@ -1175,14 +1182,28 @@
 {
     UIAlertView* alert = nil;
     NSString *message = [NSString stringWithFormat:@"File uploaded successfully into your Public folder. Your public link to this file is %@", link];
-    alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Upload" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Upload" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:@"Send Link", @"Copy Link", nil];
+    alert.delegate = self.handler;
+    self.handler.fileUrl = link;
+    self.handler.delegate = self;
     
     [alert show];
 }
+
 - (void)restClient:(DBRestClient*)restClient loadSharableLinkFailedWithError:(NSError*)error {
     if (error) {
         [Error log:error];
     }
+}
+
+- (void)showEmailMessageComposer:(Email*)mail {
+    MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
+    [composer setToRecipients:mail.recipients];
+    [composer setSubject:mail.subject];
+    [composer setMessageBody:mail.body isHTML:NO];
+    composer.mailComposeDelegate = self;
+        
+    [self presentModalViewController:composer animated:YES];
 }
 
 

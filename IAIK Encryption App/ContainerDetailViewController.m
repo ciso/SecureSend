@@ -27,6 +27,8 @@
 }
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIBarButtonItem *exportButton;
+
 @end
 
 @implementation ContainerDetailViewController
@@ -47,9 +49,10 @@
 #define SEGUE_TO_ENCRYPT @"toEncryptAndSend"
 
 @synthesize container, currentCertificate = _currentCertificate;
-@synthesize popoverController=_myPopoverController;
-@synthesize photos = _photos;
-@synthesize shouldRotateToPortrait = _shouldRotateToPortrait;
+@synthesize popoverController             =_myPopoverController;
+@synthesize photos                        = _photos;
+@synthesize shouldRotateToPortrait        = _shouldRotateToPortrait;
+@synthesize exportButton                  = _exportButton;
 
 
 - (void)awakeFromNib
@@ -108,6 +111,9 @@
     UIBarButtonItem *bi = [[UIBarButtonItem alloc]
                            initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
     [buttons addObject:bi];
+    
+    self.exportButton = bi;
+
     
     // Create a spacer.
     bi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -542,6 +548,16 @@
                     }
                     else
                     {
+                        
+                        //loading icon test
+//                        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//                        [activityView startAnimating];
+//                        
+//                        UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+//                        self.exportButton = bi;
+                        
+                        
+                        
                         [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
                             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dropbox"
                                                                               message:@"Uploading can take several minutes based on the container size. The App will notify you when it is finished."
