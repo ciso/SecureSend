@@ -556,16 +556,14 @@
 //                        UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:activityView];
 //                        self.exportButton = bi;
                         
-                        
-                        
                         [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
-                            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dropbox"
-                                                                              message:@"Uploading can take several minutes based on the container size. The App will notify you when it is finished."
-                                                                             delegate:nil
-                                                                    cancelButtonTitle:@"OK"
-                                                                    otherButtonTitles:nil];
+                        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dropbox"
+                                                                          message:@"Uploading can take several minutes based on the container size. The App will notify you when it is finished."
+                                                                         delegate:nil
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles:nil];
                             
-                            [message show];
+                        [message show];
                     }
                     break;
                 }

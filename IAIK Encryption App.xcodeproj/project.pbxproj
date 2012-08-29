@@ -129,6 +129,8 @@
 		B4B772C315ECBA6800D2556B /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772C215ECBA6800D2556B /* Error.m */; };
 		B4B772D515EDFA0100D2556B /* DropboxAlertViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */; };
 		B4B772D915EDFDDD00D2556B /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772D815EDFDDD00D2556B /* Email.m */; };
+		B4B772DE15EE076A00D2556B /* SwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772DD15EE076A00D2556B /* SwipeCell.m */; };
+		B4B772E215EE089800D2556B /* CustomCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B772E115EE089800D2556B /* CustomCellViewController.m */; };
 		B4E38F4615C13350008AEF89 /* SecureSendModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F4415C13350008AEF89 /* SecureSendModel.xcdatamodeld */; };
 		B4E38F5115C13CFF008AEF89 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B4E38F5515C1449E008AEF89 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E38F5415C1449E008AEF89 /* PersistentStore.m */; };
@@ -368,6 +370,10 @@
 		B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxAlertViewHandler.m; sourceTree = "<group>"; };
 		B4B772D715EDFDDD00D2556B /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
 		B4B772D815EDFDDD00D2556B /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
+		B4B772DC15EE076A00D2556B /* SwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeCell.h; sourceTree = "<group>"; };
+		B4B772DD15EE076A00D2556B /* SwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeCell.m; sourceTree = "<group>"; };
+		B4B772E015EE089800D2556B /* CustomCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellViewController.h; sourceTree = "<group>"; };
+		B4B772E115EE089800D2556B /* CustomCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellViewController.m; sourceTree = "<group>"; };
 		B4E38F4515C13350008AEF89 /* SecureSendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecureSendModel.xcdatamodel; sourceTree = "<group>"; };
 		B4E38F5015C13CFF008AEF89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B4E38F5315C1449E008AEF89 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
@@ -690,6 +696,7 @@
 		B4118B7D15AADDEF00D050B2 /* CustomControls */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772DB15EE074C00D2556B /* SwipeCell */,
 				B4118B7E15AADDF600D050B2 /* NameCell */,
 			);
 			name = CustomControls;
@@ -902,6 +909,7 @@
 		B420F06315C0092700FEF4D5 /* DEVELOPER */ = {
 			isa = PBXGroup;
 			children = (
+				B4B772DF15EE088900D2556B /* CustomCellViewController */,
 				B47FF3EB15E38DFF001041C7 /* DeveloperViewController */,
 				B47D26EF15C9518E0094A21E /* KeyPairDetailsViewController */,
 				B420F06715C0094800FEF4D5 /* ListOwnCertificateViewController */,
@@ -1263,6 +1271,24 @@
 				B4B772D415EDFA0100D2556B /* DropboxAlertViewHandler.m */,
 			);
 			name = DropboxAlertViewHandler;
+			sourceTree = "<group>";
+		};
+		B4B772DB15EE074C00D2556B /* SwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772DC15EE076A00D2556B /* SwipeCell.h */,
+				B4B772DD15EE076A00D2556B /* SwipeCell.m */,
+			);
+			name = SwipeCell;
+			sourceTree = "<group>";
+		};
+		B4B772DF15EE088900D2556B /* CustomCellViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4B772E015EE089800D2556B /* CustomCellViewController.h */,
+				B4B772E115EE089800D2556B /* CustomCellViewController.m */,
+			);
+			name = CustomCellViewController;
 			sourceTree = "<group>";
 		};
 		B4E38F4315C132C6008AEF89 /* DataModel */ = {
@@ -1631,6 +1657,8 @@
 				B4B772C315ECBA6800D2556B /* Error.m in Sources */,
 				B4B772D515EDFA0100D2556B /* DropboxAlertViewHandler.m in Sources */,
 				B4B772D915EDFDDD00D2556B /* Email.m in Sources */,
+				B4B772DE15EE076A00D2556B /* SwipeCell.m in Sources */,
+				B4B772E215EE089800D2556B /* CustomCellViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
