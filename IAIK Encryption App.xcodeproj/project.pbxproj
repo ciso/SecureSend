@@ -34,7 +34,6 @@
 		B4118B8E15AADFA300D050B2 /* CertificateXplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B8D15AADFA300D050B2 /* CertificateXplorerViewController.m */; };
 		B4118B9215AADFBF00D050B2 /* ChooseContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B9115AADFBF00D050B2 /* ChooseContainerViewController.m */; };
 		B4118B9715AADFFE00D050B2 /* ChooseSendMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B9615AADFFE00D050B2 /* ChooseSendMethodViewController.m */; };
-		B4118B9B15AAE01A00D050B2 /* CreateCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B9A15AAE01A00D050B2 /* CreateCertificateViewController.m */; };
 		B4118B9F15AAE05200D050B2 /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = B4118B9E15AAE05200D050B2 /* Crypto.m */; };
 		B4118BA215AAE07400D050B2 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118BA015AAE07400D050B2 /* libcrypto.a */; };
 		B4118BA315AAE07400D050B2 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118BA115AAE07400D050B2 /* libssl.a */; };
@@ -216,8 +215,6 @@
 		B4118B9315AADFD000D050B2 /* ChoosedContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosedContainerDelegate.h; sourceTree = "<group>"; };
 		B4118B9515AADFFE00D050B2 /* ChooseSendMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSendMethodViewController.h; sourceTree = "<group>"; };
 		B4118B9615AADFFE00D050B2 /* ChooseSendMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSendMethodViewController.m; sourceTree = "<group>"; };
-		B4118B9915AAE01A00D050B2 /* CreateCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCertificateViewController.h; sourceTree = "<group>"; };
-		B4118B9A15AAE01A00D050B2 /* CreateCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCertificateViewController.m; sourceTree = "<group>"; };
 		B4118B9D15AAE05200D050B2 /* Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
 		B4118B9E15AAE05200D050B2 /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
 		B4118BA015AAE07400D050B2 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "IAIK Encryption App/libcrypto.a"; sourceTree = "<group>"; };
@@ -595,7 +592,6 @@
 				B4AC1B2815AD4AEA00AAC18F /* UserSettingsViewController */,
 				B4118BB115AAE10400D050B2 /* SendCertificateViewController */,
 				B4118BAD15AAE0E500D050B2 /* PreviewViewController */,
-				B4118B9815AAE00C00D050B2 /* CreateCertificateViewController */,
 				B4118B9415AADFEC00D050B2 /* ChooseSendMethodViewController */,
 				B4118B8F15AADFB100D050B2 /* ChooseContainerViewController */,
 				B4118B8B15AADF9100D050B2 /* CertificateXplorerViewController */,
@@ -635,17 +631,9 @@
 				B4118BA415AAE08D00D050B2 /* LoadingView */,
 				B4118B7715AADD3A00D050B2 /* FilePathFactory */,
 				B4118B6E15AADCE600D050B2 /* Connection */,
-				B4118B6615AAD85B00D050B2 /* KeychainAccess */,
 				B4B772DA15EE009300D2556B /* DropboxAlertViewHandler */,
 			);
 			name = Helper;
-			sourceTree = "<group>";
-		};
-		B4118B6615AAD85B00D050B2 /* KeychainAccess */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = KeychainAccess;
 			sourceTree = "<group>";
 		};
 		B4118B6E15AADCE600D050B2 /* Connection */ = {
@@ -764,15 +752,6 @@
 				B4118B9615AADFFE00D050B2 /* ChooseSendMethodViewController.m */,
 			);
 			name = ChooseSendMethodViewController;
-			sourceTree = "<group>";
-		};
-		B4118B9815AAE00C00D050B2 /* CreateCertificateViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4118B9915AAE01A00D050B2 /* CreateCertificateViewController.h */,
-				B4118B9A15AAE01A00D050B2 /* CreateCertificateViewController.m */,
-			);
-			name = CreateCertificateViewController;
 			sourceTree = "<group>";
 		};
 		B4118B9C15AAE03C00D050B2 /* Crypto */ = {
@@ -1595,7 +1574,6 @@
 				B4118B8E15AADFA300D050B2 /* CertificateXplorerViewController.m in Sources */,
 				B4118B9215AADFBF00D050B2 /* ChooseContainerViewController.m in Sources */,
 				B4118B9715AADFFE00D050B2 /* ChooseSendMethodViewController.m in Sources */,
-				B4118B9B15AAE01A00D050B2 /* CreateCertificateViewController.m in Sources */,
 				B4118B9F15AAE05200D050B2 /* Crypto.m in Sources */,
 				B4118BA715AAE09800D050B2 /* LoadingView.m in Sources */,
 				B4118BAC15AAE0CA00D050B2 /* NSData+CommonCrypto.m in Sources */,

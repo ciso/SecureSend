@@ -89,7 +89,7 @@
     
     
     //IMPORTANT: JUST TEMP!!!! REMOVE IN FINAL VERSION!!! todo
-    [self assumeSampleInput];
+    //[self assumeSampleInput];
 }
 
 - (void)viewDidUnload

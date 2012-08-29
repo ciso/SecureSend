@@ -14,7 +14,6 @@
 #import <Security/Security.h>
 #import "FilePathFactory.h"
 #import "NSData+CommonCrypto.h"
-#import "CreateCertificateViewController.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <UIKit/UIKit.h>

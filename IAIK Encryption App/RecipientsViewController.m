@@ -72,7 +72,6 @@
             [self.recipients addObject:recipient];
         }
     }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {

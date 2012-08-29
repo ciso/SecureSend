@@ -11,5 +11,6 @@
 @interface DeveloperViewController : UIViewController
 - (IBAction)resetUserDefaults:(UIButton *)sender;
 - (IBAction)openFeedback:(UIButton *)sender;
+- (IBAction)deleteAllCertificates:(UIButton *)sender;
 
 @end
