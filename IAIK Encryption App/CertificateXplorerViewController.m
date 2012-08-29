@@ -229,7 +229,11 @@
     
     NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
     
+    ABMultiValueRef emailMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty);
+    NSArray *emailAddresses = (__bridge NSArray*)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
+    
     [self.delegate setCert:cert];
+    [self.delegate setRecipientMail:[emailAddresses objectAtIndex:0]];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

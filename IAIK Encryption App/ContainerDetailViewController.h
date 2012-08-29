@@ -23,8 +23,11 @@
 @property (nonatomic, strong) NSData* currentCertificate;
 @property (nonatomic, retain) NSArray *photos;
 @property (nonatomic, assign) BOOL shouldRotateToPortrait;
+@property (nonatomic, strong) NSString *recipientMail;
 
-- (void) setCert: (NSData*) cert;
+- (void)setCert:(NSData*)cert;
+- (void)setRecipientMail:(NSString *)recipientMail;
+
 - (IBAction) addFile;
 -(NSData*) zipAndEncryptContainer;
 

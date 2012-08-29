@@ -10,6 +10,7 @@
 
 @protocol ModifyCertPropertyDelegate <NSObject>
 
--(void) setCert: (NSData*) cert;
+- (void)setCert:(NSData*)cert;
+- (void)setRecipientMail:(NSString *)recipientMail;
 
 @end

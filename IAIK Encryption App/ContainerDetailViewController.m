@@ -48,11 +48,13 @@
 #define SEGUE_TO_SOURCESELVIEW @"toSourceSelectionView"
 #define SEGUE_TO_ENCRYPT @"toEncryptAndSend"
 
+
 @synthesize container, currentCertificate = _currentCertificate;
 @synthesize popoverController             =_myPopoverController;
 @synthesize photos                        = _photos;
 @synthesize shouldRotateToPortrait        = _shouldRotateToPortrait;
 @synthesize exportButton                  = _exportButton;
+@synthesize recipientMail                 = _recipientMail;
 
 
 - (void)awakeFromNib
@@ -423,9 +425,12 @@
     
     //creating and initialising mail composer
     MFMailComposeViewController* mailcontroller = [[MFMailComposeViewController alloc] init];
+    [mailcontroller setToRecipients:[NSArray arrayWithObject:self.recipientMail]];
     [mailcontroller setSubject:NSLocalizedString(@"Container", @"Subject for mail when sending an encrypted container in container detail view")];
     [mailcontroller setTitle:NSLocalizedString(@"Secure files via container", @"Title for mail when sending an encrypted container in container detail view")];
     mailcontroller.mailComposeDelegate = self;
+    
+    self.recipientMail = nil;
     
     
     //attaching encrypted file to mail
