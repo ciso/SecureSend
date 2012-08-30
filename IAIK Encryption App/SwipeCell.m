@@ -8,6 +8,8 @@
 
 #import "SwipeCell.h"
 
+#define DURATION 0.15f
+
 @interface SwipeCell()
 
 @property (nonatomic, assign) BOOL editable;
@@ -32,7 +34,7 @@
         [self.contentView addGestureRecognizer:_swipeLeft];
         
         self.textLabel.backgroundColor = [UIColor clearColor];
-        [self initSwipeView]; //initializing swipe view
+        //[self initSwipeView]; //initializing swipe view
         
         //[self.editView addGestureRecognizer:_swipeLeft];
         //[self.editView addGestureRecognizer:_swipeRight];
@@ -52,29 +54,103 @@
 - (void)swipe {
     
     if (self.editable) {
-        self.editView.hidden = YES;
-
+        
+        self.editView.alpha = 1.0f;
+        
+        [UIView animateWithDuration:DURATION
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             [self.editView setAlpha:0.0f];
+                         }
+                         completion:^(BOOL finished){
+                             self.editView.hidden = YES;
+                        }];
+        
         self.editable = NO;
     }
     else {
         self.editView.hidden = NO;
+        self.editView.alpha = 0.0f;
+
+        [UIView animateWithDuration:DURATION
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             [self.editView setAlpha:1.0f];
+                         }
+                         completion:nil];
         
         self.editable = YES;
     }
     
 }
 
-- (void)dup {
-    NSLog(@"dup");
+- (void)back {
+    NSLog(@"back");
+}
+
+- (void)edit {
+    NSLog(@"Edit");
+}
+
+- (void)share {
+    NSLog(@"Share");
+}
+
+- (void)delete {
+    NSLog(@"Delete");
 }
 
 - (void)initSwipeView {
-    UIView *view = [[UIView alloc] initWithFrame:self.frame];
-    view.backgroundColor = [UIColor greenColor];
+    
+    NSLog(@"size: %f, %f, origin: %f, %f", self.frame.size.width, self.frame.size.height, self.frame.origin.x, self.frame.origin.y);
+    
+    CGRect rect = CGRectMake(10, 0, 300, 59);
+    
+    UIView *view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor underPageBackgroundColor]; //[UIColor greenColor];
+    //view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellbg"]];
+
+    
     view.hidden = YES;
     
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:view action:@selector(dup)];
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:view action:@selector(dup)];
+    //adding back button
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backButton.frame = CGRectMake(20, 15, 60, 30);
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:backButton];
+    
+    //adding edit button
+    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    editButton.frame = CGRectMake(100, 15, 60, 30);
+    [editButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:editButton];
+    
+    //adding delete button
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleteButton.frame = CGRectMake(170, 8, 50, 30);
+    [deleteButton setTitle:@"Del" forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:deleteButton];
+    
+    //adding share button
+    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    shareButton.frame = CGRectMake(230, 8, 50, 50);
+    [shareButton setImage:[UIImage imageNamed:@"export"] forState:UIControlStateNormal];
+    [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:shareButton];
+    
+    //adding swipe gestures
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     
@@ -85,6 +161,15 @@
     [self.editView addGestureRecognizer:swipeLeft];
     
     [self addSubview:view];
+    //[self sendSubviewToBack:view];
+    
+    
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    [self initSwipeView];
 }
 
 @end
