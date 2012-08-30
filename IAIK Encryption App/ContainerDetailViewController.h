@@ -24,11 +24,11 @@
 @property (nonatomic, retain) NSArray *photos;
 @property (nonatomic, assign) BOOL shouldRotateToPortrait;
 @property (nonatomic, strong) NSString *recipientMail;
+@property (nonatomic, assign) BOOL isQuickForward;
 
 - (void)setCert:(NSData*)cert;
 - (void)setRecipientMail:(NSString *)recipientMail;
-
-- (IBAction) addFile;
--(NSData*) zipAndEncryptContainer;
+- (IBAction)addFile;
+- (NSData*)zipAndEncryptContainer;
 
 @end

@@ -21,6 +21,7 @@
 
 @synthesize editable = _editable;
 @synthesize editView = _editView;
+@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -38,6 +39,35 @@
         
         //[self.editView addGestureRecognizer:_swipeLeft];
         //[self.editView addGestureRecognizer:_swipeRight];
+        
+        
+        
+        
+        
+        //adding labels and textfields
+        UITextField *nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 23, 255, 30)];
+        nameTextField.tag = 100;
+        nameTextField.font = [UIFont boldSystemFontOfSize:18];
+        
+        [self.contentView addSubview:nameTextField];
+        
+        
+        UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 265, 20)];
+        dateLabel.tag = 101;
+        dateLabel.font = [UIFont systemFontOfSize:14];
+        dateLabel.textColor = [UIColor grayColor];
+        dateLabel.backgroundColor = [UIColor clearColor];
+        
+        [self.contentView addSubview:dateLabel];
+        
+        UILabel *modifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 43, 265, 20)];
+        modifiedLabel.tag = 102;
+        modifiedLabel.font = [UIFont systemFontOfSize:14];
+        modifiedLabel.textColor = [UIColor grayColor];
+        modifiedLabel.backgroundColor = [UIColor clearColor];
+        
+        [self.contentView addSubview:modifiedLabel];
+        
     }
     return self;
 }
@@ -92,21 +122,24 @@
 
 - (void)edit {
     NSLog(@"Edit");
+    [self.delegate performSelector:@selector(edit:) withObject:self];
 }
 
 - (void)share {
     NSLog(@"Share");
+    [self.delegate performSelector:@selector(share:) withObject:self];
 }
 
 - (void)delete {
     NSLog(@"Delete");
+    [self.delegate performSelector:@selector(remove:) withObject:self];
 }
 
 - (void)initSwipeView {
     
-    NSLog(@"size: %f, %f, origin: %f, %f", self.frame.size.width, self.frame.size.height, self.frame.origin.x, self.frame.origin.y);
+    //NSLog(@"size: %f, %f, origin: %f, %f", self.frame.size.width, self.frame.size.height, self.frame.origin.x, self.frame.origin.y);
     
-    CGRect rect = CGRectMake(10, 0, 300, 59);
+    CGRect rect = CGRectMake(10, 0, 300, 69);
     
     UIView *view = [[UIView alloc] initWithFrame:rect];
     view.backgroundColor = [UIColor underPageBackgroundColor]; //[UIColor greenColor];
@@ -153,7 +186,6 @@
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    
     
     self.editView = view;
     

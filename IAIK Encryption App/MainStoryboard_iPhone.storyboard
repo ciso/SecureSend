@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="96V-ag-MUu">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="70" id="96V-ag-MUu" customClass="SwipeCell">
                                 <rect key="frame" x="0.0" y="46" width="320" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -80,6 +80,7 @@
                         <segue destination="iPd-Oy-CAw" kind="modal" identifier="toCreateCertificate" id="YDp-e6-swT"/>
                         <segue destination="9Xr-xM-f9Y" kind="modal" identifier="toDataProtectionNotification" id="yDN-f4-IdL"/>
                         <segue destination="NcW-Nl-JeT" kind="modal" identifier="toGetStartedView" id="Zeq-zY-hTX"/>
+                        <segue destination="mBQ-Fv-9a7" kind="push" identifier="toDetailAndExport" id="UGp-wN-WVq"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -1429,10 +1430,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gDd-fw-sLS"/>
-        <segue reference="rJ7-aU-XC7"/>
-        <segue reference="nnY-4E-f0I"/>
-        <segue reference="KLi-m5-Kv2"/>
+        <segue reference="UGp-wN-WVq"/>
         <segue reference="MjX-0A-OTa"/>
+        <segue reference="YDp-e6-swT"/>
+        <segue reference="KLi-m5-Kv2"/>
+        <segue reference="Zeq-zY-hTX"/>
+        <segue reference="yDN-f4-IdL"/>
     </inferredMetricsTieBreakers>
 </document>

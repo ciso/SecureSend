@@ -12,6 +12,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "ChoosedContainerDelegate.h"
 #import <MessageUI/MessageUI.h>
+#import "SwipeCell.h"
 
 #define SEGUE_TO_CHOOSE_CONTROLLER @"toChooseContainer"
 #define SEGUE_TO_DETAIL @"toDetailViewController"
@@ -24,7 +25,7 @@
 @class SecureContainer;
 @class BluetoothConnectionHandler;
 
-@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate, DBRestClientDelegate>
+@interface RootViewController : UITableViewController <BluetoothConnectionHandlerDelegate,ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIAlertViewDelegate,ChoosedContainerDelegate, UITextFieldDelegate, DBRestClientDelegate, SwipeCellDelegate>
 {
     //DBRestClient *restClient; //dropbox sdk
 }

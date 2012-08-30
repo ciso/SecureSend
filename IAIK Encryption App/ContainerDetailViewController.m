@@ -151,10 +151,6 @@
     else {
         [self removeHelpView];
     }
-    
-
-    
-//    [self showTabBar:self.tabBarController];
 }
 
 
@@ -194,6 +190,11 @@
     
     [self.view setNeedsLayout];
     [self.view setNeedsDisplay];
+    
+    if (self.isQuickForward) {
+        self.isQuickForward = NO;
+        [self exportContainer];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

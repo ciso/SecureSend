@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SwipeCellDelegate <NSObject>
+
+@required
+- (void)share:(UITableViewCell*)cell;
+- (void)remove:(UITableViewCell*)cell;
+- (void)edit:(UITableViewCell*)cell;
+
+@end
+
 @interface SwipeCell : UITableViewCell
+
+@property (nonatomic, strong) id delegate;
 
 @end

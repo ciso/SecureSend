@@ -36,7 +36,6 @@
 #import "DropboxAlertViewHandler.h"
 #import "Email.h"
 
-
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
 #define NUMBER_SECTIONS 2
@@ -350,8 +349,11 @@
     }
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        cell = [[SwipeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
 
+        ((SwipeCell*)cell).delegate = self;
+        
         UITextField *nameTextField = (UITextField*)[cell viewWithTag:100];
         UILabel *detailLabel = (UILabel*)[cell viewWithTag:101];
         UILabel *lastModifiedLabel = (UILabel*)[cell viewWithTag:102];
@@ -366,7 +368,7 @@
         {
             nameTextField.clearButtonMode = UITextFieldViewModeAlways;
         }
-        else 
+        else
         {
             nameTextField.clearButtonMode = UITextFieldViewModeNever;
         }
@@ -430,6 +432,30 @@
     
     
     return cell;
+}
+
+
+#pragma mark - Swipe Cell Delegate
+- (void)share:(UITableViewCell*)cell {
+    NSLog(@"Share pressed");
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self performSegueWithIdentifier:@"toDetailAndExport" sender:[self.containers objectAtIndex:indexPath.row]];
+    
+}
+
+- (void)remove:(UITableViewCell*)cell {
+    NSLog(@"Remove pressed");
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    [self tableView:self.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+}
+
+- (void)edit:(UITableViewCell*)cell {
+    NSLog(@"Edit pressed");
+    
+    [self editTableView];
 }
 
 
@@ -674,6 +700,12 @@
         }
         
         self.receivedFileURL = nil;
+    }
+    else if ([segue.identifier isEqualToString:@"toDetailAndExport"]) {
+        ContainerDetailViewController* detail = (ContainerDetailViewController*) [segue destinationViewController];
+        SecureContainer* container = (SecureContainer*) sender;
+        detail.isQuickForward = YES;
+        [detail setContainer:container];
     }
     else if([segue.identifier isEqualToString:SEGUE_TO_CHOOSE_CONTROLLER])
     {
