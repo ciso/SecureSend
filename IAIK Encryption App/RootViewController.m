@@ -961,6 +961,8 @@
     //deleting incoming
     [filemanager removeItemAtPath:incoming error:nil];
     
+    [self removeHelpView];
+    
 }
 
 

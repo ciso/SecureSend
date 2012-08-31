@@ -238,6 +238,7 @@
         
         [root decryptContainer:containerdata];
         
+        
         [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
         
     }
