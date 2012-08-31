@@ -44,6 +44,11 @@
     
 }
 
+- (void)reload {
+    [self loadRecipients];
+    [self.tableView reloadData];
+}
+
 - (void)loadRecipients {
     
     ABAddressBookRef addressbookref = ABAddressBookCreate();

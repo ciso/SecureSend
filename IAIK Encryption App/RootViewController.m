@@ -36,6 +36,7 @@
 #import "DropboxAlertViewHandler.h"
 #import "Email.h"
 #import "ContainerEditAlertViewHandler.h"
+#import "RecipientsViewController.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -626,6 +627,15 @@
         if([KeyChainStore setData:self.receivedCertificateData forKey:id type:kDataTypeCertificate])
         {
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", nil) message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ %@ has been received and stored in your keychain", nil), name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            
+            UITabBarController *tab = self.tabBarController;
+            UINavigationController *nav = [tab.viewControllers objectAtIndex:2];
+            UIViewController *view = [nav.viewControllers objectAtIndex:0];
+            if ([view isKindOfClass:[RecipientsViewController class]]) {
+                
+                [view performSelectorOnMainThread:@selector(reload) withObject:nil waitUntilDone:NO];
+            }
+            
         }
         else
         {
