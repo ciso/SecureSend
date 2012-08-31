@@ -35,6 +35,7 @@
 #import "Error.h"
 #import "DropboxAlertViewHandler.h"
 #import "Email.h"
+#import "ContainerEditAlertViewHandler.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -56,6 +57,10 @@
 
 @property (nonatomic, strong) UITextField *activeInput;
 @property (nonatomic, strong) DropboxAlertViewHandler *handler;
+@property (nonatomic, strong) ContainerEditAlertViewHandler *editHandler;
+@property (nonatomic, strong) SecureContainer *currentActiveContainer;
+
+
 @end
 
 
@@ -75,7 +80,10 @@
 @synthesize editable                = _editable;
 @synthesize activeInput             = _activeInput;
 @synthesize restClient              = _restClient;
+@synthesize navBar = _navBar;
 @synthesize handler                 = _handler;
+@synthesize editHandler             = _editHandler;
+@synthesize currentActiveContainer  = _currentActiveContainer;
 
 - (DBRestClient *)restClient {
     if (!_restClient) {
@@ -123,18 +131,21 @@
     self.handler = [[DropboxAlertViewHandler alloc] init];
 
     
+    //info button
+    UIButton* info = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [info addTarget:self action:@selector(openInfoScreen) forControlEvents:UIControlEventAllEvents];
     
-//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-//    CGRect background_frame = self.tableView.frame;
-//    background_frame.origin.x = 0;
-//    background_frame.origin.y = 0;
-//    background.frame = background_frame;
-//    background.contentMode = UIViewContentModeTop;
-//    self.tableView.backgroundView = background;
-
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithCustomView:info];
+    
+    UIBarButtonItem* space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = 5.0;
+    
+    self.navBar.leftBarButtonItems = [[NSArray alloc] initWithObjects:space, infoButton, nil];
+    
+    //background color
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
 
-    
+    //open data protection warning
     [self showDataProtectionNotification];
     
     //should never be needed... but who knows...
@@ -152,6 +163,10 @@
     else {
         [self openCreateCertificateView];
     }
+}
+
+- (void)openInfoScreen {
+    [self performSegueWithIdentifier:@"toInfoView" sender:self];
 }
 
 - (void)openCreateCertificateView {
@@ -215,6 +230,7 @@
 
 - (void)viewDidUnload
 {
+    [self setNavBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -224,7 +240,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self showEditBarButtonItem];
+    //[self showEditBarButtonItem];
     
     if (self.containers.count == 0) {
         [self showHelpView];
@@ -302,7 +318,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == SECTION_CONTAINERS && indexPath.row != rowAddContainer)
-        return YES;
+        return NO; //was YES
     
     return NO;
 }
@@ -455,7 +471,97 @@
 - (void)edit:(UITableViewCell*)cell {
     NSLog(@"Edit pressed");
     
-    [self editTableView];
+    self.editHandler = [[ContainerEditAlertViewHandler alloc] init];
+    
+    UIAlertView* alert = nil;
+    NSString *message = @"Please enter a new name.";
+    alert = [[UIAlertView alloc] initWithTitle:@"Rename" message:message delegate:self.editHandler cancelButtonTitle:@"CANCEL" otherButtonTitles:@"SAVE", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    self.editHandler.caller = self;
+    self.editHandler.cell = cell;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    self.currentActiveContainer = [self.containers objectAtIndex:indexPath.row];
+    
+    [alert show];
+    
+    //[self editTableView];
+}
+
+- (void)userRenamedContainer:(NSString*)name inCell:(UITableViewCell*)cell {
+    NSLog(@"New name: %@", name);
+   
+    SecureContainer *container = self.currentActiveContainer;
+    self.currentActiveContainer = nil;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    //creating new path
+    NSString* newpath = [[FilePathFactory applicationDocumentsDirectory] stringByAppendingPathComponent:name];
+    
+    //check if the filename is allready present, checking if name is not an emtpy string
+    if([[NSFileManager defaultManager] fileExistsAtPath:newpath] == YES && ![container.name isEqualToString:name])
+    {
+        UIAlertView* alert;
+        
+        if([name isEqualToString:@""])
+        {
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view")
+                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view")
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        else {
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view")
+                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view")
+                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        }
+        
+        [alert show];
+        
+        name = container.name;
+        
+    }
+    else if([container.name isEqualToString:name] == NO)
+    {
+        //assigning container properties and renamind directory
+        container.name = name;
+        
+        NSError* err = 0;
+        [[NSFileManager defaultManager] moveItemAtPath:container.basePath toPath:newpath error:&err];
+        if (err) {
+            [Error log:err];
+        }
+        
+        container.basePath = newpath;
+        
+        //changing paths of the existing files
+        NSMutableArray* newfileurls = [[NSMutableArray alloc] init];
+        
+        for(NSString __strong *file in container.fileUrls)
+        {
+            file = [container.basePath stringByAppendingPathComponent:[file lastPathComponent]];
+            [newfileurls addObject:file];
+        }
+        
+        container.fileUrls = newfileurls;
+    }
+    
+    [((SwipeCell*)cell) hide];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+}
+
+- (void)cellSwiped:(UITableViewCell*)cell {
+    for (int i = 0; i < [self.tableView numberOfRowsInSection:0]; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        
+        SwipeCell *currentCell = (SwipeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        
+        if (cell != currentCell) {
+            [currentCell hide];
+        }
+    }
 }
 
 

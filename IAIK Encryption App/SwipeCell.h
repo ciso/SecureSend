@@ -15,10 +15,14 @@
 - (void)remove:(UITableViewCell*)cell;
 - (void)edit:(UITableViewCell*)cell;
 
+- (void)cellSwiped:(UITableViewCell*)cell;
+
 @end
 
 @interface SwipeCell : UITableViewCell
 
 @property (nonatomic, strong) id delegate;
+
+- (void)hide;
 
 @end

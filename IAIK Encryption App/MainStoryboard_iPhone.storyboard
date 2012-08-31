@@ -5,6 +5,43 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
+        <!--Info View Controller - Info-->
+        <scene sceneID="qBP-ll-E72">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBk-xm-giM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="uxF-wh-WhZ" customClass="InfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tab-ME-Yl3">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="ZnU-RL-0OI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Info" id="vcf-RB-Fqv">
+                        <barButtonItem key="leftBarButtonItem" title="Feedback" id="hRz-Rn-Ehd">
+                            <connections>
+                                <action selector="feedbackButtonClicked:" destination="uxF-wh-WhZ" id="WdD-T2-xtf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="z8Z-tr-IHt">
+                            <connections>
+                                <action selector="closeButtonClicked:" destination="uxF-wh-WhZ" id="MrM-38-H0T"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="ZnU-RL-0OI" id="bIJ-CW-D7N"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1027" y="-907"/>
+        </scene>
         <!--Root View Controller - Containers-->
         <scene sceneID="6hx-t1-S1E">
             <objects>
@@ -73,6 +110,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="navBar" destination="GhX-ri-wPI" id="L3m-P8-XUJ"/>
                         <segue destination="mBQ-Fv-9a7" kind="push" identifier="toDetailViewController" id="0qL-DO-5Sm"/>
                         <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="MjX-0A-OTa"/>
                         <segue destination="PgO-Ap-xUJ" kind="modal" identifier="toChooseContainer" id="pfp-d5-RoJ"/>
@@ -81,6 +119,7 @@
                         <segue destination="9Xr-xM-f9Y" kind="modal" identifier="toDataProtectionNotification" id="yDN-f4-IdL"/>
                         <segue destination="NcW-Nl-JeT" kind="modal" identifier="toGetStartedView" id="Zeq-zY-hTX"/>
                         <segue destination="mBQ-Fv-9a7" kind="push" identifier="toDetailAndExport" id="UGp-wN-WVq"/>
+                        <segue destination="ZUq-Om-Sxo" kind="modal" identifier="toInfoView" id="2oZ-4p-s6F"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -312,7 +351,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3643" y="-891"/>
+            <point key="canvasLocation" x="4169" y="-891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rc6-tY-3Nb">
@@ -327,7 +366,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="3109" y="-891"/>
+            <point key="canvasLocation" x="3635" y="-891"/>
         </scene>
         <!--Container Detail View Controller - Details-->
         <scene sceneID="QQ2-sT-v01">
@@ -637,7 +676,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2156" y="-942"/>
+            <point key="canvasLocation" x="2682" y="-942"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MIJ-V1-BpN">
@@ -655,7 +694,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1630" y="-942"/>
+            <point key="canvasLocation" x="2156" y="-942"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="gTn-ea-OaH">
@@ -1290,6 +1329,24 @@
             </objects>
             <point key="canvasLocation" x="582" y="4759"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bpd-BK-1V2">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RiK-UG-2a9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="ZUq-Om-Sxo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="29b-Mg-82J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uxF-wh-WhZ" kind="relationship" relationship="rootViewController" id="xgo-A8-PlL"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="501" y="-907"/>
+        </scene>
     </scenes>
     <resources>
         <image name="112-group.png" width="32" height="21"/>
@@ -1348,6 +1405,14 @@
         <class className="GetStartedBaseViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GetStartedBaseViewController.h"/>
         </class>
+        <class className="InfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="feedbackButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
         <class className="KeyPairDetailsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/KeyPairDetailsViewController.h"/>
         </class>
@@ -1390,6 +1455,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addNewContainer:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
             </relationships>
         </class>
         <class className="SendCertificateTwoWayViewController" superclassName="UITableViewController">

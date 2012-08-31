@@ -81,8 +81,16 @@
     // Configure the view for the selected state
 }
 
+- (void)hide {
+    self.editView.hidden = YES;
+    self.editable = NO;
+}
+
 - (void)swipe {
     
+    [self.delegate performSelector:@selector(cellSwiped:) withObject:self];
+    
+    //fade out
     if (self.editable) {
         
         self.editView.alpha = 1.0f;
@@ -99,15 +107,30 @@
         
         self.editable = NO;
     }
-    else {
+    else { //fade in
         self.editView.hidden = NO;
         self.editView.alpha = 0.0f;
-
+        
+        UIButton *button1 = (UIButton*)[self.editView viewWithTag:401];
+        UIButton *button2 = (UIButton*)[self.editView viewWithTag:402];
+        UIButton *button3 = (UIButton*)[self.editView viewWithTag:403];
+        UIButton *button4 = (UIButton*)[self.editView viewWithTag:404];
+        
+        button1.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        button2.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        button3.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        button4.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        
         [UIView animateWithDuration:DURATION
                               delay:0
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              [self.editView setAlpha:1.0f];
+                             button1.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                             button2.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                             button3.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                             button4.transform = CGAffineTransformMakeScale(1.0, 1.0);
+
                          }
                          completion:nil];
         
@@ -118,6 +141,8 @@
 
 - (void)back {
     NSLog(@"back");
+    
+    [self swipe];
 }
 
 - (void)edit {
@@ -142,44 +167,48 @@
     CGRect rect = CGRectMake(10, 0, 300, 69);
     
     UIView *view = [[UIView alloc] initWithFrame:rect];
-    view.backgroundColor = [UIColor underPageBackgroundColor]; //[UIColor greenColor];
-    //view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellbg"]];
+    //view.backgroundColor = [UIColor underPageBackgroundColor]; //[UIColor greenColor];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellbg"]];
 
     
     view.hidden = YES;
     
     //adding back button
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(20, 15, 60, 30);
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(1, 7, 60, 60);
+    backButton.tag = 401;
+    [backButton setImage:[UIImage imageNamed:@"213-reply"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:backButton];
     
     //adding edit button
-    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    editButton.frame = CGRectMake(100, 15, 60, 30);
-    [editButton setTitle:@"Edit" forState:UIControlStateNormal];
+    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    editButton.frame = CGRectMake(75, 6, 60, 60);
+    editButton.tag = 402;
+    [editButton setImage:[UIImage imageNamed:@"187-pencil"] forState:UIControlStateNormal];
     [editButton addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:editButton];
     
-    //adding delete button
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteButton.frame = CGRectMake(170, 8, 50, 30);
-    [deleteButton setTitle:@"Del" forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:deleteButton];
-    
     //adding share button
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    shareButton.frame = CGRectMake(230, 8, 50, 50);
-    [shareButton setImage:[UIImage imageNamed:@"export"] forState:UIControlStateNormal];
-    [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    shareButton.frame = CGRectMake(160, 5, 60, 60);
+    shareButton.tag = 403;
+    [shareButton setImage:[UIImage imageNamed:@"211-action"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:shareButton];
+    
+    
+    //adding delete button
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteButton.frame = CGRectMake(235, 5, 60, 60);
+    deleteButton.tag = 404;
+    [deleteButton setImage:[UIImage imageNamed:@"218-trash2"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(delete) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:deleteButton];
     
     //adding swipe gestures
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe)];
