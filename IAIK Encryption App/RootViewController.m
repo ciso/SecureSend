@@ -331,7 +331,7 @@
     
     if([self.containers count] == 0)
     {
-        [self endEditTableView];
+        //[self endEditTableView];
         [self showHelpView];
     }
     
@@ -973,6 +973,7 @@
     
     [self removeHelpView];
     
+    [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:newcontainer];
 }
 
 
@@ -1109,7 +1110,7 @@
     [self.containers addObject:newcontainer];
     
     //enabling edit button
-    [self showEditBarButtonItem];
+    //[self showEditBarButtonItem];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.containers count] - 1 inSection:0];
     [self.tableView beginUpdates];

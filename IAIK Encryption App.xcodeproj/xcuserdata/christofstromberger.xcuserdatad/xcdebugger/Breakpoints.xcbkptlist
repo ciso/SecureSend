@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "368098718.447248"
+         timestampString = "368099033.280836"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "746"
-         endingLineNumber = "746"
+         startingLineNumber = "745"
+         endingLineNumber = "745"
          landmarkName = "-editTableView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,7 +216,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "368098718.447248"
+         timestampString = "368099223.368957"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "984"
@@ -290,24 +290,11 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "368098718.447248"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1121"
-         endingLineNumber = "1121"
-         landmarkName = "-addNewContainer:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "368098718.447248"
+         timestampString = "368099223.368957"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1324"
@@ -359,7 +346,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "368098718.447248"
+         timestampString = "368099223.368957"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1350"
