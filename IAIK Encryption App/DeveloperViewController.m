@@ -19,9 +19,14 @@
 
 @interface DeveloperViewController ()
 
+@property (nonatomic, strong) NSMutableDictionary *keychainItemData;
+
 @end
 
 @implementation DeveloperViewController
+
+@synthesize keychainItemData;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,6 +110,24 @@
     [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
 }
 
+- (IBAction)resetkeychainButton:(UIButton *)sender {
+    
+    NSString *key = @"3";
+    
+    NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
+//    [query setObject:(__bridge id)kSecClassCertificate forKey:(__bridge id)(kSecClass)];
+//    [query setObject:(__bridge id)kSecMatchLimitAll forKey:(__bridge id)kSecMatchLimit];
+    [query setObject:(__bridge id)kSecClassCertificate forKey:(__bridge id)(kSecClass)];
+    //[query setObject:(id)key forKey:(__bridge id)kSecAttrLabel];
+    [query setObject:(__bridge id)kSecAttrAccessibleWhenUnlocked forKey:(__bridge id)kSecAttrAccessible];
+    
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef) query);
+    
+    NSLog(@"status: %ld", status);
+
+    NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+    NSLog(@"error: %@", [error localizedDescription]);
+}
 
 /*
  - (void)loadRecipients {

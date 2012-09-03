@@ -21,15 +21,17 @@
 @interface PreviewViewController ()
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
 @end
 
 @implementation PreviewViewController
-@synthesize toolbar = _toolbar;
-@synthesize webview = _webview;
-@synthesize popoverController = _myPopoverController;
-@synthesize path = _path;
-@synthesize image = _image;
+@synthesize toolbar            = _toolbar;
+@synthesize webview            = _webview;
+@synthesize popoverController  = _myPopoverController;
+@synthesize path               = _path;
+@synthesize image              = _image;
+@synthesize documentController = _documentController;
 
 
 #pragma mark - lifecycle methods
@@ -248,12 +250,62 @@
 -(void) choosedContainer:(NSInteger) index
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)exportButtonClicked:(UIBarButtonItem *)sender {
+    
+    //showing alert to enter code, setting rootviewcontroller as delegate
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You are leaving this application"
+                                                    message:@"This document will be copied into the new application's document folder.\nTherefore it might be insecure!"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    
+    [alert show];
+    
+    //[self export];
+}
+
+- (void)export {
+    self.documentController =
+    [UIDocumentInteractionController
+     interactionControllerWithURL:[NSURL fileURLWithPath:self.path]];
+    
+    self.documentController.delegate = self;
+    
+    self.documentController.UTI = @"com.adobe.pdf";
+    [self.documentController presentOpenInMenuFromRect:CGRectZero
+                                                inView:self.view
+                                              animated:YES];
+}
+
+#pragma mark - Document Interaction Delegates
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application {
+    
+}
+
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller didEndSendingToApplication:(NSString *)application {
+    
+}
+
+-(void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
     
 }
 
 
-- (void)dealloc 
+#pragma mark - Alert View Delegates
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
+    [alertView dismissWithClickedButtonIndex:0 animated:NO];
+    if(buttonIndex != 0)
+    {
+        [self export];
+    }
 }
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    
+}
+
 @end

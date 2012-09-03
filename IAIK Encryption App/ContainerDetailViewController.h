@@ -16,7 +16,7 @@
 @class SecureContainer, NameCell;
 @class SourceSelectionViewController;
 
-@interface ContainerDetailViewController : UITableViewController <ModifyContainerPropertyDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, ModifyCertPropertyDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate, DBRestClientDelegate>
+@interface ContainerDetailViewController : UITableViewController <ModifyContainerPropertyDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, ModifyCertPropertyDelegate, UIPopoverControllerDelegate, MWPhotoBrowserDelegate, DBRestClientDelegate, UIDocumentInteractionControllerDelegate>
 
 
 @property (nonatomic, strong) SecureContainer* container;

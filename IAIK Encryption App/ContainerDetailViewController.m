@@ -28,6 +28,9 @@
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *exportButton;
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
+@property (nonatomic, strong) NSString *currentActivePath;
+@property (nonatomic, strong) NSString *currentActiveExtension;
 
 @end
 
@@ -55,7 +58,9 @@
 @synthesize shouldRotateToPortrait        = _shouldRotateToPortrait;
 @synthesize exportButton                  = _exportButton;
 @synthesize recipientMail                 = _recipientMail;
-
+@synthesize documentController            = _documentController;
+@synthesize currentActivePath             = _currentActivePath;
+@synthesize currentActiveExtension        = _currentActiveExtension;
 
 - (void)awakeFromNib
 {
@@ -275,7 +280,7 @@
         {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            }
+        }
     }
 
     return cell;
@@ -316,6 +321,20 @@
     else if ([pathExtension isEqualToString:EXTENSION_PDF])
     {
         [self performSegueWithIdentifier:SEGUE_TO_PREVIEW sender:path];
+    }
+    else {
+        self.currentActivePath = path;
+        self.currentActiveExtension = pathExtension;
+        
+        //showing alert to enter code, setting rootviewcontroller as delegate
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"You are leaving this application"
+                                                        message:@"This document will be copied into the new application's document folder.\nTherefore it might be insecure!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+        
+        [alert show];
+
     }
 
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -633,9 +652,48 @@
     }
 }
 
--(void) dealloc
-{
+#pragma mark - Document Interaction Delegates
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application {
+    
+}
 
+-(void)documentInteractionController:(UIDocumentInteractionController *)controller didEndSendingToApplication:(NSString *)application {
+    
+}
+
+-(void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
+    
+}
+
+- (void)export {
+    self.documentController =
+    [UIDocumentInteractionController
+     interactionControllerWithURL:[NSURL fileURLWithPath:self.currentActivePath]];
+    
+    self.documentController.delegate = self;
+    
+    self.documentController.UTI = self.currentActiveExtension;
+    [self.documentController presentOpenInMenuFromRect:CGRectZero
+                                                inView:self.view.window
+                                              animated:YES];
+}
+
+#pragma mark - Alert View Delegates
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [alertView dismissWithClickedButtonIndex:0 animated:NO];
+    if(buttonIndex != 0)
+    {
+        [self export];
+        self.currentActivePath = nil;
+        self.currentActiveExtension = nil;
+    }
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    self.currentActivePath = nil;
+    self.currentActiveExtension = nil;
 }
 
 @end

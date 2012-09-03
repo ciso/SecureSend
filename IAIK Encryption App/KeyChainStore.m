@@ -192,7 +192,6 @@ errSecAuthFailed             = -25293,	* The user name or passphrase you entered
         [query setObject:(id)kSecClassCertificate forKey:kSecClass];
         [query setObject:(id)key forKey:(id)kSecAttrLabel];
         [query setObject:(id)kSecAttrAccessibleWhenUnlocked forKey:(id)kSecAttrAccessible];
-        [query setObject:(id)cert forKey:(id)kSecValueRef];
         //[query setObject:(id)key forKey:(id)kSecAttrSerialNumber];
         
         //CFTypeRef certificateRef = NULL;
@@ -202,14 +201,25 @@ errSecAuthFailed             = -25293,	* The user name or passphrase you entered
         if(status != 0 && status != errSecItemNotFound)
         {
             NSLog(@"Keychain error occured: %ld (statuscode)", status);
+            
+            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            NSLog(@"error: %@", [error localizedDescription]);
+            
             return NO;
         }
+        
+        [query setObject:(id)cert forKey:(id)kSecValueRef];
+
         
         status = SecItemAdd(( CFDictionaryRef) query, NULL);
         
         if(status)
         {
             NSLog(@"Keychain error occured: %ld (statuscode)", status);
+            
+            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            NSLog(@"error: %@", [error localizedDescription]);
+            
             return NO;
         }
         
