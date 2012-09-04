@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
-@interface DropboxBrowserViewController : UITableViewController
+@interface DropboxBrowserViewController : UITableViewController <DBRestClientDelegate>
 
 @property (nonatomic, strong) RootViewController *root;
 

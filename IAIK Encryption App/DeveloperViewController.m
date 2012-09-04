@@ -112,13 +112,10 @@
 
 - (IBAction)resetkeychainButton:(UIButton *)sender {
     
-    NSString *key = @"3";
+    //NSString *key = @"3";
     
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
-//    [query setObject:(__bridge id)kSecClassCertificate forKey:(__bridge id)(kSecClass)];
-//    [query setObject:(__bridge id)kSecMatchLimitAll forKey:(__bridge id)kSecMatchLimit];
     [query setObject:(__bridge id)kSecClassCertificate forKey:(__bridge id)(kSecClass)];
-    //[query setObject:(id)key forKey:(__bridge id)kSecAttrLabel];
     [query setObject:(__bridge id)kSecAttrAccessibleWhenUnlocked forKey:(__bridge id)kSecAttrAccessible];
     
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef) query);
