@@ -53,10 +53,17 @@
     NSArray *tokens = [commonName componentsSeparatedByString:@" "];
         
     //assuming default values
-    self.email   = [X509CertificateUtil getEmail:certificate];
-    self.phone   = @"";
-    self.name    = [tokens objectAtIndex:0];
-    self.surname = [tokens lastObject];
+    self.email = [X509CertificateUtil getEmail:certificate];
+    self.phone = @"";
+    if (tokens.count > 0) {
+        self.name    = [tokens objectAtIndex:0];
+        self.surname = [tokens lastObject];
+    }
+    else {
+        self.name = @"";
+        self.surname = @"";
+    }
+
     
     //touch recognizer to hide keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self

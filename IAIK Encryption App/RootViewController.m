@@ -668,8 +668,12 @@
                 CFRelease(em);
             }
         }
-        
-        self.email = [emailArray objectAtIndex:0];
+        if (emailArray.count > 0) {
+            self.email = [emailArray objectAtIndex:0];
+        }
+        else {
+            self.email = @"";
+        }
         self.name = [NSString stringWithFormat:@"%@ %@", name, lastname];
         
         //obtain email address from the user
