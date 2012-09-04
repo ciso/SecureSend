@@ -98,6 +98,8 @@
 		B4672A5015F09B320060035D /* 218-trash2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4672A4E15F09B320060035D /* 218-trash2@2x.png */; };
 		B4672A5715F0A7930060035D /* ContainerEditAlertViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B4672A5615F0A7930060035D /* ContainerEditAlertViewHandler.m */; };
 		B4672A5F15F0B2BB0060035D /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4672A5E15F0B2BB0060035D /* InfoViewController.m */; };
+		B47B610B15F5DF060014746A /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = B47B610915F5DF060014746A /* 111-user.png */; };
+		B47B610C15F5DF060014746A /* 111-user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B47B610A15F5DF060014746A /* 111-user@2x.png */; };
 		B47D26F215C951C50094A21E /* KeyPairDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */; };
 		B47FF3E615E388FF001041C7 /* tut5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B47FF3E515E388FF001041C7 /* tut5@2x.png */; };
 		B47FF3E815E38906001041C7 /* tut3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B47FF3E715E38906001041C7 /* tut3@2x.png */; };
@@ -327,6 +329,8 @@
 		B4672A5615F0A7930060035D /* ContainerEditAlertViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerEditAlertViewHandler.m; sourceTree = "<group>"; };
 		B4672A5D15F0B2BB0060035D /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B4672A5E15F0B2BB0060035D /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		B47B610915F5DF060014746A /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
+		B47B610A15F5DF060014746A /* 111-user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user@2x.png"; sourceTree = "<group>"; };
 		B47D26F015C951C50094A21E /* KeyPairDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPairDetailsViewController.h; sourceTree = "<group>"; };
 		B47D26F115C951C50094A21E /* KeyPairDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyPairDetailsViewController.m; sourceTree = "<group>"; };
 		B47FF3E515E388FF001041C7 /* tut5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut5@2x.png"; sourceTree = "<group>"; };
@@ -1054,6 +1058,8 @@
 		B4672A4015F09A5F0060035D /* Cell Icons (NOT VISIBLE ON GITHUB) */ = {
 			isa = PBXGroup;
 			children = (
+				B47B610915F5DF060014746A /* 111-user.png */,
+				B47B610A15F5DF060014746A /* 111-user@2x.png */,
 				B4672A4915F09B200060035D /* 213-reply.png */,
 				B4672A4D15F09B320060035D /* 218-trash2.png */,
 				B4672A4E15F09B320060035D /* 218-trash2@2x.png */,
@@ -1594,6 +1600,8 @@
 				B4672A4C15F09B200060035D /* 213-reply@2x.png in Resources */,
 				B4672A4F15F09B320060035D /* 218-trash2.png in Resources */,
 				B4672A5015F09B320060035D /* 218-trash2@2x.png in Resources */,
+				B47B610B15F5DF060014746A /* 111-user.png in Resources */,
+				B47B610C15F5DF060014746A /* 111-user@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

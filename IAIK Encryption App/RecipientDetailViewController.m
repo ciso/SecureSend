@@ -104,7 +104,15 @@
         //ABPersonCopyImageDataWithFormat
         NSData *profileImage = (__bridge NSData*)ABPersonCopyImageDataWithFormat(self.recipient.recordRef, kABPersonImageFormatThumbnail);
         
-        UIImage *image = [UIImage imageWithData:profileImage];
+        
+        UIImage *image = nil;
+        if (profileImage != nil) {
+            image = [UIImage imageWithData:profileImage];
+        }
+        else {
+            image = [UIImage imageNamed:@"111-user"];
+        }
+        
         
         UIImageView *imageView = (UIImageView*)[newCell viewWithTag:100];
         UILabel *detailLabel = (UILabel*)[newCell viewWithTag:101];
