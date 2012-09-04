@@ -11,11 +11,24 @@
 
 @interface UserSettingsViewController ()
 
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *surname;
+@property (nonatomic, strong) UITextField *activeTextField;
+@property (nonatomic, strong) NSIndexPath *activeIndexPath;
+
 @end
 
 @implementation UserSettingsViewController
 
-@synthesize sender = _sender;
+@synthesize sender          = _sender;
+@synthesize email           = _email;
+@synthesize phone           = _phone;
+@synthesize name            = _name;
+@synthesize surname         = _surname;
+@synthesize activeTextField = _activeTextField;
+@synthesize activeIndexPath = _activeIndexPath;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,16 +42,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-//    CGRect background_frame = self.tableView.frame;
-//    background_frame.origin.x = 0;
-//    background_frame.origin.y = 0;
-//    background.frame = background_frame;
-//    background.contentMode = UIViewContentModeTop;
-//    self.tableView.backgroundView = background;
     
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+    
+    //assuming default values
+    self.email   = @"";
+    self.phone   = @"";
+    self.name    = @"";
+    self.surname = @"";
+    
+    //touch recognizer to hide keyboard
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard
+{
+    //resigning first responder
+    if (self.activeTextField != nil)
+    {
+        [self.activeTextField resignFirstResponder];
+    }
 }
 
 - (void)viewDidUnload
@@ -78,46 +103,41 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *placeholder = nil;
+    
+    UILabel *detailLabel = (UILabel*)[cell viewWithTag:100];
+    UITextField *textField = (UITextField*)[cell viewWithTag:101];
+    textField.delegate = self;
     
     if (indexPath.section == 0 && indexPath.row == 0)
     {
-        UILabel *nameLabel = (UILabel*)[cell viewWithTag:100];
-        UITextField *textField = (UITextField*)[cell viewWithTag:101];
-        
-        NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
-        nameLabel.text = NSLocalizedString(@"Email", @"Text in user settings view");
-        textField.text = email;
+        detailLabel.text = NSLocalizedString(@"Email", @"Text in user settings view");
+        textField.text = self.email;
+        placeholder = @"max@mustermann.at";
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.keyboardType = UIKeyboardTypeEmailAddress;
     }
     else if (indexPath.section == 0 && indexPath.row == 1)
     {
-        UILabel *phoneLabel = (UILabel*)[cell viewWithTag:100];
-        UITextField *textField = (UITextField*)[cell viewWithTag:101];
-        
-        NSString *phone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
-        phoneLabel.text = NSLocalizedString(@"Phone", @"Text in user settings view");
-        textField.text = phone;
+        detailLabel.text = NSLocalizedString(@"Phone", @"Text in user settings view");
+        textField.text = self.phone;
+        placeholder = @"0664 1234567";
         textField.keyboardType = UIKeyboardTypePhonePad;
     }
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
-        UILabel *nameLabel = (UILabel*)[cell viewWithTag:100];
-        UITextField *textField = (UITextField*)[cell viewWithTag:101];
-        
-        NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_forename"];
-        nameLabel.text = NSLocalizedString(@"Forename", @"Text in user settings view");
-        textField.text = username;
+        detailLabel.text = NSLocalizedString(@"Name", @"Text in user settings view");
+        placeholder = @"Max";
+        textField.text = self.name;
     }
     else if (indexPath.section == 1 && indexPath.row == 1)
     {
-        UILabel *nameLabel = (UILabel*)[cell viewWithTag:100];
-        UITextField *textField = (UITextField*)[cell viewWithTag:101];
-        
-        NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_surname"];
-        nameLabel.text = NSLocalizedString(@"Surname", @"Text in user settings view");
-        textField.text = username;
+        detailLabel.text = NSLocalizedString(@"Surname", @"Text in user settings view");
+        placeholder = @"Mustermann";
+        textField.text = self.surname;
     }
+    
+    textField.placeholder = placeholder;
     
     //returning table view cell
     return cell;
@@ -135,124 +155,20 @@
     return nil;
 }
 
-//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 0)
-//    {
-//        //creating header label
-//        UILabel* headerLabel = [[UILabel alloc] init];
-//        headerLabel.frame = CGRectMake(30, 5, 220, 30);
-//        headerLabel.backgroundColor = [UIColor clearColor];
-//        headerLabel.textColor = [UIColor whiteColor];
-//        headerLabel.font = [UIFont boldSystemFontOfSize:17];
-//        headerLabel.text = NSLocalizedString(@"   Mandatory", @"Section headline in user settings view");
-//        headerLabel.alpha = 1.0;
-//        
-//        return headerLabel;
-//    }
-//    else if (section == 1)
-//    {
-//        {
-//            //creating header label
-//            UILabel* headerLabel = [[UILabel alloc] init];
-//            headerLabel.frame = CGRectMake(30, 5, 220, 30);
-//            headerLabel.backgroundColor = [UIColor clearColor];
-//            headerLabel.textColor = [UIColor whiteColor];
-//            headerLabel.font = [UIFont boldSystemFontOfSize:17];
-//            headerLabel.text = NSLocalizedString(@"   Optional", @"Section headline in user settings view");
-//            headerLabel.alpha = 1.0;
-//            
-//            return headerLabel;
-//        }
-//    }
-//    
-//    return nil;
-//}
-
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 30;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    if (section == 0)
-//    {
-//        return 65.0;
-//    }
-//    if (section == 1)
-//    {
-//        return 45.0;
-//    }
-//    
-//    return 0;
-//}
 
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section == 0) {
-        return NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.",
+        return NSLocalizedString(@"The requested certificate will be sent to your email address and the validation checksum directly to your phone.",
                                  @"Footer text in user setting view");
     }
     else if (section == 1) {
-        return NSLocalizedString(@"You can change this later in the \nSettings of your %@.",
+        return NSLocalizedString(@"You can change this later in the Settings of your iPhone",
                           @"Footer text in user settings view");
     }
     
     return nil;
 }
-
-//- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    if (section == 0)
-//    {
-//        //creating footer label
-//        UILabel* footerLabel = [[UILabel alloc] init];
-//        footerLabel.frame = CGRectMake(20, 15, 280, 100);
-//        footerLabel.textAlignment = UITextAlignmentCenter;
-//        footerLabel.numberOfLines = 0;
-//        footerLabel.backgroundColor = [UIColor clearColor];
-//        footerLabel.textColor = [UIColor whiteColor];
-//        footerLabel.font = [UIFont systemFontOfSize:14];
-//        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"The requested certificate will be sent to your\nemail address and the validation checksum\ndirectly to your phone.", 
-//                                                                               @"Footer text in user setting view")];
-//        footerLabel.alpha = 0.85;
-//        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
-//        
-//        return footerLabel;
-//    }
-//    if (section == 1)
-//    {
-//        NSString* device = @"iPhone";
-//        UIDevice* thisDevice = [UIDevice currentDevice];
-//        if (thisDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-//            device = @"iPad";
-//        
-//        
-//        //creating footer label
-//        UILabel* footerLabel = [[UILabel alloc] init];
-//        footerLabel.frame = CGRectMake(20, 15, 280, 100);
-//        footerLabel.textAlignment = UITextAlignmentCenter;
-//        footerLabel.numberOfLines = 0;
-//        footerLabel.backgroundColor = [UIColor clearColor];
-//        footerLabel.textColor = [UIColor whiteColor];
-//        footerLabel.font = [UIFont systemFontOfSize:14];
-//        footerLabel.text =  [[NSString alloc] initWithFormat:NSLocalizedString(@"You can change this later in the \nSettings of your %@.", 
-//                                                                               @"Footer text in user settings view"), device];
-//        footerLabel.alpha = 0.85;
-//        footerLabel.lineBreakMode = UILineBreakModeWordWrap;
-//        
-//        return footerLabel;
-//    }
-//        
-//
-//        
-//    
-//    return nil;
-//}
-
-
 
 #pragma mark - Table view delegate
 
@@ -263,21 +179,14 @@
 
 - (IBAction)doneButtonClicked:(UIBarButtonItem *)sender 
 {
-    UITableViewCell *emailCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    UITableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-//    UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-//    UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-
-    UITextField *emailTextField = (UITextField*)[emailCell viewWithTag:101];
-    UITextField *phoneTextField = (UITextField*)[phoneCell viewWithTag:101];
-//    UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
-//    UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
-
-    NSString *email = emailTextField.text;
-    NSString *phone = phoneTextField.text;
-//    NSString *forename = forenameTextField.text;
-//    NSString *surname = surnameTextField.text;
-
+    //assuming input from active field (didEndEditing _not_ called right now!)
+    if (self.activeTextField != nil && self.activeIndexPath != nil)
+    {
+        [self assumeInput:self.activeTextField.text withIndexPath:self.activeIndexPath];
+    }
+    
+    NSString *email = self.email;
+    NSString *phone = self.phone;
     
     if (![Validation emailIsValid:email] || ![Validation phoneNumberIsValid:phone])
     {
@@ -301,26 +210,91 @@
     }
 }
 
+#pragma mark - UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    BOOL nextExists = NO;
+    
+    [textField resignFirstResponder];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    
+    //check if there is another row in this section
+    NSInteger nextRow = 0;
+    NSInteger nextSection = 0;
+    if (indexPath.row+1 < [self.tableView numberOfRowsInSection:indexPath.section])
+    {
+        nextRow = indexPath.row + 1;
+        nextSection = indexPath.section;
+        nextExists = YES;
+    }
+    else if ((indexPath.row+1 == [self.tableView numberOfRowsInSection:indexPath.section])
+             && indexPath.section < [self.tableView numberOfSections])
+    {
+        nextRow = 0;
+        nextSection = indexPath.section + 1;
+        nextExists = YES;
+    }
+    
+    //there exist a next row
+    if (nextExists)
+    {
+        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:nextRow inSection:nextSection];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:nextIndexPath];
+        UITextField *nextTextField = (UITextField*)[cell viewWithTag:101];
+        
+        [nextTextField becomeFirstResponder];
+    }
+    
+    return YES;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSIndexPath *indexPath = (NSIndexPath*)[self.tableView indexPathForCell:(UITableViewCell*)[[textField superview] superview]];
+    
+    self.activeTextField = textField;
+    self.activeIndexPath = indexPath;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSString *input = textField.text;
+    
+    //assuming values from input textfield into corresponding properties
+    [self assumeInput:input withIndexPath:self.activeIndexPath];
+    
+    self.activeTextField = nil;
+    self.activeTextField = nil;
+}
+
+- (void)assumeInput:(NSString*)input withIndexPath:(NSIndexPath*)indexPath {
+    //assuming values from input textfield into corresponding properties
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        self.email = input;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 1) {
+        self.phone = input;
+    }
+    else if (indexPath.section == 1 && indexPath.row == 0) {
+        self.name = input;
+    }
+    else  if (indexPath.section == 1 && indexPath.row == 1) {
+        self.surname = input;
+    }
+    
+}
+
 #pragma mark - UIAlertViewDelegateMethods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != 0)
     {
-        UITableViewCell *emailCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        UITableViewCell *phoneCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        UITableViewCell *forenameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-        UITableViewCell *surnameCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-        
-        UITextField *emailTextField = (UITextField*)[emailCell viewWithTag:101];
-        UITextField *phoneTextField = (UITextField*)[phoneCell viewWithTag:101];
-        UITextField *forenameTextField = (UITextField*)[forenameCell viewWithTag:101];
-        UITextField *surnameTextField = (UITextField*)[surnameCell viewWithTag:101];
-        
-        NSString *email = emailTextField.text;
-        NSString *phone = phoneTextField.text;
-        NSString *forename = forenameTextField.text;
-        NSString *surname = surnameTextField.text;
+        NSString *email = self.email;
+        NSString *phone = self.phone;
+        NSString *forename = self.name;
+        NSString *surname = self.surname;
         
         //setting new userinfo
         [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"default_email"];
