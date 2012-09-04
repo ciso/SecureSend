@@ -46,6 +46,7 @@
 @synthesize activeIndexPath  = _activeIndexPath;
 @synthesize activeTextField  = _activeTextField;
 @synthesize owner            = _owner;
+@synthesize hideCancelButton = _hideCancelButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -70,6 +71,11 @@
     {
         NSLog(@"The user does already have a certificate!");
     }
+    
+    if (self.hideCancelButton) {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
     
     //maybe set values from existing certificate here
     self.firstName        = @"";

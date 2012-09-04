@@ -38,6 +38,7 @@
 #import "ContainerEditAlertViewHandler.h"
 #import "RecipientsViewController.h"
 #import "KeyPair.h"
+#import "CreateNewCertificateViewController.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -854,6 +855,14 @@
         TutorialViewController *view = (TutorialViewController*)[nav.viewControllers objectAtIndex:0];
         view.root = self;
     }
+    else if ([segue.identifier isEqualToString:SEGUE_TO_CREATE_CERT]) {
+        UINavigationController *nav = (UINavigationController*)segue.destinationViewController;
+        UIViewController *view = (UIViewController*)[nav.viewControllers objectAtIndex:0];
+        if ([view isKindOfClass:[CreateNewCertificateViewController class]]) {
+            CreateNewCertificateViewController *newCertView = (CreateNewCertificateViewController*)view;
+            newCertView.hideCancelButton = YES;
+        }
+    }
 }
 
 #pragma mark - methods for decrypting container
@@ -886,9 +895,10 @@
         for (NSInteger index = 0; index < keypairs.count; index++) {
             KeyPair *activeKey = [keypairs objectAtIndex:index];
             NSData *currentPrivateKey = activeKey.privateKey;
+            NSData *currentCertificate = activeKey.certificate;
             
             @try {
-                zippedcontainer = [[Crypto getInstance] decryptBinaryFile:encryptedContainer withUserCertificate:usercert privateKey:currentPrivateKey];
+                zippedcontainer = [[Crypto getInstance] decryptBinaryFile:encryptedContainer withUserCertificate:currentCertificate privateKey:currentPrivateKey];
                 
                 succeeded = YES;
             }
