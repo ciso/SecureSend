@@ -67,7 +67,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     NSData *certificate = [self.keyPair certificate];
-    NSData *privateKey = [self.keyPair privateKey];
+    //NSData *privateKey = [self.keyPair privateKey];
     
     NSString *title = @"";
     NSString *detail = @"";
