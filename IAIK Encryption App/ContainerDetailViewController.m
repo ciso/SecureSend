@@ -186,7 +186,19 @@
 
 - (void)exportContainer
 {
-    [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
+    if (self.container.fileUrls.count > 0) {
+        [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
+    }
+    else {
+        //showing alert to enter code, setting rootviewcontroller as delegate
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"You cannot share an empty container."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
