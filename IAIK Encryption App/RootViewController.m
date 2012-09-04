@@ -37,6 +37,7 @@
 #import "Email.h"
 #import "ContainerEditAlertViewHandler.h"
 #import "RecipientsViewController.h"
+#import "KeyPair.h"
 
 #define SECTION_CONTAINERS 0
 #define SECTION_ACTIONS 1
@@ -862,7 +863,7 @@
     NSData *usercert = [PersistentStore getActiveCertificateOfUser];
 
     NSData *userprivateKey = [PersistentStore getActivePrivateKeyOfUser];
-        
+    
     if(usercert == nil || userprivateKey == nil)
     {
         NSLog(@"Could not decrypt container because of missing key / certificate");
@@ -877,10 +878,37 @@
     }
     @catch (NSException *exception) 
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not decrypt", @"Title of alert in root view. The container could not be decrypted") 
-                                                        message:NSLocalizedString(@"The container was not encrypted using your certificate", @"Message of alert in root view. The container could not be decrypted") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        return;
+        //now trying all other keys
+        NSArray *keypairs = [PersistentStore getAllKeyPairsOfUser];
+        BOOL succeeded = NO;
+        
+        //iterating through entire private key arrays
+        for (NSInteger index = 0; index < keypairs.count; index++) {
+            KeyPair *activeKey = [keypairs objectAtIndex:index];
+            NSData *currentPrivateKey = activeKey.privateKey;
+            
+            @try {
+                zippedcontainer = [[Crypto getInstance] decryptBinaryFile:encryptedContainer withUserCertificate:usercert privateKey:currentPrivateKey];
+                
+                succeeded = YES;
+            }
+            @catch (NSException *ex) {
+                
+            }
+            
+            if (succeeded) {
+                break;
+            }
+            
+        }
+        
+        if (!succeeded) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not decrypt", @"Title of alert in root view. The container could not be decrypted")
+                                                            message:NSLocalizedString(@"The container was not encrypted using your certificate", @"Message of alert in root view. The container could not be decrypted") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
+
     }
     @finally 
     {

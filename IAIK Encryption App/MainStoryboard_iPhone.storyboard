@@ -611,11 +611,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Certificate" id="h8z-AV-OKF">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="I0z-AQ-UVq">
-                            <connections>
-                                <action selector="cancelButtonClicked:" destination="WaF-6V-MDJ" id="TnZ-9N-A9r"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qxb-yo-WLr">
                             <connections>
                                 <action selector="saveButtonClicked:" destination="WaF-6V-MDJ" id="P9A-Tk-Cdb"/>
