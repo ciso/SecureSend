@@ -127,7 +127,11 @@
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(self.recipient.recordRef, kABPersonPhoneProperty);
-        NSString *phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+        NSString *phone = nil;
+        
+        if (ABMultiValueGetCount(phoneNumbers) > 0) {
+            phone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+        }
         
         title = @"Phone";
         detail = phone;
@@ -135,7 +139,10 @@
     else if (indexPath.section == 1 && indexPath.row == 1)
     {
         ABMultiValueRef mailAddresses = ABRecordCopyValue(self.recipient.recordRef, kABPersonEmailProperty);
-        NSString *email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(mailAddresses, 0);
+        NSString *email = nil;
+        if (ABMultiValueGetCount(mailAddresses) > 0) {
+            email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(mailAddresses, 0);
+        }
 
         title = @"Email";
         detail = email;
