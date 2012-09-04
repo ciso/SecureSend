@@ -1011,6 +1011,7 @@
     
     [self removeHelpView];
     
+    self.tabBarController.selectedIndex = 0;
     [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:newcontainer];
 }
 
