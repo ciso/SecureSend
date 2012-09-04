@@ -8,6 +8,8 @@
 
 #import "UserSettingsViewController.h"
 #import "Validation.h"
+#import "X509CertificateUtil.h"
+#import "PersistentStore.h"
 
 @interface UserSettingsViewController ()
 
@@ -45,11 +47,16 @@
     
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
+    //getting users certificate
+    NSData *certificate = [PersistentStore getActiveCertificateOfUser];
+    NSString *commonName = [X509CertificateUtil getCommonName:certificate];
+    NSArray *tokens = [commonName componentsSeparatedByString:@" "];
+        
     //assuming default values
-    self.email   = @"";
+    self.email   = [X509CertificateUtil getEmail:certificate];
     self.phone   = @"";
-    self.name    = @"";
-    self.surname = @"";
+    self.name    = [tokens objectAtIndex:0];
+    self.surname = [tokens lastObject];
     
     //touch recognizer to hide keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
