@@ -86,7 +86,7 @@
     NSString *datestring = [NSString stringWithFormat:@"%@", [formatter stringFromDate:[crypto getExpirationDateOfCertificate:certificate]]];
     
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%x", certificate];
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", (int)certificate];
     cell.detailTextLabel.text = datestring;
     
     return cell;
