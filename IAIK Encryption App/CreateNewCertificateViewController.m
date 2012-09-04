@@ -173,12 +173,14 @@
             detail = self.email;
             placeholder = @"max@mustermann.at";
             textfield.keyboardType = UIKeyboardTypeEmailAddress;
+            textfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
             break;
         case kFieldRepeatEmail:
             title = @"Repeat Email";
             detail = self.repeatEmail;
             placeholder = @"max@mustermann.at";
             textfield.keyboardType = UIKeyboardTypeEmailAddress;
+            textfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
             break;
         case kFieldCountry:
             title = @"Country";
