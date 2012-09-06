@@ -29,6 +29,13 @@
 {
     [super viewDidLoad];
     
+    
+//    NSString *path = [[NSBundle mainBundle] bundlePath];
+//    NSURL *baseURL = [NSURL fileURLWithPath:path];
+//    NSString *pathToFile = [[NSBundle mainBundle] pathForResource:@"info" ofType:@"html"];
+//    NSString* htmlString = [NSString stringWithContentsOfFile:pathToFile encoding:NSUTF8StringEncoding error:nil];
+//    [webView loadHTMLString:htmlString baseURL:baseURL];
+//    
     NSString *urlAddress = @"http://cstromberger.at/securesend/info.html";
     
     //Create a URL object.
@@ -62,4 +69,14 @@
 - (IBAction)feedbackButtonClicked:(UIBarButtonItem *)sender {
     [TestFlight openFeedbackView];
 }
+
+- (BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {    
+    if ( inType == UIWebViewNavigationTypeLinkClicked ) {
+        [[UIApplication sharedApplication] openURL:[inRequest URL]];
+        return NO;
+    }
+    
+    return YES;
+}
+
 @end

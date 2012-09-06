@@ -231,11 +231,11 @@
     NSString *ret = nil;
     if (section == 0)
     {
-        ret = @"Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.";
+        ret = @"These information are mandatory and are stored in your personal certificate. This certificate is used to encrypt containers for you.";
     }
     else if (section == 1)
     {
-        ret = @"Etiam porta sem malesuada magna mollis euismod.";
+        ret = @"These fields are optional and are also stored in your personal certificate.";
     }
     
     return ret;
