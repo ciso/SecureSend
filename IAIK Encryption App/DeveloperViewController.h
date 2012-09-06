@@ -13,5 +13,6 @@
 - (IBAction)openFeedback:(UIButton *)sender;
 - (IBAction)deleteAllCertificates:(UIButton *)sender;
 - (IBAction)resetkeychainButton:(UIButton *)sender;
+- (IBAction)closeButtonClicked:(UIBarButtonItem *)sender;
 
 @end

@@ -565,6 +565,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Certificate" id="f7R-9k-vhj"/>
+                    <connections>
+                        <segue destination="E1g-f3-8OG" kind="modal" identifier="toHiddenDeveloperView" id="u5S-9f-WlV"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="62" y="2021"/>
@@ -717,7 +720,6 @@
                         <segue destination="ZFw-Od-XP2" kind="relationship" relationship="viewControllers" id="ZDD-GZ-OgN"/>
                         <segue destination="nSA-vy-mt5" kind="relationship" relationship="viewControllers" id="etH-PM-Q2b"/>
                         <segue destination="PVY-MG-CFg" kind="relationship" relationship="viewControllers" id="5JX-MG-HP2"/>
-                        <segue destination="E1g-f3-8OG" kind="relationship" relationship="viewControllers" id="Nnb-JO-aDm"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -904,7 +906,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddM-E7-QjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xC2-EV-SSo" customClass="DeveloperViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjH-cP-9lj">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hAM-Xb-nTN">
@@ -1015,7 +1017,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="DEVELOPER" id="X1Q-Aj-m9S"/>
+                    <navigationItem key="navigationItem" title="DEVELOPER" id="X1Q-Aj-m9S">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="ZOG-AZ-gfH">
+                            <connections>
+                                <action selector="closeButtonClicked:" destination="xC2-EV-SSo" id="iVm-wK-YIT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="62" y="2634"/>
@@ -1026,7 +1034,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nFT-Wi-131" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="hjn-b6-gKm" customClass="ListOwnCertificateViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jpu-ld-qAb">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1075,7 +1083,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzQ-yF-sTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="1Q4-mP-jUI" customClass="KeyPairDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wMZ-JG-P3O">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -1311,7 +1319,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MTw-2i-FzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="n2N-FI-Ltl" customClass="CustomCellViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Q5f-b5-qYM">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -1504,11 +1512,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YDp-e6-swT"/>
+        <segue reference="UGp-wN-WVq"/>
+        <segue reference="nnY-4E-f0I"/>
         <segue reference="gDd-fw-sLS"/>
         <segue reference="rJ7-aU-XC7"/>
-        <segue reference="KLi-m5-Kv2"/>
-        <segue reference="UGp-wN-WVq"/>
         <segue reference="MjX-0A-OTa"/>
+        <segue reference="KLi-m5-Kv2"/>
     </inferredMetricsTieBreakers>
 </document>

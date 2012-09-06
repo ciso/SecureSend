@@ -126,35 +126,8 @@
     NSLog(@"error: %@", [error localizedDescription]);
 }
 
-/*
- - (void)loadRecipients {
- 
- ABAddressBookRef addressbookref = ABAddressBookCreate();
- NSArray* allpeople = (__bridge NSArray*) ABAddressBookCopyArrayOfAllPeople(addressbookref);
- 
- Crypto* crypto = [Crypto getInstance];
- 
- self.recipients = [[NSMutableArray alloc] init];
- 
- 
- for(int i = 0; i < allpeople.count; i++)
- {
- ABRecordRef ref = (__bridge_retained  ABRecordRef)[allpeople objectAtIndex:i];
- 
- NSString* identifier = [NSString stringWithFormat:@"%d", ABRecordGetRecordID(ref)];
- 
- NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
- 
- if(cert != nil)
- {
- 
- Recipient *recipient = [[Recipient alloc] init];
- recipient.recordRef = ref;
- recipient.expirationDate = [crypto getExpirationDateOfCertificate:cert];
- 
- [self.recipients addObject:recipient];
- }
- }
- }
- */
+- (IBAction)closeButtonClicked:(UIBarButtonItem *)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 @end

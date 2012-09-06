@@ -37,6 +37,13 @@
     [self loadCertificate];
 
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+    
+    UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(openHiddenDeveloperView)];
+    [self.navigationController.navigationBar addGestureRecognizer:gesture];
+}
+
+- (void)openHiddenDeveloperView {
+    [self performSegueWithIdentifier:@"toHiddenDeveloperView" sender:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
