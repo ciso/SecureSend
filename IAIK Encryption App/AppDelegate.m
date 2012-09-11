@@ -193,12 +193,19 @@
         if ([[DBSession sharedSession] isLinked]) {
             NSLog(@"App linked successfully!");
 
-            ContainerDetailViewController *detailView = (ContainerDetailViewController*)[navi.viewControllers objectAtIndex:1];
-            if ([detailView isKindOfClass:[ContainerDetailViewController class]])
-            {
-                NSData* encryptedcontainer = [detailView zipAndEncryptContainer];
-
-                [root uploadFileToDropbox:encryptedcontainer withName:detailView.container.name];
+            if (root.dropboxBrowser) {
+                [root.dropboxBrowser performSelector:@selector(loadFolder)];
+                
+                root.dropboxBrowser = nil;
+            }
+            else {
+                ContainerDetailViewController *detailView = (ContainerDetailViewController*)[navi.viewControllers objectAtIndex:1];
+                if ([detailView isKindOfClass:[ContainerDetailViewController class]])
+                {
+                    NSData* encryptedcontainer = [detailView zipAndEncryptContainer];
+                    
+                    [root uploadFileToDropbox:encryptedcontainer withName:detailView.container.name];
+                }
             }
 
         }

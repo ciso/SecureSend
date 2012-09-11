@@ -44,6 +44,7 @@
 @property (nonatomic, assign) BOOL editable;
 @property (nonatomic, strong) DBRestClient *restClient;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
+@property (nonatomic, strong) id dropboxBrowser;
 
 - (void)receivedBluetoothData:(NSData*) data;
 - (void)sendCertificateBluetooth;

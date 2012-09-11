@@ -87,6 +87,7 @@
 @synthesize handler                 = _handler;
 @synthesize editHandler             = _editHandler;
 @synthesize currentActiveContainer  = _currentActiveContainer;
+@synthesize dropboxBrowser          = _dropboxBrowser;
 
 - (DBRestClient *)restClient {
     if (!_restClient) {

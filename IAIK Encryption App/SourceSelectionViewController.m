@@ -104,7 +104,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2; //change this to 3 to enable dropbox
+    return 3; //change this to 3 to enable dropbox
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,7 +124,7 @@
         cell.textLabel.text = NSLocalizedString(@"Camera", @"Get a new image from the camera");
     }
     else if (indexPath.section == 0 && indexPath.row == 2) {
-        cell.textLabel.text = @"Dropbox (NOT WORKING!)";
+        cell.textLabel.text = @"Dropbox";
     }
     
     return cell;
@@ -235,6 +235,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
         DropboxBrowserViewController *view = (DropboxBrowserViewController*)segue.destinationViewController;
         view.root = root;
+        view.container = self.caller.container;
+        view.caller = self.caller;
     }
 }
 

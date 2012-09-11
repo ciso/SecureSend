@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/ABAddressBook.h>
+#import <DropboxSDK/DropboxSDK.h>
 #import "DeveloperViewController.h"
 #import "TestFlight.h"
 #import "KeyChainStore.h"
@@ -128,6 +129,11 @@
 
 - (IBAction)closeButtonClicked:(UIBarButtonItem *)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)unlinkButtonClicked:(UIButton *)sender {
+    
+    [[DBSession sharedSession] unlinkAll];
 }
 
 @end

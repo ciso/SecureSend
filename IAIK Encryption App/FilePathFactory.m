@@ -99,12 +99,12 @@
 }
 
 
-+(NSString*) getTemporaryZipPath
++ (NSString*) getTemporaryZipPath
 {
     return [[FilePathFactory applicationDocumentsDirectory] stringByAppendingPathComponent:@"temp_zip_container"];
 }
 
-+(NSMutableArray*) getContainersOfFileStructure
++ (NSMutableArray*) getContainersOfFileStructure
 {
     //creating containers-array
     NSMutableArray* newcontainers = [[NSMutableArray alloc] init];

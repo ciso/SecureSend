@@ -15,4 +15,6 @@
 @property(nonatomic,retain) NSString* basePath;
 @property(nonatomic,retain) NSDate* creationDate;
 
+- (void)reloadFiles;
+
 @end

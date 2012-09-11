@@ -75,6 +75,10 @@
 		B4118BF415AB16D200D050B2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4118BF315AB16D200D050B2 /* Default@2x.png */; };
 		B420F06215C007AE00FEF4D5 /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = B420F06115C007AE00FEF4D5 /* 117-todo.png */; };
 		B420F06615C0094400FEF4D5 /* ListOwnCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B420F06515C0094400FEF4D5 /* ListOwnCertificateViewController.m */; };
+		B426A95915FF104F00C14FC0 /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A95815FF104F00C14FC0 /* folder@2x.png */; };
+		B426A95B15FF121300C14FC0 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A95A15FF121300C14FC0 /* folder.png */; };
+		B426A95E15FF12CD00C14FC0 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A95C15FF12CD00C14FC0 /* file.png */; };
+		B426A95F15FF12CD00C14FC0 /* file@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A95D15FF12CD00C14FC0 /* file@2x.png */; };
 		B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = B42BCE9115BD53BF00D856A5 /* Recipient.m */; };
 		B459A9A015C6A11F0051D5FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC55215AD8D1600E39899 /* RequestHandler.m */; };
@@ -294,6 +298,10 @@
 		B420F06115C007AE00FEF4D5 /* 117-todo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo.png"; sourceTree = "<group>"; };
 		B420F06415C0094400FEF4D5 /* ListOwnCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOwnCertificateViewController.h; sourceTree = "<group>"; };
 		B420F06515C0094400FEF4D5 /* ListOwnCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOwnCertificateViewController.m; sourceTree = "<group>"; };
+		B426A95815FF104F00C14FC0 /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
+		B426A95A15FF121300C14FC0 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		B426A95C15FF12CD00C14FC0 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		B426A95D15FF12CD00C14FC0 /* file@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file@2x.png"; sourceTree = "<group>"; };
 		B42BCE9015BD53BF00D856A5 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
 		B42BCE9115BD53BF00D856A5 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
 		B45DC55115AD8D1600E39899 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
@@ -893,6 +901,10 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B426A95C15FF12CD00C14FC0 /* file.png */,
+				B426A95D15FF12CD00C14FC0 /* file@2x.png */,
+				B426A95A15FF121300C14FC0 /* folder.png */,
+				B426A95815FF104F00C14FC0 /* folder@2x.png */,
 				B4672A4015F09A5F0060035D /* Cell Icons (NOT VISIBLE ON GITHUB) */,
 				B4672A3E15F0980F0060035D /* cellbg@2x.png */,
 				B4B772D215EDF7BE00D2556B /* Icons */,
@@ -1650,6 +1662,10 @@
 				B40E725B15F8913E000560E4 /* tut4@2x.png in Resources */,
 				B40E725C15F8913E000560E4 /* tut5.png in Resources */,
 				B40E725D15F8913E000560E4 /* tut5@2x.png in Resources */,
+				B426A95915FF104F00C14FC0 /* folder@2x.png in Resources */,
+				B426A95B15FF121300C14FC0 /* folder.png in Resources */,
+				B426A95E15FF12CD00C14FC0 /* file.png in Resources */,
+				B426A95F15FF12CD00C14FC0 /* file@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,7 +1876,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
@@ -1874,7 +1890,7 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "01A130CF-CFBF-4B5B-9B02-0CAC885FFD6B";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1884,7 +1900,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
@@ -1898,7 +1915,8 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "01A130CF-CFBF-4B5B-9B02-0CAC885FFD6B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				WRAPPER_EXTENSION = app;
 			};

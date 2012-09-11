@@ -9,18 +9,24 @@
 #import "DropboxBrowserViewController.h"
 #import "LoadingView.h"
 #import "Error.h"
+#import "SecureContainer.h"
 
 @interface DropboxBrowserViewController ()
 
 @property (nonatomic, strong) UIView *load;
 @property (nonatomic, strong) NSArray *folders;
+@property (nonatomic, assign) BOOL first;
 
 @end
 
 @implementation DropboxBrowserViewController
 
-@synthesize load    = _load;
-@synthesize folders = _folders;
+@synthesize load        = _load;
+@synthesize folders     = _folders;
+@synthesize dropboxPath = _dropboxPath;
+@synthesize container   = _container;
+@synthesize caller      = _caller;
+@synthesize first       = _first;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -35,20 +41,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
-
+    self.first = YES;
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Loading ..."];
-    self.root.restClient.delegate = self;
-    [self.root.restClient loadMetadata:@"/"];
     
+    //[[DBSession sharedSession] unlinkAll];
+    
+    if (self.first) {
+        self.first = NO;
+        
+        if (![[DBSession sharedSession] isLinked])
+        {
+            self.root.dropboxBrowser = self;
+            [[DBSession sharedSession] linkFromController:self.root];
+            
+        }
+        else
+        {
+            [self loadFolder];
+        }
+    }
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        [self.load removeFromSuperview]; //temp
+        self.tableView.userInteractionEnabled = YES;
+        self.caller = nil;
+        self.root.restClient.delegate = nil;
+    }
+    [super viewWillDisappear:animated];
+}
+
+- (void)loadFolder {
+    self.root.dropboxBrowser = nil;
+    
+    self.load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Loading ..."];
+    self.tableView.userInteractionEnabled = NO;
+    self.root.restClient.delegate = self;
+    
+    if (self.dropboxPath == nil) {
+        self.dropboxPath = @"/";
+    }
+    
+    [self.root.restClient loadMetadata:self.dropboxPath];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -78,77 +120,59 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    UIImage *image = nil;
     DBMetadata *file = [self.folders objectAtIndex:indexPath.row];
-    cell.textLabel.text = file.filename;
     
+    if (file.isDirectory) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        image = [UIImage imageNamed:@"folder"];
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        image = [UIImage imageNamed:@"file"];
+    }
+    
+    UIImageView *imageView = (UIImageView*)[cell viewWithTag:101];
+    imageView.image = image;
+    
+    UILabel *textLabel = (UILabel*)[cell viewWithTag:102];
+    textLabel.text = file.filename;
+        
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    DBMetadata *file = [self.folders objectAtIndex:indexPath.row];
+
+    if (file.isDirectory) {
+        UIStoryboard *storyboard = self.storyboard;
+        DropboxBrowserViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"DropboxViewController"];
+        viewController.dropboxPath = file.path;
+        viewController.root = self.root;
+        viewController.container = self.container;
+        
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else {
+        NSString *localPath = [NSString stringWithFormat:@"%@/%@", self.container.basePath, file.filename];
+        self.load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Loading File ..."];
+        self.tableView.userInteractionEnabled = NO;
+        [self.root.restClient loadFile:file.path intoPath:localPath];
+    }
+
 }
 
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
     [self.load removeFromSuperview];
-    
+    self.tableView.userInteractionEnabled = YES;
+
     if (metadata.isDirectory) {
-        
         self.folders = [NSArray arrayWithArray:metadata.contents];
         [self.tableView reloadData];
-//        
-//        NSLog(@"Folder '%@' contains:", metadata.path);
-//        for (DBMetadata *file in metadata.contents) {
-//            NSLog(@"\t%@", file.filename);
-//        }
     }
 }
 
@@ -159,6 +183,23 @@
         [Error log:error];
     }
     [self.load removeFromSuperview]; //temp
+    self.tableView.userInteractionEnabled = YES;
+    [self dismissModalViewControllerAnimated:YES]; //temp
+}
+
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath {
+    NSLog(@"File loaded into path: %@", localPath);
+    [self.load removeFromSuperview]; //temp
+    self.tableView.userInteractionEnabled = YES;
+    [self.container reloadFiles];
+    [((UITableViewController*)self.caller).tableView reloadData];
+    [self dismissModalViewControllerAnimated:YES]; //temp
+}
+
+- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+    NSLog(@"There was an error loading the file - %@", error);
+    [self.load removeFromSuperview]; //temp
+    self.tableView.userInteractionEnabled = YES;
     [self dismissModalViewControllerAnimated:YES]; //temp
 }
 

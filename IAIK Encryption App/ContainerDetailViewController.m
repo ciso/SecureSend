@@ -478,6 +478,10 @@
 
 -(NSData*) zipAndEncryptContainer
 {
+    if (self.container == nil) {
+        return nil;
+    }
+    
     //beta
     [TestFlight passCheckpoint:@"ZippingAndEncryptingContainer"];
     
@@ -638,6 +642,7 @@
         SourceSelectionViewController* src = (SourceSelectionViewController*)[nav.viewControllers objectAtIndex:0];//(SourceSelectionViewController*) segue.destinationViewController;
         src.basePath = self.container.basePath;
         src.delegate = self;
+        src.caller = self;
     }
     else if([segue.identifier isEqualToString:SEGUE_TO_XPLORER])
     {

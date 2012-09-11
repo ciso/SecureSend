@@ -43,6 +43,18 @@
     }
 }
 
+- (void)reloadFiles {
+    NSArray* files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.basePath error:nil];
+    self.fileUrls = [[NSMutableArray alloc] init];
+    
+    for(NSString* file in files)
+    {
+        NSLog(@"Found file in container %@:%@", self.name, file);
+        [self.fileUrls addObject:[self.basePath stringByAppendingPathComponent:file]];
+    }
+
+}
+
 - (NSString*)description
 {
     return self.name;
