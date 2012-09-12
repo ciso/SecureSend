@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Graz University of Technology. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "SwipeCell.h"
 
 #define DURATION 0.15f
@@ -132,6 +133,39 @@
         self.editView.hidden = NO;
         self.editView.alpha = 0.0f;
         
+        //check if it is the last cell
+        UITableView *tableView = (UITableView*)self.superview;
+        NSInteger cells = [tableView numberOfRowsInSection:0];
+        NSIndexPath *indexPath = [tableView indexPathForCell:self];
+        
+        CGRect maskFrame = self.editView.bounds;
+        CGFloat radius = 0.0;
+
+        if (indexPath.row == 0) {
+            radius = 10.0;
+            maskFrame.size.height += radius;
+            maskFrame.origin.y += 1;
+        }
+        else if (indexPath.row == cells - 1) {
+            radius = 10.0;
+            maskFrame.size.height += radius;
+            maskFrame.origin.y -= radius;
+        }
+        
+        CALayer *maskLayer = [CALayer layer];
+        maskLayer.cornerRadius = radius;
+        maskLayer.backgroundColor = [UIColor blackColor].CGColor;
+        maskLayer.frame = maskFrame;
+        
+        // set the mask
+        self.editView.layer.mask = maskLayer;
+        
+        // Add a backaground color just to check if it works
+        self.editView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellbg"]];
+
+        
+        
+
         
         UIButton *button1 = (UIButton*)[self.editView viewWithTag:401];
         UIButton *button2 = (UIButton*)[self.editView viewWithTag:402];

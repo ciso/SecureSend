@@ -115,8 +115,17 @@
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
     
     // Create a standard refresh button.
-    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
-                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
+//    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
+//                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
+//    [buttons addObject:bi];
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"266-upload"];
+    UIButton *button = [[UIButton alloc] init];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(exportContainer) forControlEvents:UIControlEventAllEvents];
+    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+
+    UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:button];
     [buttons addObject:bi];
     
     self.exportButton = bi;
