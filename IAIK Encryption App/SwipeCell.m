@@ -81,9 +81,29 @@
     // Configure the view for the selected state
 }
 
-- (void)hide {
-    self.editView.hidden = YES;
-    self.editable = NO;
+- (void)hideAnimated:(BOOL)animate {
+    
+    if (!animate) {
+        self.editView.hidden = YES;
+        self.editable = NO;
+    }
+    else {
+        self.editView.alpha = 1.0f;
+        
+        [UIView animateWithDuration:DURATION
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             [self.editView setAlpha:0.0f];
+                         }
+                         completion:^(BOOL finished){
+                             self.editView.hidden = YES;
+                         }];
+        
+        self.editable = NO;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
+
 }
 
 - (void)swipe {
@@ -106,10 +126,12 @@
                         }];
         
         self.editable = NO;
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     else { //fade in
         self.editView.hidden = NO;
         self.editView.alpha = 0.0f;
+        
         
         UIButton *button1 = (UIButton*)[self.editView viewWithTag:401];
         UIButton *button2 = (UIButton*)[self.editView viewWithTag:402];
@@ -135,6 +157,7 @@
                          completion:nil];
         
         self.editable = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
 }
@@ -167,6 +190,7 @@
     CGRect rect = CGRectMake(10, 0, 300, 69);
     
     UIView *view = [[UIView alloc] initWithFrame:rect];
+    view.tag = 500;
     //view.backgroundColor = [UIColor underPageBackgroundColor]; //[UIColor greenColor];
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellbg"]];
 
@@ -195,7 +219,7 @@
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     shareButton.frame = CGRectMake(160, 5, 60, 60);
     shareButton.tag = 403;
-    [shareButton setImage:[UIImage imageNamed:@"211-action"] forState:UIControlStateNormal];
+    [shareButton setImage:[UIImage imageNamed:@"266-upload"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:shareButton];

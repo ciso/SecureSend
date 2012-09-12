@@ -23,6 +23,6 @@
 
 @property (nonatomic, strong) id delegate;
 
-- (void)hide;
+- (void)hideAnimated:(BOOL)animate;
 
 @end

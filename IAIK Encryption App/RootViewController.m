@@ -158,6 +158,15 @@
     self.sendRequest = NO;
     self.certMailSent = NO;
     self.editable = NO;
+    
+    //clicked gesture for hiding swipe cell
+    UIGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clicked:)];
+    gesture.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:gesture];
+}
+
+- (void)clicked:(UIGestureRecognizer*)gesture {
+    [self hideCellsAnimated];
 }
 
 - (void)notificationViewClosed {
@@ -551,7 +560,7 @@
         container.fileUrls = newfileurls;
     }
     
-    [((SwipeCell*)cell) hide];
+    [((SwipeCell*)cell) hideAnimated:NO];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
 }
@@ -563,10 +572,23 @@
         SwipeCell *currentCell = (SwipeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         
         if (cell != currentCell) {
-            [currentCell hide];
+            [currentCell hideAnimated:NO];
         }
     }
 }
+
+- (void)hideCellsAnimated {
+    for (int i = 0; i < [self.tableView numberOfRowsInSection:0]; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        
+        SwipeCell *currentCell = (SwipeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        UIView *view = [currentCell viewWithTag:500];
+        
+        if (!view.hidden) {
+            [currentCell hideAnimated:YES];
+            
+        }
+    }}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -632,7 +654,7 @@
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Certificate stored in Keychain", nil) message:[NSString stringWithFormat: NSLocalizedString(@"The certificate of %@ %@ has been received and stored in your keychain", nil), name, lastname] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             
             UITabBarController *tab = self.tabBarController;
-            UINavigationController *nav = [tab.viewControllers objectAtIndex:2];
+            UINavigationController *nav = [tab.viewControllers objectAtIndex:1];
             UIViewController *view = [nav.viewControllers objectAtIndex:0];
             if ([view isKindOfClass:[RecipientsViewController class]]) {
                 
@@ -1206,7 +1228,26 @@
             
             MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
             composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:NSLocalizedString(@"The checksum for my certificate is: %@", @"Text for body of hash message. The user is told the checksum (hash)of the certificate"), self.hash];
+            
+            
+            if (self.hash == nil) {
+                
+                NSData *cert = [PersistentStore getActiveCertificateOfUser];
+                
+                NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+                
+                //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+                CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
+                
+                NSLog(@"macOut: %@", macOut);
+                NSString *encoded =  [Base64 encode:macOut];
+                NSLog(@"base64: %@", encoded);
+                
+                //self.key = newkey;
+                self.hash = encoded;
+            }
+            
+            composer.body = [NSString stringWithFormat:@"I have sent you my certificate via email. This is the checksum for verification: %@", self.hash];
             composer.messageComposeDelegate = self;
             
             [self presentModalViewController:composer animated:YES];
@@ -1398,6 +1439,21 @@
     composer.mailComposeDelegate = self;
         
     [self presentModalViewController:composer animated:YES];
+}
+
+
+#pragma mark - Table View Cell Selection Delegate
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SwipeCell *cell = (SwipeCell*)[tableView cellForRowAtIndexPath:indexPath];
+    UIView *subView = [cell viewWithTag:500];
+    
+    if (!subView.hidden) {
+        return nil;
+    }
+    else {
+        return indexPath;
+    }
 }
 
 

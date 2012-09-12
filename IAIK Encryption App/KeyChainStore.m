@@ -9,7 +9,7 @@
 #import "KeyChainStore.h"
 #import "Base64.h"
 #import "X509CertificateUtil.h"
-
+#import "Error.h"
 //just temp
 #import "Crypto.h"
 
@@ -246,8 +246,7 @@ errSecAuthFailed             = -25293,	* The user name or passphrase you entered
         CFTypeRef persistKey;
         OSStatus status = SecItemAdd((CFDictionaryRef)query, &persistKey);
 
-        if(status)
-        {
+        if(status) {
             NSLog(@"Keychain error occured: %ld (statuscode)", status);
             return NO;
         }

@@ -10,12 +10,16 @@
 
 @interface TutorialViewController ()
 
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
+
 @end
 
 @implementation TutorialViewController
+
 @synthesize pageControlOutlet = _pageControlOutlet;
 @synthesize scrollViewOutlet  = _scrollViewOutlet;
-@synthesize root               = _root;
+@synthesize root              = _root;
+@synthesize leftItem          = _leftItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +53,8 @@
 
     [self initialized];
     
+    self.leftItem =  self.navigationItem.leftBarButtonItem;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
 }
 
 - (void)viewDidUnload
@@ -105,7 +111,9 @@
     
     UIBarButtonItem *item = self.navigationItem.rightBarButtonItem;
     item.title = @"Start";
-    [self.navigationItem setRightBarButtonItem:item animated:YES];}
+    [self.navigationItem setRightBarButtonItem:item animated:YES];
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+}
 
 - (void)userLeftLastPage {
     NSLog(@"user left last page");
@@ -113,6 +121,8 @@
     UIBarButtonItem *item = self.navigationItem.rightBarButtonItem;
     item.title = @"Next";
     [self.navigationItem setRightBarButtonItem:item animated:YES];
+    [self.navigationItem setLeftBarButtonItem:self.leftItem animated:YES];
+
 }
 
 @end
