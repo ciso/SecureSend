@@ -13,6 +13,8 @@
 #import "Crypto.h"
 #import "RecipientDetailViewController.h"
 #import "KeyChainStore.h"
+#import "RootViewController.h"
+#import "TestFlight.h"
 
 #define SEGUE_TO_DETAIL @"segueToRecipientDetail"
 
@@ -24,7 +26,9 @@
 
 @implementation RecipientsViewController
 
-@synthesize recipients = _recipients;
+@synthesize recipients              = _recipients;
+@synthesize btConnectionHandler     = _btConnectionHandler;
+@synthesize receivedCertificateData = _receivedCertificateData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,6 +44,9 @@
     [super viewDidLoad];
     
     //self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
+    
+    //allocating bluetooth connection handler
+    self.btConnectionHandler = [[BluetoothConnectionHandler alloc] init];
     
     
 }
@@ -198,5 +205,71 @@
         }
     }
 }
+
+- (IBAction)addButtonClicked:(UIBarButtonItem *)sender {
+    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Receive certificate via..."
+                                        delegate:self
+                               cancelButtonTitle:@"Cancel"
+                          destructiveButtonTitle:nil
+                               otherButtonTitles:@"Bluetooth", @"Certificate Request", nil];
+    
+    //show the sheet
+    [sheet showFromTabBar:self.tabBarController.tabBar];
+    //[sheet showInView:self.view];
+    
+}
+
+
+#pragma mark - Action Sheet Delegates
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) { //bluetooth
+        [self.btConnectionHandler receiveDataWithHandlerDelegate:self];
+    }
+    else if (buttonIndex == 1) {
+        [self sendCertificateRequest];
+    }
+}
+
+#pragma mark - BluetoothConnectionHandlerDelegate methods
+
+- (void) receivedBluetoothData:(NSData*)data
+{
+    //beta
+    [TestFlight passCheckpoint:@"ReceivedBluetoothData"];
+    
+    UITabBarController *tabBar = self.tabBarController;
+    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+    
+    root.receivedCertificateData = data;
+    
+    //showing people picker do identify owner of the certificate
+    ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = root;
+    [self presentModalViewController:picker animated:YES];
+}
+
+
+#pragma mark - certificate request
+
+- (void)sendCertificateRequest
+{
+    //beta
+    [TestFlight passCheckpoint:@"SendCertificateRequest"];
+    
+    
+    UITabBarController *tabBar = self.tabBarController;
+    UINavigationController* navi = (UINavigationController*)[tabBar.viewControllers objectAtIndex:0];
+    RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
+    
+    ABPeoplePickerNavigationController* picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = root;//root;
+    //self.sendRequest = YES;
+    root.sendRequest = YES;
+    [self presentModalViewController:picker animated:YES];
+}
+
 
 @end

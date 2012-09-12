@@ -37,7 +37,7 @@
 //                               stringWithCString:outputBuffer
 //                               length:outputLength];
     
-    NSString *encodedString = [NSString stringWithCString:outputBuffer encoding:NSUTF8StringEncoding];
+    NSString *encodedString = [NSString stringWithUTF8String:outputBuffer];//[NSString stringWithCString:outputBuffer encoding:NSUTF8StringEncoding];
 
     BIO_free_all(context);
     

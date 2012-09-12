@@ -542,9 +542,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="iPd-Oy-CAw" kind="modal" identifier="createNewCertSegue" id="nnY-4E-f0I"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="VOG-KN-0ky" detailTextLabel="e7M-DX-bBs" style="IBUITableViewCellStyleValue2" id="egL-3p-WdU">
                                 <rect key="frame" x="0.0" y="91" width="320" height="45"/>
@@ -580,6 +577,8 @@
                     <navigationItem key="navigationItem" title="My Certificate" id="f7R-9k-vhj"/>
                     <connections>
                         <segue destination="E1g-f3-8OG" kind="modal" identifier="toHiddenDeveloperView" id="u5S-9f-WlV"/>
+                        <segue destination="iPd-Oy-CAw" kind="modal" identifier="createNewCertSegue" id="P5F-Xo-nYb"/>
+                        <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="To0-DD-5fI"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -791,7 +790,13 @@
                             <outlet property="delegate" destination="TBd-Db-bgg" id="4Nn-w4-faE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recipients" id="5ba-qh-PlC"/>
+                    <navigationItem key="navigationItem" title="Recipients" id="5ba-qh-PlC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sw8-6s-AIB">
+                            <connections>
+                                <action selector="addButtonClicked:" destination="TBd-Db-bgg" id="eNi-8g-tjd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="y6l-lo-e0f" kind="push" identifier="segueToRecipientDetail" id="R1G-GX-RPY"/>
                     </connections>
@@ -868,7 +873,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="tintColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                            <state key="normal" title="DELETE">
+                                            <state key="normal" title="DELETE CERTIFICATE">
                                                 <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1204,7 +1209,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="578" y="2021"/>
+            <point key="canvasLocation" x="674" y="2021"/>
         </scene>
         <!--Navigation Controller - DEV-->
         <scene sceneID="8Jj-u8-Oak">
@@ -1398,17 +1403,155 @@
         <image name="44-shoebox.png" width="24" height="22"/>
         <image name="notification@2x.png" width="640" height="650"/>
     </resources>
+    <classes>
+        <class className="CertificateActionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateActionViewController.h"/>
+        </class>
+        <class className="CertificateXplorerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateXplorerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didCancel:"/>
+            </relationships>
+        </class>
+        <class className="ChooseContainerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseContainerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didCancel:"/>
+            </relationships>
+        </class>
+        <class className="ContainerDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addFile"/>
+            </relationships>
+        </class>
+        <class className="CreateNewCertificateViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewCertificateViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="saveButtonClicked:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="CustomCellViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCellViewController.h"/>
+        </class>
+        <class className="CustomTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
+        </class>
+        <class className="DeveloperViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeveloperViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="deleteAllCertificates:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openFeedback:" candidateClass="UIButton"/>
+                <relationship kind="action" name="resetUserDefaults:" candidateClass="UIButton"/>
+                <relationship kind="action" name="resetkeychainButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="unlinkButtonClicked:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="DropboxBrowserViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DropboxBrowserViewController.h"/>
+        </class>
+        <class className="GetStartedBaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GetStartedBaseViewController.h"/>
+        </class>
+        <class className="InfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="feedbackButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="KeyPairDetailsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KeyPairDetailsViewController.h"/>
+        </class>
+        <class className="ListOwnCertificateViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListOwnCertificateViewController.h"/>
+        </class>
+        <class className="MyCertificateViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyCertificateViewController.h"/>
+        </class>
+        <class className="NameCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NotificationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonClicked:"/>
+                <relationship kind="outlet" name="buttonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PreviewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviewViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonEncryptAndSend:"/>
+                <relationship kind="action" name="exportButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="RecipientDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteButtonClicked:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RecipientsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientsViewController.h"/>
+        </class>
+        <class className="RootViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewContainer:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="SendCertificateTwoWayViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SendCertificateTwoWayViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didCancel:"/>
+            </relationships>
+        </class>
+        <class className="SourceSelectionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="SwipeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwipeCell.h"/>
+        </class>
+        <class className="TutorialViewController" superclassName="GetStartedBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TutorialViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nextButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="skipButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="UserSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="doneButtonClicked:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UGp-wN-WVq"/>
-        <segue reference="nnY-4E-f0I"/>
-        <segue reference="gDd-fw-sLS"/>
-        <segue reference="rJ7-aU-XC7"/>
-        <segue reference="MjX-0A-OTa"/>
+        <segue reference="To0-DD-5fI"/>
         <segue reference="KLi-m5-Kv2"/>
+        <segue reference="UGp-wN-WVq"/>
+        <segue reference="Zeq-zY-hTX"/>
+        <segue reference="P5F-Xo-nYb"/>
+        <segue reference="rJ7-aU-XC7"/>
     </inferredMetricsTieBreakers>
 </document>

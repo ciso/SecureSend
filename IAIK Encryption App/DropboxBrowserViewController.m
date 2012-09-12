@@ -162,7 +162,6 @@
         self.tableView.userInteractionEnabled = NO;
         [self.root.restClient loadFile:file.path intoPath:localPath];
     }
-
 }
 
 

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BluetoothConnectionHandler.h"
 
-@interface RecipientsViewController : UITableViewController
+@interface RecipientsViewController : UITableViewController <UIActionSheetDelegate, BluetoothConnectionHandlerDelegate>
+
+@property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
+@property (nonatomic, strong) NSData* receivedCertificateData;
+
+- (IBAction)addButtonClicked:(UIBarButtonItem *)sender;
 
 @end

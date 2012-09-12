@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BluetoothConnectionHandler.h"
 
 @interface MyCertificateViewController : UITableViewController
+
+@property (nonatomic, strong) BluetoothConnectionHandler* btConnectionHandler;
+
 
 @end

@@ -61,7 +61,6 @@
     
     //allocating bluetooth connection handler
     self.btConnectionHandler = [[BluetoothConnectionHandler alloc] init];
-
     
     //temp init
     self.sendRequest = NO;

@@ -230,25 +230,6 @@
     }
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIView *hView = [[UIView alloc] initWithFrame:CGRectZero];
-//    hView.backgroundColor=[UIColor clearColor];
-//    
-//    UILabel *hLabel=[[UILabel alloc] initWithFrame:CGRectMake(19,10,301,21)];
-//    
-//    hLabel.backgroundColor=[UIColor clearColor];
-//    hLabel.shadowColor = [UIColor blackColor];
-//    hLabel.shadowOffset = CGSizeMake(0.5,1);
-//    hLabel.textColor = [UIColor whiteColor];
-//    hLabel.font = [UIFont boldSystemFontOfSize:17];
-//    hLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-//    
-//    [hView addSubview:hLabel];
-//        
-//    return hView;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 35;
@@ -302,7 +283,7 @@
             MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
             [composer setToRecipients:[NSArray arrayWithObject:self.emailAddress]];
             [composer setSubject:NSLocalizedString(@"My Certificate", @"Subject for mail in send certificate view")];
-            [composer setMessageBody:NSLocalizedString(@"You will receive the chechsum for my certificate shortly via SMS or iMessage", @"Body for mail in send certificate view") isHTML:NO];
+            [composer setMessageBody:NSLocalizedString(@"You will receive the checksum for my certificate shortly via SMS or iMessage", @"Body for mail in send certificate view") isHTML:NO];
             composer.mailComposeDelegate = self;
             
             //Getting certificate and encrypting it
@@ -324,7 +305,25 @@
         {
             MFMessageComposeViewController* composer = [[MFMessageComposeViewController alloc] init];
             composer.recipients = [NSArray arrayWithObject:self.phoneNumber];
-            composer.body = [NSString stringWithFormat:NSLocalizedString(@"The checksum for my certificate is: %@", @"Body text for message in send certificate view"), self.key];
+            
+            if (self.key == nil) {
+                
+                NSData *cert = [PersistentStore getActiveCertificateOfUser];
+                
+                NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH]; //CC_SHA256_DIGEST_LENGTH];
+                
+                //CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+                CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
+                
+                NSLog(@"macOut: %@", macOut);
+                NSString *encoded =  [Base64 encode:macOut];
+                NSLog(@"base64: %@", encoded);
+                
+                //self.key = newkey;
+                self.key = encoded;
+            }
+            
+            composer.body = [NSString stringWithFormat:@"I have sent you my certificate via email. This is the checksum for verification: %@", self.key];
             composer.messageComposeDelegate = self;
             
             [self presentModalViewController:composer animated:YES];
