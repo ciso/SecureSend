@@ -1155,6 +1155,8 @@
 
 - (IBAction)addNewContainer:(UIBarButtonItem *)sender 
 {
+    [self hideCellsAnimated];
+    
     NSError* directory_creation_error = nil;
     
 //    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
