@@ -16,8 +16,6 @@
 #import "RootViewController.h"
 #import "TestFlight.h"
 
-#define SEGUE_TO_DETAIL @"segueToRecipientDetail"
-
 @interface RecipientsViewController ()
 
 @property (nonatomic, strong) NSMutableArray *recipients;
