@@ -153,6 +153,7 @@
         viewController.dropboxPath = file.path;
         viewController.root = self.root;
         viewController.container = self.container;
+        viewController.caller = self.caller;
         
         [self.navigationController pushViewController:viewController animated:YES];
     }

@@ -80,6 +80,9 @@
 		B426A95F15FF12CD00C14FC0 /* file@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A95D15FF12CD00C14FC0 /* file@2x.png */; };
 		B426A9801600AE2200C14FC0 /* 266-upload.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A97E1600AE2200C14FC0 /* 266-upload.png */; };
 		B426A9811600AE2200C14FC0 /* 266-upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A97F1600AE2200C14FC0 /* 266-upload@2x.png */; };
+		B426A9991601B6E700C14FC0 /* SettingsNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B426A9981601B6E700C14FC0 /* SettingsNotificationViewController.m */; };
+		B426A99C1601BC3600C14FC0 /* settingsNotification.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A99A1601BC3600C14FC0 /* settingsNotification.png */; };
+		B426A99D1601BC3600C14FC0 /* settingsNotification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B426A99B1601BC3600C14FC0 /* settingsNotification@2x.png */; };
 		B42BCE9215BD53BF00D856A5 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = B42BCE9115BD53BF00D856A5 /* Recipient.m */; };
 		B459A9A015C6A11F0051D5FD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E38F5015C13CFF008AEF89 /* CoreData.framework */; };
 		B45DC55315AD8D1600E39899 /* RequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B45DC55215AD8D1600E39899 /* RequestHandler.m */; };
@@ -303,6 +306,10 @@
 		B426A95D15FF12CD00C14FC0 /* file@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file@2x.png"; sourceTree = "<group>"; };
 		B426A97E1600AE2200C14FC0 /* 266-upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "266-upload.png"; sourceTree = "<group>"; };
 		B426A97F1600AE2200C14FC0 /* 266-upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "266-upload@2x.png"; sourceTree = "<group>"; };
+		B426A9971601B6E700C14FC0 /* SettingsNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNotificationViewController.h; sourceTree = "<group>"; };
+		B426A9981601B6E700C14FC0 /* SettingsNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNotificationViewController.m; sourceTree = "<group>"; };
+		B426A99A1601BC3600C14FC0 /* settingsNotification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsNotification.png; sourceTree = "<group>"; };
+		B426A99B1601BC3600C14FC0 /* settingsNotification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsNotification@2x.png"; sourceTree = "<group>"; };
 		B42BCE9015BD53BF00D856A5 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipient.h; sourceTree = "<group>"; };
 		B42BCE9115BD53BF00D856A5 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipient.m; sourceTree = "<group>"; };
 		B45DC55115AD8D1600E39899 /* RequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHandler.h; sourceTree = "<group>"; };
@@ -636,6 +643,7 @@
 				B4FF5A8715BD4F3800ED10A8 /* RecipientsViewController */,
 				B49BCCE415E636FD009BCEC4 /* DropboxBrowserViewController */,
 				B4F1308515E25D5D00289B03 /* TutorialViewController */,
+				B426A9961601B6C200C14FC0 /* SettingsNotificationViewController */,
 				B4F1307915E2327300289B03 /* NotificationViewController */,
 				B420F06315C0092700FEF4D5 /* DEVELOPER */,
 				B4B4097915B408F100DCFAE5 /* CustomTabBarController */,
@@ -892,6 +900,8 @@
 		B4118BD515AB11CF00D050B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B426A99A1601BC3600C14FC0 /* settingsNotification.png */,
+				B426A99B1601BC3600C14FC0 /* settingsNotification@2x.png */,
 				B426A95C15FF12CD00C14FC0 /* file.png */,
 				B426A95D15FF12CD00C14FC0 /* file@2x.png */,
 				B426A95A15FF121300C14FC0 /* folder.png */,
@@ -966,6 +976,15 @@
 				B420F06515C0094400FEF4D5 /* ListOwnCertificateViewController.m */,
 			);
 			name = ListOwnCertificateViewController;
+			sourceTree = "<group>";
+		};
+		B426A9961601B6C200C14FC0 /* SettingsNotificationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B426A9971601B6E700C14FC0 /* SettingsNotificationViewController.h */,
+				B426A9981601B6E700C14FC0 /* SettingsNotificationViewController.m */,
+			);
+			name = SettingsNotificationViewController;
 			sourceTree = "<group>";
 		};
 		B42BCE8F15BD538800D856A5 /* Recipient */ = {
@@ -1661,6 +1680,8 @@
 				B426A95F15FF12CD00C14FC0 /* file@2x.png in Resources */,
 				B426A9801600AE2200C14FC0 /* 266-upload.png in Resources */,
 				B426A9811600AE2200C14FC0 /* 266-upload@2x.png in Resources */,
+				B426A99C1601BC3600C14FC0 /* settingsNotification.png in Resources */,
+				B426A99D1601BC3600C14FC0 /* settingsNotification@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1771,6 +1792,7 @@
 				B4B772E215EE089800D2556B /* CustomCellViewController.m in Sources */,
 				B4672A5715F0A7930060035D /* ContainerEditAlertViewHandler.m in Sources */,
 				B4672A5F15F0B2BB0060035D /* InfoViewController.m in Sources */,
+				B426A9991601B6E700C14FC0 /* SettingsNotificationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

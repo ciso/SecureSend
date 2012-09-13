@@ -647,7 +647,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2682" y="-942"/>
+            <point key="canvasLocation" x="3133" y="-1218"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MIJ-V1-BpN">
@@ -661,11 +661,11 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DTo-2x-nC1" kind="relationship" relationship="rootViewController" id="y77-eL-07S"/>
+                        <segue destination="yIf-dG-cxO" kind="relationship" relationship="rootViewController" id="18R-XH-ET8"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="2156" y="-942"/>
+            <point key="canvasLocation" x="1840" y="-1218"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="gTn-ea-OaH">
@@ -1324,6 +1324,45 @@
             </objects>
             <point key="canvasLocation" x="501" y="-907"/>
         </scene>
+        <!--Settings Notification View Controller - Certificate Request-->
+        <scene sceneID="pho-jU-4AT">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X9s-MI-t4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="yIf-dG-cxO" customClass="SettingsNotificationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q2Y-Hb-kg6">
+                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V26-JE-lsa">
+                                <rect key="frame" x="20" y="353" width="280" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="OK, I got it">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="DTo-2x-nC1" kind="push" identifier="toSettingsView" id="FOr-IE-wsN"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="settingsNotification@2x.png" id="60y-K6-Ess">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="325"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Certificate Request" id="Qxg-S7-7yh"/>
+                    <connections>
+                        <outlet property="buttonOutlet" destination="V26-JE-lsa" id="nDa-iF-ZGI"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2469" y="-1190"/>
+        </scene>
     </scenes>
     <resources>
         <image name="112-group.png" width="32" height="21"/>
@@ -1331,6 +1370,7 @@
         <image name="123-id-card.png" width="24" height="17"/>
         <image name="44-shoebox.png" width="24" height="22"/>
         <image name="notification@2x.png" width="640" height="650"/>
+        <image name="settingsNotification@2x.png" width="640" height="650"/>
     </resources>
     <classes>
         <class className="CertificateXplorerViewController" superclassName="UITableViewController">
@@ -1444,6 +1484,13 @@
                 <relationship kind="action" name="didCancel:"/>
             </relationships>
         </class>
+        <class className="SettingsNotificationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsNotificationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
         <class className="SourceSelectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
             <relationships>
@@ -1476,11 +1523,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="To0-DD-5fI"/>
         <segue reference="UGp-wN-WVq"/>
         <segue reference="Zeq-zY-hTX"/>
         <segue reference="XFd-Oh-Oeg"/>
         <segue reference="P5F-Xo-nYb"/>
+        <segue reference="To0-DD-5fI"/>
         <segue reference="rJ7-aU-XC7"/>
     </inferredMetricsTieBreakers>
 </document>

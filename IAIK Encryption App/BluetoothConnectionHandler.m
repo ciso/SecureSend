@@ -111,11 +111,27 @@
     
     NSLog(@"connectionWithPeerFailed:");
     
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Bluetooth"
+                          message: @"Bluetooth connection failed. Please try again."
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError");
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Bluetooth"
+                          message: @"Bluetooth connection failed. Please try again."
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 
@@ -127,6 +143,14 @@
        ![session.sessionID isEqualToString:self.peerSession.sessionID])
     {
         NSLog(@"Received data from strange peer!!!");
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Bluetooth"
+                              message: @"Error (#2305)"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
     else
     {
