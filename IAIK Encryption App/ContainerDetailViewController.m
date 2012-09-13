@@ -288,7 +288,8 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", formattedDateString];
         
         //check extensions
-        if([[path pathExtension] isEqualToString:EXTENSION_JPG] 
+        if([[path pathExtension] isEqualToString:EXTENSION_JPG]
+           || [[[path pathExtension] lowercaseString] isEqualToString:EXTENSION_JPG]
            || [[path pathExtension] isEqualToString:EXTENSION_JPEG]
            || [[path pathExtension] isEqualToString:EXTENSION_GIF]
            || [[path pathExtension] isEqualToString:EXTENSION_PNG]
@@ -321,7 +322,8 @@
     //test
     NSString *pathExtension = [path pathExtension];
     
-    if ([pathExtension isEqualToString:EXTENSION_JPG] 
+    if ([pathExtension isEqualToString:EXTENSION_JPG]
+        || [[[path pathExtension] lowercaseString] isEqualToString:EXTENSION_JPG]
         || [pathExtension isEqualToString:EXTENSION_JPEG]
         || [pathExtension isEqualToString:EXTENSION_PNG]
         || [pathExtension isEqualToString:EXTENSION_GIF])
