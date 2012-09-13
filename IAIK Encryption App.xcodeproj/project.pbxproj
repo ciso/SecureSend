@@ -19,8 +19,6 @@
 		B40E725915F8913E000560E4 /* tut3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B40E724F15F8913E000560E4 /* tut3@2x.png */; };
 		B40E725A15F8913E000560E4 /* tut4.png in Resources */ = {isa = PBXBuildFile; fileRef = B40E725015F8913E000560E4 /* tut4.png */; };
 		B40E725B15F8913E000560E4 /* tut4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B40E725115F8913E000560E4 /* tut4@2x.png */; };
-		B40E725C15F8913E000560E4 /* tut5.png in Resources */ = {isa = PBXBuildFile; fileRef = B40E725215F8913E000560E4 /* tut5.png */; };
-		B40E725D15F8913E000560E4 /* tut5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B40E725315F8913E000560E4 /* tut5@2x.png */; };
 		B40F1D9B15C946C600660350 /* KeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F1D9A15C946C600660350 /* KeyPair.m */; };
 		B4118B2615AAC61B00D050B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2515AAC61B00D050B2 /* UIKit.framework */; };
 		B4118B2815AAC61B00D050B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4118B2715AAC61B00D050B2 /* Foundation.framework */; };
@@ -1672,8 +1670,6 @@
 				B40E725915F8913E000560E4 /* tut3@2x.png in Resources */,
 				B40E725A15F8913E000560E4 /* tut4.png in Resources */,
 				B40E725B15F8913E000560E4 /* tut4@2x.png in Resources */,
-				B40E725C15F8913E000560E4 /* tut5.png in Resources */,
-				B40E725D15F8913E000560E4 /* tut5@2x.png in Resources */,
 				B426A95915FF104F00C14FC0 /* folder@2x.png in Resources */,
 				B426A95B15FF121300C14FC0 /* folder.png in Resources */,
 				B426A95E15FF12CD00C14FC0 /* file.png in Resources */,

@@ -43,13 +43,11 @@
     UIImage *tutImage2 = [UIImage imageNamed:@"tut2"];
     UIImage *tutImage3 = [UIImage imageNamed:@"tut3"];
     UIImage *tutImage4 = [UIImage imageNamed:@"tut4"];
-    UIImage *tutImage5 = [UIImage imageNamed:@"tut5"];
 
     [self.pages addObject:tutImage1];
     [self.pages addObject:tutImage2];
     [self.pages addObject:tutImage3];
     [self.pages addObject:tutImage4];
-    [self.pages addObject:tutImage5];
 
     [self initialized];
     

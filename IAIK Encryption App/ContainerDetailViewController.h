@@ -13,6 +13,8 @@
 #import "ModifyContainerPropertyDelegate.h"
 #import "MWPhotoBrowser.h"
 
+#define SEGUE_TO_DETAIL @"segueToRecipientDetail"
+
 @class SecureContainer, NameCell;
 @class SourceSelectionViewController;
 
