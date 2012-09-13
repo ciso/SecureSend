@@ -18,11 +18,12 @@
 {
     NSMutableString *ret = [[NSMutableString alloc] init];
     
-    [ret appendString:@"<CertificateRequest>"];
-    [ret appendFormat:@"<date>%@</date>", self.date];
-    [ret appendFormat:@"<emailAddress>%@</emailAddress>", self.emailAddress];   
-    [ret appendFormat:@"<phoneNumber>%@</phoneNumber>", self.phoneNumber];    
-    [ret appendString:@"</CertificateRequest>"];
+    [ret appendString:@"<?xml version=\"1.0\"?>\n"];
+    [ret appendString:@"<CertificateRequest xmlns=\"http://iaik.tugraz.at/SecureSend\">\n"];
+    [ret appendFormat:@"<date>%@</date>\n", self.date];
+    [ret appendFormat:@"<emailAddress>%@</emailAddress>\n", self.emailAddress];   
+    [ret appendFormat:@"<phoneNumber>%@</phoneNumber>\n", self.phoneNumber];    
+    [ret appendString:@"</CertificateRequest>\n"];
     
     return ret;
 }
