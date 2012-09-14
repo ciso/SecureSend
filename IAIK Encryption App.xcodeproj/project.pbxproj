@@ -211,8 +211,6 @@
 		B40E724F15F8913E000560E4 /* tut3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut3@2x.png"; sourceTree = "<group>"; };
 		B40E725015F8913E000560E4 /* tut4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut4.png; sourceTree = "<group>"; };
 		B40E725115F8913E000560E4 /* tut4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut4@2x.png"; sourceTree = "<group>"; };
-		B40E725215F8913E000560E4 /* tut5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut5.png; sourceTree = "<group>"; };
-		B40E725315F8913E000560E4 /* tut5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tut5@2x.png"; sourceTree = "<group>"; };
 		B40F1D9915C946C600660350 /* KeyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPair.h; sourceTree = "<group>"; };
 		B40F1D9A15C946C600660350 /* KeyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyPair.m; sourceTree = "<group>"; };
 		B4118B2115AAC61B00D050B2 /* IAIK Encryption App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IAIK Encryption App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -920,8 +918,6 @@
 				B40E724F15F8913E000560E4 /* tut3@2x.png */,
 				B40E725015F8913E000560E4 /* tut4.png */,
 				B40E725115F8913E000560E4 /* tut4@2x.png */,
-				B40E725215F8913E000560E4 /* tut5.png */,
-				B40E725315F8913E000560E4 /* tut5@2x.png */,
 				B4F1307F15E2413200289B03 /* tugraz.png */,
 				B4F1308015E2413200289B03 /* tugraz@2x.png */,
 				B40C29D815AFF85A00C7B47A /* Tabbar */,
@@ -1896,6 +1892,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
 					"$(inherited)",
@@ -1904,6 +1901,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1921,6 +1919,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IAIK Encryption App/IAIK Encryption App-Prefix.pch";
 				INFOPLIST_FILE = "IAIK Encryption App/IAIK Encryption App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
 					"$(inherited)",
@@ -1930,6 +1929,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

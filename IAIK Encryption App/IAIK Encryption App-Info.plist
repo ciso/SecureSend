@@ -135,6 +135,23 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
+			<string>IAIK Certificate Request</string>
+			<key>UTTypeIdentifier</key>
+			<string>at.tugraz.iaik.iaikreq</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>iaikreq</string>
+				<key>public.mime-type</key>
+				<string>application/iaikreq</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
 			<string>IAIK Secure Container</string>
 			<key>UTTypeIdentifier</key>
 			<string>at.tugraz.iaik.iaikcontainer</string>
@@ -160,7 +177,7 @@
 				<key>public.filename-extension</key>
 				<string>iaikcert</string>
 				<key>public.mime-type</key>
-				<string>application/iaikencryption</string>
+				<string>application/iaikcert</string>
 			</dict>
 		</dict>
 	</array>

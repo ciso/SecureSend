@@ -739,7 +739,7 @@
     
     NSData *attachment = [xml dataUsingEncoding:NSUTF8StringEncoding];
     
-    [composer addAttachmentData:attachment mimeType:@"application/iaikencryption" fileName:@"CertificateRequest.iaikreq"];
+    [composer addAttachmentData:attachment mimeType:@"application/iaikreq" fileName:@"CertificateRequest.iaikreq"];
     
     [self presentModalViewController:composer animated:YES];
 }
@@ -1011,6 +1011,11 @@
                 NSLog(@"problem moving file into new directory!!");
             }
         }
+    }
+    
+    if (newcontainername == nil) {
+        NSLog(@"Container injection!!!");
+        abort();
     }
     
     //defining new containerpath (with correct name)
@@ -1317,7 +1322,7 @@
     NSString *encoded =  [Base64 encode:macOut];
     self.hash = encoded;
     
-    [composer addAttachmentData:cert mimeType:@"application/iaikencryption" fileName:@"cert.iaikcert"];
+    [composer addAttachmentData:cert mimeType:@"application/iaikcert" fileName:@"cert.iaikcert"];
     
     self.certMailSent = YES;
     [self presentModalViewController:composer animated:YES];

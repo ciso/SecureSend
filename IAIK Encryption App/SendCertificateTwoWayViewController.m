@@ -288,7 +288,7 @@
             
             //Getting certificate and encrypting it
             NSData* encryptedcert = [self getOwnEncryptedCertificate];
-            [composer addAttachmentData:encryptedcert mimeType:@"application/iaikencryption" fileName:@"cert.iaikcert"];
+            [composer addAttachmentData:encryptedcert mimeType:@"application/iaikcert" fileName:@"cert.iaikcert"];
             
             [self presentModalViewController:composer animated:YES];
         }
