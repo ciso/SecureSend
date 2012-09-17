@@ -159,12 +159,12 @@
     switch ([self getFieldTypeForIndexPath:indexPath])
     {
         case kFieldFirstName:
-            title = @"Firstname";
+            title = @"First name";
             detail = self.firstName;
             placeholder = @"Max";
             break;
         case kFieldLastName:
-            title = @"Lastname";
+            title = @"Surname";
             detail = self.lastName;
             placeholder = @"Mustermann";
             break;
@@ -176,7 +176,7 @@
             textfield.autocapitalizationType = UITextAutocapitalizationTypeNone;
             break;
         case kFieldRepeatEmail:
-            title = @"Repeat Email";
+            title = @"Repeat email";
             detail = self.repeatEmail;
             placeholder = @"max@mustermann.at";
             textfield.keyboardType = UIKeyboardTypeEmailAddress;
@@ -198,7 +198,7 @@
             placeholder = @"Graz University of Technology";
             break;
         case kFieldOrganizationUnit:
-            title = @"Org. Unit";
+            title = @"Org. unit";
             detail = self.organizationUnit;
             placeholder = @"IAIK";
             break;  
@@ -231,7 +231,7 @@
     NSString *ret = nil;
     if (section == 0)
     {
-        ret = @"These information are mandatory and are stored in your personal certificate. This certificate is used to encrypt containers for you.";
+        ret = @"This mandatory information is stored in your certificate. Your certificate is used by other persons to encrypt containers for you.";
     }
     else if (section == 1)
     {
@@ -341,7 +341,7 @@
         || [self.lastName length] < 3)
     {
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"SecureSend" 
-                                                             message:@"Firstname or lastname not long enough." 
+                                                             message:@"First name or surname not long enough." 
                                                             delegate:nil 
                                                    cancelButtonTitle:@"OK" 
                                                    otherButtonTitles:nil];
@@ -354,7 +354,7 @@
     if (![self.email isEqualToString:self.repeatEmail])
     {
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"SecureSend" 
-                                                             message:@"Email confirmation not equal." 
+                                                             message:@"Email addresses do not match." 
                                                             delegate:nil 
                                                    cancelButtonTitle:@"OK" 
                                                    otherButtonTitles:nil];

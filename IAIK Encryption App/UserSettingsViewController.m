@@ -160,10 +160,10 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return NSLocalizedString(@"Mandatory", @"Section headline in user settings view");
+        return NSLocalizedString(@"Mandatory Fields", @"Section headline in user settings view");
     }
     else if (section == 1) {
-        return NSLocalizedString(@"Optional", @"Section headline in user settings view");
+        return NSLocalizedString(@"Optional Fields", @"Section headline in user settings view");
     }
     
     return nil;
@@ -173,11 +173,11 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section == 0) {
-        return NSLocalizedString(@"The requested certificate will be sent to your email address and the validation checksum directly to your phone.",
+        return NSLocalizedString(@"The requested certificate will be sent to your email address and the checksum directly to your phone via SMS.",
                                  @"Footer text in user setting view");
     }
     else if (section == 1) {
-        return NSLocalizedString(@"You can change this later in the Settings of your iPhone",
+        return NSLocalizedString(@"You can change this later in the settings of your iPhone",
                           @"Footer text in user settings view");
     }
     

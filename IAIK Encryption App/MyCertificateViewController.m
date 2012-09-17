@@ -110,7 +110,7 @@
         //generics
         cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
         cell.textLabel.text = @"Send Certificate via Bluetooth";
-        cell.detailTextLabel.text = @"Send your certificate to another person via a Bluetooth connection";
+        cell.detailTextLabel.text = @"Send your certificate to another person via a Bluetooth connection.";
     }
     else if (indexPath.section == 0 && indexPath.row == 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -118,8 +118,8 @@
         //generics
         cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
         cell.textLabel.text = @"Send Certificate via Email";
-        cell.detailTextLabel.numberOfLines = 4;
-        cell.detailTextLabel.text = @"Send your certificate to another person via a two-way exchange using Email for sending your certificate and SMS for an unique verification checksum";
+        cell.detailTextLabel.numberOfLines = 12;
+        cell.detailTextLabel.text = @"Send your certificate to another person via Email. Further, an SMS message is sent that contains a checksum. This checksum (hash value) allows the recipient to verify the authenticity of the received certificate.";
     }
     else if (indexPath.section == 1 && indexPath.row == 0) {
         
@@ -128,7 +128,7 @@
         //generics
         cell.textLabel.textColor = [UIColor colorWithRed:48.0/255.0 green:48.0/255.0 blue:51.0/255.0 alpha:1.0];
         cell.textLabel.text = @"Create new Certificate";
-        cell.detailTextLabel.text = @"You can create a new certificate here. Use this only if you really need a new certificate. For example if your old one is leaked or has been stolen";
+        cell.detailTextLabel.text = @"A new certificate and the corresponding private key should only be created, when your device was compromised.";
     }
     else if (indexPath.section == 2) {
         
@@ -201,7 +201,7 @@
         
         float padding = 10.0;
         
-        CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+        CGSize constraintSize = CGSizeMake(260.0f, MAXFLOAT);
         CGSize labelSize = [cell.detailTextLabel.text sizeWithFont:cell.detailTextLabel.font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
         
         float descriptionHeight = labelSize.height;

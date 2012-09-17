@@ -19,7 +19,7 @@
     
     //showing alert to enter code, setting rootviewcontroller as delegate
     NSString *title = NSLocalizedString(@"You have received a Certificate-Request from another user. This app will guide you through the certificate exchange process.\n\n"
-    @"It opens the Mail and Message composer for you.\n\n"
+    @"The mail and message composer will be opened.\n\n"
     @"You must only click 'send' in the composers.\n", @"Title of alert view in request handler");
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button text in alert view") otherButtonTitles:@"OK", nil];
     alert.alertViewStyle = UIAlertViewStyleDefault;
