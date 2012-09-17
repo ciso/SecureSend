@@ -502,16 +502,38 @@
     //[self editTableView];
 }
 
+- (BOOL)validateString:(NSString *)candidate {
+    
+    NSString *regex = @"[A-Z0-9a-z_ ]+";
+    NSPredicate *test = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    return [test evaluateWithObject:candidate];
+}
+
 - (void)userRenamedContainer:(NSString*)name inCell:(UITableViewCell*)cell {
     NSLog(@"New name: %@", name);
    
     SecureContainer *container = self.currentActiveContainer;
     self.currentActiveContainer = nil;
     
+    
+    
+    if (![self validateString:name]) {
+        UIAlertView* alert;
+        
+        alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                           message:@"Container name invalid. Please choose a valid one"
+                                          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        name = container.name;
+    }
+    
+    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     //creating new path
     NSString* newpath = [[FilePathFactory applicationDocumentsDirectory] stringByAppendingPathComponent:name];
+    
     
     //check if the filename is allready present, checking if name is not an emtpy string
     if([[NSFileManager defaultManager] fileExistsAtPath:newpath] == YES && ![container.name isEqualToString:name])

@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369572945.741403"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "774"
-         endingLineNumber = "774"
+         startingLineNumber = "796"
+         endingLineNumber = "796"
          landmarkName = "-editTableView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369573099.103911"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1088"
-         endingLineNumber = "1088"
+         startingLineNumber = "1110"
+         endingLineNumber = "1110"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -255,11 +255,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369573099.103911"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1449"
-         endingLineNumber = "1449"
+         startingLineNumber = "1471"
+         endingLineNumber = "1471"
          landmarkName = "-restClient:uploadFileFailedWithError:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -372,11 +372,37 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369572945.741403"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "928"
-         endingLineNumber = "928"
+         startingLineNumber = "950"
+         endingLineNumber = "950"
+         landmarkName = "-decryptContainer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/AppDelegate.m"
+         timestampString = "369342998.048574"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "188"
+         endingLineNumber = "188"
+         landmarkName = "-application:openURL:sourceApplication:annotation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573897.818932"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1004"
+         endingLineNumber = "1004"
          landmarkName = "-decryptContainer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -385,11 +411,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369573099.103911"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1049"
-         endingLineNumber = "1049"
+         startingLineNumber = "1071"
+         endingLineNumber = "1071"
          landmarkName = "-decryptContainer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -407,15 +433,15 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
-         timestampString = "369572945.741403"
+         timestampString = "369573897.818932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "901"
-         endingLineNumber = "901"
+         startingLineNumber = "923"
+         endingLineNumber = "923"
          landmarkName = "-decryptContainer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -430,6 +456,97 @@
          startingLineNumber = "573"
          endingLineNumber = "573"
          landmarkName = "-zipAndEncryptContainer"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573897.818932"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "990"
+         endingLineNumber = "990"
+         landmarkName = "-decryptContainer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573897.818932"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1000"
+         endingLineNumber = "1000"
+         landmarkName = "-decryptContainer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/Base64.m"
+         timestampString = "369569869.220709"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "+decode:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573897.818932"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1048"
+         endingLineNumber = "1048"
+         landmarkName = "-decryptContainer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/AppDelegate.m"
+         timestampString = "369573099.103911"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "277"
+         endingLineNumber = "277"
+         landmarkName = "-application:openURL:sourceApplication:annotation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573831.8647"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "521"
+         endingLineNumber = "521"
+         landmarkName = "-userRenamedContainer:inCell:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/RootViewController.m"
+         timestampString = "369573834.143812"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "507"
+         endingLineNumber = "507"
+         landmarkName = "-validateString:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
