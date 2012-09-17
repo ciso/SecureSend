@@ -45,6 +45,8 @@
 @property (nonatomic, strong) DBRestClient *restClient;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (nonatomic, strong) id dropboxBrowser;
+@property (nonatomic, strong) NSString *containerName;
+
 
 - (void)receivedBluetoothData:(NSData*) data;
 - (void)sendCertificateBluetooth;

@@ -12,5 +12,6 @@
 
 + (NSString*)encode:(NSData*)data;
 + (NSData*)decode:(NSString*)decode;
++ (NSData*)base64DataFromString: (NSString*)string;
 
 @end

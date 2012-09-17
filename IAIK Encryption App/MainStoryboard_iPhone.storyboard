@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Y95-LI-iO5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Y95-LI-iO5">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Info View Controller - Info-->
         <scene sceneID="qBP-ll-E72">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UBk-xm-giM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="uxF-wh-WhZ" customClass="InfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tab-ME-Yl3">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="ZnU-RL-0OI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -39,16 +37,16 @@
                         <outlet property="webView" destination="ZnU-RL-0OI" id="bIJ-CW-D7N"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBk-xm-giM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1027" y="-907"/>
         </scene>
         <!--Root View Controller - Containers-->
         <scene sceneID="6hx-t1-S1E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5lA-MZ-laf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="9Kz-Px-2p0" customClass="RootViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9Y9-ZO-0Df">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -122,16 +120,16 @@
                         <segue destination="ZUq-Om-Sxo" kind="modal" identifier="toInfoView" id="2oZ-4p-s6F"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lA-MZ-laf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="81"/>
         </scene>
         <!--Source Selection View Controller - Sources-->
         <scene sceneID="hgG-9B-nc9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mCA-Xe-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="A11-n0-L7e" customClass="SourceSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pOZ-1V-3gN">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -161,16 +159,16 @@
                         <segue destination="wkj-s3-fhZ" kind="push" identifier="toDropboxBrowser" id="Zwb-rz-uPl"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mCA-Xe-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2512" y="-107"/>
         </scene>
         <!--Dropbox Browser View Controller - Dropbox-->
         <scene sceneID="fab-76-ZH6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="apq-av-ah4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="DropboxViewController" id="wkj-s3-fhZ" customClass="DropboxBrowserViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q8R-el-fzm">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -204,16 +202,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dropbox" id="6pM-Wi-iAs"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="apq-av-ah4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3133" y="-107"/>
         </scene>
         <!--Send Certificate Two Way View Controller - Send Certificate-->
         <scene sceneID="Dce-qh-liI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yQV-nb-LyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Qxh-ZY-vvQ" customClass="SendCertificateTwoWayViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Aym-gM-RCu">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -236,16 +234,16 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yQV-nb-LyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2918" y="985"/>
         </scene>
         <!--Preview View Controller - Preview-->
         <scene sceneID="GvK-fi-lNM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvr-FG-T3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n99-5J-QcL" customClass="PreviewViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="52b-Z4-QeR">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -258,16 +256,16 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvr-FG-T3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3522" y="558"/>
         </scene>
         <!--Choose Container View Controller - Choose container-->
         <scene sceneID="Xox-Fl-lrz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hbn-02-fyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="b7v-xs-d7b" customClass="ChooseContainerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hvH-FT-BGa">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -290,13 +288,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbn-02-fyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1916" y="1000"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="56y-Uc-GcL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rmA-KY-lKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="PgO-Ap-xUJ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="MMk-Ys-3ev">
                         <autoresizingMask key="autoresizingMask"/>
@@ -305,13 +303,13 @@
                         <segue destination="b7v-xs-d7b" kind="relationship" relationship="rootViewController" id="FCj-ws-iL8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rmA-KY-lKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1384" y="1000"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfI-lX-hcj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Hi-3f-G2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="a1r-24-gjc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Yb1-Sl-VES"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="VMY-47-KIY">
@@ -321,16 +319,16 @@
                         <segue destination="Qxh-ZY-vvQ" kind="relationship" relationship="rootViewController" id="s4m-Ba-IgV"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Hi-3f-G2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2446" y="985"/>
         </scene>
         <!--Certificate Xplorer View Controller - Recipients-->
         <scene sceneID="Wtg-6t-26i">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E1v-Zp-thd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="hIa-XP-UB6" customClass="CertificateXplorerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CiG-5k-BAI">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -369,13 +367,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1v-Zp-thd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4169" y="-891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rc6-tY-3Nb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9GT-Rh-I0G" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="E9v-Ud-cNT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FRA-DA-5cQ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -384,16 +382,16 @@
                         <segue destination="hIa-XP-UB6" kind="relationship" relationship="rootViewController" id="paq-SU-55E"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9GT-Rh-I0G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3635" y="-891"/>
         </scene>
         <!--Container Detail View Controller - Details-->
         <scene sceneID="QQ2-sT-v01">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4GP-0a-vTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="mBQ-Fv-9a7" customClass="ContainerDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="IzP-oF-tKh">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -439,13 +437,13 @@
                         <segue destination="n99-5J-QcL" kind="push" identifier="toPreviewImageScreen" id="q2c-7K-s76"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4GP-0a-vTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1074" y="73"/>
         </scene>
         <!--Navigation Controller - Containers-->
         <scene sceneID="Tlc-e2-bM0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qed-oL-78p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="62C-gZ-1uR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Containers" image="44-shoebox.png" id="VI7-77-H3t"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="XAs-u0-KRu">
@@ -455,16 +453,16 @@
                         <segue destination="9Kz-Px-2p0" kind="relationship" relationship="rootViewController" id="0Kd-VI-UGc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qed-oL-78p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-464" y="81"/>
         </scene>
         <!--My Certificate View Controller - My Certificate-->
         <scene sceneID="A3q-TK-IRy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tbR-q5-lZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="BQ0-Re-szW" customClass="MyCertificateViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nFg-XB-L09">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -531,16 +529,16 @@
                         <segue destination="a1r-24-gjc" kind="modal" identifier="toCertSendAssist" id="To0-DD-5fI"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbR-q5-lZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="2021"/>
         </scene>
         <!--Create New Certificate View Controller - New Certificate-->
         <scene sceneID="YYO-eH-h1p">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iIW-6w-Xta" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="WaF-6V-MDJ" customClass="CreateNewCertificateViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="53" sectionHeaderHeight="10" sectionFooterHeight="10" id="zgY-aM-Xob">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -588,16 +586,16 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iIW-6w-Xta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1104" y="2021"/>
         </scene>
         <!--User Settings View Controller-->
         <scene sceneID="xo0-n4-jyE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ce-dQ-OPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="DTo-2x-nC1" customClass="UserSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZqM-wi-QF4">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -646,13 +644,13 @@
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ce-dQ-OPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3133" y="-1218"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MIJ-V1-BpN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T8a-FN-sGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ETl-E8-Dvy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GQk-df-4DD">
@@ -664,13 +662,13 @@
                         <segue destination="yIf-dG-cxO" kind="relationship" relationship="rootViewController" id="18R-XH-ET8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T8a-FN-sGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840" y="-1218"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="gTn-ea-OaH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MU7-9I-Ue6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="Y95-LI-iO5" customClass="CustomTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -683,16 +681,16 @@
                         <segue destination="PVY-MG-CFg" kind="relationship" relationship="viewControllers" id="5JX-MG-HP2"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MU7-9I-Ue6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1150" y="161"/>
         </scene>
         <!--Recipients View Controller - Recipients-->
         <scene sceneID="53A-7K-73Q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m9d-1i-hau" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="TBd-Db-bgg" customClass="RecipientsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x5V-KL-cgs">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -731,16 +729,16 @@
                         <segue destination="y6l-lo-e0f" kind="push" identifier="segueToRecipientDetail" id="R1G-GX-RPY"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9d-1i-hau" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="1403"/>
         </scene>
         <!--Recipient Detail View Controller-->
         <scene sceneID="sQi-Nj-6bW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y7e-6I-krC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="y6l-lo-e0f" customClass="RecipientDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kIa-EF-UN2">
-                        <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -826,13 +824,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="GJx-tx-3eV"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y7e-6I-krC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578" y="1403"/>
         </scene>
         <!--Navigation Controller - My Certificate-->
         <scene sceneID="fpX-kH-2XH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gA1-fz-8a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="PVY-MG-CFg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Certificate" image="123-id-card.png" id="mtN-Eg-FyN"/>
                     <toolbarItems/>
@@ -845,16 +843,16 @@
                         <segue destination="BQ0-Re-szW" kind="relationship" relationship="rootViewController" id="7WW-5P-kJu"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gA1-fz-8a1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-464" y="2021"/>
         </scene>
         <!--Developer View Controller - DEVELOPER-->
         <scene sceneID="wEO-80-Ik8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ddM-E7-QjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xC2-EV-SSo" customClass="DeveloperViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xjH-cP-9lj">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hAM-Xb-nTN">
@@ -988,16 +986,16 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddM-E7-QjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="2634"/>
         </scene>
         <!--List Own Certificate View Controller - LIST CERTIFICATE(S)-->
         <scene sceneID="6jx-K8-sWG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nFT-Wi-131" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="hjn-b6-gKm" customClass="ListOwnCertificateViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jpu-ld-qAb">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1037,16 +1035,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="LIST CERTIFICATE(S)" id="1Os-tA-mAv"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nFT-Wi-131" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578" y="2634"/>
         </scene>
         <!--Key Pair Details View Controller - DEV DETAILS-->
         <scene sceneID="Ywr-hN-erF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xzQ-yF-sTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="1Q4-mP-jUI" customClass="KeyPairDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wMZ-JG-P3O">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -1083,13 +1081,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="DEV DETAILS" id="NAi-Cm-19j"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xzQ-yF-sTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1114" y="2628"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xIw-IR-o7q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JjB-aq-jJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="LKu-FG-Czz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0iC-h5-1bG">
@@ -1101,13 +1099,13 @@
                         <segue destination="A11-n0-L7e" kind="relationship" relationship="rootViewController" id="1o9-WG-IFC"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JjB-aq-jJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1986" y="-107"/>
         </scene>
         <!--Navigation Controller - Recipients-->
         <scene sceneID="FWf-dW-GJD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XMg-9e-42H" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="nSA-vy-mt5" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recipients" image="112-group.png" id="AcK-ix-BcA"/>
                     <toolbarItems/>
@@ -1120,13 +1118,13 @@
                         <segue destination="TBd-Db-bgg" kind="relationship" relationship="rootViewController" id="1LJ-yM-tNp"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMg-9e-42H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-464" y="1403"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nxi-2h-pmC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S2e-gL-q5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="iPd-Oy-CAw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ooG-EL-6vZ">
@@ -1138,13 +1136,13 @@
                         <segue destination="WaF-6V-MDJ" kind="relationship" relationship="rootViewController" id="rmY-OH-M60"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S2e-gL-q5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="674" y="2021"/>
         </scene>
         <!--Navigation Controller - DEV-->
         <scene sceneID="8Jj-u8-Oak">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7kM-hd-h4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="E1g-f3-8OG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="DEV" image="117-todo.png" id="ItU-Bh-RSR"/>
                     <toolbarItems/>
@@ -1157,21 +1155,21 @@
                         <segue destination="xC2-EV-SSo" kind="relationship" relationship="rootViewController" id="jd2-xx-euY"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7kM-hd-h4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-464" y="2634"/>
         </scene>
         <!--Notification View Controller - Data Protection-->
         <scene sceneID="x5K-60-wVh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fdf-IR-e8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dxY-ys-K1J" customClass="NotificationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qqH-wS-B7u">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="R2C-FR-NrD">
-                                <rect key="frame" x="20" y="353.5" width="280" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="20" y="353" width="280" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="OK, I understand">
@@ -1196,16 +1194,16 @@
                         <outlet property="buttonOutlet" destination="R2C-FR-NrD" id="weH-rr-i3S"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fdf-IR-e8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1131" y="3356"/>
         </scene>
         <!--Tutorial View Controller - Get Started-->
         <scene sceneID="PwF-bN-DCs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vPg-IJ-HAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Aen-OE-pGi" customClass="TutorialViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lWE-RO-0ff">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="lK0-OD-cJO">
@@ -1236,13 +1234,13 @@
                         <outlet property="scrollViewOutlet" destination="lK0-OD-cJO" id="yA3-TY-Gvw"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPg-IJ-HAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1131" y="4125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fyV-ek-LTe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mt1-nz-FHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="9Xr-xM-f9Y" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KJS-jj-l8b">
@@ -1254,13 +1252,13 @@
                         <segue destination="dxY-ys-K1J" kind="relationship" relationship="rootViewController" id="COq-EU-61j"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mt1-nz-FHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="586" y="3356"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r6w-hw-V0h">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HkA-l5-fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="NcW-Nl-JeT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -1273,16 +1271,16 @@
                         <segue destination="Aen-OE-pGi" kind="relationship" relationship="rootViewController" id="ytz-E9-rcF"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkA-l5-fnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="582" y="4125"/>
         </scene>
         <!--Custom Cell View Controller - CUSTOM CELL-->
         <scene sceneID="biV-hN-SH2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MTw-2i-FzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="n2N-FI-Ltl" customClass="CustomCellViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Q5f-b5-qYM">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -1303,13 +1301,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="CUSTOM CELL" id="jyG-PP-MS0"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MTw-2i-FzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="582" y="4759"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bpd-BK-1V2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RiK-UG-2a9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ZUq-Om-Sxo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="29b-Mg-82J">
@@ -1321,21 +1319,21 @@
                         <segue destination="uxF-wh-WhZ" kind="relationship" relationship="rootViewController" id="xgo-A8-PlL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RiK-UG-2a9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="501" y="-907"/>
         </scene>
         <!--Settings Notification View Controller - Certificate Request-->
         <scene sceneID="pho-jU-4AT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X9s-MI-t4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="yIf-dG-cxO" customClass="SettingsNotificationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q2Y-Hb-kg6">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V26-JE-lsa">
                                 <rect key="frame" x="20" y="353" width="280" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="OK, I got it">
@@ -1360,6 +1358,7 @@
                         <outlet property="buttonOutlet" destination="V26-JE-lsa" id="nDa-iF-ZGI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X9s-MI-t4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2469" y="-1190"/>
         </scene>
@@ -1372,162 +1371,17 @@
         <image name="notification@2x.png" width="640" height="650"/>
         <image name="settingsNotification@2x.png" width="640" height="650"/>
     </resources>
-    <classes>
-        <class className="CertificateXplorerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CertificateXplorerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ChooseContainerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseContainerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="ContainerDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContainerDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addFile"/>
-            </relationships>
-        </class>
-        <class className="CreateNewCertificateViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateNewCertificateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="saveButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="CustomCellViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomCellViewController.h"/>
-        </class>
-        <class className="CustomTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomTabBarController.h"/>
-        </class>
-        <class className="DeveloperViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DeveloperViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="deleteAllCertificates:" candidateClass="UIButton"/>
-                <relationship kind="action" name="openFeedback:" candidateClass="UIButton"/>
-                <relationship kind="action" name="resetUserDefaults:" candidateClass="UIButton"/>
-                <relationship kind="action" name="resetkeychainButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="unlinkButtonClicked:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="DropboxBrowserViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DropboxBrowserViewController.h"/>
-        </class>
-        <class className="GetStartedBaseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GetStartedBaseViewController.h"/>
-        </class>
-        <class className="InfoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="feedbackButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="KeyPairDetailsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KeyPairDetailsViewController.h"/>
-        </class>
-        <class className="ListOwnCertificateViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListOwnCertificateViewController.h"/>
-        </class>
-        <class className="MyCertificateViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyCertificateViewController.h"/>
-        </class>
-        <class className="NameCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NotificationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonClicked:"/>
-                <relationship kind="outlet" name="buttonOutlet" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="PreviewViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PreviewViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonEncryptAndSend:"/>
-                <relationship kind="action" name="exportButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="RecipientDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="deleteButtonClicked:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="RecipientsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipientsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="RootViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewContainer:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-            </relationships>
-        </class>
-        <class className="SendCertificateTwoWayViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SendCertificateTwoWayViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didCancel:"/>
-            </relationships>
-        </class>
-        <class className="SettingsNotificationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsNotificationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buttonOutlet" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="SourceSelectionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourceSelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="SwipeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwipeCell.h"/>
-        </class>
-        <class className="TutorialViewController" superclassName="GetStartedBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TutorialViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="nextButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="skipButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pageControlOutlet" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollViewOutlet" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="UserSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="doneButtonClicked:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="yDN-f4-IdL"/>
         <segue reference="UGp-wN-WVq"/>
+        <segue reference="MjX-0A-OTa"/>
         <segue reference="Zeq-zY-hTX"/>
+        <segue reference="YDp-e6-swT"/>
         <segue reference="XFd-Oh-Oeg"/>
-        <segue reference="P5F-Xo-nYb"/>
-        <segue reference="To0-DD-5fI"/>
-        <segue reference="rJ7-aU-XC7"/>
     </inferredMetricsTieBreakers>
 </document>

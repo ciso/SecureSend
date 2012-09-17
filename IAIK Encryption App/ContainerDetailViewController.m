@@ -20,6 +20,7 @@
 #import "RootViewController.h"
 #import "TestFlight.h"
 #import "Error.h"
+#import "Base64.h"
 
 @interface ContainerDetailViewController() {
 @private
@@ -550,7 +551,28 @@
     
     NSLog(@"currrent contents after deletion of zip-file: %@",contents_after.description);
     
-    NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:zippeddata withCertificate:self.currentCertificate];
+    NSString *encodedPayload = [Base64 encode:zippeddata];
+    NSLog(@"encoded: %@", encodedPayload);
+    
+    NSMutableString *mimeString = [[NSMutableString alloc] init];
+    [mimeString appendString:@"Content-Type: multipart/mixed;\r\n"];
+    [mimeString appendString:@"\tboundary=\"----=_Part_0_2305.1988\"\r\n"];
+    [mimeString appendString:@"\r\n"];
+    [mimeString appendString:@"------=_Part_0_2305.1988\r\n"];
+    [mimeString appendString:@"Content-Type: application/octet-stream; name=container.zip\r\n"];
+    [mimeString appendString:@"Content-Transfer-Encoding: base64\r\n"];
+    [mimeString appendString:@"Content-Disposition: attachment; filename=container.zip\r\n"];
+    [mimeString appendString:@"\r\n"];
+    [mimeString appendString:encodedPayload];
+    [mimeString appendString:@"------=_Part_0_2305.1988--\r\n"];
+    
+    
+    NSLog(@"mime: %@", mimeString);
+
+    NSData* mimeData = [mimeString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:mimeData withCertificate:self.currentCertificate];
+    
+//    NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:zippeddata withCertificate:self.currentCertificate];
     
     return encryptedContainer;
 }

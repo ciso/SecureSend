@@ -88,6 +88,7 @@
 @synthesize editHandler             = _editHandler;
 @synthesize currentActiveContainer  = _currentActiveContainer;
 @synthesize dropboxBrowser          = _dropboxBrowser;
+@synthesize containerName           = _containerName;
 
 - (DBRestClient *)restClient {
     if (!_restClient) {
@@ -134,7 +135,6 @@
     
     self.handler = [[DropboxAlertViewHandler alloc] init];
 
-    
     //info button
     UIButton* info = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [info addTarget:self action:@selector(openInfoScreen) forControlEvents:UIControlEventAllEvents];
@@ -952,6 +952,34 @@
         
     }
     
+    
+    //first = 8
+    //last = max - 3
+    NSString* encodedString = [NSString stringWithUTF8String:[zippedcontainer bytes]];
+    //NSLog(@"string: %@", encodedString);
+    
+    NSArray *tokens = [encodedString componentsSeparatedByString:@"\r\n"];
+    NSLog(@"tokens: %d", [tokens count]);
+    
+    NSInteger skip = 7;
+    NSInteger last = 2;
+    NSInteger index = 0;
+    
+    NSMutableString *zipString = [[NSMutableString alloc] init];
+    for (NSString *token in tokens) {
+        if (index > skip && index < ([tokens count]-last)) {
+            //NSLog(@"adding: %@", token);
+            
+            [zipString appendString:token];
+        }
+        index++;
+    }
+    
+    //NSData *decoded = [Base64 decode:zipString];
+    
+    NSData *decoded = [Base64 base64DataFromString:zipString];
+    zippedcontainer = decoded; //[zipString dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSFileManager* filemanager = [NSFileManager defaultManager];
     
     //creating incoming directory
@@ -1012,6 +1040,11 @@
             }
         }
     }
+    
+    //test
+    newcontainername = self.containerName;
+    self.containerName = nil;
+    
     
     if (newcontainername == nil) {
         NSLog(@"Container injection!!!");

@@ -272,6 +272,12 @@
         RootViewController* root = (RootViewController*)[navi.viewControllers objectAtIndex:0];
         */
         
+        NSLog(@"path: %@", [url lastPathComponent]);
+        NSString *lastPath = [url lastPathComponent];
+        NSArray *tokens = [lastPath componentsSeparatedByString:@"."];
+        NSString *name = [tokens objectAtIndex:0];
+        
+        root.containerName = name;
         [root decryptContainer:containerdata];
         
         
