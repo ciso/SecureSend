@@ -8,13 +8,18 @@
 
 #import "InfoViewController.h"
 #import "TestFlight.h"
+#import "LoadingView.h"
 
 @interface InfoViewController ()
+
+@property (nonatomic, strong) UIView *loadingView;
 
 @end
 
 @implementation InfoViewController
+
 @synthesize webView;
+@synthesize loadingView = _loadingView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,6 +82,34 @@
     }
     
     return YES;
+}
+
+- (void)showLoadingView {
+    UIView *load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Loading ..."];
+    self.loadingView = load;
+}
+
+- (void)hideLoadingView {
+    [self.loadingView removeFromSuperview];
+}
+
+
+# pragma mark - WebView Delegates
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self showLoadingView];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self hideLoadingView];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self hideLoadingView];
+    
+    //showing alert to enter code, setting rootviewcontroller as delegate
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not load from server" delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
