@@ -1366,7 +1366,14 @@
     self.phoneNumber = certRequest.phoneNumber;
     
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-    [composer setToRecipients:[NSArray arrayWithObjects:certRequest.emailAddress, nil]];
+//    [composer setToRecipients:[NSArray arrayWithObjects:certRequest.emailAddress, nil]];
+    
+    NSString *mail = certRequest.emailAddress;
+    mail = [mail stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    mail = [mail stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    
+    //NSString *emailAddress = @"pteufl@me.com";
+    [composer setToRecipients:[NSArray arrayWithObject:mail]];
     [composer setSubject:NSLocalizedString(@"My Certificate", @"Subject for certificate email in root view")];
     [composer setMessageBody:NSLocalizedString(@"You will receive the checksum for my certificate shortly via SMS or iMessage", @"Body for certificate email in root view") isHTML:NO];
     composer.mailComposeDelegate = self;
