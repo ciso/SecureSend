@@ -1123,7 +1123,7 @@
             
             //hash from sms
             NSLog(@"base64 hash: %@", hash);
-            NSData *decoded = [Base64 decode:hash];
+            NSData *decoded = [Base64 base64DataFromString:hash]; //[Base64 decode:hash];
             NSLog(@"decoded: %@", decoded);
             
             
@@ -1135,10 +1135,10 @@
             
             NSLog(@"orig hash: %@", macOut);
             
-            NSLog(@"hash from sms: %@", [Base64 encode:decoded]);
-            NSLog(@"hash from cert: %@", [Base64 encode:macOut]);
+//            NSLog(@"hash from sms: %@", [Base64 encode:decoded]);
+//            NSLog(@"hash from cert: %@", [Base64 encode:macOut]);
             
-            if ([[Base64 encode:decoded] isEqualToString:[Base64 encode:macOut]])
+            if ([/*[Base64 encode:decoded]*/[Base64 base64StringFromData:decoded length:[decoded length]] isEqualToString:[Base64 base64StringFromData:macOut length:[macOut length]] /*[Base64 encode:macOut]*/])
             {
                 
             }
@@ -1303,7 +1303,7 @@
                 CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
                 
                 NSLog(@"macOut: %@", macOut);
-                NSString *encoded =  [Base64 encode:macOut];
+                NSString *encoded = [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
                 NSLog(@"base64: %@", encoded);
                 
                 //self.key = newkey;
@@ -1366,16 +1366,16 @@
     self.phoneNumber = certRequest.phoneNumber;
     
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-    [composer setToRecipients:[NSArray arrayWithObject:certRequest.emailAddress]];
+    [composer setToRecipients:[NSArray arrayWithObjects:certRequest.emailAddress, nil]];
     [composer setSubject:NSLocalizedString(@"My Certificate", @"Subject for certificate email in root view")];
-    [composer setMessageBody:NSLocalizedString(@"You will receive the chechsum for my certificate shortly via SMS or iMessage", @"Body for certificate email in root view") isHTML:NO];
+    [composer setMessageBody:NSLocalizedString(@"You will receive the checksum for my certificate shortly via SMS or iMessage", @"Body for certificate email in root view") isHTML:NO];
     composer.mailComposeDelegate = self;
     
     
     NSData *cert = [PersistentStore getActiveCertificateOfUser];
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
     CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
-    NSString *encoded =  [Base64 encode:macOut];
+    NSString *encoded = [Base64 base64StringFromData:macOut length:[macOut length]];  //[Base64 encode:macOut];
     self.hash = encoded;
     
     [composer addAttachmentData:cert mimeType:@"application/iaikcert" fileName:@"cert.iaikcert"];

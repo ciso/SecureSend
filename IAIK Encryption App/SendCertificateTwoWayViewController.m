@@ -248,7 +248,7 @@
     CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
     
     NSLog(@"macOut: %@", macOut);
-    NSString *encoded =  [Base64 encode:macOut];
+    NSString *encoded =  [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
     NSLog(@"base64: %@", encoded);
     
     //self.key = newkey;
@@ -316,7 +316,7 @@
                 CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
                 
                 NSLog(@"macOut: %@", macOut);
-                NSString *encoded =  [Base64 encode:macOut];
+                NSString *encoded =  [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
                 NSLog(@"base64: %@", encoded);
                 
                 //self.key = newkey;
@@ -326,7 +326,12 @@
             composer.body = [NSString stringWithFormat:@"I have sent you my certificate via email. This is the checksum for verification: %@", self.key];
             composer.messageComposeDelegate = self;
             
+            //[self presentViewController:composer animated:YES completion:nil];
+            
             [self presentModalViewController:composer animated:YES];
+            //[self.navigationController pushViewController:composer animated:YES];
+
+            
         }
         else 
         {

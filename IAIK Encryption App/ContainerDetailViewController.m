@@ -551,7 +551,7 @@
     
     NSLog(@"currrent contents after deletion of zip-file: %@",contents_after.description);
     
-    NSString *encodedPayload = [Base64 encode:zippeddata];
+    NSString *encodedPayload = [Base64 base64StringFromData:zippeddata length:[zippeddata length]];  //[Base64 encode:zippeddata];
     //NSLog(@"encoded: %@", encodedPayload);
     
     NSMutableString *mimeString = [[NSMutableString alloc] init];

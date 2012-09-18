@@ -10,8 +10,9 @@
 
 @interface Base64 : NSObject
 
-+ (NSString*)encode:(NSData*)data;
-+ (NSData*)decode:(NSString*)decode;
+//+ (NSString*)encode:(NSData*)data;
+//+ (NSData*)decode:(NSString*)decode;
 + (NSData*)base64DataFromString: (NSString*)string;
++ (NSString *) base64StringFromData: (NSData *)data length: (int)length;
 
 @end
