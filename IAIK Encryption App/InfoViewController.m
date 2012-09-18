@@ -84,6 +84,12 @@
     return YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self hideLoadingView];
+}
+
 - (void)showLoadingView {
     UIView *load = [LoadingView showLoadingViewInView:self.view.window withMessage:@"Loading ..."];
     self.loadingView = load;

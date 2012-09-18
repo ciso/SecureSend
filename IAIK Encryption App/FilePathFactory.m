@@ -91,7 +91,7 @@
     NSString *containerName = @"New Container";
     
     do {
-        uniqueName = [NSString stringWithFormat:@"%@ #%d", containerName, count++];
+        uniqueName = [NSString stringWithFormat:@"%@ %d", containerName, count++];
         uniquePath = [folder stringByAppendingPathComponent:uniqueName];
     } while ([existingFiles containsObject:uniqueName]);
     

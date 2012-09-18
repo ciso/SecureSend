@@ -62,7 +62,7 @@
 @property (nonatomic, strong) DropboxAlertViewHandler *handler;
 @property (nonatomic, strong) ContainerEditAlertViewHandler *editHandler;
 @property (nonatomic, strong) SecureContainer *currentActiveContainer;
-
+@property (nonatomic, strong) UITableViewCell *activeCell;
 
 @end
 
@@ -83,12 +83,13 @@
 @synthesize editable                = _editable;
 @synthesize activeInput             = _activeInput;
 @synthesize restClient              = _restClient;
-@synthesize navBar = _navBar;
+@synthesize navBar                  = _navBar;
 @synthesize handler                 = _handler;
 @synthesize editHandler             = _editHandler;
 @synthesize currentActiveContainer  = _currentActiveContainer;
 @synthesize dropboxBrowser          = _dropboxBrowser;
 @synthesize containerName           = _containerName;
+@synthesize activeCell              = _activeCell;
 
 - (DBRestClient *)restClient {
     if (!_restClient) {
@@ -295,6 +296,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.activeCell = nil;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -488,14 +491,17 @@
     
     UIAlertView* alert = nil;
     NSString *message = @"Please enter a new name.";
-    alert = [[UIAlertView alloc] initWithTitle:@"Rename" message:message delegate:self.editHandler cancelButtonTitle:@"CANCEL" otherButtonTitles:@"SAVE", nil];
+    alert = [[UIAlertView alloc] initWithTitle:@"Rename" message:message delegate:self.editHandler cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [alert textFieldAtIndex:0];
     self.editHandler.caller = self;
     self.editHandler.cell = cell;
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     self.currentActiveContainer = [self.containers objectAtIndex:indexPath.row];
+    textField.text = self.currentActiveContainer.name;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     [alert show];
     
@@ -588,6 +594,9 @@
 }
 
 - (void)cellSwiped:(UITableViewCell*)cell {
+    
+    self.activeCell = cell;
+    
     for (int i = 0; i < [self.tableView numberOfRowsInSection:0]; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         
@@ -596,6 +605,7 @@
         if (cell != currentCell) {
             [currentCell hideAnimated:NO];
         }
+        
     }
 }
 
@@ -610,7 +620,9 @@
             [currentCell hideAnimated:YES];
             
         }
-    }}
+        
+    }
+}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -628,6 +640,7 @@
             [self performSegueWithIdentifier:SEGUE_TO_DETAIL sender:[self.containers objectAtIndex:indexPath.row]];
         }
     }
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -1246,6 +1259,9 @@
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView endUpdates];
     
+    [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:newIndexPath];
+    [self edit:cell];
     
     if (self.containers.count > 0) {
         [self removeHelpView];
@@ -1517,6 +1533,28 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SwipeCell *cell = (SwipeCell*)[tableView cellForRowAtIndexPath:indexPath];
     UIView *subView = [cell viewWithTag:500];
+    
+    NSIndexPath *activeCellIndexPath = [self.tableView indexPathForCell:self.activeCell];
+    NSArray *indexPathes = [self.tableView indexPathsForVisibleRows];
+    
+    BOOL found = NO;
+    for (NSIndexPath *temp in indexPathes) {
+        if (temp.row == activeCellIndexPath.row && temp.section == activeCellIndexPath.section) {
+            found = YES;
+            break;
+        }
+    }
+    
+    if (!found) {
+        self.activeCell = nil;
+    }
+    
+    
+    if (self.activeCell) {
+        self.activeCell = nil;
+        
+        return nil;
+    }
     
     if (!subView.hidden) {
         return nil;
