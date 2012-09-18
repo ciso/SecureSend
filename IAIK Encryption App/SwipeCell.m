@@ -138,19 +138,30 @@
         NSInteger cells = [tableView numberOfRowsInSection:0];
         NSIndexPath *indexPath = [tableView indexPathForCell:self];
         
+        NSInteger rows = [tableView numberOfRowsInSection:0];
+        
         CGRect maskFrame = self.editView.bounds;
         CGFloat radius = 0.0;
-
-        if (indexPath.row == 0) {
-            radius = 10.0;
-            maskFrame.size.height += radius;
+        CGFloat defaultRadius = 7.0;
+        
+        if (rows == 1) {
+            radius = defaultRadius;
             maskFrame.origin.y += 1;
         }
-        else if (indexPath.row == cells - 1) {
-            radius = 10.0;
-            maskFrame.size.height += radius;
-            maskFrame.origin.y -= radius;
+        else {
+
+            if (indexPath.row == 0) {
+                radius = defaultRadius;
+                maskFrame.size.height += radius;
+                maskFrame.origin.y += 1;
+            }
+            else if (indexPath.row == cells - 1) {
+                radius = defaultRadius;
+                maskFrame.size.height += radius;
+                maskFrame.origin.y -= radius;
+            }
         }
+
         
         CALayer *maskLayer = [CALayer layer];
         maskLayer.cornerRadius = radius;

@@ -123,7 +123,7 @@
     UIImage *buttonImage = [UIImage imageNamed:@"266-upload"];
     UIButton *button = [[UIButton alloc] init];
     [button setImage:buttonImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(exportContainer) forControlEvents:UIControlEventAllEvents];
+    [button addTarget:self action:@selector(exportContainer) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
 
     UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -199,7 +199,7 @@
     if (self.container.fileUrls.count > 0) {
         [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
     }
-    else {
+    else {            
         //showing alert to enter code, setting rootviewcontroller as delegate
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"You cannot share an empty container."

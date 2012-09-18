@@ -984,11 +984,12 @@
     NSLog(@"tokens: %d", [tokens count]);
     
     NSInteger skip = 7;
-    NSInteger last = 2;
+    NSInteger last = 1;
     NSInteger index = 0;
     
     NSMutableString *zipString = [[NSMutableString alloc] init];
     for (NSString *token in tokens) {
+        //NSLog(@"if: %d > %d && %d < %d", index, skip, index, [tokens count]-last);
         if (index > skip && index < ([tokens count]-last)) {
             //NSLog(@"adding: %@", token);
             
@@ -1112,7 +1113,7 @@
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"checksum_verification"] == 1)
         {
             NSString *sms = [alertView textFieldAtIndex:0].text;
-            NSArray *hashArray = [sms componentsSeparatedByString:@"is: "];
+            NSArray *hashArray = [sms componentsSeparatedByString:@"verification: "];
             if ([hashArray count] <= 1)
             {
                 hashArray = [sms componentsSeparatedByString:@"ist: "];
