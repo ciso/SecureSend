@@ -221,7 +221,7 @@
         
         CC_SHA1(certdata.bytes, certdata.length, hash.mutableBytes);
         
-        NSString *base64hash = [Base64 base64StringFromData:hash length:[hash length]];  //[Base64 encode:hash];
+        NSString *base64hash = [Base64 encodeBase64WithData:hash];  //[Base64 encode:hash];
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"checksum_verification"] == 1)
         {

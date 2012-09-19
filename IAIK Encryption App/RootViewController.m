@@ -589,7 +589,8 @@
     }
     
     [((SwipeCell*)cell) hideAnimated:NO];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+    //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
 }
 
@@ -993,27 +994,88 @@
     NSString* encodedString = [NSString stringWithUTF8String:[zippedcontainer bytes]];
     //NSLog(@"string: %@", encodedString);
     
-    NSArray *tokens = [encodedString componentsSeparatedByString:@"\r\n"];
-    NSLog(@"tokens: %d", [tokens count]);
+    //boundary: \tboundary="----=_Part_0_2305.1988"
+    //ref: "------=_Part_0_2305.1988--"
     
-    NSInteger skip = 7;
-    NSInteger last = 1;
-    NSInteger index = 0;
+    //get boundary
+    NSRange range = [encodedString rangeOfString:@"boundary=\""];
+    NSLog(@"range: %d with length: %d", range.location, range.length);
     
-    NSMutableString *zipString = [[NSMutableString alloc] init];
-    for (NSString *token in tokens) {
-        //NSLog(@"if: %d > %d && %d < %d", index, skip, index, [tokens count]-last);
-        if (index > skip && index < ([tokens count]-last)) {
-            //NSLog(@"adding: %@", token);
-            
-            [zipString appendString:token];
+    NSInteger i = range.location + range.length;
+    
+    NSMutableString *boundary = [[NSMutableString alloc] init];
+    BOOL found = NO;
+    while (!found) {
+        char c = [encodedString characterAtIndex:i++];
+        if (c == '"') {
+            found = YES;
+            break;
         }
-        index++;
+        else {
+            [boundary appendFormat:@"%c", c];
+        }
     }
     
+    NSLog(@"Boundary: %@", boundary);
+    
+    boundary = [NSString stringWithFormat:@"--%@", boundary];
+    
+    NSArray *tokens = [encodedString componentsSeparatedByString:boundary];
+    NSLog(@"count: %d (should be 3)", [tokens count]);
+    
+    //freeing memory
+    encodedString = nil;
+    
+    NSString *zipString = [tokens objectAtIndex:1]; //should be the third item
+    tokens = nil;
+    
+    NSArray *bodyTokens = [zipString componentsSeparatedByString:@"\r\n\r\n"];
+    NSLog(@"found: (should be 2): %d", [bodyTokens count]);
+    
+    
+    zipString = [bodyTokens objectAtIndex:1];
+    bodyTokens = nil;
+    /* ref:
+     
+     
+     NSMutableString *mimeString = [[NSMutableString alloc] init];
+     [mimeString appendString:@"Content-Type: multipart/mixed;\r\n"];
+     [mimeString appendString:@"\tboundary=\"----=_Part_0_2305.1988\"\r\n"];
+     [mimeString appendString:@"\r\n"];
+     [mimeString appendString:@"------=_Part_0_2305.1988\r\n"];
+     [mimeString appendString:@"Content-Type: application/octet-stream; name=container.zip\r\n"];
+     [mimeString appendString:@"Content-Transfer-Encoding: base64\r\n"];
+     [mimeString appendString:@"Content-Disposition: attachment; filename=container.zip\r\n"];
+     [mimeString appendString:@"\r\n"];
+     [mimeString appendString:encodedPayload];
+     [mimeString appendString:@"------=_Part_0_2305.1988--\r\n"];
+     */
+    
+    
+    
+    
+//    NSArray *tokens = [encodedString componentsSeparatedByString:@"\r\n"];
+//    NSLog(@"tokens: %d", [tokens count]);
+//    
+//    
+//    NSInteger skip = 7;
+//    NSInteger last = 1;
+//    NSInteger index = 0;
+//    
+//    NSMutableString *zipString = [[NSMutableString alloc] init];
+//    for (NSString *token in tokens) {
+//        //NSLog(@"if: %d > %d && %d < %d", index, skip, index, [tokens count]-last);
+//        if (index > skip && index < ([tokens count]-last)) {
+//            //NSLog(@"adding: %@", token);
+//            
+//            [zipString appendString:token];
+//        }
+//        index++;
+//    }
+//    
     //NSData *decoded = [Base64 decode:zipString];
     
-    NSData *decoded = [Base64 base64DataFromString:zipString];
+    NSData *decoded = [Base64 decodeBase64WithString:zipString];
     zippedcontainer = decoded; //[zipString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSFileManager* filemanager = [NSFileManager defaultManager];
@@ -1136,7 +1198,7 @@
             
             //hash from sms
             NSLog(@"base64 hash: %@", hash);
-            NSData *decoded = [Base64 base64DataFromString:hash]; //[Base64 decode:hash];
+            NSData *decoded = [Base64 decodeBase64WithString:hash]; //[Base64 decode:hash];
             NSLog(@"decoded: %@", decoded);
             
             
@@ -1151,7 +1213,7 @@
 //            NSLog(@"hash from sms: %@", [Base64 encode:decoded]);
 //            NSLog(@"hash from cert: %@", [Base64 encode:macOut]);
             
-            if ([/*[Base64 encode:decoded]*/[Base64 base64StringFromData:decoded length:[decoded length]] isEqualToString:[Base64 base64StringFromData:macOut length:[macOut length]] /*[Base64 encode:macOut]*/])
+            if ([/*[Base64 encode:decoded]*/[Base64 encodeBase64WithData:decoded] isEqualToString:[Base64 encodeBase64WithData:macOut] /*[Base64 encode:macOut]*/])
             {
                 
             }
@@ -1319,7 +1381,7 @@
                 CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
                 
                 NSLog(@"macOut: %@", macOut);
-                NSString *encoded = [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
+                NSString *encoded = [Base64 encodeBase64WithData:macOut]; //[Base64 encode:macOut];
                 NSLog(@"base64: %@", encoded);
                 
                 //self.key = newkey;
@@ -1398,7 +1460,7 @@
     NSData *cert = [PersistentStore getActiveCertificateOfUser];
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
     CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
-    NSString *encoded = [Base64 base64StringFromData:macOut length:[macOut length]];  //[Base64 encode:macOut];
+    NSString *encoded = [Base64 encodeBase64WithData:macOut];  //[Base64 encode:macOut];
     self.hash = encoded;
     
     [composer addAttachmentData:cert mimeType:@"application/iaikcert" fileName:@"cert.iaikcert"];

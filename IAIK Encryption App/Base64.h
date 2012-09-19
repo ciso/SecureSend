@@ -12,7 +12,11 @@
 
 //+ (NSString*)encode:(NSData*)data;
 //+ (NSData*)decode:(NSString*)decode;
-+ (NSData*)base64DataFromString: (NSString*)string;
-+ (NSString *) base64StringFromData: (NSData *)data length: (int)length;
+//+ (NSData*)base64DataFromString: (NSString*)string;
+//+ (NSString *) base64StringFromData: (NSData *)data length: (int)length;
+
++ (NSString *)encodeBase64WithString:(NSString *)strData;
++ (NSString *)encodeBase64WithData:(NSData *)objData;
++ (NSData *)decodeBase64WithString:(NSString *)strBase64;
 
 @end

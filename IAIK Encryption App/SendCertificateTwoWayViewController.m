@@ -248,7 +248,7 @@
     CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
     
     NSLog(@"macOut: %@", macOut);
-    NSString *encoded =  [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
+    NSString *encoded =  [Base64 encodeBase64WithData:macOut]; //[Base64 encode:macOut];
     NSLog(@"base64: %@", encoded);
     
     //self.key = newkey;
@@ -316,7 +316,7 @@
                 CC_SHA1(cert.bytes, cert.length, macOut.mutableBytes);
                 
                 NSLog(@"macOut: %@", macOut);
-                NSString *encoded =  [Base64 base64StringFromData:macOut length:[macOut length]]; //[Base64 encode:macOut];
+                NSString *encoded =  [Base64 encodeBase64WithData:macOut]; //[Base64 encode:macOut];
                 NSLog(@"base64: %@", encoded);
                 
                 //self.key = newkey;

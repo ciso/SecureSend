@@ -551,7 +551,7 @@
     
     NSLog(@"currrent contents after deletion of zip-file: %@",contents_after.description);
     
-    NSString *encodedPayload = [Base64 base64StringFromData:zippeddata length:[zippeddata length]];  //[Base64 encode:zippeddata];
+    NSString *encodedPayload = [Base64 encodeBase64WithData:zippeddata];  //[Base64 encode:zippeddata];
     //NSLog(@"encoded: %@", encodedPayload);
     
     NSMutableString *mimeString = [[NSMutableString alloc] init];
@@ -567,7 +567,7 @@
     [mimeString appendString:@"------=_Part_0_2305.1988--\r\n"];
     
     
-    NSLog(@"mime: %@", mimeString);
+    //NSLog(@"mime: %@", mimeString);
 
     NSData* mimeData = [mimeString dataUsingEncoding:NSUTF8StringEncoding];
     NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:mimeData withCertificate:self.currentCertificate];
