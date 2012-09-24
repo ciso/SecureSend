@@ -136,6 +136,7 @@
 		B48B980D15BEAA40000F0D57 /* CreateNewCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48B980C15BEAA40000F0D57 /* CreateNewCertificateViewController.m */; };
 		B49506C515C277430062F9E4 /* KeyChainStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506C415C277430062F9E4 /* KeyChainStoreTests.m */; };
 		B49506CD15C2ACD60062F9E4 /* X509CertificateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */; };
+		B4951EB816105C9D00D94DDE /* CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4951EB716105C9D00D94DDE /* CryptoTests.m */; };
 		B49BCCE315E5FCC7009BCEC4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = B49BCCE215E5FCC7009BCEC4 /* readme.md */; };
 		B49BCCE715E63717009BCEC4 /* DropboxBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49BCCE615E63717009BCEC4 /* DropboxBrowserViewController.m */; };
 		B4A7ADED15B59C3C00A07FCB /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A7ADEC15B59C3C00A07FCB /* DropboxSDK.framework */; };
@@ -394,6 +395,8 @@
 		B49506C415C277430062F9E4 /* KeyChainStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStoreTests.m; sourceTree = "<group>"; };
 		B49506CB15C2ACD60062F9E4 /* X509CertificateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = X509CertificateUtil.h; sourceTree = "<group>"; };
 		B49506CC15C2ACD60062F9E4 /* X509CertificateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = X509CertificateUtil.m; sourceTree = "<group>"; };
+		B4951EB616105C9D00D94DDE /* CryptoTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoTests.h; sourceTree = "<group>"; };
+		B4951EB716105C9D00D94DDE /* CryptoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptoTests.m; sourceTree = "<group>"; };
 		B49BCCE215E5FCC7009BCEC4 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 		B49BCCE515E63717009BCEC4 /* DropboxBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxBrowserViewController.h; sourceTree = "<group>"; };
 		B49BCCE615E63717009BCEC4 /* DropboxBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxBrowserViewController.m; sourceTree = "<group>"; };
@@ -617,9 +620,10 @@
 		B4118B4915AAC61B00D050B2 /* IAIK Encryption AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				B49506C715C279CB0062F9E4 /* Resources */,
-				B49506C215C277270062F9E4 /* KeyChainStoreTests */,
 				B49506C615C2774C0062F9E4 /* AppTests */,
+				B4951EB516105C8200D94DDE /* CryptoTests */,
+				B49506C215C277270062F9E4 /* KeyChainStoreTests */,
+				B49506C715C279CB0062F9E4 /* Resources */,
 				B4118B4A15AAC61B00D050B2 /* Supporting Files */,
 			);
 			path = "IAIK Encryption AppTests";
@@ -1229,6 +1233,15 @@
 			name = X509CertificateUtil;
 			sourceTree = "<group>";
 		};
+		B4951EB516105C8200D94DDE /* CryptoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4951EB616105C9D00D94DDE /* CryptoTests.h */,
+				B4951EB716105C9D00D94DDE /* CryptoTests.m */,
+			);
+			name = CryptoTests;
+			sourceTree = "<group>";
+		};
 		B49BCCE415E636FD009BCEC4 /* DropboxBrowserViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1802,6 +1815,7 @@
 			files = (
 				B4118B5115AAC61B00D050B2 /* IAIK_Encryption_AppTests.m in Sources */,
 				B49506C515C277430062F9E4 /* KeyChainStoreTests.m in Sources */,
+				B4951EB816105C9D00D94DDE /* CryptoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

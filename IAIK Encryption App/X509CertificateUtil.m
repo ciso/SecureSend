@@ -116,7 +116,8 @@
 }
 + (NSString*)getCity:(NSData*)cert
 {
-    return [self getField:@"C" ofCert:cert];
+    return [self getField:@"L" ofCert:cert];
+    //C is for country, L = city
 }
 
 + (NSString*)getField:(NSString*)field ofCert:(NSData*)cert

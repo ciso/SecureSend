@@ -384,19 +384,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "IAIK Encryption App/ContainerDetailViewController.m"
-         timestampString = "369747846.866754"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "573"
-         endingLineNumber = "573"
-         landmarkName = "-zipAndEncryptContainer"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/RootViewController.m"
          timestampString = "369728937.172724"
          startingColumnNumber = "9223372036854775807"
@@ -485,7 +472,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/ContainerDetailViewController.m"
@@ -498,7 +485,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IAIK Encryption App/ContainerDetailViewController.m"
@@ -547,6 +534,32 @@
          startingLineNumber = "1023"
          endingLineNumber = "1023"
          landmarkName = "-decryptContainer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/Crypto.m"
+         timestampString = "370161507.91787"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "341"
+         endingLineNumber = "341"
+         landmarkName = "-encryptBinaryFile:usingCertificate:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "IAIK Encryption App/Crypto.m"
+         timestampString = "370161867.251957"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "426"
+         endingLineNumber = "426"
+         landmarkName = "-encryptBinaryFile:usingCertificate:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

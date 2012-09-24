@@ -572,7 +572,7 @@
     NSData* mimeData = [mimeString dataUsingEncoding:NSUTF8StringEncoding];
     NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:mimeData withCertificate:self.currentCertificate];
     
-//    NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:zippeddata withCertificate:self.currentCertificate];
+    //NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:zippeddata withCertificate:self.currentCertificate];
     
     return encryptedContainer;
 }

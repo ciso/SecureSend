@@ -339,6 +339,14 @@ static void callback(int p, int n, void *arg);
  */
 - (NSData*) encryptBinaryFile:(NSData*)containerFile
        usingCertificate:(X509*)cert {
+    
+    BOOL monitorTime = YES;
+    NSDate *begin = nil;
+    NSDate *end = nil;
+    if (monitorTime) {
+        begin = [NSDate date];
+    }
+
     //openssl variables
     BIO *in = NULL, *out = NULL, *tbio = NULL;
 	STACK_OF(X509) *recips = NULL;
@@ -410,6 +418,14 @@ static void callback(int p, int n, void *arg);
     NSLog(@"Encryption (NSData) succeeded!");  
     
     //return encrypted data
+    
+    if (monitorTime) {
+        end = [NSDate date];
+        
+        NSTimeInterval diff = [end timeIntervalSinceDate:begin];
+        NSLog(@"Time used: %f", diff);
+
+    }
     return temp;
 }
 
