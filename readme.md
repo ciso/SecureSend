@@ -19,6 +19,8 @@ Then the owner can decrypt it using his private key and access the user's sensit
 The encryption and decryption is based on the CMS/SMIME standard and uses self-signed 
 certificates.
 
+## Screenshots
+<img src="http://cstromberger.at/securesend/tut1@2x.png" />
 
 
 
