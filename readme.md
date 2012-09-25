@@ -19,9 +19,10 @@ Then the owner can decrypt it using his private key and access the user's sensit
 The encryption and decryption is based on the CMS/SMIME standard and uses self-signed 
 certificates.
 
+
 ## Overview
 SecureSend allows you to store files in secure containers on your iPhone and share these 
-containers with other persons via eMail (Dropbox support will be added soon). 
+containers with other persons via eMail and Dropbox. 
 The containers are protected from unauthorised access by using state-of-the-art 
 encryption. Before sharing a container with another recipient the person's certificate 
 can be retrieved via bluetooth or eMail.
@@ -31,10 +32,12 @@ SecureSend (e.g. from your eMail client). We highly recommended to set a passcod
 your iPhone. Only then, the files within SecureSend are adequately protected by using 
 the iPhones data protection system.
 
+
 ### Features:
 - Securely store files in SecureSend
 - Securely share data with other persons
 - Exchange certificates via Bluetooth or Email
+
 
 ## Screenshots
 <img src="http://cstromberger.at/securesend/tut1@2x.png" />
@@ -42,6 +45,7 @@ the iPhones data protection system.
 
 <img src="http://cstromberger.at/securesend/tut3@2x.png" />
 <img src="http://cstromberger.at/securesend/tut4@2x.png" />
+
 
 ## Technical details
 SecureSend uses CMS/SMIME to create encrypted containers. In order to encrypt a container 
