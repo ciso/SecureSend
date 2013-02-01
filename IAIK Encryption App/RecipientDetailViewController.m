@@ -233,7 +233,7 @@
                                    nil];
         
         gradientLayer.cornerRadius = button.layer.cornerRadius;
-        [button.layer insertSublayer:gradientLayer atIndex:0];
+        [button.layer insertSublayer:gradientLayer atIndex:1];
         
         button.layer.masksToBounds = YES;
         button.titleLabel.textColor = [UIColor whiteColor];
