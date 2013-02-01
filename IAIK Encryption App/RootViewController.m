@@ -1166,6 +1166,22 @@
     
     [self.containers addObject:newcontainer];
     
+    // -------- BUG FIX ----------------
+    // set appropriate protection class
+    for (NSString *filePath in newcontainer.fileUrls) {
+        NSLog(@"Setting protection class for imprted file: %@", filePath);
+
+        NSError *error = nil;
+        NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+        if (![[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:filePath error:&error])
+        {
+            NSLog(@"Could not set protection class for imported file!");
+        }
+        
+    }
+    // ---------- END ------------------
+    
+    
     //reloading tableview
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_CONTAINERS] withRowAnimation:UITableViewRowAnimationRight];
     

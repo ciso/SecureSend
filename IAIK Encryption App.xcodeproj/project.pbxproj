@@ -1932,8 +1932,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Teufl (YRDYKQ3584)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/IAIK Encryption App\"",
@@ -1948,8 +1948,8 @@
 					"\"$(SRCROOT)/IAIK Encryption App\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "20C3E977-9F66-493C-8BE5-808582D55916";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20C3E977-9F66-493C-8BE5-808582D55916";
 				USER_HEADER_SEARCH_PATHS = "\"IAIK Encryption App\"/include/**";
 				VALID_ARCHS = "armv7s armv7";
 				WRAPPER_EXTENSION = app;

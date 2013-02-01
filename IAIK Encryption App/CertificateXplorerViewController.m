@@ -229,6 +229,19 @@
     
     NSData *cert = [KeyChainStore dataForKey:identifier type:kDataTypeCertificate];
     
+    //just debug
+    NSString *temp = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty)); //retrieving first name
+    NSLog(@"temp: %@", temp); //works...
+    
+    //just an educated gues...
+    ABRecordID idRec = ABRecordGetRecordID(person); //user id
+    ABAddressBookRef addressBook = ABAddressBookCreate(); //addressbook
+    ABMultiValueRef ref = ABRecordCopyValue(ABAddressBookGetPersonWithRecordID(addressBook, idRec), kABPersonEmailProperty);
+    NSArray *emails = (__bridge NSArray *)(ABMultiValueCopyArrayOfAllValues(ref));
+    NSLog(@"emails: %@", emails);
+    
+    //end of debug
+    
     ABMultiValueRef emailMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty);
     NSArray *emailAddresses = (__bridge NSArray*)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
     

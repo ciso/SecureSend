@@ -366,8 +366,69 @@
     
     self.name = [firstname stringByAppendingFormat:@" %@",lastname];
     
-    self.phoneNumbers = (__bridge NSArray*) ABMultiValueCopyArrayOfAllValues(ABRecordCopyValue(person, kABPersonPhoneProperty));
-    self.emailAddresses = (__bridge NSArray*) ABMultiValueCopyArrayOfAllValues(ABRecordCopyValue(person, kABPersonEmailProperty));
+    
+   /* self.phoneNumbers = (__bridge NSArray*) ABMultiValueCopyArrayOfAllValues(ABRecordCopyValue(person, kABPersonPhoneProperty));
+    
+    // ------ FIX FOR LINKED CONTACTS (SINCE iOS6 i.e. facebook contacts) --------
+    if (self.phoneNumbers == nil)
+    {*/
+        ABMutableMultiValueRef phones;
+        CFArrayRef linkedContacts = ABPersonCopyArrayOfAllLinkedPeople(person);
+        phones = ABMultiValueCreateMutable(kABPersonPhoneProperty);
+        ABMultiValueRef linkedPhones;
+        for (int i = 0; i < CFArrayGetCount(linkedContacts); i++)
+        {
+            ABRecordRef linkedContact = CFArrayGetValueAtIndex(linkedContacts, i);
+            linkedPhones = ABRecordCopyValue(linkedContact, kABPersonPhoneProperty);
+            if (linkedPhones != nil && ABMultiValueGetCount(linkedPhones) > 0)
+            {
+                for (int j = 0; j < ABMultiValueGetCount(linkedPhones); j++)
+                {
+                    ABMultiValueAddValueAndLabel(phones, ABMultiValueCopyValueAtIndex(linkedPhones, j), NULL, NULL);
+                }
+            }
+            CFRelease(linkedPhones);
+        }
+        CFRelease(linkedContacts);
+        
+        if (ABMultiValueGetCount(phones) == 0)
+        {
+            CFRelease(phones);
+        }
+        
+        self.phoneNumbers = (__bridge NSArray*)ABMultiValueCopyArrayOfAllValues(phones);
+    //}
+    // ------ END ---------
+    
+    
+    //self.emailAddresses = (__bridge NSArray*) ABMultiValueCopyArrayOfAllValues(ABRecordCopyValue(person, kABPersonEmailProperty));
+    //fix for ios6 facebook contacts
+    ABMutableMultiValueRef emails;
+    linkedContacts = ABPersonCopyArrayOfAllLinkedPeople(person);
+    emails = ABMultiValueCreateMutable(kABPersonEmailProperty);
+    ABMultiValueRef linkedEmails;
+    for (int i = 0; i < CFArrayGetCount(linkedContacts); i++)
+    {
+        ABRecordRef linkedContact = CFArrayGetValueAtIndex(linkedContacts, i);
+        linkedEmails = ABRecordCopyValue(linkedContact, kABPersonEmailProperty);
+        if (linkedEmails != nil && ABMultiValueGetCount(linkedEmails) > 0)
+        {
+            for (int j = 0; j < ABMultiValueGetCount(linkedEmails); j++)
+            {
+                ABMultiValueAddValueAndLabel(emails, ABMultiValueCopyValueAtIndex(linkedEmails, j), NULL, NULL);
+            }
+        }
+        CFRelease(linkedEmails);
+    }
+    CFRelease(linkedContacts);
+    
+    if (ABMultiValueGetCount(emails) == 0)
+    {
+        CFRelease(emails);
+    }
+    
+    self.emailAddresses = (__bridge NSArray*)ABMultiValueCopyArrayOfAllValues(emails);
+    
     
     NSLog(@"phone: %@; email: %@",self.phoneNumbers.description, self.emailAddresses.description);
     
