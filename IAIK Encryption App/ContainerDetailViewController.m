@@ -91,13 +91,13 @@
 {
     [super viewDidLoad];
     
-//    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
-//    CGRect background_frame = self.tableView.frame;
-//    background_frame.origin.x = 0;
-//    background_frame.origin.y = 0;
-//    background.frame = background_frame;
-//    background.contentMode = UIViewContentModeTop;
-//    self.tableView.backgroundView = background;
+    //    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"linenbg.png"]];
+    //    CGRect background_frame = self.tableView.frame;
+    //    background_frame.origin.x = 0;
+    //    background_frame.origin.y = 0;
+    //    background.frame = background_frame;
+    //    background.contentMode = UIViewContentModeTop;
+    //    self.tableView.backgroundView = background;
     
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
     
@@ -116,21 +116,21 @@
     NSMutableArray *buttons = [[NSMutableArray alloc] initWithCapacity:3];
     
     // Create a standard refresh button.
-//    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
-//                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
-//    [buttons addObject:bi];
+    //    UIBarButtonItem *bi = [[UIBarButtonItem alloc]
+    //                           initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(exportContainer)];
+    //    [buttons addObject:bi];
     
     UIImage *buttonImage = [UIImage imageNamed:@"266-upload"];
     UIButton *button = [[UIButton alloc] init];
     [button setImage:buttonImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(exportContainer) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
-
+    
     UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:button];
     [buttons addObject:bi];
     
     self.exportButton = bi;
-
+    
     
     // Create a spacer.
     bi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -192,14 +192,14 @@
 }
 //end of help view
 
-
+#pragma mark - export methods
 
 - (void)exportContainer
 {
     if (self.container.fileUrls.count > 0) {
         [self performSegueWithIdentifier:SEGUE_TO_XPLORER sender:nil];
     }
-    else {            
+    else {
         //showing alert to enter code, setting rootviewcontroller as delegate
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"You cannot share an empty container."
@@ -210,6 +210,8 @@
         [alert show];
     }
 }
+
+#pragma mark - Lifecycle methods
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -226,7 +228,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];    
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -299,13 +301,13 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        else 
+        else
         {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
-
+    
     return cell;
 }
 
@@ -313,7 +315,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     //teeeeest! debug
     self.shouldRotateToPortrait = YES;
     
@@ -358,9 +359,9 @@
                                               otherButtonTitles:@"OK", nil];
         
         [alert show];
-
+        
     }
-
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -382,7 +383,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //if(indexPath.section == 0 && indexPath.row != rowAddFile)
-        return YES;
+    return YES;
     
     //return NO;
 }
@@ -425,7 +426,7 @@
         [self removeHelpView];
     }
     
-    [self.tableView reloadData]; 
+    [self.tableView reloadData];
 }
 
 - (void)closeModalView {
@@ -455,10 +456,10 @@
     [self dismissModalViewControllerAnimated:YES];
     
     
-    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"), 
+    UIActionSheet* action = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose action", @"Title for alert in container detail view") delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Share via Dropbox",  @"Alert button in container detail view to share container using Dropbox"),
                              NSLocalizedString(@"Send Container via Email", @"Button in alter view in container detail view for sending a container via email"), nil];
     
-//    [action showInView:self.view];
+    //    [action showInView:self.view];
     [action showFromTabBar:self.tabBarController.tabBar];
 }
 
@@ -568,7 +569,7 @@
     
     
     //NSLog(@"mime: %@", mimeString);
-
+    
     NSData* mimeData = [mimeString dataUsingEncoding:NSUTF8StringEncoding];
     NSData* encryptedContainer = [[Crypto getInstance] encryptBinaryFile:mimeData withCertificate:self.currentCertificate];
     
@@ -624,11 +625,11 @@
                     {
                         
                         //loading icon test
-//                        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-//                        [activityView startAnimating];
-//                        
-//                        UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:activityView];
-//                        self.exportButton = bi;
+                        //                        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+                        //                        [activityView startAnimating];
+                        //
+                        //                        UIBarButtonItem *bi = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+                        //                        self.exportButton = bi;
                         
                         [root uploadFileToDropbox:encryptedcontainer withName:self.container.name];
                         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Dropbox"
@@ -636,7 +637,7 @@
                                                                          delegate:nil
                                                                 cancelButtonTitle:@"OK"
                                                                 otherButtonTitles:nil];
-                            
+                        
                         [message show];
                     }
                     break;
@@ -647,23 +648,23 @@
                     {
                         [self sendContainerMail:encryptedcontainer];
                     }
-                    else 
+                    else
                     {
-                        NSLog(@"cannot send mail");    
+                        NSLog(@"cannot send mail");
                     }
                     break;
                 }
                 default:
                     break;
             }
-
             
-        }); 
+            
+        });
     });
     
     
     
-   }
+}
 
 #pragma mark - segue control methods
 
@@ -697,7 +698,7 @@
         destination.basePath = self.container.basePath;
         destination.delegate = self;
         
-        UIStoryboardPopoverSegue* popSegue = (UIStoryboardPopoverSegue*)segue;        
+        UIStoryboardPopoverSegue* popSegue = (UIStoryboardPopoverSegue*)segue;
         self.popoverController = popSegue.popoverController;
     }
 }
@@ -715,16 +716,15 @@
     
 }
 
-- (void)export {
-    self.documentController =
-    [UIDocumentInteractionController
-     interactionControllerWithURL:[NSURL fileURLWithPath:self.currentActivePath]];
+- (void)export
+{
+    self.documentController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:self.currentActivePath]];
     
     self.documentController.delegate = self;
     
     self.documentController.UTI = self.currentActiveExtension;
     [self.documentController presentOpenInMenuFromRect:CGRectZero
-                                                inView:self.view.window
+                                                inView:self.view
                                               animated:YES];
 }
 
@@ -745,5 +745,7 @@
     self.currentActivePath = nil;
     self.currentActiveExtension = nil;
 }
+
+
 
 @end
