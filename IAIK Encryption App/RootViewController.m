@@ -111,7 +111,7 @@
         //[KeyChainManager deleteCertificatewithOwner:CERT_ID_USER];
         
         //[KeyChainManager deleteUsersPrivateKey];
-
+        
         
         //creating Handler for Bluetooth-Connection
         BluetoothConnectionHandler* tempbt = [[BluetoothConnectionHandler alloc] init];
@@ -135,7 +135,7 @@
     [super viewDidLoad];
     
     self.handler = [[DropboxAlertViewHandler alloc] init];
-
+    
     //info button
     UIButton* info = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [info addTarget:self action:@selector(openInfoScreen) forControlEvents:UIControlEventAllEvents];
@@ -149,7 +149,7 @@
     
     //background color
     self.tableView.backgroundColor = [UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1.0];
-
+    
     //open data protection warning
     [self showDataProtectionNotification];
     
@@ -234,12 +234,12 @@
         [self performSegueWithIdentifier:@"toDataProtectionNotification" sender:self];
     }
     
-//    if(shownotification)
-//    {
-//        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data Protection", nil) message:NSLocalizedString(@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [enableDP show];
-//    }
+    //    if(shownotification)
+    //    {
+    //        UIAlertView* enableDP = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data Protection", nil) message:NSLocalizedString(@"If you currently don't have a passphrase set for your device do it now! This application can not be considered secure without this feature turned on", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //
+    //        [enableDP show];
+    //    }
 }
 
 - (void)viewDidUnload
@@ -326,7 +326,7 @@
         return rowAddContainer;//+1; //removed +1 cuz of "create container" cell
     }
     /*else if(section == SECTION_ACTIONS)
-        return NUMBER_ROWS_ACTIONS;*/
+     return NUMBER_ROWS_ACTIONS;*/
     
     return 0;
 }
@@ -367,6 +367,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"CellForRowAtIndexPath, index:%d",indexPath.row);
     UITableViewCell *cell = nil;
     if (self.editable)
     {
@@ -376,20 +377,20 @@
         cell.contentView.tag = indexPath.row;
         nameTextField.clearButtonMode = UITextFieldViewModeAlways;
         nameTextField.delegate = self;
-
+        
         
     }
     else
     {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        //        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         cell = [[SwipeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-
+        
         ((SwipeCell*)cell).delegate = self;
         
         UITextField *nameTextField = (UITextField*)[cell viewWithTag:100];
         UILabel *detailLabel = (UILabel*)[cell viewWithTag:101];
         UILabel *lastModifiedLabel = (UILabel*)[cell viewWithTag:102];
-
+        
         //nameTextField.tag = indexPath.row;
         cell.contentView.tag = indexPath.row;
         nameTextField.text = [[self.containers objectAtIndex:indexPath.row] name];
@@ -420,7 +421,7 @@
         
         NSDate *lastModifiedDate = (NSDate*)[attributes objectForKey:NSFileModificationDate];
         NSDate *today = [NSDate date];
-
+        
         NSDate *date1 = lastModifiedDate;
         NSDate *date2 = today;
         
@@ -442,7 +443,7 @@
             lastModifiedLabel.text = [NSString stringWithFormat:@"Last modified %d days ago", days];
         }
         
-
+        
         if (error)
         {
             NSLog(@"Error occured by receiving file attributes");
@@ -470,7 +471,7 @@
 #pragma mark - Swipe Cell Delegate
 - (void)share:(UITableViewCell*)cell {
     NSLog(@"Share pressed");
-
+    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self performSegueWithIdentifier:@"toDetailAndExport" sender:[self.containers objectAtIndex:indexPath.row]];
     
@@ -478,14 +479,14 @@
 
 - (void)remove:(UITableViewCell*)cell {
     NSLog(@"Remove pressed");
-
+    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     [self tableView:self.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
 }
 
 - (void)edit:(UITableViewCell*)cell {
-    NSLog(@"Edit pressed");
+    NSLog(@"Edit pressed, cell:%@",cell.description);
     
     self.editHandler = [[ContainerEditAlertViewHandler alloc] init];
     
@@ -518,7 +519,7 @@
 
 - (void)userRenamedContainer:(NSString*)name inCell:(UITableViewCell*)cell {
     NSLog(@"New name: %@", name);
-   
+    
     SecureContainer *container = self.currentActiveContainer;
     self.currentActiveContainer = nil;
     
@@ -591,7 +592,7 @@
     [((SwipeCell*)cell) hideAnimated:NO];
     [self.tableView reloadData];
     //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
+    
 }
 
 - (void)cellSwiped:(UITableViewCell*)cell {
@@ -675,7 +676,7 @@
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     if (!self.sendRequest)
-    {    
+    {
         ABRecordID rec_id = ABRecordGetRecordID(person);
         NSString *name = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
         NSString *lastname = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
@@ -705,10 +706,10 @@
         
         [alert show];
     }
-    else 
+    else
     {
         [self dismissModalViewControllerAnimated:NO];
-     
+        
         self.sendRequest = NO;
         
         //ABRecordID rec_id = ABRecordGetRecordID(person);
@@ -738,13 +739,13 @@
         //obtain email address from the user
         NSString *defaultEmail = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_email"];
         NSString *defaultPhone = [[NSUserDefaults standardUserDefaults] stringForKey:@"default_phone"];
-
+        
         if (![Validation emailIsValid:defaultEmail] || ![Validation phoneNumberIsValid:defaultPhone])
         {
             
-            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];            
+            [self performSegueWithIdentifier:SEGUE_TO_DEFAULT_EMAIL sender:self];
         }
-        else 
+        else
         {
             [self openMailComposer];
         }
@@ -762,7 +763,7 @@
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
     [composer setToRecipients:[NSArray arrayWithObject:self.email]];
     [composer setSubject:[TextProvider getEmailSubject]];
-     NSString *body = [TextProvider getEmailBodyForRecipient:self.name];
+    NSString *body = [TextProvider getEmailBodyForRecipient:self.name];
     [composer setMessageBody:body isHTML:NO];
     composer.mailComposeDelegate = self;
     
@@ -811,7 +812,7 @@
     
     [self.tableView setEditing:YES animated:YES];
     [self showDoneBarButtonItem];
-
+    
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
     
 }
@@ -825,7 +826,7 @@
     [self showEditBarButtonItem];
     
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
-
+    
 }
 
 -(void) showEditBarButtonItem
@@ -844,7 +845,7 @@
 {
     
     UIBarButtonItem* donebutton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(endEditTableView)];
-    [self.navigationItem setLeftBarButtonItem:donebutton animated:YES];    
+    [self.navigationItem setLeftBarButtonItem:donebutton animated:YES];
 }
 
 
@@ -933,7 +934,7 @@
 -(void) decryptContainer:(NSData*) encryptedContainer
 {
     NSData *usercert = [PersistentStore getActiveCertificateOfUser];
-
+    
     NSData *userprivateKey = [PersistentStore getActivePrivateKeyOfUser];
     
     if(usercert == nil || userprivateKey == nil)
@@ -944,11 +945,11 @@
     
     NSData* zippedcontainer;
     
-    @try 
+    @try
     {
         zippedcontainer = [[Crypto getInstance] decryptBinaryFile:encryptedContainer withUserCertificate:usercert privateKey:userprivateKey];
     }
-    @catch (NSException *exception) 
+    @catch (NSException *exception)
     {
         //now trying all other keys
         NSArray *keypairs = [PersistentStore getAllKeyPairsOfUser];
@@ -981,9 +982,9 @@
             [alert show];
             return;
         }
-
+        
     }
-    @finally 
+    @finally
     {
         
     }
@@ -1054,25 +1055,25 @@
     
     
     
-//    NSArray *tokens = [encodedString componentsSeparatedByString:@"\r\n"];
-//    NSLog(@"tokens: %d", [tokens count]);
-//    
-//    
-//    NSInteger skip = 7;
-//    NSInteger last = 1;
-//    NSInteger index = 0;
-//    
-//    NSMutableString *zipString = [[NSMutableString alloc] init];
-//    for (NSString *token in tokens) {
-//        //NSLog(@"if: %d > %d && %d < %d", index, skip, index, [tokens count]-last);
-//        if (index > skip && index < ([tokens count]-last)) {
-//            //NSLog(@"adding: %@", token);
-//            
-//            [zipString appendString:token];
-//        }
-//        index++;
-//    }
-//    
+    //    NSArray *tokens = [encodedString componentsSeparatedByString:@"\r\n"];
+    //    NSLog(@"tokens: %d", [tokens count]);
+    //
+    //
+    //    NSInteger skip = 7;
+    //    NSInteger last = 1;
+    //    NSInteger index = 0;
+    //
+    //    NSMutableString *zipString = [[NSMutableString alloc] init];
+    //    for (NSString *token in tokens) {
+    //        //NSLog(@"if: %d > %d && %d < %d", index, skip, index, [tokens count]-last);
+    //        if (index > skip && index < ([tokens count]-last)) {
+    //            //NSLog(@"adding: %@", token);
+    //
+    //            [zipString appendString:token];
+    //        }
+    //        index++;
+    //    }
+    //
     //NSData *decoded = [Base64 decode:zipString];
     
     NSData *decoded = [Base64 decodeBase64WithString:zipString];
@@ -1094,12 +1095,12 @@
     ZipArchive* archive = [[ZipArchive alloc] init];
     
     if([archive UnzipOpenFile:zippath])
-    {        
+    {
         [archive UnzipFileTo:incoming overWrite:YES];
     }
     
     [archive UnzipCloseFile];
-        
+    
     NSLog(@"documents: %@",[filemanager contentsOfDirectoryAtPath:[FilePathFactory applicationDocumentsDirectory] error:nil]);
     
     //deleting zip-file
@@ -1166,22 +1167,6 @@
     
     [self.containers addObject:newcontainer];
     
-    // -------- BUG FIX ----------------
-    // set appropriate protection class
-    for (NSString *filePath in newcontainer.fileUrls) {
-        NSLog(@"Setting protection class for imprted file: %@", filePath);
-
-        NSError *error = nil;
-        NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
-        if (![[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:filePath error:&error])
-        {
-            NSLog(@"Could not set protection class for imported file!");
-        }
-        
-    }
-    // ---------- END ------------------
-    
-    
     //reloading tableview
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:SECTION_CONTAINERS] withRowAnimation:UITableViewRowAnimationRight];
     
@@ -1226,8 +1211,8 @@
             
             NSLog(@"orig hash: %@", macOut);
             
-//            NSLog(@"hash from sms: %@", [Base64 encode:decoded]);
-//            NSLog(@"hash from cert: %@", [Base64 encode:macOut]);
+            //            NSLog(@"hash from sms: %@", [Base64 encode:decoded]);
+            //            NSLog(@"hash from cert: %@", [Base64 encode:macOut]);
             
             if ([/*[Base64 encode:decoded]*/[Base64 encodeBase64WithData:decoded] isEqualToString:[Base64 encodeBase64WithData:macOut] /*[Base64 encode:macOut]*/])
             {
@@ -1244,7 +1229,7 @@
             
             [alert show];
         }
-        else 
+        else
         {
             self.receivedCertificateData = self.certData;
             
@@ -1254,7 +1239,7 @@
             [self presentModalViewController:picker animated:YES];
         }
         
-        self.certData = nil;   
+        self.certData = nil;
     }
 }
 
@@ -1289,7 +1274,7 @@
     
     if([testdata writeToFile:testFilePath options:NSDataWritingFileProtectionComplete error:&savingerror])
     {
-            [Error log:savingerror];
+        [Error log:savingerror];
     }// obviously, do better error handling
     
     NSArray* doccontentes = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[FilePathFactory applicationDocumentsDirectory] error:nil];
@@ -1305,13 +1290,13 @@
     return fileProtectionEnabled;
 }
 
-- (IBAction)addNewContainer:(UIBarButtonItem *)sender 
+- (IBAction)addNewContainer:(UIBarButtonItem *)sender
 {
     [self hideCellsAnimated];
     
     NSError* directory_creation_error = nil;
     
-//    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
+    //    NSString* path = [FilePathFactory getUniquePathInFolder:[FilePathFactory applicationDocumentsDirectory] forFileExtension:nil];
     NSString* path = [FilePathFactory getUniqueContainer:[FilePathFactory applicationDocumentsDirectory]];
     
     NSLog(@"Path: %@",path);
@@ -1321,7 +1306,7 @@
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:attributes error:&directory_creation_error];
     if(directory_creation_error != nil)
     {
-            [Error log:directory_creation_error];
+        [Error log:directory_creation_error];
     }
     SecureContainer* newcontainer = [[SecureContainer alloc] init];
     newcontainer.basePath = path;
@@ -1333,15 +1318,26 @@
     //[self showEditBarButtonItem];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.containers count] - 1 inSection:0];
+    NSLog(@"newindex: %d",newIndexPath.row);
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [self.tableView endUpdates];
     
     [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    //NOTE scrollViewDidEndScrollingAnimation will be called after completion. Needed
+    //since cell to edit is not present otherwise
+}
+
+#pragma mark - UIScrollviewdelegate methods
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.containers count] - 1 inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:newIndexPath];
     [self edit:cell];
     
-    if (self.containers.count > 0) {
+    if (self.containers.count > 0)
+    {
         [self removeHelpView];
     }
 }
@@ -1370,7 +1366,7 @@
 {
     if(result == MFMailComposeResultFailed)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending mail", @"Title of alert view in root view. The mail could not be sent") 
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending mail", @"Title of alert view in root view. The mail could not be sent")
                                                         message:NSLocalizedString(@"A problem occured while trying to send mail, please try again", @"Message of alert view in root view. The mail could not be sent. The user is told to try it again.") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [alert show];
@@ -1425,7 +1421,7 @@
 #pragma mark - MFMessageComposerViewControllerDelegate methods
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{  
+{
     if(result == MessageComposeResultFailed)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem sending text message", @"Title of alert view in root view. There was a problem with sending the hash message") message:NSLocalizedString(@"A Problem occured when trying to send text message, please try again", @"Message of alert view in root view. There was a problem with sending the hash message") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -1435,12 +1431,12 @@
     {
         
     }
-    [self dismissModalViewControllerAnimated:YES]; 
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - certificate request
 - (void)manageCertificateRequest:(NSData*)request
-{    
+{
     NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:request];
     
     XMLParser *parser = [[XMLParser alloc] initXMLParser];
@@ -1460,7 +1456,7 @@
     self.phoneNumber = certRequest.phoneNumber;
     
     MFMailComposeViewController* composer = [[MFMailComposeViewController alloc] init];
-//    [composer setToRecipients:[NSArray arrayWithObjects:certRequest.emailAddress, nil]];
+    //    [composer setToRecipients:[NSArray arrayWithObjects:certRequest.emailAddress, nil]];
     
     NSString *mail = certRequest.emailAddress;
     mail = [mail stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -1502,13 +1498,13 @@
         
         if([textField.text isEqualToString:@""])
         {
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view") 
-                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view") 
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter a name", @"Title for alert in container detail view")
+                                               message:NSLocalizedString(@"Please enter a name for the container", @"Message for alert in container detail view")
                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         else {
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view") 
-                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view") 
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Container allready exists", @"Title for alert in container detail view")
+                                               message:NSLocalizedString(@"There seems to exist another container with the same namne, please choose a different one", @"Message for alert in container detail view")
                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         }
         
@@ -1562,7 +1558,7 @@
 
 #pragma mark - dropbox file upload delegates
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata 
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
     [[self restClient] loadSharableLinkForFile:metadata.path];
     
@@ -1576,7 +1572,7 @@
 }
 
 #pragma mark - shareable link dropbox delegates
-- (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link 
+- (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link
            forFile:(NSString*)path
 {
     UIAlertView* alert = nil;
@@ -1601,7 +1597,7 @@
     [composer setSubject:mail.subject];
     [composer setMessageBody:mail.body isHTML:NO];
     composer.mailComposeDelegate = self;
-        
+    
     [self presentModalViewController:composer animated:YES];
 }
 
