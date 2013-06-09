@@ -26,7 +26,6 @@
 @end
 
 @implementation PreviewViewController
-@synthesize toolbar            = _toolbar;
 @synthesize webview            = _webview;
 @synthesize popoverController  = _myPopoverController;
 @synthesize path               = _path;
@@ -38,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
     if(self.path)
     {
         [self refreshPreview];
@@ -74,7 +73,7 @@
     [self showTabBar:self.tabBarController];
 }
 
-- (void) hideTabBar:(UITabBarController *) tabbarcontroller 
+- (void) hideTabBar:(UITabBarController *) tabbarcontroller
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
@@ -83,8 +82,8 @@
         if([view isKindOfClass:[UITabBar class]])
         {
             [view setFrame:CGRectMake(view.frame.origin.x, 480, view.frame.size.width, view.frame.size.height)];
-        } 
-        else 
+        }
+        else
         {
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 480)];
         }
@@ -100,29 +99,25 @@
     [UIView setAnimationDuration:0.5];
     for(UIView *view in tabbarcontroller.view.subviews)
     {
-        NSLog(@"%@", view);
+        //NSLog(@"%@", view);
         
         if([view isKindOfClass:[UITabBar class]])
         {
             [view setFrame:CGRectMake(view.frame.origin.x, 431, view.frame.size.width, view.frame.size.height)];
-            
-        } 
-        else 
+        }
+        else
         {
             [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 431)];
         }
-        
-        
     }
     
-    [UIView commitAnimations]; 
+    [UIView commitAnimations];
 }
 
 
 
 - (void)viewDidUnload
 {
-    [self setToolbar:nil];
     [super viewDidUnload];
 }
 
@@ -163,7 +158,7 @@
         
         self.image.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        self.image.backgroundColor = [UIColor blackColor]; 
+        self.image.backgroundColor = [UIColor blackColor];
         
         [self.view addSubview:self.image];
         
@@ -200,48 +195,48 @@
 {
     if ([segue.identifier isEqualToString:@"modal"])
     {
-   /*     
-        if ([segue.destinationViewController isKindOfClass:[PageViewController class]])
-        {
-            SplitViewController *split = (SplitViewController*)self.splitViewController;
-            
-            ((PageViewController*)segue.destinationViewController).detail = split.detail;
-        }
-        
-        if ([self.splitViewController isKindOfClass:[SplitViewController class]])
-        {
-            SplitViewController *split = (SplitViewController*)self.splitViewController;
-            split.controller = segue.destinationViewController;
-        }*/
+        /*
+         if ([segue.destinationViewController isKindOfClass:[PageViewController class]])
+         {
+         SplitViewController *split = (SplitViewController*)self.splitViewController;
+         
+         ((PageViewController*)segue.destinationViewController).detail = split.detail;
+         }
+         
+         if ([self.splitViewController isKindOfClass:[SplitViewController class]])
+         {
+         SplitViewController *split = (SplitViewController*)self.splitViewController;
+         split.controller = segue.destinationViewController;
+         }*/
     }
     else if ([segue.identifier isEqualToString:SEGUE_TO_ENCRYPT])
-    {       
+    {
         //CertificateXplorerViewController *xplorer = segue.destinationViewController;
         //todo !!!!!
         /*UIViewController *detail = ((SplitViewController*)self.splitViewController).detail;
-        if ([detail isKindOfClass:[ContainerDetailViewController class]])
-        {
-            xplorer.delegate = (ContainerDetailViewController*)detail;
-        }*/
-    } 
+         if ([detail isKindOfClass:[ContainerDetailViewController class]])
+         {
+         xplorer.delegate = (ContainerDetailViewController*)detail;
+         }*/
+    }
     else if([segue.identifier isEqualToString:SEGUE_TO_CHOOSE_CONTROLLER])
     {
-       // self.receivedFileURL = (NSURL*)sender;
+        // self.receivedFileURL = (NSURL*)sender;
         
         //UINavigationController* nav = (UINavigationController*) segue.destinationViewController;
         
         /*ChooseContainerViewController* choose = (ChooseContainerViewController*) [nav.viewControllers objectAtIndex:0];*/
-       /* 
-        ChooseContainerViewController *choose = (ChooseContainerViewController*)segue.destinationViewController;
-        
-        choose.containers = self.secureContainers;
-        choose.delegate = self;*/
+        /*
+         ChooseContainerViewController *choose = (ChooseContainerViewController*)segue.destinationViewController;
+         
+         choose.containers = self.secureContainers;
+         choose.delegate = self;*/
     }
-
+    
 }
 
 
-- (IBAction)buttonEncryptAndSend:(id)sender 
+- (IBAction)buttonEncryptAndSend:(id)sender
 {
     NSLog(@"ENCRYPT AND SEND");
     

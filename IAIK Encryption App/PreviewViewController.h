@@ -10,7 +10,8 @@
 #import "ChoosedContainerDelegate.h"
 
 @interface PreviewViewController : UIViewController <UIPopoverControllerDelegate, UITextFieldDelegate,ChoosedContainerDelegate, UIDocumentInteractionControllerDelegate, UIAlertViewDelegate>
-@property (retain, nonatomic) IBOutlet UIToolbar *toolbar;
+
+
 - (IBAction)exportButtonClicked:(UIBarButtonItem *)sender;
 
 @property(nonatomic,retain) UIImageView* image;

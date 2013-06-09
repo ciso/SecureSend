@@ -340,6 +340,7 @@
         // Create browser
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         browser.displayActionButton = NO;
+        browser.navigationItem.title = [path lastPathComponent];
         
         [self.navigationController pushViewController:browser animated:YES];
     }
