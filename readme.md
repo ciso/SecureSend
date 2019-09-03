@@ -4,7 +4,7 @@
 ## Introduction
 
 SecureSend is a research project of the Institute for Applied Information Processing and 
-Communications at the Graz University of Technology. The iPhone app was developed by Christof Stromberger and Christoph Winter (https://github.com/chrihech).
+Communications at the Graz University of Technology. The iPhone app was developed by Christof Stromberger and Christoph Winter (https://github.com/chrihech) as part of their bachlor thesis at the Graz University of Technology.
 
 It is an iPhone application that provides the ability of sharing containers of data over 
 the Internet in a secure and easy way. The primary focus was to keep it usable and secure 
